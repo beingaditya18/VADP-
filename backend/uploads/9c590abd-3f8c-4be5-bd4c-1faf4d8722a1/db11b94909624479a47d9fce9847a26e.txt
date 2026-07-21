@@ -1,0 +1,1 @@
+Sample legal petition text content for SHA-256 integrity test.

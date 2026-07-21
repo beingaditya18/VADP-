@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+/* ============================================
+   Nyaya-ZTA — Global Design System
+   ============================================ */
+
+/* ── Custom Properties ─────────────────────── */
+:root {
+  /* Brand Colors */
+  --nz-primary: #6366f1;
+  --nz-primary-light: #818cf8;
+  --nz-primary-dark: #4f46e5;
+  --nz-accent: #06b6d4;
+  --nz-accent-light: #22d3ee;
+
+  /* Semantic Colors */
+  --nz-success: #10b981;
+  --nz-warning: #f59e0b;
+  --nz-danger: #ef4444;
+  --nz-info: #3b82f6;
+
+  /* Surface Colors (Dark Mode) */
+  --nz-bg-primary: #0a0a0f;
+  --nz-bg-secondary: #111118;
+  --nz-bg-tertiary: #1a1a24;
+  --nz-bg-card: #141420;
+  --nz-bg-elevated: #1e1e2e;
+
+  /* Border Colors */
+  --nz-border: rgba(255, 255, 255, 0.06);
+  --nz-border-hover: rgba(255, 255, 255, 0.12);
+  --nz-border-active: rgba(99, 102, 241, 0.4);
+
+  /* Text Colors */
+  --nz-text-primary: #f1f5f9;
+  --nz-text-secondary: #94a3b8;
+  --nz-text-muted: #64748b;
+
+  /* Gradients */
+  --nz-gradient-primary: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  --nz-gradient-card: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.04) 100%);
+  --nz-gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+
+  /* Shadows */
+  --nz-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nz-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --nz-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --nz-shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+
+  /* Blur */
+  --nz-blur: 12px;
+
+  /* Transitions */
+  --nz-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --nz-transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Global Styles ─────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--nz-bg-primary);
+  color: var(--nz-text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Glassmorphism Utilities ───────────────── */
+
+.glass {
+  background: rgba(20, 20, 32, 0.6);
+  backdrop-filter: blur(var(--nz-blur));
+  -webkit-backdrop-filter: blur(var(--nz-blur));
+  border: 1px solid var(--nz-border);
+}
+
+.glass-hover:hover {
+  background: rgba(30, 30, 46, 0.7);
+  border-color: var(--nz-border-hover);
+}
+
+/* ── Gradient Utilities ────────────────────── */
+
+.gradient-text {
+  background: var(--nz-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--nz-gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  transition: opacity var(--nz-transition);
+}
+
+.gradient-border:hover::before {
+  opacity: 0.6;
+}
+
+/* ── Animation Utilities ───────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes grid-flow {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* ── Card Styles ───────────────────────────── */
+
+.card {
+  background: var(--nz-bg-card);
+  border: 1px solid var(--nz-border);
+  border-radius: 16px;
+  transition: all var(--nz-transition);
+}
+
+.card:hover {
+  border-color: var(--nz-border-hover);
+  box-shadow: var(--nz-shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-glow:hover {
+  box-shadow: var(--nz-shadow-glow);
+}
+
+/* ── Hero Grid Background ──────────────────── */
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}

@@ -1,0 +1,90 @@
+# ============================================
+# Nyaya-ZTA .gitignore
+# ============================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# pytest
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# mypy / pyright
+.mypy_cache/
+.pyright/
+
+# ruff
+.ruff_cache/
+
+# ---------- Node.js ----------
+node_modules/
+.next/
+out/
+.vercel/
+.turbo/
+
+# ---------- Environment ----------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# ---------- FAISS ----------
+*.faiss
+faiss_indices/
+*.index
+
+# ---------- ML Models ----------
+models/*.pkl
+models/*.joblib
+models/*.pt
+models/*.pth
+models/*.onnx
+
+# ---------- IDE ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ---------- Docker ----------
+docker-compose.override.yml
+
+# ---------- Logs ----------
+*.log
+logs/
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------- Secrets / Keys ----------
+*.pem
+*.key
+*.crt
+*.p12
+signing_keys/

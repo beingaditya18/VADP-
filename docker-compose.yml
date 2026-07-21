@@ -1,0 +1,79 @@
+# ============================================================
+# Nyaya-ZTA — Docker Compose (Development & Offline)
+# ============================================================
+# One-command local deployment:
+#   docker-compose up --build
+#
+# Runs backend & frontend locally with zero cloud dependencies.
+# Database: SQLite stored in volume (or backend/database/nyaya.db)
+# Storage: Local filesystem in volume (or backend/uploads/)
+# ============================================================
+
+services:
+  # ── Backend (FastAPI) ──────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nyaya-zta-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+    volumes:
+      # Mount source code for hot-reload in development
+      - ./backend/app:/app/app
+      - ./backend/alembic:/app/alembic
+      # Persist SQLite database
+      - backend-db:/app/database
+      # Persist file uploads
+      - backend-uploads:/app/uploads
+      # Persist FAISS indices
+      - backend-faiss:/app/faiss_indices
+      # Persist signing keys
+      - backend-keys:/app/signing_keys
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ── Frontend (Next.js) ─────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nyaya-zta-frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.local
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    volumes:
+      # Mount source code for hot-reload
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    command: npm run dev
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  backend-db:
+    driver: local
+  backend-uploads:
+    driver: local
+  backend-faiss:
+    driver: local
+  backend-keys:
+    driver: local
