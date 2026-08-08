@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -58,6 +58,7 @@ export function RegisterForm() {
             <UserIcon className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
             <input
               type="text"
+              name="full_name"
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -76,6 +77,7 @@ export function RegisterForm() {
             <Mail className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
             <input
               type="email"
+              name="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -94,6 +96,7 @@ export function RegisterForm() {
             <Lock className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
             <input
               type="password"
+              name="password"
               required
               minLength={8}
               value={password}
@@ -110,6 +113,7 @@ export function RegisterForm() {
             Select Role
           </label>
           <select
+            name="role"
             value={role}
             onChange={(e) => setRole(e.target.value as UserRole)}
             className="w-full rounded-xl border border-white/10 bg-[#161622] py-2.5 px-4 text-sm text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
@@ -131,6 +135,7 @@ export function RegisterForm() {
               <Award className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
               <input
                 type="text"
+                name="bar_number"
                 required
                 value={barNumber}
                 onChange={(e) => setBarNumber(e.target.value)}

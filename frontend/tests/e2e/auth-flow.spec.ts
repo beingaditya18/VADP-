@@ -34,16 +34,20 @@ test.describe('Authentication & Session Management E2E Journey', () => {
     }
 
     // Should redirect away from register
-    await page.waitForTimeout(1000);
-    await expect(page).not.toHaveURL(/\/register$/);
+    await expect(page).not.toHaveURL(/\/register$/, { timeout: 10000 });
   });
 
   test('2. Unauthenticated user accessing protected portal redirects to login', async ({ page }) => {
+    // Ensure clean state without stored session
+    await page.goto('/login');
+    await page.evaluate(() => localStorage.clear());
+    await page.context().clearCookies();
+
     // Attempt accessing protected citizen dashboard without session
     await page.goto('/citizen');
 
     // Should be guarded and redirected to login or show auth screen
-    await expect(page).toHaveURL(/\/(login|register|auth)/);
+    await expect(page).toHaveURL(/\/(login|register|auth)/, { timeout: 10000 });
   });
 
   test('3. User validation error on invalid credentials', async ({ page }) => {
@@ -89,8 +93,7 @@ test.describe('Authentication & Session Management E2E Journey', () => {
     }
 
     // Verify redirected to dashboard or judge portal
-    await page.waitForTimeout(1000);
-    await expect(page).toHaveURL(/\/(judge|dashboard|citizen|lawyer|admin)/);
+    await expect(page).toHaveURL(/\/(judge|dashboard|citizen|lawyer|admin)/, { timeout: 10000 });
   });
 
   test('5. Logout invalidates session and redirects to auth portal', async ({ page }) => {

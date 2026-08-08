@@ -89,6 +89,10 @@ async def seed_initial_users() -> None:
                     is_verified=True,
                 )
                 session.add(user)
+            else:
+                existing.hashed_password = hash_password("Password123!")
+                existing.is_active = True
+                existing.is_verified = True
         await session.commit()
 
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -47,6 +47,7 @@ export function LoginForm() {
             <Mail className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
             <input
               type="email"
+              name="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +65,7 @@ export function LoginForm() {
             <Lock className="absolute left-3.5 top-3 h-4 w-4 text-gray-500" />
             <input
               type="password"
+              name="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
