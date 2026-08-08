@@ -30,14 +30,16 @@ class TrustScoringEngine:
     """Formal Trust Scoring Engine supporting fixed and logistic-regression fitted weights."""
 
     ALPHA = 0.35  # Model Confidence Weight
-    BETA = 0.35   # Evidence Quality & Hash Integrity Weight
+    BETA = 0.35  # Evidence Quality & Hash Integrity Weight
     GAMMA = 0.15  # Source Reliability Weight
     DELTA = 0.15  # Consistency Weight
 
     _dynamic_weights: Optional[Dict[str, float]] = None
 
     @classmethod
-    def set_dynamic_weights(cls, alpha: float, beta: float, gamma: float, delta: float) -> None:
+    def set_dynamic_weights(
+        cls, alpha: float, beta: float, gamma: float, delta: float
+    ) -> None:
         """Sets dynamically fitted weights from Logistic Regression coefficients."""
         total = alpha + beta + gamma + delta
         if total <= 0:
@@ -48,7 +50,9 @@ class TrustScoringEngine:
             "gamma": round(gamma / total, 4),
             "delta": round(delta / total, 4),
         }
-        logger.info(f"Updated Trust Engine dynamic weights via Logistic Regression: {cls._dynamic_weights}")
+        logger.info(
+            f"Updated Trust Engine dynamic weights via Logistic Regression: {cls._dynamic_weights}"
+        )
 
     @classmethod
     def fit_logistic_regression_weights(
@@ -117,4 +121,3 @@ class TrustScoringEngine:
             consistency=round(s_consistency, 3),
             weights=w,
         )
-

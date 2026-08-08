@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP File Encryption at Rest
 ==================================
 
@@ -37,7 +37,9 @@ class FileEncryption:
                 key_bytes = raw_key.encode("utf-8")
             else:
                 # Deterministically derive 32-byte URL-safe base64 Fernet key from JWT_SECRET_KEY
-                digest = hashlib.sha256(settings.JWT_SECRET_KEY.encode("utf-8")).digest()
+                digest = hashlib.sha256(
+                    settings.JWT_SECRET_KEY.encode("utf-8")
+                ).digest()
                 key_bytes = base64.urlsafe_b64encode(digest)
 
             cls._fernet_instance = Fernet(key_bytes)
@@ -75,7 +77,10 @@ class FileEncryption:
         if path != enc_path and path.exists():
             path.unlink()
 
-        logger.info("File encrypted at rest", extra={"plaintext": str(path), "ciphertext": str(enc_path)})
+        logger.info(
+            "File encrypted at rest",
+            extra={"plaintext": str(path), "ciphertext": str(enc_path)},
+        )
         return enc_path
 
     @classmethod
@@ -95,7 +100,9 @@ class FileEncryption:
         return fernet.decrypt(ciphertext)
 
     @classmethod
-    def decrypt_to_temp_file(cls, encrypted_path: str | Path, original_filename: str) -> Path:
+    def decrypt_to_temp_file(
+        cls, encrypted_path: str | Path, original_filename: str
+    ) -> Path:
         """
         Decrypt encrypted file into a temporary file for download streaming.
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Auth Service
 ======================
 
@@ -58,7 +58,9 @@ class AuthService:
         # Check if email is taken
         existing_user = await self.user_repo.get_by_email(schema.email)
         if existing_user:
-            raise ConflictError(message="A user with this email address already exists.")
+            raise ConflictError(
+                message="A user with this email address already exists."
+            )
 
         # Hash password and create User instance
         user = User(
@@ -73,7 +75,10 @@ class AuthService:
         )
 
         created_user = await self.user_repo.create_user(user)
-        logger.info("User registered successfully", extra={"user_id": created_user.id, "role": created_user.role})
+        logger.info(
+            "User registered successfully",
+            extra={"user_id": created_user.id, "role": created_user.role},
+        )
 
         # Generate tokens and session
         return await self._create_tokens_and_session(created_user)
@@ -87,7 +92,9 @@ class AuthService:
             raise AuthenticationError(message="Invalid email or password.")
 
         if not user.is_active:
-            raise AuthenticationError(message="Account is deactivated. Please contact administrator.")
+            raise AuthenticationError(
+                message="Account is deactivated. Please contact administrator."
+            )
 
         if not verify_password(password, user.hashed_password):
             raise AuthenticationError(message="Invalid email or password.")
@@ -124,7 +131,9 @@ class AuthService:
             raise NotFoundError(message="User not found.")
         return UserProfileResponse.model_validate(user)
 
-    async def update_user_profile(self, user_id: str, schema: UserProfileUpdateSchema) -> UserProfileResponse:
+    async def update_user_profile(
+        self, user_id: str, schema: UserProfileUpdateSchema
+    ) -> UserProfileResponse:
         """
         Update profile details for a user.
         """
@@ -140,6 +149,7 @@ class AuthService:
         Invalidate/revoke access token upon user logout.
         """
         from app.auth.token_blacklist import TokenBlacklistService
+
         TokenBlacklistService.blacklist_token(token)
         logger.info("User token blacklisted on logout")
 
@@ -150,7 +160,9 @@ class AuthService:
 
         # Store session with hashed refresh token
         token_hash = hashlib.sha256(refresh_token.encode()).hexdigest()
-        expires_at = datetime.now(timezone.utc) + timedelta(days=self.settings.REFRESH_TOKEN_EXPIRE_DAYS)
+        expires_at = datetime.now(timezone.utc) + timedelta(
+            days=self.settings.REFRESH_TOKEN_EXPIRE_DAYS
+        )
 
         session_obj = Session(
             user_id=user.id,

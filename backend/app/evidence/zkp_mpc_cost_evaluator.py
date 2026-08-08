@@ -15,9 +15,8 @@ Evaluates across N = 3, 5, 10, 25, 50, 100 participating nodes:
 
 from __future__ import annotations
 
-import json
 import logging
-from typing import Any, Dict, List
+
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
@@ -43,7 +42,9 @@ class Groth16MPCCostEvaluator:
     DEPTH = 10
 
     @classmethod
-    def evaluate_mpc_ceremony(cls, participant_counts: List[int] = [3, 5, 10, 25, 50, 100]) -> List[MPCCeremonyParticipantResult]:
+    def evaluate_mpc_ceremony(
+        cls, participant_counts: list[int] = [3, 5, 10, 25, 50, 100]
+    ) -> list[MPCCeremonyParticipantResult]:
         results = []
         base_zkey_size = 1.48  # MB for 2,450 constraints
         base_ptau_size = 4.12  # MB for 2^12 powers
@@ -51,7 +52,9 @@ class Groth16MPCCostEvaluator:
         for n in participant_counts:
             # Per node contribution computation ~0.85s (elliptic curve scalar mul)
             per_node_sec = 0.85 + (n * 0.012)
-            total_duration = per_node_sec * n + (n * 0.45) # computation + sequential network transmission
+            total_duration = per_node_sec * n + (
+                n * 0.45
+            )  # computation + sequential network transmission
             transcript_verification = 0.12 * n
             total_transfer = (base_zkey_size + base_ptau_size) * 2 * n
             peak_ram = 128.0 + (base_zkey_size * 4)

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP PGVector Vector Store Manager
 ========================================
 
@@ -78,9 +78,13 @@ class PGVectorStore:
         try:
             loop = asyncio.get_event_loop()
             if loop.is_running():
-                loop.create_task(self.async_add_vectors(vectors, chunk_ids, metadata_list))
+                loop.create_task(
+                    self.async_add_vectors(vectors, chunk_ids, metadata_list)
+                )
             else:
-                loop.run_until_complete(self.async_add_vectors(vectors, chunk_ids, metadata_list))
+                loop.run_until_complete(
+                    self.async_add_vectors(vectors, chunk_ids, metadata_list)
+                )
         except Exception as e:
             logger.warning("Error scheduling async_add_vectors: %s", e)
 
@@ -102,9 +106,15 @@ class PGVectorStore:
             engine = get_async_engine()
             async with engine.begin() as conn:
                 for idx, (cid, vec) in enumerate(zip(chunk_ids, vectors, strict=False)):
-                    meta = metadata_list[idx] if metadata_list and idx < len(metadata_list) else {}
+                    meta = (
+                        metadata_list[idx]
+                        if metadata_list and idx < len(metadata_list)
+                        else {}
+                    )
                     case_id = meta.get("case_id", "")
-                    allowed_roles = meta.get("allowed_roles", ["judge", "lawyer", "citizen", "admin"])
+                    allowed_roles = meta.get(
+                        "allowed_roles", ["judge", "lawyer", "citizen", "admin"]
+                    )
                     vec_str = "[" + ",".join(map(str, vec.tolist())) + "]"
 
                     query = text(
@@ -126,7 +136,9 @@ class PGVectorStore:
                             "metadata": meta,
                         },
                     )
-            logger.info("Added %d vectors to pgvector table '%s'", len(vectors), self.index_name)
+            logger.info(
+                "Added %d vectors to pgvector table '%s'", len(vectors), self.index_name
+            )
         except Exception as e:
             logger.warning("Error adding vectors to pgvector: %s", e)
 
@@ -143,21 +155,29 @@ class PGVectorStore:
 
         if self.settings.is_sqlite or self.settings.VECTOR_STORE_BACKEND == "faiss":
             faiss_store = FAISSVectorStore()
-            return faiss_store.search(query_vector, top_k, allowed_case_id, allowed_roles)
+            return faiss_store.search(
+                query_vector, top_k, allowed_case_id, allowed_roles
+            )
 
         try:
             loop = asyncio.get_event_loop()
             if loop.is_running():
                 # If running loop, fallback to FAISS for instant sync search
                 faiss_store = FAISSVectorStore()
-                return faiss_store.search(query_vector, top_k, allowed_case_id, allowed_roles)
+                return faiss_store.search(
+                    query_vector, top_k, allowed_case_id, allowed_roles
+                )
             return loop.run_until_complete(
                 self.async_search(query_vector, top_k, allowed_case_id, allowed_roles)
             )
         except Exception as e:
-            logger.warning("pgvector search fallback to FAISS due to loop context: %s", e)
+            logger.warning(
+                "pgvector search fallback to FAISS due to loop context: %s", e
+            )
             faiss_store = FAISSVectorStore()
-            return faiss_store.search(query_vector, top_k, allowed_case_id, allowed_roles)
+            return faiss_store.search(
+                query_vector, top_k, allowed_case_id, allowed_roles
+            )
 
     async def async_search(
         self,
@@ -172,11 +192,17 @@ class PGVectorStore:
         if self.settings.is_sqlite:
             from app.rag.vector_store import FAISSVectorStore
 
-            return FAISSVectorStore().search(query_vector, top_k, allowed_case_id, allowed_roles)
+            return FAISSVectorStore().search(
+                query_vector, top_k, allowed_case_id, allowed_roles
+            )
 
         try:
             engine = get_async_engine()
-            vec_list = query_vector.tolist()[0] if len(query_vector.shape) > 1 else query_vector.tolist()
+            vec_list = (
+                query_vector.tolist()[0]
+                if len(query_vector.shape) > 1
+                else query_vector.tolist()
+            )
             vec_str = "[" + ",".join(map(str, vec_list)) + "]"
 
             # Base query using cosine distance (<=>)
@@ -203,4 +229,6 @@ class PGVectorStore:
             logger.warning("Error executing pgvector query: %s", e)
             from app.rag.vector_store import FAISSVectorStore
 
-            return FAISSVectorStore().search(query_vector, top_k, allowed_case_id, allowed_roles)
+            return FAISSVectorStore().search(
+                query_vector, top_k, allowed_case_id, allowed_roles
+            )

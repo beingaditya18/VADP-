@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 # VADP Backend — Secrets Management Subsystem
 # ============================================================
 # Unified abstraction providing dynamic, encrypted secret fetching
@@ -45,7 +45,9 @@ class BaseSecretsProvider(ABC):
         self._cache_timestamp = 0.0
 
     def _is_cache_valid(self) -> bool:
-        return bool(self._cache) and (time.time() - self._cache_timestamp) < self.cache_ttl
+        return (
+            bool(self._cache) and (time.time() - self._cache_timestamp) < self.cache_ttl
+        )
 
 
 class EnvSecretsProvider(BaseSecretsProvider):
@@ -71,7 +73,9 @@ class AWSSecretsManagerProvider(BaseSecretsProvider):
         cache_ttl_seconds: int = 300,
     ) -> None:
         super().__init__(cache_ttl_seconds=cache_ttl_seconds)
-        self.secret_name = secret_name or os.getenv("AWS_SECRET_NAME", "VADP/production")
+        self.secret_name = secret_name or os.getenv(
+            "AWS_SECRET_NAME", "VADP/production"
+        )
         self.region_name = region_name or os.getenv("AWS_REGION", "us-east-1")
         self._client = None
 
@@ -113,7 +117,11 @@ class AWSSecretsManagerProvider(BaseSecretsProvider):
 
     def get_secret(self, key: str, default: str | None = None) -> str | None:
         secrets = self.get_secret_dict()
-        return str(secrets.get(key, default)) if key in secrets else os.getenv(key, default)
+        return (
+            str(secrets.get(key, default))
+            if key in secrets
+            else os.getenv(key, default)
+        )
 
     def health_check(self) -> bool:
         client = self._get_client()
@@ -174,7 +182,9 @@ class HashiCorpVaultProvider(BaseSecretsProvider):
             self._cache_timestamp = time.time()
             return secret_data
         except Exception as e:
-            logger.debug(f"KV v2 read failed for '{target_path}', attempting fallback: {e}")
+            logger.debug(
+                f"KV v2 read failed for '{target_path}', attempting fallback: {e}"
+            )
             try:
                 # KV v1 fallback
                 read_response = client.secrets.kv.v1.read_secret(
@@ -190,7 +200,11 @@ class HashiCorpVaultProvider(BaseSecretsProvider):
 
     def get_secret(self, key: str, default: str | None = None) -> str | None:
         secrets = self.get_secret_dict()
-        return str(secrets.get(key, default)) if key in secrets else os.getenv(key, default)
+        return (
+            str(secrets.get(key, default))
+            if key in secrets
+            else os.getenv(key, default)
+        )
 
     def health_check(self) -> bool:
         client = self._get_client()

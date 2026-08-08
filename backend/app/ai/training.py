@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Model Training & Retraining Pipeline
 ===================================================
 
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +21,13 @@ if str(BACKEND_DIR) not in sys.path:
 import joblib
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+)
 from sklearn.model_selection import train_test_split
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -60,7 +66,10 @@ class ModelTrainer:
         json_files = list(DATASET_CACHE_DIR.glob("*.json")) if DATASET_CACHE_DIR.exists() else []
 
         if len(json_files) >= 50:
-            logger.info("Extracting features from %d cached authentic ILDC judgment JSON files...", len(json_files))
+            logger.info(
+                "Extracting features from %d cached authentic ILDC judgment JSON files...",
+                len(json_files),
+            )
             np.random.seed(42)
             for idx, fpath in enumerate(sorted(json_files)):
                 try:
@@ -78,39 +87,67 @@ class ModelTrainer:
                     text_lower = full_text.lower()
 
                     # Authentic Feature 0: Evidence Cryptographic Integrity (higher when verified/judges present)
-                    ev_quality = min(1.0, max(0.40, 0.70 + (len(judges) * 0.10) - (0.15 if "unverified" in text_lower else 0.0)))
+                    ev_quality = min(
+                        1.0,
+                        max(
+                            0.40,
+                            0.70
+                            + (len(judges) * 0.10)
+                            - (0.15 if "unverified" in text_lower else 0.0),
+                        ),
+                    )
                     # Authentic Feature 1: Precedent Alignment (higher with more sections/topics cited)
-                    precedent_match = min(1.0, max(0.35, 0.50 + (len(sections) * 0.10) + (len(topics) * 0.04)))
+                    precedent_match = min(
+                        1.0, max(0.35, 0.50 + (len(sections) * 0.10) + (len(topics) * 0.04))
+                    )
                     # Authentic Feature 2: Unverified Evidence Count
-                    unverified_count = float(max(0, 4 - len(judges) - (1 if "verified" in text_lower else 0)))
+                    unverified_count = float(
+                        max(0, 4 - len(judges) - (1 if "verified" in text_lower else 0))
+                    )
                     # Authentic Feature 3: Procedural Delay Factor
                     year = meta.get("year", 2016)
                     procedural_delay = min(1.0, max(0.05, (2026 - year) / 25.0))
 
                     # Target decision label derived from judgment text disposition keywords
                     is_intervention = int(
-                        any(k in text_lower for k in ["allowed", "quashed", "set aside", "reversed", "convicted", "error of law"])
+                        any(
+                            k in text_lower
+                            for k in [
+                                "allowed",
+                                "quashed",
+                                "set aside",
+                                "reversed",
+                                "convicted",
+                                "error of law",
+                            ]
+                        )
                         or (ev_quality < 0.65 or unverified_count > 1.5)
                     )
 
-                    dataset.append({
-                        "features": [
-                            float(round(ev_quality, 4)),
-                            float(round(precedent_match, 4)),
-                            float(round(unverified_count, 4)),
-                            float(round(procedural_delay, 4)),
-                        ],
-                        "outcome": is_intervention,
-                    })
+                    dataset.append(
+                        {
+                            "features": [
+                                float(round(ev_quality, 4)),
+                                float(round(precedent_match, 4)),
+                                float(round(unverified_count, 4)),
+                                float(round(procedural_delay, 4)),
+                            ],
+                            "outcome": is_intervention,
+                        }
+                    )
                 except Exception as e:
                     logger.warning("Error parsing %s: %s", fpath, e)
                     continue
 
         if len(dataset) < 50:
-            logger.info("Insufficient cached ILDC JSON files found. Generating deterministic ILDC feature corpus.")
+            logger.info(
+                "Insufficient cached ILDC JSON files found. Generating deterministic ILDC feature corpus."
+            )
             return cls.generate_ildc_feature_dataset()
 
-        logger.info("Successfully extracted %d authentic training samples from ILDC corpus.", len(dataset))
+        logger.info(
+            "Successfully extracted %d authentic training samples from ILDC corpus.", len(dataset)
+        )
         return dataset
 
     @classmethod
@@ -137,15 +174,17 @@ class ModelTrainer:
 
         dataset = []
         for i in range(n_samples):
-            dataset.append({
-                "features": [
-                    float(evidence_quality[i]),
-                    float(precedent_match[i]),
-                    float(unverified_count[i]),
-                    float(procedural_delay[i]),
-                ],
-                "outcome": int(labels[i]),
-            })
+            dataset.append(
+                {
+                    "features": [
+                        float(evidence_quality[i]),
+                        float(precedent_match[i]),
+                        float(unverified_count[i]),
+                        float(procedural_delay[i]),
+                    ],
+                    "outcome": int(labels[i]),
+                }
+            )
 
         return dataset
 
@@ -175,14 +214,18 @@ class ModelTrainer:
                 quality = 1.0 if total_ev == 0 else (total_ev - unverified) / float(total_ev)
                 outcome = 1 if case.priority in ["high", "critical"] else 0
 
-                dataset.append({
-                    "features": [quality, 0.85, float(unverified), 0.20],
-                    "outcome": outcome,
-                })
+                dataset.append(
+                    {
+                        "features": [quality, 0.85, float(unverified), 0.20],
+                        "outcome": outcome,
+                    }
+                )
 
             return dataset
         except Exception as e:
-            logger.warning("Error fetching DB cases for retraining: %s, falling back to ILDC dataset.", e)
+            logger.warning(
+                "Error fetching DB cases for retraining: %s, falling back to ILDC dataset.", e
+            )
             return cls.load_authentic_ildc_dataset()
 
     @classmethod
@@ -235,7 +278,7 @@ class ModelTrainer:
             f1_score=round(f1, 4),
             training_samples=len(X_train),
             test_samples=len(X_test),
-            last_trained=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+            last_trained=datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC"),
             dataset_source="350 ILDC Supreme Court Judgments Corpus",
             confusion_matrix=cm,
         )
@@ -243,8 +286,7 @@ class ModelTrainer:
         METRICS_JSON_PATH.write_text(metrics.model_dump_json(indent=2), encoding="utf-8")
         cls._last_metrics = metrics
         logger.info(
-            "Trained & saved authentic model to %s. Accuracy: %.4f, F1: %.4f",
-            save_path, acc, f1
+            "Trained & saved authentic model to %s. Accuracy: %.4f, F1: %.4f", save_path, acc, f1
         )
         return metrics
 
@@ -274,4 +316,3 @@ if __name__ == "__main__":
     print(f"F1-Score:         {metrics.f1_score * 100:.2f}%")
     print(f"Confusion Matrix: {metrics.confusion_matrix}")
     print("=" * 60)
-

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP PDF Forensic Verifier
 ===============================
 
@@ -94,7 +94,7 @@ class PDFVerifierEngine:
 
         hash_matched = True
         if expected_hash:
-            hash_matched = (computed_hash.lower() == expected_hash.lower())
+            hash_matched = computed_hash.lower() == expected_hash.lower()
 
         anomalies: list[PDFTamperAnomaly] = []
         score = 100.0
@@ -168,7 +168,9 @@ class PDFVerifierEngine:
 
         producer_match = re.search(rb"/Producer\s*\((.*?)\)", content)
         if producer_match:
-            metadata.producer = producer_match.group(1).decode("latin1", errors="ignore")
+            metadata.producer = producer_match.group(1).decode(
+                "latin1", errors="ignore"
+            )
 
         creator_match = re.search(rb"/Creator\s*\((.*?)\)", content)
         if creator_match:
@@ -176,7 +178,9 @@ class PDFVerifierEngine:
 
         created_match = re.search(rb"/CreationDate\s*\(D:(.*?)\)", content)
         if created_match:
-            metadata.creation_date = created_match.group(1).decode("latin1", errors="ignore")
+            metadata.creation_date = created_match.group(1).decode(
+                "latin1", errors="ignore"
+            )
 
         mod_match = re.search(rb"/ModDate\s*\(D:(.*?)\)", content)
         if mod_match:
@@ -188,7 +192,11 @@ class PDFVerifierEngine:
             metadata.page_count = max(1, len(page_matches))
 
         # Check Timestamp discrepancies
-        if metadata.creation_date and metadata.mod_date and metadata.creation_date != metadata.mod_date:
+        if (
+            metadata.creation_date
+            and metadata.mod_date
+            and metadata.creation_date != metadata.mod_date
+        ):
             anomalies.append(
                 PDFTamperAnomaly(
                     code="MODIFIED_AFTER_CREATION",

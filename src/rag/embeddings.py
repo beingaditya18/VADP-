@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Text Embeddings Generator
 ====================================
 
@@ -40,10 +40,16 @@ class EmbeddingGenerator:
             try:
                 if _model_instance is None:
                     from sentence_transformers import SentenceTransformer
-                    _model_instance = SentenceTransformer(self.settings.EMBEDDING_MODEL)
-                    logger.info("Loaded SentenceTransformer model: %s", self.settings.EMBEDDING_MODEL)
 
-                embeddings = _model_instance.encode(texts, convert_to_numpy=True, normalize_embeddings=True)
+                    _model_instance = SentenceTransformer(self.settings.EMBEDDING_MODEL)
+                    logger.info(
+                        "Loaded SentenceTransformer model: %s",
+                        self.settings.EMBEDDING_MODEL,
+                    )
+
+                embeddings = _model_instance.encode(
+                    texts, convert_to_numpy=True, normalize_embeddings=True
+                )
                 return embeddings.astype(np.float32)
             except Exception as e:
                 logger.warning("Falling back to feature vector generator: %s", str(e))
@@ -59,7 +65,13 @@ class EmbeddingGenerator:
     def _fallback_encode_single(self, text: str) -> np.ndarray:
         """Generate deterministic 384-dim normalized vector from PBKDF2 bytes."""
         # 384 float32 floats require 384 * 4 = 1536 bytes
-        key_bytes = hashlib.pbkdf2_hmac("sha256", text.encode("utf-8"), b"nyaya_vector_salt", iterations=1, dklen=1536)
+        key_bytes = hashlib.pbkdf2_hmac(
+            "sha256",
+            text.encode("utf-8"),
+            b"nyaya_vector_salt",
+            iterations=1,
+            dklen=1536,
+        )
         raw = np.frombuffer(key_bytes, dtype=np.float32)
         norm = np.linalg.norm(raw)
         if norm > 0:

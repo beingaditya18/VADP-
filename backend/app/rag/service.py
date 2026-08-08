@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RAG Service
 =====================
 
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import asyncio
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import aiofiles
 from sqlalchemy import select
@@ -22,11 +22,11 @@ from app.documents.models import Document
 from app.llm.client import LLMClient
 from app.rag.chunker import TextChunker
 from app.rag.embeddings import EmbeddingGenerator
+from app.rag.entailment import CitationEntailmentVerifier
 from app.rag.models import DocumentChunk, RAGQuery
 from app.rag.retriever import ContextRetriever
 from app.rag.schemas import RAGQueryRequestSchema, RAGQueryResponseSchema
 from app.rag.vector_store import FAISSVectorStore
-from app.rag.entailment import CitationEntailmentVerifier
 
 logger = get_logger(__name__)
 
@@ -55,7 +55,7 @@ class RAGService:
 
         # Read text from file (for TXT/MD/Plain text; or fallback to raw content)
         try:
-            async with aiofiles.open(doc.storage_path, "r", encoding="utf-8", errors="ignore") as f:
+            async with aiofiles.open(doc.storage_path, encoding="utf-8", errors="ignore") as f:
                 raw_text = await f.read()
         except Exception:
             raw_text = f"Document File: {doc.file_name} (Content extracted from document metadata)"
@@ -88,7 +88,9 @@ class RAGService:
 
         # Add vectors to FAISS index with Zero Trust permission metadata
         await asyncio.to_thread(self.vector_store.add_vectors, embeddings, chunk_ids, metadata_list)
-        logger.info("Indexed document into FAISS", extra={"doc_id": doc.id, "chunks": len(chunk_ids)})
+        logger.info(
+            "Indexed document into FAISS", extra={"doc_id": doc.id, "chunks": len(chunk_ids)}
+        )
         return len(chunk_ids)
 
     async def answer_query(
@@ -151,13 +153,17 @@ class RAGService:
             citations=citations,
             processing_time_ms=elapsed_ms,
             case_id=schema.case_id,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
             retrieval_metadata={
-                "embedding_model": self.encoder.model_name if hasattr(self.encoder, "model_name") else "all-MiniLM-L6-v2",
+                "embedding_model": self.encoder.model_name
+                if hasattr(self.encoder, "model_name")
+                else "all-MiniLM-L6-v2",
                 "top_k": schema.top_k,
                 "similarity_threshold": 0.3,
                 "retrieval_latency_ms": elapsed_ms,
-                "total_chunks_searched": self.vector_store.index.ntotal if hasattr(self.vector_store, "index") and self.vector_store.index else 0,
+                "total_chunks_searched": self.vector_store.index.ntotal
+                if hasattr(self.vector_store, "index") and self.vector_store.index
+                else 0,
                 "entailment_verified": True,
                 "entailment_scores": [e.entailment_score for e in entailment_results],
                 "supported_citations_count": len(verified_citations),

@@ -53,11 +53,7 @@ class ZKGroth16Engine:
     @classmethod
     def is_native_available(cls) -> bool:
         """Check if compiled WASM, ZKEY, VKEY, and snarkjs CLI are ready."""
-        return (
-            WASM_PATH.exists()
-            and ZKEY_PATH.exists()
-            and VKEY_PATH.exists()
-        )
+        return WASM_PATH.exists() and ZKEY_PATH.exists() and VKEY_PATH.exists()
 
     @classmethod
     def generate_proof(
@@ -96,11 +92,15 @@ class ZKGroth16Engine:
                     proof_file = tmp / "proof.json"
                     public_file = tmp / "public.json"
 
-                    input_file.write_text(json.dumps(input_data, indent=2), encoding="utf-8")
+                    input_file.write_text(
+                        json.dumps(input_data, indent=2), encoding="utf-8"
+                    )
 
                     cmd = [
                         "npx.cmd" if os.name == "nt" else "npx",
-                        "snarkjs", "groth16", "fullprove",
+                        "snarkjs",
+                        "groth16",
+                        "fullprove",
                         str(input_file),
                         str(WASM_PATH),
                         str(ZKEY_PATH),
@@ -125,7 +125,9 @@ class ZKGroth16Engine:
                         return RealGroth16ProofArtifact(
                             public_inputs={
                                 "leaf": public_raw[0] if public_raw else leaf_signal,
-                                "merkle_root": public_raw[1] if len(public_raw) > 1 else root_signal,
+                                "merkle_root": public_raw[1]
+                                if len(public_raw) > 1
+                                else root_signal,
                                 "public_raw": public_raw,
                                 "depth": depth,
                             },
@@ -137,7 +139,10 @@ class ZKGroth16Engine:
                             simulation_mode=False,
                         )
             except Exception as e:
-                logger.warning("snarkjs native execution failed, falling back to simulated proof: %s", e)
+                logger.warning(
+                    "snarkjs native execution failed, falling back to simulated proof: %s",
+                    e,
+                )
 
         # Deterministic simulation proof artifact for test environment without precompiled WASM
         elapsed_ms = (time.perf_counter() - start_time) * 1000
@@ -179,7 +184,7 @@ class ZKGroth16Engine:
                 "protocol": "groth16",
                 "curve": "bn128",
             }
-            
+
             # Construct public signals array matching [leaf, root]
             leaf_sig = str(artifact.public_inputs.get("leaf", "0"))
             public_data = [leaf_sig, str(expected_root)]
@@ -189,7 +194,9 @@ class ZKGroth16Engine:
 
             cmd = [
                 "npx.cmd" if os.name == "nt" else "npx",
-                "snarkjs", "groth16", "verify",
+                "snarkjs",
+                "groth16",
+                "verify",
                 str(VKEY_PATH),
                 str(public_file),
                 str(proof_file),
@@ -206,7 +213,8 @@ class ZKGroth16Engine:
             elapsed_ms = (time.perf_counter() - start_time) * 1000
             # Strip ANSI colour codes before checking snarkjs output
             import re as _re
-            clean_stdout = _re.sub(r'\x1b\[[0-9;]*m', '', proc.stdout)
+
+            clean_stdout = _re.sub(r"\x1b\[[0-9;]*m", "", proc.stdout)
             is_valid = proc.returncode == 0 or "OK" in clean_stdout
 
             return is_valid, round(elapsed_ms, 2)

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Access Policy & Decision Models
 =========================================
 
@@ -26,10 +26,14 @@ class AccessPolicy(Base, UUIDMixin, TimestampMixin):
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     resource_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     action: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
-    conditions: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
+    conditions: Mapped[dict[str, Any]] = mapped_column(
+        JSON, default=dict, nullable=False
+    )
     allowed_roles: Mapped[list[str]] = mapped_column(JSON, default=list, nullable=False)
     priority: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True, nullable=False)
+    is_active: Mapped[bool] = mapped_column(
+        Boolean, default=True, index=True, nullable=False
+    )
 
 
 class AccessDecision(Base, UUIDMixin, TimestampMixin):
@@ -39,12 +43,18 @@ class AccessDecision(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "access_decisions"
 
-    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=False)
+    user_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=False
+    )
     resource_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     resource_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
     action: Mapped[str] = mapped_column(String(100), nullable=False)
-    decision: Mapped[str] = mapped_column(String(20), nullable=False)  # 'allow' or 'deny'
-    policy_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("access_policies.id"), nullable=True)
+    decision: Mapped[str] = mapped_column(
+        String(20), nullable=False
+    )  # 'allow' or 'deny'
+    policy_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("access_policies.id"), nullable=True
+    )
     context: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
     risk_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     trust_score: Mapped[float | None] = mapped_column(Float, nullable=True)

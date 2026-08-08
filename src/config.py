@@ -105,7 +105,9 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = "change-this-to-a-secure-random-string-in-production"
     JWT_ALGORITHM: str = "ES256"
     JWT_PRIVATE_KEY_PATH: str | None = str(BACKEND_DIR / "signing_keys" / "jwt_key.pem")
-    JWT_PUBLIC_KEY_PATH: str | None = str(BACKEND_DIR / "signing_keys" / "jwt_key_pub.pem")
+    JWT_PUBLIC_KEY_PATH: str | None = str(
+        BACKEND_DIR / "signing_keys" / "jwt_key_pub.pem"
+    )
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
@@ -224,12 +226,17 @@ class Settings(BaseSettings):
                     self.DATABASE_URL = secrets_dict["DATABASE_URL"]
             except Exception as e:
                 import logging
-                logging.getLogger(__name__).warning(f"Failed to load dynamic secrets: {e}")
+
+                logging.getLogger(__name__).warning(
+                    f"Failed to load dynamic secrets: {e}"
+                )
 
         # Create database directory
         db_url = self.DATABASE_URL
         if "sqlite" in db_url:
-            db_path = db_url.replace("sqlite+aiosqlite:///", "").replace("sqlite:///", "")
+            db_path = db_url.replace("sqlite+aiosqlite:///", "").replace(
+                "sqlite:///", ""
+            )
             db_dir = os.path.dirname(db_path)
             if db_dir:
                 os.makedirs(db_dir, exist_ok=True)

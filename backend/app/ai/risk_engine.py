@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Risk Scoring Engine
 =============================
 
@@ -59,10 +59,30 @@ class RiskScoringEngine:
             risk_level = "low"
 
         features = [
-            RiskFeatureSchema(name="Case Priority Level", value=round(val_priority, 2), weight=w_priority, contribution=round(c_priority, 3)),
-            RiskFeatureSchema(name="Unverified Evidence Count", value=round(val_evidence, 2), weight=w_evidence, contribution=round(c_evidence, 3)),
-            RiskFeatureSchema(name="Policy Restriction Flag", value=round(val_policy, 2), weight=w_policy, contribution=round(c_policy, 3)),
-            RiskFeatureSchema(name="Procedural Case Latency", value=round(val_latency, 2), weight=w_latency, contribution=round(c_latency, 3)),
+            RiskFeatureSchema(
+                name="Case Priority Level",
+                value=round(val_priority, 2),
+                weight=w_priority,
+                contribution=round(c_priority, 3),
+            ),
+            RiskFeatureSchema(
+                name="Unverified Evidence Count",
+                value=round(val_evidence, 2),
+                weight=w_evidence,
+                contribution=round(c_evidence, 3),
+            ),
+            RiskFeatureSchema(
+                name="Policy Restriction Flag",
+                value=round(val_policy, 2),
+                weight=w_policy,
+                contribution=round(c_policy, 3),
+            ),
+            RiskFeatureSchema(
+                name="Procedural Case Latency",
+                value=round(val_latency, 2),
+                weight=w_latency,
+                contribution=round(c_latency, 3),
+            ),
         ]
 
         return RiskAssessmentSchema(

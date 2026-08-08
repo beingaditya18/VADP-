@@ -1,8 +1,8 @@
 """
 Citation Entailment Verification Module for VADP RAG Engine.
 
-Directly addresses legal AI hallucination risks (Dahl et al. / RegLab) by checking 
-whether retrieved legal chunks actually entail/support the LLM's generated claims 
+Directly addresses legal AI hallucination risks (Dahl et al. / RegLab) by checking
+whether retrieved legal chunks actually entail/support the LLM's generated claims
 before populating Field 3 (Citation Provenance) of the Verification Contract.
 """
 
@@ -16,7 +16,9 @@ class EntailmentResult(BaseModel):
     premise_snippet: str
     claim_hypothesis: str
     entailment_score: float = Field(ge=0.0, le=1.0)
-    entailment_status: str = Field(description="'entailed' | 'neutral' | 'contradiction'")
+    entailment_status: str = Field(
+        description="'entailed' | 'neutral' | 'contradiction'"
+    )
     is_supported: bool
 
 
@@ -42,11 +44,18 @@ class CitationEntailmentVerifier:
             try:
                 from sentence_transformers import CrossEncoder
                 import logging
-                logging.getLogger(__name__).info("Loading DeBERTa NLI CrossEncoder model: %s", cls._model_name)
+
+                logging.getLogger(__name__).info(
+                    "Loading DeBERTa NLI CrossEncoder model: %s", cls._model_name
+                )
                 cls._model = CrossEncoder(cls._model_name)
             except Exception as e:
                 import logging
-                logging.getLogger(__name__).warning("Failed to load DeBERTa CrossEncoder (%s); using fallback heuristic.", e)
+
+                logging.getLogger(__name__).warning(
+                    "Failed to load DeBERTa CrossEncoder (%s); using fallback heuristic.",
+                    e,
+                )
                 cls._model = False
         return cls._model if cls._model is not False else None
 
@@ -76,7 +85,11 @@ class CitationEntailmentVerifier:
                 if len(scores.shape) == 2:
                     probs = np.exp(scores[0]) / np.sum(np.exp(scores[0]))
                     # Index mapping: 0=contradiction, 1=entailment, 2=neutral (standard MNLI mapping)
-                    p_contra, p_entail, p_neutral = float(probs[0]), float(probs[1]), float(probs[2])
+                    p_contra, p_entail, p_neutral = (
+                        float(probs[0]),
+                        float(probs[1]),
+                        float(probs[2]),
+                    )
                 else:
                     p_entail = float(scores[0])
                     p_contra = 1.0 - p_entail
@@ -145,7 +158,7 @@ class CitationEntailmentVerifier:
         for cit in citations:
             chunk_id = str(cit.get("chunk_id", cit.get("id", "unknown")))
             snippet = str(cit.get("snippet", cit.get("content", "")))
-            
+
             res = self.verify_chunk_entailment(chunk_id, snippet, generated_claim)
             entailment_results.append(res)
 
@@ -154,7 +167,7 @@ class CitationEntailmentVerifier:
             cit_copy["entailment_score"] = res.entailment_score
             cit_copy["entailment_status"] = res.entailment_status
             cit_copy["is_supported"] = res.is_supported
-            
+
             if res.is_supported:
                 verified_citations.append(cit_copy)
 

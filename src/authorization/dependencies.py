@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Dependencies
 ===================================
 
@@ -14,7 +14,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth.dependencies import get_current_user
 from app.auth.models import User
-from app.authorization.schemas import AccessEvaluationRequest, AuthorizationContextSchema
+from app.authorization.schemas import (
+    AccessEvaluationRequest,
+    AuthorizationContextSchema,
+)
 from app.authorization.service import AuthorizationService
 from app.core.exceptions import PolicyViolationError
 from app.db.session import get_db_session

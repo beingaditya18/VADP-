@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Search Router
 =======================
 
@@ -25,7 +25,9 @@ router = APIRouter(prefix="/search", tags=["search"])
     description="Search cases, documents, and FAISS vector indices using keyword and semantic similarity search.",
 )
 async def hybrid_search(
-    q: str = Query(..., min_length=1, max_length=500, description="Search query string"),
+    q: str = Query(
+        ..., min_length=1, max_length=500, description="Search query string"
+    ),
     limit: int = Query(default=20, ge=1, le=100),
     db: AsyncSession = Depends(get_db_session),
 ) -> HybridSearchResponseSchema:

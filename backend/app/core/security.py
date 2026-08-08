@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Core Security
 ========================
 
@@ -15,7 +15,7 @@ Features:
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from fastapi import Depends
@@ -82,8 +82,16 @@ def _ensure_jwt_keypair() -> tuple[str, str]:
     """Ensure ECDSA keypair exists for ES256, returning (private_pem, public_pem)."""
     settings = get_settings()
     root_dir = Path(__file__).resolve().parent.parent.parent
-    priv_path = Path(settings.JWT_PRIVATE_KEY_PATH) if settings.JWT_PRIVATE_KEY_PATH else (root_dir / "signing_keys" / "jwt_key.pem")
-    pub_path = Path(settings.JWT_PUBLIC_KEY_PATH) if settings.JWT_PUBLIC_KEY_PATH else (root_dir / "signing_keys" / "jwt_key_pub.pem")
+    priv_path = (
+        Path(settings.JWT_PRIVATE_KEY_PATH)
+        if settings.JWT_PRIVATE_KEY_PATH
+        else (root_dir / "signing_keys" / "jwt_key.pem")
+    )
+    pub_path = (
+        Path(settings.JWT_PUBLIC_KEY_PATH)
+        if settings.JWT_PUBLIC_KEY_PATH
+        else (root_dir / "signing_keys" / "jwt_key_pub.pem")
+    )
 
     if not priv_path.exists() or not pub_path.exists():
         priv_path.parent.mkdir(parents=True, exist_ok=True)
@@ -93,13 +101,20 @@ def _ensure_jwt_keypair() -> tuple[str, str]:
             format=serialization.PrivateFormat.PKCS8,
             encryption_algorithm=serialization.NoEncryption(),
         ).decode("utf-8")
-        pub_pem = private_key.public_key().public_bytes(
-            encoding=serialization.Encoding.PEM,
-            format=serialization.PublicFormat.SubjectPublicKeyInfo,
-        ).decode("utf-8")
+        pub_pem = (
+            private_key.public_key()
+            .public_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PublicFormat.SubjectPublicKeyInfo,
+            )
+            .decode("utf-8")
+        )
         priv_path.write_text(priv_pem, encoding="utf-8")
         pub_path.write_text(pub_pem, encoding="utf-8")
-        logger.info("Generated new ECDSA keypair for JWT signing (ES256)", extra={"priv_path": str(priv_path)})
+        logger.info(
+            "Generated new ECDSA keypair for JWT signing (ES256)",
+            extra={"priv_path": str(priv_path)},
+        )
         return priv_pem, pub_pem
 
     return priv_path.read_text(encoding="utf-8"), pub_path.read_text(encoding="utf-8")
@@ -140,7 +155,7 @@ def create_access_token(
     Create a short-lived JWT access token.
     """
     settings = get_settings()
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     expire = now + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
 
     payload: dict[str, Any] = {
@@ -162,7 +177,7 @@ def create_refresh_token(user_id: str) -> str:
     Create a long-lived JWT refresh token.
     """
     settings = get_settings()
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     expire = now + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
 
     payload: dict[str, Any] = {
@@ -232,7 +247,8 @@ def extract_user_id_from_token(token: str) -> str:
     return payload["sub"]
 
 
-from fastapi import Depends, Request
+from fastapi import Request
+
 
 async def get_token(
     request: Request,

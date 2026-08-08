@@ -11,7 +11,13 @@ import z3
 
 
 class PolicyVerificationResult(BaseModel := object):
-    def __init__(self, property_name: str, is_verified: bool, solver_status: str, proof_summary: str):
+    def __init__(
+        self,
+        property_name: str,
+        is_verified: bool,
+        solver_status: str,
+        proof_summary: str,
+    ):
         self.property_name = property_name
         self.is_verified = is_verified
         self.solver_status = solver_status
@@ -31,16 +37,16 @@ class Z3PolicyVerifier:
         s = z3.Solver()
 
         # Define Z3 SMT sorts and variables
-        Role = z3.Datatype('Role')
-        Role.declare('citizen')
-        Role.declare('lawyer')
-        Role.declare('judge')
-        Role.declare('admin')
+        Role = z3.Datatype("Role")
+        Role.declare("citizen")
+        Role.declare("lawyer")
+        Role.declare("judge")
+        Role.declare("admin")
         Role = Role.create()
 
-        UserRole = z3.Const('UserRole', Role)
-        MatchedPolicy = z3.Bool('MatchedPolicy')
-        AccessPermitted = z3.Bool('AccessPermitted')
+        UserRole = z3.Const("UserRole", Role)
+        MatchedPolicy = z3.Bool("MatchedPolicy")
+        AccessPermitted = z3.Bool("AccessPermitted")
 
         # Policy decision logic constraint
         # Permitted iff Admin OR MatchedPolicy
@@ -53,9 +59,9 @@ class Z3PolicyVerifier:
         s.add(AccessPermitted)
 
         result = s.check()
-        
+
         # If solver returns UNSAT, then the negation is impossible -> Theorem is PROVED!
-        is_proved = (result == z3.unsat)
+        is_proved = result == z3.unsat
 
         return PolicyVerificationResult(
             property_name="Default-Deny Invariant",
@@ -71,15 +77,15 @@ class Z3PolicyVerifier:
         """
         s = z3.Solver()
 
-        Role = z3.Datatype('Role')
-        Role.declare('citizen')
-        Role.declare('lawyer')
-        Role.declare('judge')
-        Role.declare('admin')
+        Role = z3.Datatype("Role")
+        Role.declare("citizen")
+        Role.declare("lawyer")
+        Role.declare("judge")
+        Role.declare("admin")
         Role = Role.create()
 
-        UserRole = z3.Const('UserRole', Role)
-        AdminBypassGranted = z3.Bool('AdminBypassGranted')
+        UserRole = z3.Const("UserRole", Role)
+        AdminBypassGranted = z3.Bool("AdminBypassGranted")
 
         # Rule: AdminBypassGranted <==> UserRole == admin
         s.add(AdminBypassGranted == (UserRole == Role.admin))
@@ -89,7 +95,7 @@ class Z3PolicyVerifier:
         s.add(AdminBypassGranted)
 
         result = s.check()
-        is_proved = (result == z3.unsat)
+        is_proved = result == z3.unsat
 
         return PolicyVerificationResult(
             property_name="Privilege Escalation Impossibility Theorem",

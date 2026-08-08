@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP LLM Client Package
 """

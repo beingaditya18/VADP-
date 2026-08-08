@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Schemas
 ===============================
 
@@ -20,7 +20,9 @@ class PolicyCreateSchema(BaseModel):
     description: str | None = None
     resource_type: str = Field(..., description="e.g. 'case', 'document', 'ai_recommendation'")
     action: str = Field(..., description="e.g. 'read', 'write', 'approve', 'delete'")
-    conditions: dict[str, Any] = Field(default_factory=dict, description="ABAC attribute match rules")
+    conditions: dict[str, Any] = Field(
+        default_factory=dict, description="ABAC attribute match rules"
+    )
     allowed_roles: list[str] = Field(default_factory=list, description="RBAC allowed roles")
     priority: int = 0
     is_active: bool = True

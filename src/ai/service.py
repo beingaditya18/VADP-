@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Service
 ===========================
 
@@ -64,14 +64,20 @@ class AIService:
         ev_result = await self.db.execute(ev_stmt)
         evidence_records = ev_result.scalars().all()
 
-        unverified_count = sum(1 for e in evidence_records if e.verification_status != "verified")
+        unverified_count = sum(
+            1 for e in evidence_records if e.verification_status != "verified"
+        )
         total_ev = len(evidence_records)
-        evidence_quality = 1.0 if total_ev == 0 else (total_ev - unverified_count) / float(total_ev)
+        evidence_quality = (
+            1.0 if total_ev == 0 else (total_ev - unverified_count) / float(total_ev)
+        )
 
         # 1. RAG Query for Legal Summary
         rag_query = f"Summarize key legal issues, statutory merits, and precedents for case '{case_obj.title}' ({case_obj.case_type})."
         rag_response = await self.rag_service.answer_query(
-            schema=RAGQueryRequestSchema(query_text=rag_query, case_id=case_id, top_k=3),
+            schema=RAGQueryRequestSchema(
+                query_text=rag_query, case_id=case_id, top_k=3
+            ),
             user_id=case_obj.filed_by,
         )
         summary_text = rag_response.answer
@@ -109,7 +115,9 @@ class AIService:
         # Telemetry logging for A/B Testing & Drift Monitoring
         latency_ms = (time.perf_counter() - start_time) * 1000.0
         ABTestingEngine.log_request(version=model_version, latency_ms=latency_ms)
-        ModelDriftDetector.log_prediction(confidence=model_confidence, model_version=model_version)
+        ModelDriftDetector.log_prediction(
+            confidence=model_confidence, model_version=model_version
+        )
 
         # 5. Bias Check
         bias_markers = BiasDetector.detect_bias(summary_text)
@@ -157,6 +165,7 @@ class AIService:
         verification_contract = None
         try:
             from app.vadp.service import VerificationContractService
+
             vadp_service = VerificationContractService(self.db)
             verification_contract = await vadp_service.generate_contract(
                 case_id=case_id,
@@ -181,7 +190,9 @@ class AIService:
             verification_contract=verification_contract,
         )
 
-    async def list_recommendations_for_case(self, case_id: str) -> list[AIRecommendationResponseSchema]:
+    async def list_recommendations_for_case(
+        self, case_id: str
+    ) -> list[AIRecommendationResponseSchema]:
         """List all AI recommendations generated for a case."""
         stmt = (
             select(AIRecommendation)
@@ -193,7 +204,9 @@ class AIService:
         recs = result.scalars().all()
         return [AIRecommendationResponseSchema.model_validate(r) for r in recs]
 
-    async def review_recommendation(self, recommendation_id: str, reviewer_id: str, new_status: str) -> AIRecommendationResponseSchema:
+    async def review_recommendation(
+        self, recommendation_id: str, reviewer_id: str, new_status: str
+    ) -> AIRecommendationResponseSchema:
         """Judge review & approval/rejection of AI decision support recommendation."""
         stmt = (
             select(AIRecommendation)
@@ -212,8 +225,11 @@ class AIService:
         # VADP: Record human review on verification contract
         try:
             from app.vadp.service import VerificationContractService
+
             vadp_service = VerificationContractService(self.db)
-            contract = await vadp_service.get_contract_for_recommendation(recommendation_id)
+            contract = await vadp_service.get_contract_for_recommendation(
+                recommendation_id
+            )
             if contract:
                 await vadp_service.record_human_review(
                     contract_id=contract.id,

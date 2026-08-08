@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RFC 6962 Binary Merkle Tree Implementation
 =====================================================
 
@@ -16,7 +16,6 @@ Features:
 from __future__ import annotations
 
 import hashlib
-from typing import Any
 
 
 class MerkleTree:
@@ -99,7 +98,7 @@ class MerkleTree:
             if len(current_level) % 2 != 0:
                 current_level.append(current_level[-1])
 
-            is_right_child = (index % 2 == 1)
+            is_right_child = index % 2 == 1
             sibling_index = index - 1 if is_right_child else index + 1
 
             sibling_hash = current_level[sibling_index]
@@ -133,4 +132,3 @@ class MerkleTree:
                 current_hash = MerkleTree.hash_node(current_hash, sibling_hash)
 
         return current_hash == expected_root
-

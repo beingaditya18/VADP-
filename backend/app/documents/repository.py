@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Document Repository
 =============================
 
@@ -7,7 +7,7 @@ Data access layer for Document model.
 
 from __future__ import annotations
 
-from typing import Sequence
+from collections.abc import Sequence
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession

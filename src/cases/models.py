@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Management Models
 ================================
 
@@ -26,26 +26,46 @@ class Case(Base, UUIDMixin, TimestampMixin, SoftDeleteMixin):
 
     __tablename__ = "cases"
 
-    case_number: Mapped[str] = mapped_column(String(100), unique=True, index=True, nullable=False)
+    case_number: Mapped[str] = mapped_column(
+        String(100), unique=True, index=True, nullable=False
+    )
     title: Mapped[str] = mapped_column(String(500), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     case_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
-    status: Mapped[str] = mapped_column(String(50), default="filed", index=True, nullable=False)
+    status: Mapped[str] = mapped_column(
+        String(50), default="filed", index=True, nullable=False
+    )
     priority: Mapped[str] = mapped_column(String(20), default="medium", nullable=False)
 
-    filed_by: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=False)
-    assigned_judge: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=True)
-    assigned_lawyer: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), nullable=True)
+    filed_by: Mapped[str] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=False
+    )
+    assigned_judge: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=True
+    )
+    assigned_lawyer: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), nullable=True
+    )
     court_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
 
-    filing_date: Mapped[date] = mapped_column(Date, default=lambda: date.today(), nullable=False)
+    filing_date: Mapped[date] = mapped_column(
+        Date, default=lambda: date.today(), nullable=False
+    )
     next_hearing_date: Mapped[date | None] = mapped_column(Date, nullable=True)
-    metadata_: Mapped[dict[str, Any]] = mapped_column("metadata_", JSON, default=dict, nullable=False)
+    metadata_: Mapped[dict[str, Any]] = mapped_column(
+        "metadata_", JSON, default=dict, nullable=False
+    )
 
     # Relationships
-    parties: Mapped[list[CaseParty]] = relationship("CaseParty", back_populates="case", cascade="all, delete-orphan")
-    events: Mapped[list[CaseEvent]] = relationship("CaseEvent", back_populates="case", cascade="all, delete-orphan")
-    hearings: Mapped[list[HearingSchedule]] = relationship("HearingSchedule", back_populates="case", cascade="all, delete-orphan")
+    parties: Mapped[list[CaseParty]] = relationship(
+        "CaseParty", back_populates="case", cascade="all, delete-orphan"
+    )
+    events: Mapped[list[CaseEvent]] = relationship(
+        "CaseEvent", back_populates="case", cascade="all, delete-orphan"
+    )
+    hearings: Mapped[list[HearingSchedule]] = relationship(
+        "HearingSchedule", back_populates="case", cascade="all, delete-orphan"
+    )
 
     def __repr__(self) -> str:
         return f"<Case(id={self.id}, case_number={self.case_number}, status={self.status})>"
@@ -58,14 +78,29 @@ class HearingSchedule(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "hearing_schedules"
 
-    case_id: Mapped[str] = mapped_column(String(36), ForeignKey("cases.id", ondelete="CASCADE"), index=True, nullable=False)
-    scheduled_date: Mapped[datetime] = mapped_column(String(50), nullable=False)  # ISO string or datetime
-    courtroom: Mapped[str] = mapped_column(String(100), default="Courtroom 1", nullable=False)
-    hearing_type: Mapped[str] = mapped_column(String(100), default="Initial Hearing", nullable=False)
-    status: Mapped[str] = mapped_column(String(50), default="SCHEDULED", nullable=False)  # SCHEDULED, COMPLETED, ADJOURNED, CANCELLED
+    case_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("cases.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
+    scheduled_date: Mapped[datetime] = mapped_column(
+        String(50), nullable=False
+    )  # ISO string or datetime
+    courtroom: Mapped[str] = mapped_column(
+        String(100), default="Courtroom 1", nullable=False
+    )
+    hearing_type: Mapped[str] = mapped_column(
+        String(100), default="Initial Hearing", nullable=False
+    )
+    status: Mapped[str] = mapped_column(
+        String(50), default="SCHEDULED", nullable=False
+    )  # SCHEDULED, COMPLETED, ADJOURNED, CANCELLED
     purpose: Mapped[str | None] = mapped_column(Text, nullable=True)
     judge_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
-    scheduled_by: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), nullable=False)
+    scheduled_by: Mapped[str] = mapped_column(
+        String(36), ForeignKey("users.id"), nullable=False
+    )
 
     # Relationship
     case: Mapped[Case] = relationship("Case", back_populates="hearings")
@@ -81,16 +116,27 @@ class CaseParty(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "case_parties"
 
-    case_id: Mapped[str] = mapped_column(String(36), ForeignKey("cases.id", ondelete="CASCADE"), index=True, nullable=False)
-    user_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), nullable=True)
+    case_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("cases.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
+    user_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), nullable=True
+    )
     party_name: Mapped[str] = mapped_column(String(255), nullable=False)
-    party_type: Mapped[str] = mapped_column(String(50), nullable=False)  # petitioner, respondent, witness, intervener
+    party_type: Mapped[str] = mapped_column(
+        String(50), nullable=False
+    )  # petitioner, respondent, witness, intervener
 
     # Relationship
     case: Mapped[Case] = relationship("Case", back_populates="parties")
 
     def __repr__(self) -> str:
-        return f"<CaseParty(id={self.id}, name={self.party_name}, type={self.party_type})>"
+        return (
+            f"<CaseParty(id={self.id}, name={self.party_name}, type={self.party_type})>"
+        )
 
 
 class CaseEvent(Base, UUIDMixin, TimestampMixin):
@@ -100,15 +146,25 @@ class CaseEvent(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "case_events"
 
-    case_id: Mapped[str] = mapped_column(String(36), ForeignKey("cases.id", ondelete="CASCADE"), index=True, nullable=False)
+    case_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("cases.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
     event_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
-    performed_by: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), nullable=True)
-    event_data: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
+    performed_by: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), nullable=True
+    )
+    event_data: Mapped[dict[str, Any]] = mapped_column(
+        JSON, default=dict, nullable=False
+    )
 
     # Relationship
     case: Mapped[Case] = relationship("Case", back_populates="events")
 
     def __repr__(self) -> str:
-        return f"<CaseEvent(id={self.id}, type={self.event_type}, case_id={self.case_id})>"
-
+        return (
+            f"<CaseEvent(id={self.id}, type={self.event_type}, case_id={self.case_id})>"
+        )

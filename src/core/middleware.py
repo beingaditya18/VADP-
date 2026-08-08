@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Middleware Stack
 ==========================
 
@@ -75,7 +75,13 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
     Health check endpoints are excluded to reduce noise.
     """
 
-    EXCLUDED_PATHS: set[str] = {"/health", "/health/", "/docs", "/openapi.json", "/favicon.ico"}
+    EXCLUDED_PATHS: set[str] = {
+        "/health",
+        "/health/",
+        "/docs",
+        "/openapi.json",
+        "/favicon.ico",
+    }
 
     async def dispatch(
         self, request: Request, call_next: RequestResponseEndpoint
@@ -184,6 +190,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         if token:
             try:
                 from app.core.security import decode_jwt
+
                 payload = decode_jwt(token, expected_type="access")
                 if "sub" in payload:
                     return f"user:{payload['sub']}"

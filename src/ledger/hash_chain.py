@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Hash Chain Module
 ===========================
 
@@ -33,7 +33,9 @@ class HashChain:
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
     @staticmethod
-    def calculate_entry_data_hash(entry_type: str, actor_id: str | None, action: str, entry_data_json: str) -> str:
+    def calculate_entry_data_hash(
+        entry_type: str, actor_id: str | None, action: str, entry_data_json: str
+    ) -> str:
         """
         Compute entry data hash.
         """

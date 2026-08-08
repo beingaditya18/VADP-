@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Precedent Radar & Mega-Case Summarizer Engine
 ======================================================
 
@@ -33,8 +33,11 @@ class MegaCaseSummarizerEngine:
         description: str | None = None,
         case_type: str = "Civil Litigation",
     ) -> MegaCaseSummarySchema:
-        desc = description or "Complex judicial dispute involving contractual performance, statutory compliance, and evidentiary petitions."
-        
+        desc = (
+            description
+            or "Complex judicial dispute involving contractual performance, statutory compliance, and evidentiary petitions."
+        )
+
         return MegaCaseSummarySchema(
             case_id=case_id,
             case_number=case_number,
@@ -83,7 +86,9 @@ class PrecedentRadarEngine:
     """Scans legal filings against vector database precedents to identify legal contradictions."""
 
     @staticmethod
-    def analyze_precedents(case_id: str, case_title: str) -> PrecedentRadarResponseSchema:
+    def analyze_precedents(
+        case_id: str, case_title: str
+    ) -> PrecedentRadarResponseSchema:
         items = [
             PrecedentRadarItemSchema(
                 citation="2023 INSC 482",
@@ -123,7 +128,9 @@ class BailOutcomeEstimatorEngine:
     """Computes bail grant probability & sentencing risk with SHAP explainability factors."""
 
     @staticmethod
-    def estimate_outcome(case_id: str, priority: str = "medium") -> BailOutcomeEstimatorSchema:
+    def estimate_outcome(
+        case_id: str, priority: str = "medium"
+    ) -> BailOutcomeEstimatorSchema:
         factors = [
             BailOutcomeFactorSchema(
                 feature="Clean Custody Record & Verified Evidence",

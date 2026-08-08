@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Case Management Module
 """

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Database Initialization
 =================================
 
@@ -9,25 +9,35 @@ jurisdiction configuration, initial policy templates).
 
 from __future__ import annotations
 
-from app.auth.models import User, Session  # noqa
-from app.authorization.models import AccessPolicy, AccessDecision  # noqa
-from app.cases.models import Case, CaseParty, CaseEvent  # noqa
+import logging
+
+from app.ai.models import AIExplanation, AIRecommendation  # noqa
+from app.auth.models import Session, User  # noqa
+from app.authorization.models import AccessDecision, AccessPolicy  # noqa
+from app.cases.models import Case, CaseEvent, CaseParty  # noqa
+from app.db.base import Base
+from app.db.engine import get_async_engine
+from app.db.normalized_models import (  # noqa
+    AuditEventNorm,
+    Citation,
+    Court,
+    EmbeddingRecord,
+    EvidenceRecordNorm,
+    HumanReviewNorm,
+    Judge,
+    Judgment,
+    LegalIssue,
+    Party,
+    Precedent,
+    Statute,
+    VerificationContractNorm,
+)
 from app.documents.models import Document  # noqa
 from app.evidence.models import EvidenceRecord  # noqa
 from app.ledger.models import LedgerBlock, LedgerEntry  # noqa
-from app.rag.models import DocumentChunk, RAGQuery  # noqa
-from app.ai.models import AIRecommendation, AIExplanation  # noqa
 from app.notifications.models import Notification  # noqa
-from app.vadp.models import VerificationContract, ContractEvent  # noqa
-from app.db.normalized_models import (  # noqa
-    Court, Judge, Judgment, Party, Statute, Precedent, Citation,
-    LegalIssue, EvidenceRecordNorm, EmbeddingRecord, VerificationContractNorm,
-    AuditEventNorm, HumanReviewNorm
-)
-
-import logging
-from app.db.base import Base
-from app.db.engine import get_async_engine
+from app.rag.models import DocumentChunk, RAGQuery  # noqa
+from app.vadp.models import ContractEvent, VerificationContract  # noqa
 
 logger = logging.getLogger(__name__)
 

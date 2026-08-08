@@ -1,14 +1,15 @@
 """
 Okapi BM25 Lexical Retrieval Engine for Legal Documents.
 
-Serves as the standard lexical baseline (rank_bm25 / Elasticsearch model) 
+Serves as the standard lexical baseline (rank_bm25 / Elasticsearch model)
 for legal retrieval evaluation.
 """
 
-from typing import List, Dict, Any, Tuple
 import math
-import numpy as np
 from collections import Counter
+from typing import Any
+
+import numpy as np
 from pydantic import BaseModel
 
 
@@ -27,13 +28,13 @@ class BM25Retriever:
     def __init__(self, k1: float = 1.5, b: float = 0.75):
         self.k1 = k1
         self.b = b
-        self.doc_len: List[int] = []
+        self.doc_len: list[int] = []
         self.avgdl: float = 0.0
-        self.doc_freqs: List[Counter] = []
-        self.idf: Dict[str, float] = {}
-        self.chunks: List[Dict[str, Any]] = []
+        self.doc_freqs: list[Counter] = []
+        self.idf: dict[str, float] = {}
+        self.chunks: list[dict[str, Any]] = []
 
-    def fit(self, chunks: List[Dict[str, Any]]) -> None:
+    def fit(self, chunks: list[dict[str, Any]]) -> None:
         """Indexes candidate chunks and precomputes corpus IDF stats."""
         self.chunks = chunks
         self.doc_len = []
@@ -56,7 +57,7 @@ class BM25Retriever:
             # Standard Okapi BM25 IDF formula
             self.idf[term] = math.log((n_docs - freq + 0.5) / (freq + 0.5) + 1.0)
 
-    def search(self, query_text: str, top_k: int = 5) -> List[BM25ChunkScore]:
+    def search(self, query_text: str, top_k: int = 5) -> list[BM25ChunkScore]:
         """Performs Okapi BM25 search over indexed chunks."""
         q_tokens = query_text.lower().split()
         scores = []
@@ -69,8 +70,10 @@ class BM25Retriever:
                     idf_val = self.idf.get(t, 0.0)
                     denom = freq + self.k1 * (1.0 - self.b + self.b * (dlen / self.avgdl))
                     score += idf_val * (freq * (self.k1 + 1.0)) / denom
-            
-            chunk_id = str(self.chunks[idx].get("id", self.chunks[idx].get("chunk_id", f"chk_{idx}")))
+
+            chunk_id = str(
+                self.chunks[idx].get("id", self.chunks[idx].get("chunk_id", f"chk_{idx}"))
+            )
             snippet = str(self.chunks[idx].get("content", self.chunks[idx].get("snippet", "")))
             scores.append((chunk_id, float(round(score, 4)), snippet))
 
@@ -78,6 +81,8 @@ class BM25Retriever:
 
         results = []
         for rank_idx, (cid, sval, snip) in enumerate(scores[:top_k]):
-            results.append(BM25ChunkScore(chunk_id=cid, bm25_score=sval, rank=rank_idx + 1, snippet=snip))
+            results.append(
+                BM25ChunkScore(chunk_id=cid, bm25_score=sval, rank=rank_idx + 1, snippet=snip)
+            )
 
         return results

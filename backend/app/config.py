@@ -30,7 +30,6 @@ from typing import Any
 from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 # Determine the backend root directory (where this file's parent is)
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 
@@ -207,7 +206,7 @@ class Settings(BaseSettings):
         return v
 
     @model_validator(mode="after")
-    def ensure_directories_exist(self) -> "Settings":
+    def ensure_directories_exist(self) -> Settings:
         """Create required directories if they don't exist and load dynamic secrets."""
         # Load dynamic secrets from SecretsFactory if enabled
         if self.SECRETS_PROVIDER != "env":
@@ -224,6 +223,7 @@ class Settings(BaseSettings):
                     self.DATABASE_URL = secrets_dict["DATABASE_URL"]
             except Exception as e:
                 import logging
+
                 logging.getLogger(__name__).warning(f"Failed to load dynamic secrets: {e}")
 
         # Create database directory

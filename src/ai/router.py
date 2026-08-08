@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Router
 ==========================
 
@@ -79,7 +79,9 @@ async def review_recommendation(
     db: AsyncSession = Depends(get_db_session),
 ) -> AIRecommendationResponseSchema:
     service = AIService(db)
-    return await service.review_recommendation(recommendation_id, current_user.id, action)
+    return await service.review_recommendation(
+        recommendation_id, current_user.id, action
+    )
 
 
 @router.get(
@@ -131,4 +133,3 @@ async def check_model_drift() -> DriftCheckSchema:
 )
 async def get_ab_test_metrics() -> ABTestMetricsSchema:
     return ABTestingEngine.get_metrics()
-

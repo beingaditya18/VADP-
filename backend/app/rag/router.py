@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RAG Router
 ====================
 
@@ -10,6 +10,7 @@ REST API endpoints for Retrieval-Augmented Generation:
 from __future__ import annotations
 
 from typing import Any
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -34,7 +35,11 @@ async def index_document(
 ) -> dict[str, Any]:
     service = RAGService(db)
     chunks_indexed = await service.index_document(document_id)
-    return {"message": "Document indexed successfully", "document_id": document_id, "chunks_indexed": chunks_indexed}
+    return {
+        "message": "Document indexed successfully",
+        "document_id": document_id,
+        "chunks_indexed": chunks_indexed,
+    }
 
 
 @router.post(

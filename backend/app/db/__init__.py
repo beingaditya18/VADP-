@@ -1,1 +1,1 @@
-﻿# VADP Database Layer
+# VADP Database Layer

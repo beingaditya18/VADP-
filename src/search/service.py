@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Hybrid Search Service
 ===============================
 
@@ -42,7 +42,9 @@ class SearchService:
         self.db = db
         self.retriever = ContextRetriever(db)
 
-    async def execute_hybrid_search(self, query: str, limit: int = 20) -> HybridSearchResponseSchema:
+    async def execute_hybrid_search(
+        self, query: str, limit: int = 20
+    ) -> HybridSearchResponseSchema:
         """
         Execute combined full-text and semantic vector search.
         """
@@ -71,17 +73,20 @@ class SearchService:
                 SearchResultItem(
                     category="case",
                     title=f"Case: {c.title} ({c.case_number})",
-                    description=c.description or f"Category: {c.case_type} | Status: {c.status}",
+                    description=c.description
+                    or f"Category: {c.case_type} | Status: {c.status}",
                     relevance_score=0.95,
-                    metadata={"case_id": c.id, "case_number": c.case_number, "status": c.status},
+                    metadata={
+                        "case_id": c.id,
+                        "case_number": c.case_number,
+                        "status": c.status,
+                    },
                 )
             )
 
         # 2. Full-text search on Documents
         doc_stmt = (
-            select(Document)
-            .where(Document.file_name.ilike(search_term))
-            .limit(limit)
+            select(Document).where(Document.file_name.ilike(search_term)).limit(limit)
         )
         doc_results = await self.db.execute(doc_stmt)
         for d in doc_results.scalars().all():
@@ -91,13 +96,19 @@ class SearchService:
                     title=f"Document: {d.file_name}",
                     description=f"File Type: {d.file_type or 'TXT'} | SHA-256 Hash Verified",
                     relevance_score=0.90,
-                    metadata={"document_id": d.id, "case_id": d.case_id, "hash": d.content_hash},
+                    metadata={
+                        "document_id": d.id,
+                        "case_id": d.case_id,
+                        "hash": d.content_hash,
+                    },
                 )
             )
 
         # 3. FAISS Semantic Vector Search
         try:
-            _, citations = await self.retriever.retrieve_relevant_context(query, top_k=5)
+            _, citations = await self.retriever.retrieve_relevant_context(
+                query, top_k=5
+            )
             for cite in citations:
                 results.append(
                     SearchResultItem(
@@ -105,7 +116,10 @@ class SearchService:
                         title=f"Vector Precedent: {cite.file_name} (Chunk #{cite.chunk_index})",
                         description=cite.excerpt,
                         relevance_score=cite.relevance_score,
-                        metadata={"document_id": cite.document_id, "chunk_index": cite.chunk_index},
+                        metadata={
+                            "document_id": cite.document_id,
+                            "chunk_index": cite.chunk_index,
+                        },
                     )
                 )
         except Exception:

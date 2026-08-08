@@ -9,10 +9,10 @@ A verifier given a redacted tree receives the blinded commitment hash H_i direct
 allowing 100% exact Merkle Root invariance.
 """
 
-from typing import Dict, Any, List, Optional
 import hashlib
-import os
 import json
+import os
+from typing import Any
 
 
 def sha256(data: bytes) -> str:
@@ -21,13 +21,14 @@ def sha256(data: bytes) -> str:
 
 class RedactableLeaf:
     """Represents a leaf in a redactable Merkle sub-tree."""
+
     def __init__(
         self,
         key: str,
         value: Any,
         is_redacted: bool = False,
-        salt: Optional[str] = None,
-        blinded_hash: Optional[str] = None,
+        salt: str | None = None,
+        blinded_hash: str | None = None,
     ):
         self.key = key
         self.value = value
@@ -39,9 +40,9 @@ class RedactableLeaf:
         if self.is_redacted and self.blinded_hash:
             # Blinded commitment hash published directly for redacted leaf
             return self.blinded_hash
-        
+
         # Standard leaf hash computation
-        payload = f"0x00:{self.salt}:{self.key}:{json.dumps(self.value, sort_keys=True)}".encode("utf-8")
+        payload = f"0x00:{self.salt}:{self.key}:{json.dumps(self.value, sort_keys=True)}".encode()
         return sha256(payload)
 
     def redact(self) -> "RedactableLeaf":
@@ -65,10 +66,10 @@ class RedactableEvidenceMerkleTree:
     Constructs a sanitizable Merkle tree over an evidence dictionary.
     """
 
-    def __init__(self, evidence_data: Dict[str, Any], sensitive_keys: Optional[List[str]] = None):
+    def __init__(self, evidence_data: dict[str, Any], sensitive_keys: list[str] | None = None):
         self.sensitive_keys = set(sensitive_keys or [])
-        self.leaves: List[RedactableLeaf] = []
-        
+        self.leaves: list[RedactableLeaf] = []
+
         # Build leaves deterministically sorted by key
         for k in sorted(evidence_data.keys()):
             self.leaves.append(RedactableLeaf(key=k, value=evidence_data[k], is_redacted=False))
@@ -76,7 +77,7 @@ class RedactableEvidenceMerkleTree:
     def compute_merkle_root(self) -> str:
         """Computes Merkle root hash over leaf commitments."""
         leaf_hashes = [leaf.compute_hash() for leaf in self.leaves]
-        
+
         if not leaf_hashes:
             return sha256(b"")
 
@@ -84,16 +85,16 @@ class RedactableEvidenceMerkleTree:
         while len(tree_nodes) > 1:
             if len(tree_nodes) % 2 != 0:
                 tree_nodes.append(tree_nodes[-1])
-            
+
             next_level = []
             for i in range(0, len(tree_nodes), 2):
-                parent_hash = sha256(f"0x01:{tree_nodes[i]}:{tree_nodes[i+1]}".encode("utf-8"))
+                parent_hash = sha256(f"0x01:{tree_nodes[i]}:{tree_nodes[i + 1]}".encode())
                 next_level.append(parent_hash)
             tree_nodes = next_level
 
         return tree_nodes[0]
 
-    def redact_fields(self, keys_to_redact: List[str]) -> "RedactableEvidenceMerkleTree":
+    def redact_fields(self, keys_to_redact: list[str]) -> "RedactableEvidenceMerkleTree":
         """
         Returns a redacted copy of the tree where specified sensitive fields are blinded.
         Crucially, the resulting Merkle Root IS 100% INVARIANT!

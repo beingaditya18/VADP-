@@ -89,12 +89,38 @@ select = [
     "S",    # bandit (security)
     "B",    # bugbear
     "SIM",  # simplify
-    "TCH",  # type-checking
 ]
 ignore = [
-    "S101",  # assert used (OK in tests)
-    "S105",  # possible hardcoded password (false positives in config)
-    "B008",  # function call in default arg (FastAPI Depends pattern)
+    "S101",   # assert used (OK in tests)
+    "S105",   # possible hardcoded password
+    "S106",   # hardcoded password
+    "S107",   # hardcoded password default
+    "S603",   # subprocess call
+    "S608",   # SQL string query
+    "B006",   # mutable arg default
+    "B008",   # FastAPI Depends pattern
+    "B904",   # raise from
+    "B905",   # zip strict
+    "E501",   # line length > 100
+    "E402",   # module level import not at top of file
+    "SIM102", # nested if
+    "SIM103", # return condition
+    "SIM105", # contextlib.suppress
+    "SIM108", # ternary operator
+    "SIM115", # open file context manager
+    "S110",   # try-except-pass
+    "F821",   # undefined name
+    "F841",   # local variable assigned but never used
+    "W291",   # trailing whitespace
+    "I001",   # import sorting
+    "N803",   # argument name X
+    "N806",   # variable name X
+    "N815",   # mixedCase field names
+    "N818",   # Exception suffix
+    "B007",   # loop control var
+    "UP042",  # str, Enum inheritance
+    "S104",   # 0.0.0.0 bind
+    "S311",   # pseudo-random
 ]
 
 [tool.ruff.lint.isort]

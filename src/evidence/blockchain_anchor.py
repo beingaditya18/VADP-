@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Cryptographic Blockchain Evidence Anchoring & BSA 2023 §63(4) Engine
 ================================================================================
 
@@ -90,15 +90,23 @@ class BlockchainAnchorEngine:
         now_iso = datetime.now(timezone.utc).isoformat()
         cert_id = f"BSA63-CERT-{hashlib.sha256(f'{case_id}:{evidence_id}:{now_iso}'.encode()).hexdigest()[:12].upper()}"
 
-        payload_to_sign = f"{cert_id}:{case_id}:{evidence_id}:{integrity_hash}:{now_iso}".encode("utf-8")
+        payload_to_sign = (
+            f"{cert_id}:{case_id}:{evidence_id}:{integrity_hash}:{now_iso}".encode(
+                "utf-8"
+            )
+        )
 
         key = cls._get_signing_key()
         signature = key.sign(payload_to_sign, ec.ECDSA(hashes.SHA256()))
 
-        pub_pem = key.public_key().public_bytes(
-            encoding=serialization.Encoding.PEM,
-            format=serialization.PublicFormat.SubjectPublicKeyInfo,
-        ).decode("utf-8")
+        pub_pem = (
+            key.public_key()
+            .public_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PublicFormat.SubjectPublicKeyInfo,
+            )
+            .decode("utf-8")
+        )
 
         return BSACertificate63(
             certificate_id=cert_id,
@@ -128,9 +136,13 @@ class BlockchainAnchorEngine:
 
         root = merkle_root or integrity_hash
 
-        tx_payload = f"ANCHOR:{evidence_id}:{integrity_hash}:{root}:{block_num}:{now_iso}".encode("utf-8")
+        tx_payload = f"ANCHOR:{evidence_id}:{integrity_hash}:{root}:{block_num}:{now_iso}".encode(
+            "utf-8"
+        )
         tx_hash = "0x" + hashlib.sha256(tx_payload).hexdigest()
-        block_hash = "0x" + hashlib.sha256(f"BLOCK:{block_num}:{tx_hash}".encode()).hexdigest()
+        block_hash = (
+            "0x" + hashlib.sha256(f"BLOCK:{block_num}:{tx_hash}".encode()).hexdigest()
+        )
 
         return BlockchainTransactionReceipt(
             tx_hash=tx_hash,
@@ -146,11 +158,15 @@ class BlockchainAnchorEngine:
         Verify NIST P-256 ECDSA legal signature of BSA certificate.
         """
         try:
-            pub_key = serialization.load_pem_public_key(cert.public_key_pem.encode("utf-8"))
+            pub_key = serialization.load_pem_public_key(
+                cert.public_key_pem.encode("utf-8")
+            )
             if not isinstance(pub_key, ec.EllipticCurvePublicKey):
                 return False
 
-            payload_to_sign = f"{cert.certificate_id}:{cert.case_id}:{cert.evidence_id}:{cert.content_hash_sha256}:{cert.created_at_iso}".encode("utf-8")
+            payload_to_sign = f"{cert.certificate_id}:{cert.case_id}:{cert.evidence_id}:{cert.content_hash_sha256}:{cert.created_at_iso}".encode(
+                "utf-8"
+            )
             sig_bytes = bytes.fromhex(cert.ecdsa_p256_signature_hex)
 
             pub_key.verify(sig_bytes, payload_to_sign, ec.ECDSA(hashes.SHA256()))

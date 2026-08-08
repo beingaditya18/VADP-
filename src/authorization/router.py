@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Router
 ==============================
 

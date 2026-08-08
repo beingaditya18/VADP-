@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Structured Logging
 =============================
 
@@ -24,7 +24,7 @@ import json
 import logging
 import sys
 from contextvars import ContextVar
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 # Context variable for request correlation ID — set per-request in middleware
@@ -43,7 +43,7 @@ class StructuredJSONFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         log_entry: dict[str, Any] = {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
             "level": record.levelname,
             "logger": record.name,
             "message": record.getMessage(),
@@ -59,10 +59,27 @@ class StructuredJSONFormatter(logging.Formatter):
 
         # Attach extra fields (excluding standard LogRecord attributes)
         standard_attrs = {
-            "name", "msg", "args", "levelname", "levelno", "pathname",
-            "filename", "module", "exc_info", "exc_text", "stack_info",
-            "lineno", "funcName", "created", "msecs", "relativeCreated",
-            "thread", "threadName", "processName", "process", "message",
+            "name",
+            "msg",
+            "args",
+            "levelname",
+            "levelno",
+            "pathname",
+            "filename",
+            "module",
+            "exc_info",
+            "exc_text",
+            "stack_info",
+            "lineno",
+            "funcName",
+            "created",
+            "msecs",
+            "relativeCreated",
+            "thread",
+            "threadName",
+            "processName",
+            "process",
+            "message",
             "taskName",
         }
         for key, value in record.__dict__.items():
@@ -91,10 +108,10 @@ class DevelopmentFormatter(logging.Formatter):
     """
 
     COLORS = {
-        "DEBUG": "\033[36m",     # Cyan
-        "INFO": "\033[32m",      # Green
-        "WARNING": "\033[33m",   # Yellow
-        "ERROR": "\033[31m",     # Red
+        "DEBUG": "\033[36m",  # Cyan
+        "INFO": "\033[32m",  # Green
+        "WARNING": "\033[33m",  # Yellow
+        "ERROR": "\033[31m",  # Red
         "CRITICAL": "\033[35m",  # Magenta
     }
     RESET = "\033[0m"
@@ -104,12 +121,11 @@ class DevelopmentFormatter(logging.Formatter):
         cid = correlation_id_var.get()
         cid_str = f" [{cid[:8]}]" if cid else ""
 
-        timestamp = datetime.now(timezone.utc).strftime("%H:%M:%S.%f")[:-3]
+        timestamp = datetime.now(UTC).strftime("%H:%M:%S.%f")[:-3]
         msg = record.getMessage()
 
         formatted = (
-            f"{color}{timestamp} {record.levelname:<8}{self.RESET}"
-            f"{cid_str} {record.name}: {msg}"
+            f"{color}{timestamp} {record.levelname:<8}{self.RESET}{cid_str} {record.name}: {msg}"
         )
 
         if record.exc_info and record.exc_info[1]:

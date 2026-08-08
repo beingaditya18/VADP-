@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Model Drift Detector
 ==================================
 
@@ -7,7 +7,7 @@ Monitors real-time prediction performance and detects model degradation/drift ov
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from app.ai.schemas import DriftCheckSchema
@@ -25,14 +25,18 @@ class ModelDriftDetector:
     _max_window_size: int = 1000
 
     @classmethod
-    def log_prediction(cls, confidence: float, correct: bool | None = None, model_version: str = "v1") -> None:
+    def log_prediction(
+        cls, confidence: float, correct: bool | None = None, model_version: str = "v1"
+    ) -> None:
         """Log prediction outcome for real-time drift tracking."""
-        cls._recent_predictions.append({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "confidence": confidence,
-            "correct": correct,
-            "model_version": model_version,
-        })
+        cls._recent_predictions.append(
+            {
+                "timestamp": datetime.now(UTC).isoformat(),
+                "confidence": confidence,
+                "correct": correct,
+                "model_version": model_version,
+            }
+        )
 
         if len(cls._recent_predictions) > cls._max_window_size:
             cls._recent_predictions.pop(0)

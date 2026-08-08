@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Models
 =============================
 
@@ -11,7 +11,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import BigInteger, ForeignKey, Integer, JSON, String
+from sqlalchemy import JSON, BigInteger, ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base, TimestampMixin, UUIDMixin
@@ -49,9 +49,15 @@ class LedgerEntry(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "ledger_entries"
 
-    block_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("ledger_blocks.id"), index=True, nullable=True)
-    entry_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)  # case_access, document_upload, ai_approval, policy_change
-    actor_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=True)
+    block_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("ledger_blocks.id"), index=True, nullable=True
+    )
+    entry_type: Mapped[str] = mapped_column(
+        String(100), index=True, nullable=False
+    )  # case_access, document_upload, ai_approval, policy_change
+    actor_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=True
+    )
     action: Mapped[str] = mapped_column(String(255), nullable=False)
     resource_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
     resource_id: Mapped[str | None] = mapped_column(String(36), nullable=True)

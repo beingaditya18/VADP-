@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Service
 ================================
 
@@ -46,12 +46,17 @@ class AuthorizationService:
         self.db.add(policy)
         await self.db.flush()
         await self.db.refresh(policy)
-        logger.info("Created access policy", extra={"policy_id": policy.id, "name": policy.policy_name})
+        logger.info(
+            "Created access policy",
+            extra={"policy_id": policy.id, "name": policy.policy_name},
+        )
         return PolicyResponseSchema.model_validate(policy)
 
     async def list_policies(self) -> list[PolicyResponseSchema]:
         """List all stored access policies."""
-        result = await self.db.execute(select(AccessPolicy).order_by(AccessPolicy.priority.desc()))
+        result = await self.db.execute(
+            select(AccessPolicy).order_by(AccessPolicy.priority.desc())
+        )
         policies = result.scalars().all()
         return [PolicyResponseSchema.model_validate(p) for p in policies]
 

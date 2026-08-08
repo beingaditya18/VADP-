@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Distributed Rate Limiter Module
 ===========================================
 
@@ -9,10 +9,10 @@ Features graceful fallback to an in-memory token bucket if Redis is unreachable.
 
 from __future__ import annotations
 
-import time
 import logging
+import time
 from collections import defaultdict
-from typing import Callable
+from collections.abc import Callable
 
 from fastapi import Request, Response, status
 from fastapi.responses import JSONResponse
@@ -40,6 +40,7 @@ class RedisRateLimiter:
         """Attempt connection to Redis instance."""
         try:
             import redis
+
             self._redis_client = redis.Redis.from_url(
                 self.settings.REDIS_URL,
                 decode_responses=True,
@@ -49,7 +50,9 @@ class RedisRateLimiter:
             logger.info("Connected to Redis for rate limiting at %s", self.settings.REDIS_URL)
         except Exception as e:
             self._redis_client = None
-            logger.info("Redis unavailable for rate limiting (%s); falling back to in-memory store.", e)
+            logger.info(
+                "Redis unavailable for rate limiting (%s); falling back to in-memory store.", e
+            )
 
     def is_rate_limited(self, identifier: str) -> tuple[bool, int, int]:
         """

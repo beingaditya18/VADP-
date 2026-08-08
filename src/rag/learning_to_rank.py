@@ -133,7 +133,9 @@ class SemanticPrecedentRelator:
               "combined_score":  Sim × StatutoryMatch      [Field 4],
             }
         """
-        statutory_match = cls.compute_statutory_match(query_sections, candidate_sections)
+        statutory_match = cls.compute_statutory_match(
+            query_sections, candidate_sections
+        )
         combined = cls.compute_combined_score(dense_sim, statutory_match)
         return {
             "dense_sim": round(float(dense_sim), 6),
@@ -166,14 +168,14 @@ class LTRCandidateFeatures(BaseModel):
     def to_feature_vector(self) -> list[float]:
         """8-dimensional feature vector for LambdaMART training."""
         return [
-            self.dense_similarity,          # Feature 1: Sim(Q, Cj)
-            self.bm25_score,               # Feature 2: BM25 lexical
-            self.statutory_match_score,    # Feature 3: StatutoryMatch(Q, Cj)
-            self.combined_relator_score,   # Feature 4: Sim × StatutoryMatch [KEY SIGNAL]
-            self.temporal_recency,         # Feature 5: Recency decay
-            self.bench_relevance,          # Feature 6: Bench/coram relevance
-            self.bsa_evidence_alignment,   # Feature 7: BSA §63(4) alignment
-            self.citation_centrality,      # Feature 8: Citation graph PageRank
+            self.dense_similarity,  # Feature 1: Sim(Q, Cj)
+            self.bm25_score,  # Feature 2: BM25 lexical
+            self.statutory_match_score,  # Feature 3: StatutoryMatch(Q, Cj)
+            self.combined_relator_score,  # Feature 4: Sim × StatutoryMatch [KEY SIGNAL]
+            self.temporal_recency,  # Feature 5: Recency decay
+            self.bench_relevance,  # Feature 6: Bench/coram relevance
+            self.bsa_evidence_alignment,  # Feature 7: BSA §63(4) alignment
+            self.citation_centrality,  # Feature 8: Citation graph PageRank
         ]
 
 
@@ -195,7 +197,7 @@ class LambdaMARTLearningToRank:
         "dense_similarity",
         "bm25_score",
         "statutory_match_score",
-        "combined_relator_score",   # Semantic Precedent Relator — VADP Field 3×4
+        "combined_relator_score",  # Semantic Precedent Relator — VADP Field 3×4
         "temporal_recency",
         "bench_relevance",
         "bsa_evidence_alignment",

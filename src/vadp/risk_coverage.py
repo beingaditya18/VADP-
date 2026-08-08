@@ -1,7 +1,7 @@
 """
 Selective Prediction & Learning-to-Defer Module for VADP Verification Contracts.
 
-Reframes Human Override Coverage (HOC) under Chow's Rule (1970) and 
+Reframes Human Override Coverage (HOC) under Chow's Rule (1970) and
 Mozannar & Sontag (2020) reject-option / learning-to-defer literature.
 
 Instead of an arbitrary threshold ratio, VADP instantiates selective prediction:
@@ -48,8 +48,10 @@ class SelectivePredictionEvaluator:
         :param correctness_labels: List of binary correctness indicators (1 = correct, 0 = error/hallucination)
         """
         if len(trust_scores) != len(correctness_labels):
-            raise ValueError("trust_scores and correctness_labels must have equal length")
-        
+            raise ValueError(
+                "trust_scores and correctness_labels must have equal length"
+            )
+
         self.scores = np.array(trust_scores, dtype=float)
         self.labels = np.array(correctness_labels, dtype=int)
         self.n = len(trust_scores)
@@ -86,7 +88,9 @@ class SelectivePredictionEvaluator:
 
         return curve
 
-    def evaluate(self, target_risk: float = 0.05, num_thresholds: int = 100) -> SelectivePredictionMetrics:
+    def evaluate(
+        self, target_risk: float = 0.05, num_thresholds: int = 100
+    ) -> SelectivePredictionMetrics:
         """
         Finds the minimal threshold tau* that satisfies Risk(tau*) <= target_risk,
         and computes the Area Under the Risk-Coverage Curve (AURCC).
@@ -94,7 +98,9 @@ class SelectivePredictionEvaluator:
         curve = self.compute_curve(num_thresholds=num_thresholds)
 
         # Filter valid points satisfying target risk constraint
-        valid_points = [p for p in curve if p.evaluated_count > 0 and p.risk <= target_risk]
+        valid_points = [
+            p for p in curve if p.evaluated_count > 0 and p.risk <= target_risk
+        ]
 
         if valid_points:
             # Pick highest coverage among valid points
@@ -102,12 +108,16 @@ class SelectivePredictionEvaluator:
         else:
             # Fallback to point with minimal risk if target risk is unrealistically tight
             non_empty_points = [p for p in curve if p.evaluated_count > 0]
-            optimal_point = min(non_empty_points, key=lambda p: p.risk) if non_empty_points else curve[0]
+            optimal_point = (
+                min(non_empty_points, key=lambda p: p.risk)
+                if non_empty_points
+                else curve[0]
+            )
 
         # Compute AURCC via trapezoidal integration of risk over coverage
         coverages = [p.coverage for p in curve if p.evaluated_count > 0]
         risks = [p.risk for p in curve if p.evaluated_count > 0]
-        
+
         # Sort by coverage ascending for integration
         if coverages:
             sorted_indices = np.argsort(coverages)
@@ -130,7 +140,9 @@ class SelectivePredictionEvaluator:
         )
 
 
-def evaluate_deferral_decision(trust_score: float, threshold: float = 0.75) -> Dict[str, Any]:
+def evaluate_deferral_decision(
+    trust_score: float, threshold: float = 0.75
+) -> Dict[str, Any]:
     """
     Helper function for VADP pipeline: decides whether recommendation is accepted
     or deferred to Human Review under selective prediction framework.

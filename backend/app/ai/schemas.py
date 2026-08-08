@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Schemas
 ===========================
 
@@ -137,4 +137,3 @@ class ABTestMetricsSchema(BaseModel):
     status: str
     active_variants: dict[str, ABTestVariantMetricsSchema]
     total_evaluations: int
-

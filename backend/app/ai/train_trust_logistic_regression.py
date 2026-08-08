@@ -13,9 +13,10 @@ import json
 import logging
 import sys
 from pathlib import Path
+
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import brier_score_loss, log_loss, roc_auc_score
+from sklearn.metrics import brier_score_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 
 backend_dir = Path(__file__).resolve().parent.parent.parent
@@ -31,10 +32,10 @@ logger = logging.getLogger("train_trust_logistic_regression")
 def generate_synthetic_calibration_data(n_samples: int = 1000, seed: int = 42):
     np.random.seed(seed)
     # Generate realistic sub-score distributions
-    s_model = np.random.beta(5, 2, size=n_samples)       # Mean ~0.71
-    s_evidence = np.random.beta(7, 2, size=n_samples)    # Mean ~0.77
-    s_source = np.random.beta(8, 2, size=n_samples)      # Mean ~0.80
-    s_consistency = np.random.beta(6, 2, size=n_samples) # Mean ~0.75
+    s_model = np.random.beta(5, 2, size=n_samples)  # Mean ~0.71
+    s_evidence = np.random.beta(7, 2, size=n_samples)  # Mean ~0.77
+    s_source = np.random.beta(8, 2, size=n_samples)  # Mean ~0.80
+    s_consistency = np.random.beta(6, 2, size=n_samples)  # Mean ~0.75
 
     X = np.column_stack([s_model, s_evidence, s_source, s_consistency])
 
@@ -99,7 +100,9 @@ def optimize_trust_weights():
         "performance_comparison": {
             "fixed_weights_brier_score": round(float(brier_fixed), 5),
             "optimized_logistic_brier_score": round(float(brier_opt), 5),
-            "brier_score_improvement_pct": round(float((brier_fixed - brier_opt) / brier_fixed * 100), 2),
+            "brier_score_improvement_pct": round(
+                float((brier_fixed - brier_opt) / brier_fixed * 100), 2
+            ),
             "fixed_weights_auc": round(float(auc_fixed), 4),
             "optimized_logistic_auc": round(float(auc_opt), 4),
         },
@@ -107,7 +110,9 @@ def optimize_trust_weights():
 
     out_file = backend_dir / "evaluation" / "LOGISTIC_TRUST_OPTIMIZATION_REPORT.json"
     out_file.write_text(json.dumps(report, indent=2))
-    logger.info(f"Trust Score Logistic Regression Optimization Complete. Report saved to {out_file}")
+    logger.info(
+        f"Trust Score Logistic Regression Optimization Complete. Report saved to {out_file}"
+    )
     print(json.dumps(report, indent=2))
     return report
 

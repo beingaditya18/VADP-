@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Auth Repository
 =========================
 
@@ -8,7 +8,7 @@ Abstracts database operations away from business logic.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -41,10 +41,8 @@ class UserRepository:
 
     async def update_last_login(self, user_id: str) -> None:
         """Update last_login_at timestamp for user."""
-        now = datetime.now(timezone.utc)
-        await self.db.execute(
-            update(User).where(User.id == user_id).values(last_login_at=now)
-        )
+        now = datetime.now(UTC)
+        await self.db.execute(update(User).where(User.id == user_id).values(last_login_at=now))
 
     async def update_profile(self, user_id: str, updates: dict) -> User | None:
         """Update profile fields for a user."""
@@ -54,7 +52,7 @@ class UserRepository:
         for field, value in updates.items():
             if value is not None and hasattr(user, field):
                 setattr(user, field, value)
-        user.updated_at = datetime.now(timezone.utc)
+        user.updated_at = datetime.now(UTC)
         await self.db.flush()
         await self.db.refresh(user)
         return user

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP — FastAPI Application Entry Point
 =============================================
 
@@ -187,9 +187,7 @@ def create_app() -> FastAPI:
     # ── Register Global Exception Handlers ───────────────────
 
     @app.exception_handler(NyayaBaseException)
-    async def nyaya_exception_handler(
-        request: Request, exc: NyayaBaseException
-    ) -> JSONResponse:
+    async def nyaya_exception_handler(request: Request, exc: NyayaBaseException) -> JSONResponse:
         """Convert NyayaBaseException subclasses to consistent JSON responses."""
         logger.warning(
             "Application error: %s",
@@ -207,9 +205,7 @@ def create_app() -> FastAPI:
         )
 
     @app.exception_handler(Exception)
-    async def unhandled_exception_handler(
-        request: Request, exc: Exception
-    ) -> JSONResponse:
+    async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
         """Catch-all handler for unhandled exceptions."""
         logger.error(
             "Unhandled exception: %s",
@@ -266,15 +262,15 @@ def create_app() -> FastAPI:
     app.include_router(health_router)
 
     # Authentication & Authorization Modules
+    from app.ai.router import router as ai_router
     from app.auth.router import router as auth_router
     from app.authorization.router import router as authorization_router
     from app.cases.router import router as cases_router
     from app.documents.router import router as documents_router
     from app.evidence.router import router as evidence_router
     from app.ledger.router import router as ledger_router
-    from app.rag.router import router as rag_router
-    from app.ai.router import router as ai_router
     from app.notifications.router import router as notifications_router
+    from app.rag.router import router as rag_router
     from app.search.router import router as search_router
     from app.vadp.router import router as vadp_router
 

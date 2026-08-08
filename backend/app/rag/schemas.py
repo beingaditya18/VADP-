@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RAG Schemas
 =====================
 
@@ -22,7 +22,9 @@ class CitationSchema(BaseModel):
 
 
 class RAGQueryRequestSchema(BaseModel):
-    query_text: str = Field(..., min_length=3, max_length=2000, description="Legal search question or prompt")
+    query_text: str = Field(
+        ..., min_length=3, max_length=2000, description="Legal search question or prompt"
+    )
     case_id: str | None = Field(default=None, description="Optional case scope filter")
     top_k: int = Field(default=5, ge=1, le=20)
 

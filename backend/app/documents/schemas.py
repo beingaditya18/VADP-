@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Document Schemas
 ==========================
 
@@ -8,7 +8,6 @@ Pydantic schemas for Document responses.
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Notifications Router
 ==============================
 
@@ -34,7 +34,9 @@ async def get_my_notifications(
     db: AsyncSession = Depends(get_db_session),
 ) -> list[NotificationResponseSchema]:
     service = NotificationService(db)
-    return await service.get_user_notifications(current_user.id, unread_only=unread_only)
+    return await service.get_user_notifications(
+        current_user.id, unread_only=unread_only
+    )
 
 
 @router.post(

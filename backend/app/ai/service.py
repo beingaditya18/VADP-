@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Service
 ===========================
 
@@ -16,7 +16,6 @@ from app.ai.bias_detector import BiasDetector
 from app.ai.models import AIExplanation, AIRecommendation
 from app.ai.risk_engine import RiskScoringEngine
 from app.ai.schemas import (
-    AIExplanationResponseSchema,
     AIRecommendationResponseSchema,
     CaseAnalysisResponseSchema,
 )
@@ -25,11 +24,9 @@ from app.ai.trust_engine import TrustScoringEngine
 from app.cases.models import Case
 from app.core.exceptions import NotFoundError
 from app.core.logging import get_logger
-from app.documents.models import Document
 from app.evidence.models import EvidenceRecord
-from app.rag.service import RAGService
-
 from app.rag.schemas import RAGQueryRequestSchema
+from app.rag.service import RAGService
 
 logger = get_logger(__name__)
 
@@ -84,9 +81,10 @@ class AIService:
         )
 
         # 3. Trust Score Calculation & A/B Model Variant Selection
+        import time
+
         from app.ai.ab_testing import ABTestingEngine
         from app.ai.drift_detector import ModelDriftDetector
-        import time
 
         start_time = time.perf_counter()
         model_version = ABTestingEngine.select_model_version(case_id)
@@ -157,6 +155,7 @@ class AIService:
         verification_contract = None
         try:
             from app.vadp.service import VerificationContractService
+
             vadp_service = VerificationContractService(self.db)
             verification_contract = await vadp_service.generate_contract(
                 case_id=case_id,
@@ -181,7 +180,9 @@ class AIService:
             verification_contract=verification_contract,
         )
 
-    async def list_recommendations_for_case(self, case_id: str) -> list[AIRecommendationResponseSchema]:
+    async def list_recommendations_for_case(
+        self, case_id: str
+    ) -> list[AIRecommendationResponseSchema]:
         """List all AI recommendations generated for a case."""
         stmt = (
             select(AIRecommendation)
@@ -193,7 +194,9 @@ class AIService:
         recs = result.scalars().all()
         return [AIRecommendationResponseSchema.model_validate(r) for r in recs]
 
-    async def review_recommendation(self, recommendation_id: str, reviewer_id: str, new_status: str) -> AIRecommendationResponseSchema:
+    async def review_recommendation(
+        self, recommendation_id: str, reviewer_id: str, new_status: str
+    ) -> AIRecommendationResponseSchema:
         """Judge review & approval/rejection of AI decision support recommendation."""
         stmt = (
             select(AIRecommendation)
@@ -212,6 +215,7 @@ class AIService:
         # VADP: Record human review on verification contract
         try:
             from app.vadp.service import VerificationContractService
+
             vadp_service = VerificationContractService(self.db)
             contract = await vadp_service.get_contract_for_recommendation(recommendation_id)
             if contract:

@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 # VADP Backend — Secrets Management Subsystem
 # ============================================================
 # Unified abstraction providing dynamic, encrypted secret fetching
@@ -6,11 +6,11 @@
 # Includes memory caching with TTL, health checking, and key rotation support.
 # ============================================================
 
-from abc import ABC, abstractmethod
 import json
 import logging
 import os
 import time
+from abc import ABC, abstractmethod
 from typing import Any
 
 logger = logging.getLogger(__name__)

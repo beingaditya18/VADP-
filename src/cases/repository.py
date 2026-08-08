@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Repository
 =========================
 
@@ -92,7 +92,9 @@ class CaseRepository:
         if role == "citizen":
             query = query.where(Case.filed_by == user_id)
         elif role == "lawyer":
-            query = query.where((Case.assigned_lawyer == user_id) | (Case.filed_by == user_id))
+            query = query.where(
+                (Case.assigned_lawyer == user_id) | (Case.filed_by == user_id)
+            )
         elif role == "judge":
             # Judges can see all assigned cases or general docket
             pass
@@ -119,13 +121,27 @@ class CaseRepository:
 
         # Sorting
         if sort_by == "filing_date":
-            order_col = Case.filing_date.desc() if sort_order == "desc" else Case.filing_date.asc()
+            order_col = (
+                Case.filing_date.desc()
+                if sort_order == "desc"
+                else Case.filing_date.asc()
+            )
         elif sort_by == "case_number":
-            order_col = Case.case_number.desc() if sort_order == "desc" else Case.case_number.asc()
+            order_col = (
+                Case.case_number.desc()
+                if sort_order == "desc"
+                else Case.case_number.asc()
+            )
         elif sort_by == "status":
-            order_col = Case.status.desc() if sort_order == "desc" else Case.status.asc()
+            order_col = (
+                Case.status.desc() if sort_order == "desc" else Case.status.asc()
+            )
         else:
-            order_col = Case.created_at.desc() if sort_order == "desc" else Case.created_at.asc()
+            order_col = (
+                Case.created_at.desc()
+                if sort_order == "desc"
+                else Case.created_at.asc()
+            )
 
         # Paginate
         offset = (page - 1) * page_size
@@ -140,7 +156,9 @@ class CaseRepository:
 
         return items, total
 
-    async def update_case(self, case_id: str, updates: dict, performed_by: str) -> Case | None:
+    async def update_case(
+        self, case_id: str, updates: dict, performed_by: str
+    ) -> Case | None:
         """Update case details and log timeline event."""
         case = await self.get_by_id(case_id)
         if not case:
@@ -169,7 +187,14 @@ class CaseRepository:
         await self.db.refresh(case)
         return case
 
-    async def add_case_event(self, case_id: str, event_type: str, description: str | None, performed_by: str, data: dict) -> CaseEvent:
+    async def add_case_event(
+        self,
+        case_id: str,
+        event_type: str,
+        description: str | None,
+        performed_by: str,
+        data: dict,
+    ) -> CaseEvent:
         """Add a custom timeline event for a case."""
         event = CaseEvent(
             case_id=case_id,

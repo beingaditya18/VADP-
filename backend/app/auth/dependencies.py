@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Auth Dependencies
 ===========================
 
@@ -8,7 +8,7 @@ Supports role-based access restrictions.
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession

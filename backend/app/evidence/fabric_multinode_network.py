@@ -18,9 +18,10 @@ import json
 import logging
 import random
 import time
-from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from datetime import UTC, datetime
+from typing import Any
+
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +47,7 @@ class MultiNodeAnchorBlock(BaseModel):
     previous_hash: str
     data_hash: str
     tx_count: int
-    endorsements: List[Dict[str, str]]
+    endorsements: list[dict[str, str]]
     timestamp_iso: str
     consensus_type: str = "Raft"
     leader_orderer: str = "orderer1.judicial.gov.in:7050"
@@ -61,10 +62,10 @@ class MultiNodeFabricNetwork:
         self.channel_id = channel_id
         self.endorsement_policy = EndorsementPolicy()
         self.peers = self._setup_peers()
-        self.blockchain_ledger: List[MultiNodeAnchorBlock] = []
+        self.blockchain_ledger: list[MultiNodeAnchorBlock] = []
         self._genesis_block()
 
-    def _setup_peers(self) -> List[PeerNodeConfig]:
+    def _setup_peers(self) -> list[PeerNodeConfig]:
         orgs = ["HighCourtMSP", "DistrictCourtMSP", "ForensicLabMSP", "SupremeCourtMSP"]
         peers = []
         for org in orgs:
@@ -89,7 +90,7 @@ class MultiNodeFabricNetwork:
             data_hash=hashlib.sha256(b"VADP_MULTI_NODE_GENESIS").hexdigest(),
             tx_count=1,
             endorsements=[{"msp": "HighCourtMSP", "signature": "GENESIS_SIG"}],
-            timestamp_iso=datetime.now(timezone.utc).isoformat(),
+            timestamp_iso=datetime.now(UTC).isoformat(),
         )
         self.blockchain_ledger.append(genesis)
 
@@ -100,7 +101,7 @@ class MultiNodeFabricNetwork:
         content_hash: str,
         merkle_root: str,
         simulated_by: str = "Judicial Registrar",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Simulates proposal dispatch to peers, endorsement collection, Raft ordering, and block commit.
         """
@@ -112,20 +113,25 @@ class MultiNodeFabricNetwork:
         total_latency = 0.0
 
         for org in endorsing_orgs:
-            target_peer = next(p for p in self.peers if p.org_msp_id == org and p.status == "ONLINE")
+            target_peer = next(
+                p for p in self.peers if p.org_msp_id == org and p.status == "ONLINE"
+            )
             total_latency += target_peer.latency_ms
             sig = hashlib.sha256(f"{target_peer.peer_id}:{content_hash}".encode()).hexdigest()[:32]
             endorsements.append({"peer": target_peer.peer_id, "msp": org, "signature": sig})
 
         # Calculate block commit
         prev_block = self.blockchain_ledger[-1]
-        data_payload = json.dumps({
-            "evidence_id": evidence_id,
-            "case_id": case_id,
-            "content_hash": content_hash,
-            "merkle_root": merkle_root,
-            "endorsements": endorsements,
-        }, sort_keys=True).encode()
+        data_payload = json.dumps(
+            {
+                "evidence_id": evidence_id,
+                "case_id": case_id,
+                "content_hash": content_hash,
+                "merkle_root": merkle_root,
+                "endorsements": endorsements,
+            },
+            sort_keys=True,
+        ).encode()
 
         data_hash = hashlib.sha256(data_payload).hexdigest()
         block_number = len(self.blockchain_ledger)
@@ -137,7 +143,7 @@ class MultiNodeFabricNetwork:
             data_hash=data_hash,
             tx_count=1,
             endorsements=endorsements,
-            timestamp_iso=datetime.now(timezone.utc).isoformat(),
+            timestamp_iso=datetime.now(UTC).isoformat(),
         )
         self.blockchain_ledger.append(new_block)
 
@@ -149,12 +155,13 @@ class MultiNodeFabricNetwork:
             "channel_id": self.channel_id,
             "tx_id": data_hash[:32],
             "endorsements_collected": len(endorsements),
-            "endorsement_policy_satisfied": len(endorsements) >= self.endorsement_policy.required_endorsements,
+            "endorsement_policy_satisfied": len(endorsements)
+            >= self.endorsement_policy.required_endorsements,
             "network_latency_ms": elapsed_ms,
             "block_hash": data_hash,
         }
 
-    def verify_network_integrity(self) -> Dict[str, Any]:
+    def verify_network_integrity(self) -> dict[str, Any]:
         """
         Validates hash chain continuity across multi-node block ledger.
         """

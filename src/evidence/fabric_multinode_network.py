@@ -112,20 +112,29 @@ class MultiNodeFabricNetwork:
         total_latency = 0.0
 
         for org in endorsing_orgs:
-            target_peer = next(p for p in self.peers if p.org_msp_id == org and p.status == "ONLINE")
+            target_peer = next(
+                p for p in self.peers if p.org_msp_id == org and p.status == "ONLINE"
+            )
             total_latency += target_peer.latency_ms
-            sig = hashlib.sha256(f"{target_peer.peer_id}:{content_hash}".encode()).hexdigest()[:32]
-            endorsements.append({"peer": target_peer.peer_id, "msp": org, "signature": sig})
+            sig = hashlib.sha256(
+                f"{target_peer.peer_id}:{content_hash}".encode()
+            ).hexdigest()[:32]
+            endorsements.append(
+                {"peer": target_peer.peer_id, "msp": org, "signature": sig}
+            )
 
         # Calculate block commit
         prev_block = self.blockchain_ledger[-1]
-        data_payload = json.dumps({
-            "evidence_id": evidence_id,
-            "case_id": case_id,
-            "content_hash": content_hash,
-            "merkle_root": merkle_root,
-            "endorsements": endorsements,
-        }, sort_keys=True).encode()
+        data_payload = json.dumps(
+            {
+                "evidence_id": evidence_id,
+                "case_id": case_id,
+                "content_hash": content_hash,
+                "merkle_root": merkle_root,
+                "endorsements": endorsements,
+            },
+            sort_keys=True,
+        ).encode()
 
         data_hash = hashlib.sha256(data_payload).hexdigest()
         block_number = len(self.blockchain_ledger)
@@ -149,7 +158,8 @@ class MultiNodeFabricNetwork:
             "channel_id": self.channel_id,
             "tx_id": data_hash[:32],
             "endorsements_collected": len(endorsements),
-            "endorsement_policy_satisfied": len(endorsements) >= self.endorsement_policy.required_endorsements,
+            "endorsement_policy_satisfied": len(endorsements)
+            >= self.endorsement_policy.required_endorsements,
             "network_latency_ms": elapsed_ms,
             "block_hash": data_hash,
         }

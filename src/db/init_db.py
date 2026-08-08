@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Database Initialization
 =================================
 
@@ -20,9 +20,19 @@ from app.ai.models import AIRecommendation, AIExplanation  # noqa
 from app.notifications.models import Notification  # noqa
 from app.vadp.models import VerificationContract, ContractEvent  # noqa
 from app.db.normalized_models import (  # noqa
-    Court, Judge, Judgment, Party, Statute, Precedent, Citation,
-    LegalIssue, EvidenceRecordNorm, EmbeddingRecord, VerificationContractNorm,
-    AuditEventNorm, HumanReviewNorm
+    Court,
+    Judge,
+    Judgment,
+    Party,
+    Statute,
+    Precedent,
+    Citation,
+    LegalIssue,
+    EvidenceRecordNorm,
+    EmbeddingRecord,
+    VerificationContractNorm,
+    AuditEventNorm,
+    HumanReviewNorm,
 )
 
 import logging

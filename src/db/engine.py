@@ -111,7 +111,9 @@ def get_async_engine() -> AsyncEngine:
                 "statement_cache_size": 0,  # pgbouncer compatibility
             },
         )
-        logger.info("Database engine created: PostgreSQL (pool_size=%d)", settings.DB_POOL_SIZE)
+        logger.info(
+            "Database engine created: PostgreSQL (pool_size=%d)", settings.DB_POOL_SIZE
+        )
 
     return _engine
 
@@ -129,7 +131,6 @@ async def init_pgvector_extension() -> None:
                 logger.info("Initialized pgvector extension on PostgreSQL.")
         except Exception as err:
             logger.warning("Could not initialize pgvector extension: %s", err)
-
 
 
 async def dispose_engine() -> None:

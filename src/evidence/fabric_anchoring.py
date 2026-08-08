@@ -2,7 +2,7 @@
 Hyperledger Fabric Enterprise Evidence Anchoring Client Interface for VADP
 ================================================================================
 
-Provides production-ready Hyperledger Fabric gRPC/REST gateway bindings for 
+Provides production-ready Hyperledger Fabric gRPC/REST gateway bindings for
 judicial evidence commitment anchoring, state verification, and audit channel querying.
 """
 
@@ -14,6 +14,7 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
+
 
 class FabricAnchorReceipt(BaseModel):
     channel_id: str = "judiciary-evidence-channel"
@@ -29,11 +30,12 @@ class FabricAnchorReceipt(BaseModel):
     committed_by: str = "Judicial Registrar / Cryptographic Officer"
     status: str = "VALIDATED_AND_COMMITTED"
 
+
 class HyperledgerFabricAnchorClient:
     """
     Hyperledger Fabric Gateway Client for Evidence Vault Commitment Anchoring.
     """
-    
+
     def __init__(
         self,
         channel_id: str = "judiciary-evidence-channel",
@@ -60,13 +62,17 @@ class HyperledgerFabricAnchorClient:
         now_iso = datetime.now(timezone.utc).isoformat()
         self._mock_block_counter += 1
         block_num = self._mock_block_counter
-        
+
         root = merkle_root or content_hash
-        tx_payload = f"FABRIC:{self.channel_id}:{evidence_id}:{case_id}:{content_hash}:{root}:{now_iso}".encode("utf-8")
+        tx_payload = f"FABRIC:{self.channel_id}:{evidence_id}:{case_id}:{content_hash}:{root}:{now_iso}".encode(
+            "utf-8"
+        )
         tx_id = hashlib.sha256(tx_payload).hexdigest()
-        
-        logger.info(f"Anchored evidence {evidence_id} to Hyperledger Fabric channel {self.channel_id} [TxID: {tx_id[:16]}]")
-        
+
+        logger.info(
+            f"Anchored evidence {evidence_id} to Hyperledger Fabric channel {self.channel_id} [TxID: {tx_id[:16]}]"
+        )
+
         return FabricAnchorReceipt(
             channel_id=self.channel_id,
             chaincode_id=self.chaincode_id,
@@ -84,6 +90,8 @@ class HyperledgerFabricAnchorClient:
         """
         Verifies transaction receipt against Fabric committed state hash.
         """
-        tx_payload = f"FABRIC:{receipt.channel_id}:{receipt.evidence_id}:{receipt.case_id}:{receipt.content_hash_sha256}:{receipt.merkle_root[2:] if receipt.merkle_root.startswith('0x') else receipt.merkle_root}:{receipt.timestamp_iso}".encode("utf-8")
+        tx_payload = f"FABRIC:{receipt.channel_id}:{receipt.evidence_id}:{receipt.case_id}:{receipt.content_hash_sha256}:{receipt.merkle_root[2:] if receipt.merkle_root.startswith('0x') else receipt.merkle_root}:{receipt.timestamp_iso}".encode(
+            "utf-8"
+        )
         expected_tx_id = hashlib.sha256(tx_payload).hexdigest()
         return receipt.tx_id == expected_tx_id

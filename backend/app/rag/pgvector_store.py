@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP PGVector Vector Store Manager
 ========================================
 
@@ -104,7 +104,9 @@ class PGVectorStore:
                 for idx, (cid, vec) in enumerate(zip(chunk_ids, vectors, strict=False)):
                     meta = metadata_list[idx] if metadata_list and idx < len(metadata_list) else {}
                     case_id = meta.get("case_id", "")
-                    allowed_roles = meta.get("allowed_roles", ["judge", "lawyer", "citizen", "admin"])
+                    allowed_roles = meta.get(
+                        "allowed_roles", ["judge", "lawyer", "citizen", "admin"]
+                    )
                     vec_str = "[" + ",".join(map(str, vec.tolist())) + "]"
 
                     query = text(
@@ -139,6 +141,7 @@ class PGVectorStore:
     ) -> list[tuple[str, float]]:
         """Synchronous wrapper executing search on pgvector index or FAISS fallback."""
         import asyncio
+
         from app.rag.vector_store import FAISSVectorStore
 
         if self.settings.is_sqlite or self.settings.VECTOR_STORE_BACKEND == "faiss":
@@ -176,7 +179,9 @@ class PGVectorStore:
 
         try:
             engine = get_async_engine()
-            vec_list = query_vector.tolist()[0] if len(query_vector.shape) > 1 else query_vector.tolist()
+            vec_list = (
+                query_vector.tolist()[0] if len(query_vector.shape) > 1 else query_vector.tolist()
+            )
             vec_str = "[" + ",".join(map(str, vec_list)) + "]"
 
             # Base query using cosine distance (<=>)

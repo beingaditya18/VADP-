@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP — FastAPI Application Entry Point
 =============================================
 

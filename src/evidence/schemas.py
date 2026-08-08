@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Evidence Schemas
 ==========================
 
@@ -16,7 +16,9 @@ from pydantic import BaseModel, ConfigDict, Field
 class EvidenceCreateSchema(BaseModel):
     document_id: str
     case_id: str
-    evidence_type: str = Field(..., description="e.g. 'forensic', 'affidavit', 'digital_log'")
+    evidence_type: str = Field(
+        ..., description="e.g. 'forensic', 'affidavit', 'digital_log'"
+    )
 
 
 class EvidenceVerificationResultSchema(BaseModel):
@@ -74,8 +76,13 @@ class EvidenceResponseSchema(BaseModel):
 
 
 class RedactEvidenceRequestSchema(BaseModel):
-    evidence_data: dict[str, Any] = Field(..., description="Key-value dictionary of evidence fields")
-    keys_to_redact: list[str] = Field(..., description="List of sensitive keys to redact (e.g. ['victim_name', 'age'])")
+    evidence_data: dict[str, Any] = Field(
+        ..., description="Key-value dictionary of evidence fields"
+    )
+    keys_to_redact: list[str] = Field(
+        ...,
+        description="List of sensitive keys to redact (e.g. ['victim_name', 'age'])",
+    )
 
 
 class RedactEvidenceResponseSchema(BaseModel):
@@ -91,7 +98,9 @@ class RedactEvidenceResponseSchema(BaseModel):
 class ZKProveRequestSchema(BaseModel):
     private_evidence_hash: str
     merkle_root: str
-    merkle_path: list[tuple[str, str]] = Field(..., description="List of (sibling_hash, direction) tuples")
+    merkle_path: list[tuple[str, str]] = Field(
+        ..., description="List of (sibling_hash, direction) tuples"
+    )
 
 
 class ZKProveResponseSchema(BaseModel):
@@ -114,5 +123,3 @@ class ZKVerifyResponseSchema(BaseModel):
     is_valid: bool
     verification_time_ms: float
     message: str
-
-

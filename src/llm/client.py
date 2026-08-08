@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Provider-Independent LLM Client
 ==========================================
 
@@ -53,7 +53,11 @@ class LLMClient:
             return {
                 "content": self._generate_mock_legal_response(user_prompt),
                 "model": "mock-nyaya-llm",
-                "usage": {"prompt_tokens": 120, "completion_tokens": 250, "total_tokens": 370},
+                "usage": {
+                    "prompt_tokens": 120,
+                    "completion_tokens": 250,
+                    "total_tokens": 370,
+                },
             }
 
         # 3. Live API Request to OpenAI-compatible provider (e.g. Groq)
@@ -75,7 +79,9 @@ class LLMClient:
         url = f"{self.settings.LLM_BASE_URL.rstrip('/')}/chat/completions"
 
         try:
-            async with httpx.AsyncClient(timeout=float(self.settings.LLM_TIMEOUT)) as client:
+            async with httpx.AsyncClient(
+                timeout=float(self.settings.LLM_TIMEOUT)
+            ) as client:
                 response = await client.post(url, headers=headers, json=payload)
                 response.raise_for_status()
                 data = response.json()
@@ -89,8 +95,13 @@ class LLMClient:
                     "usage": usage,
                 }
         except httpx.HTTPStatusError as e:
-            logger.error("LLM Provider HTTP error", extra={"status": e.response.status_code, "text": e.response.text})
-            raise LLMError(message=f"LLM Provider API Error: {e.response.status_code} - {e.response.text[:200]}")
+            logger.error(
+                "LLM Provider HTTP error",
+                extra={"status": e.response.status_code, "text": e.response.text},
+            )
+            raise LLMError(
+                message=f"LLM Provider API Error: {e.response.status_code} - {e.response.text[:200]}"
+            )
         except Exception as e:
             logger.error("LLM Provider Connection error", extra={"error": str(e)})
             raise LLMError(message=f"Failed to communicate with LLM Provider: {str(e)}")

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP FAISS Vector Store Manager
 ====================================
 
@@ -28,9 +28,11 @@ from app.core.logging import get_logger
 logger = get_logger(__name__)
 
 # ── IVF Hyper-parameters ────────────────────────────────────────────────────
-IVF_NLIST = 100        # Number of Voronoi cells (clusters) for IVF index
-IVF_NPROBE = 10        # Cells probed at query time (recall / latency trade-off)
-IVF_TRAIN_THRESHOLD = 1_000   # Minimum vectors required to train IVF; below this use FlatIP
+IVF_NLIST = 100  # Number of Voronoi cells (clusters) for IVF index
+IVF_NPROBE = 10  # Cells probed at query time (recall / latency trade-off)
+IVF_TRAIN_THRESHOLD = (
+    1_000  # Minimum vectors required to train IVF; below this use FlatIP
+)
 
 
 class FAISSVectorStore:
@@ -62,7 +64,9 @@ class FAISSVectorStore:
     def _create_ivf_index(self) -> faiss.IndexIVFFlat:
         """Create approximate IndexIVFFlat with IVF_NLIST=100 centroids."""
         quantizer = faiss.IndexFlatIP(self.dimension)
-        idx = faiss.IndexIVFFlat(quantizer, self.dimension, IVF_NLIST, faiss.METRIC_INNER_PRODUCT)
+        idx = faiss.IndexIVFFlat(
+            quantizer, self.dimension, IVF_NLIST, faiss.METRIC_INNER_PRODUCT
+        )
         idx.nprobe = IVF_NPROBE
         return idx
 
@@ -78,13 +82,23 @@ class FAISSVectorStore:
                 index_type = type(idx).__name__
                 logger.info(
                     "Loaded FAISS index from disk",
-                    extra={"path": str(self.index_file), "type": index_type, "ntotal": idx.ntotal},
+                    extra={
+                        "path": str(self.index_file),
+                        "type": index_type,
+                        "ntotal": idx.ntotal,
+                    },
                 )
                 return idx
             except Exception as e:
-                logger.warning("Failed to load FAISS index from disk, recreating: %s", str(e))
+                logger.warning(
+                    "Failed to load FAISS index from disk, recreating: %s", str(e)
+                )
 
-        logger.info("Created new FAISS IndexFlatIP (dim=%d) — will upgrade to IVFFlat at %d vectors", self.dimension, IVF_TRAIN_THRESHOLD)
+        logger.info(
+            "Created new FAISS IndexFlatIP (dim=%d) — will upgrade to IVFFlat at %d vectors",
+            self.dimension,
+            IVF_TRAIN_THRESHOLD,
+        )
         return self._create_flat_index()
 
     def _maybe_upgrade_to_ivf(self, all_vectors: np.ndarray) -> None:
@@ -101,7 +115,9 @@ class FAISSVectorStore:
 
         logger.info(
             "Upgrading FAISS index: IndexFlatIP → IndexIVFFlat (nlist=%d, nprobe=%d, ntotal=%d)",
-            IVF_NLIST, IVF_NPROBE, all_vectors.shape[0],
+            IVF_NLIST,
+            IVF_NPROBE,
+            all_vectors.shape[0],
         )
         ivf_index = self._create_ivf_index()
 
@@ -140,7 +156,9 @@ class FAISSVectorStore:
         """Persist FAISS index and metadata maps to disk."""
         faiss.write_index(self.index, str(self.index_file))
         np.save(str(self.id_map_file), np.array(self.id_map))
-        self.meta_map_file.write_text(json.dumps(self.meta_map, indent=2), encoding="utf-8")
+        self.meta_map_file.write_text(
+            json.dumps(self.meta_map, indent=2), encoding="utf-8"
+        )
         logger.info("Saved FAISS index to disk (%d vectors)", self.index.ntotal)
 
     def add_vectors(
@@ -167,8 +185,12 @@ class FAISSVectorStore:
         if not self._ivf_trained and new_total >= IVF_TRAIN_THRESHOLD:
             # Collect existing vectors from FlatIP index for re-training
             if current_total > 0 and isinstance(self.index, faiss.IndexFlatIP):
-                existing_vecs = faiss.rev_swig_ptr(self.index.get_xb(), current_total * self.dimension)
-                existing_vecs = np.array(existing_vecs, dtype=np.float32).reshape(current_total, self.dimension)
+                existing_vecs = faiss.rev_swig_ptr(
+                    self.index.get_xb(), current_total * self.dimension
+                )
+                existing_vecs = np.array(existing_vecs, dtype=np.float32).reshape(
+                    current_total, self.dimension
+                )
                 all_vecs = np.vstack([existing_vecs, vectors])
             else:
                 all_vecs = vectors
@@ -243,4 +265,3 @@ class FAISSVectorStore:
         if isinstance(self.index, faiss.IndexIVFFlat):
             return f"IndexIVFFlat(nlist={IVF_NLIST}, nprobe={IVF_NPROBE})"
         return "IndexFlatIP"
-

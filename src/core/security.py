@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Core Security
 ========================
 
@@ -82,8 +82,16 @@ def _ensure_jwt_keypair() -> tuple[str, str]:
     """Ensure ECDSA keypair exists for ES256, returning (private_pem, public_pem)."""
     settings = get_settings()
     root_dir = Path(__file__).resolve().parent.parent.parent
-    priv_path = Path(settings.JWT_PRIVATE_KEY_PATH) if settings.JWT_PRIVATE_KEY_PATH else (root_dir / "signing_keys" / "jwt_key.pem")
-    pub_path = Path(settings.JWT_PUBLIC_KEY_PATH) if settings.JWT_PUBLIC_KEY_PATH else (root_dir / "signing_keys" / "jwt_key_pub.pem")
+    priv_path = (
+        Path(settings.JWT_PRIVATE_KEY_PATH)
+        if settings.JWT_PRIVATE_KEY_PATH
+        else (root_dir / "signing_keys" / "jwt_key.pem")
+    )
+    pub_path = (
+        Path(settings.JWT_PUBLIC_KEY_PATH)
+        if settings.JWT_PUBLIC_KEY_PATH
+        else (root_dir / "signing_keys" / "jwt_key_pub.pem")
+    )
 
     if not priv_path.exists() or not pub_path.exists():
         priv_path.parent.mkdir(parents=True, exist_ok=True)
@@ -93,13 +101,20 @@ def _ensure_jwt_keypair() -> tuple[str, str]:
             format=serialization.PrivateFormat.PKCS8,
             encryption_algorithm=serialization.NoEncryption(),
         ).decode("utf-8")
-        pub_pem = private_key.public_key().public_bytes(
-            encoding=serialization.Encoding.PEM,
-            format=serialization.PublicFormat.SubjectPublicKeyInfo,
-        ).decode("utf-8")
+        pub_pem = (
+            private_key.public_key()
+            .public_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PublicFormat.SubjectPublicKeyInfo,
+            )
+            .decode("utf-8")
+        )
         priv_path.write_text(priv_pem, encoding="utf-8")
         pub_path.write_text(pub_pem, encoding="utf-8")
-        logger.info("Generated new ECDSA keypair for JWT signing (ES256)", extra={"priv_path": str(priv_path)})
+        logger.info(
+            "Generated new ECDSA keypair for JWT signing (ES256)",
+            extra={"priv_path": str(priv_path)},
+        )
         return priv_pem, pub_pem
 
     return priv_path.read_text(encoding="utf-8"), pub_path.read_text(encoding="utf-8")
@@ -233,6 +248,7 @@ def extract_user_id_from_token(token: str) -> str:
 
 
 from fastapi import Depends, Request
+
 
 async def get_token(
     request: Request,

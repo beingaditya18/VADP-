@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Access Policy & Decision Models
 =========================================
 
@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from sqlalchemy import Boolean, Float, ForeignKey, Integer, JSON, String, Text
+from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin, UUIDMixin
@@ -39,12 +39,16 @@ class AccessDecision(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "access_decisions"
 
-    user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=False)
+    user_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=False
+    )
     resource_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     resource_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
     action: Mapped[str] = mapped_column(String(100), nullable=False)
     decision: Mapped[str] = mapped_column(String(20), nullable=False)  # 'allow' or 'deny'
-    policy_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("access_policies.id"), nullable=True)
+    policy_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("access_policies.id"), nullable=True
+    )
     context: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
     risk_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     trust_score: Mapped[float | None] = mapped_column(Float, nullable=True)

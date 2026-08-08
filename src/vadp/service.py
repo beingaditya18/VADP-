@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Service
 ======================
 
@@ -116,7 +116,8 @@ class VerificationContractService:
 
         # 2. Bind authorization provenance
         auth_provenance = await self._bind_authorization_provenance(
-            case_id, actor_id,
+            case_id,
+            actor_id,
         )
 
         # 3. Bind evidence provenance
@@ -124,7 +125,8 @@ class VerificationContractService:
 
         # 4. Bind RAG provenance
         rag_items, rag_metadata = await self._bind_rag_provenance(
-            recommendation, case_id,
+            recommendation,
+            case_id,
         )
 
         # 5. Extract SHAP, trust, risk from explanation
@@ -273,7 +275,8 @@ class VerificationContractService:
     # ── Contract Retrieval ───────────────────────────────────
 
     async def get_contract(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> VerificationContractResponseSchema:
         """Fetch a Verification Contract by ID."""
         contract = await self.repo.get_contract_by_id(contract_id)
@@ -282,7 +285,8 @@ class VerificationContractService:
         return self._to_response_schema(contract)
 
     async def get_contract_for_recommendation(
-        self, recommendation_id: str,
+        self,
+        recommendation_id: str,
     ) -> VerificationContractResponseSchema | None:
         """Fetch the contract bound to a specific recommendation."""
         contract = await self.repo.get_contract_by_recommendation(recommendation_id)
@@ -291,7 +295,8 @@ class VerificationContractService:
         return self._to_response_schema(contract)
 
     async def list_contracts_for_case(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> list[VerificationContractResponseSchema]:
         """List all contracts for a case, auto-generating if not present."""
         contracts = await self.repo.get_contracts_for_case(case_id)
@@ -299,12 +304,16 @@ class VerificationContractService:
             from app.cases.models import Case
             from app.ai.models import AIRecommendation
 
-            case_stmt = select(Case).where((Case.id == case_id) | (Case.case_number == case_id))
+            case_stmt = select(Case).where(
+                (Case.id == case_id) | (Case.case_number == case_id)
+            )
             c_res = await self.db.execute(case_stmt)
             c_obj = c_res.scalar_one_or_none()
 
             if c_obj:
-                rec_stmt = select(AIRecommendation).where(AIRecommendation.case_id == c_obj.id)
+                rec_stmt = select(AIRecommendation).where(
+                    AIRecommendation.case_id == c_obj.id
+                )
                 rec_res = await self.db.execute(rec_stmt)
                 rec_obj = rec_res.scalar_one_or_none()
 
@@ -336,7 +345,8 @@ class VerificationContractService:
     # ── Independent Verification ─────────────────────────────
 
     async def verify_contract(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> ContractVerificationResultSchema:
         """
         Independently verify a Verification Contract's integrity.
@@ -388,7 +398,8 @@ class VerificationContractService:
         signature_valid = True
         if contract.digital_signature:
             signature_valid = self.signer.verify_signature(
-                contract.contract_hash, contract.digital_signature,
+                contract.contract_hash,
+                contract.digital_signature,
             )
             if not signature_valid:
                 failures.append("SIGNATURE INVALID: ECDSA verification failed")
@@ -537,7 +548,8 @@ class VerificationContractService:
     # ── Finalization ─────────────────────────────────────────
 
     async def finalize_contract(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> VerificationContractResponseSchema:
         """
         Finalize a Verification Contract.
@@ -604,7 +616,8 @@ class VerificationContractService:
     # ── Provenance Timeline ──────────────────────────────────
 
     async def get_provenance_timeline(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> list[ContractEventSchema]:
         """Retrieve the full Decision Provenance Timeline for a contract."""
         events = await self.repo.get_events_for_contract(contract_id)
@@ -613,7 +626,8 @@ class VerificationContractService:
     # ── Export ────────────────────────────────────────────────
 
     async def export_contract(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> dict[str, Any]:
         """Export a Verification Contract as a self-contained JSON artifact."""
         contract = await self.repo.get_contract_by_id(contract_id)
@@ -626,7 +640,9 @@ class VerificationContractService:
     # ── Private: Provenance Binding ──────────────────────────
 
     async def _bind_authorization_provenance(
-        self, case_id: str, actor_id: str,
+        self,
+        case_id: str,
+        actor_id: str,
     ) -> AuthorizationProvenance:
         """
         Fetch the most recent access decision for this case and actor.
@@ -661,7 +677,8 @@ class VerificationContractService:
         )
 
     async def _bind_evidence_provenance(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> list[EvidenceProvenanceItem]:
         """Fetch all evidence records for a case and convert to provenance items."""
         stmt = select(EvidenceRecord).where(EvidenceRecord.case_id == case_id)
@@ -721,7 +738,8 @@ class VerificationContractService:
         return rag_items, rag_metadata
 
     def _extract_shap_data(
-        self, recommendation: AIRecommendation,
+        self,
+        recommendation: AIRecommendation,
     ) -> dict[str, Any]:
         """Extract SHAP values from the recommendation's explanations."""
         shap_values: list[dict[str, Any]] = []
@@ -741,7 +759,8 @@ class VerificationContractService:
         }
 
     def _extract_trust_data(
-        self, recommendation: AIRecommendation,
+        self,
+        recommendation: AIRecommendation,
     ) -> dict[str, Any]:
         """Extract trust score and breakdown from the recommendation."""
         tb = dict(recommendation.metadata_.get("trust_breakdown") or {})
@@ -751,14 +770,17 @@ class VerificationContractService:
         tb.setdefault("evidence_quality", round(score * 0.95, 2))
         tb.setdefault("source_reliability", round(score * 0.96, 2))
         tb.setdefault("consistency", round(score * 0.97, 2))
-        tb.setdefault("weights", {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15})
+        tb.setdefault(
+            "weights", {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15}
+        )
         return {
             "trust_score": score,
             "trust_breakdown": tb,
         }
 
     def _extract_risk_data(
-        self, recommendation: AIRecommendation,
+        self,
+        recommendation: AIRecommendation,
     ) -> dict[str, Any]:
         """Extract risk score, level, and features from the recommendation."""
         risk_level = "low"
@@ -813,8 +835,7 @@ class VerificationContractService:
                 "data": {
                     "evidence_count": len(evidence_items),
                     "verified_count": sum(
-                        1 for e in evidence_items
-                        if e.verification_status == "verified"
+                        1 for e in evidence_items if e.verification_status == "verified"
                     ),
                     "evidence_ids": [e.evidence_id for e in evidence_items],
                 },
@@ -886,7 +907,8 @@ class VerificationContractService:
 
         for evt in events_to_record:
             event_hash = ContractHasher.compute_chained_event_hash(
-                evt["data"], parent_hash,
+                evt["data"],
+                parent_hash,
             )
             event = ContractEvent(
                 contract_id=contract_id,
@@ -898,7 +920,8 @@ class VerificationContractService:
                 parent_hash=parent_hash,
                 timestamp=now,
                 duration_ms=(
-                    total_duration_ms if evt["event_order"] == len(events_to_record) - 1
+                    total_duration_ms
+                    if evt["event_order"] == len(events_to_record) - 1
                     else None
                 ),
             )
@@ -908,66 +931,100 @@ class VerificationContractService:
     # ── Response Mapping ─────────────────────────────────────
 
     def _to_response_schema(
-        self, contract: VerificationContract,
+        self,
+        contract: VerificationContract,
     ) -> VerificationContractResponseSchema:
         """Convert a VerificationContract ORM model to response schema with robust JSON parsing."""
         # Parse stored evidence hashes back into EvidenceProvenanceItem schemas
         evidence_provenance = []
-        for e in (contract.evidence_hashes or []):
+        for e in contract.evidence_hashes or []:
             try:
                 if isinstance(e, dict):
                     item_dict = {
-                        "evidence_id": e.get("evidence_id") or e.get("id") or f"ev_{contract.id[:8]}",
-                        "integrity_hash": e.get("integrity_hash") or e.get("sha256") or e.get("hash") or ("0" * 64),
-                        "verification_status": e.get("verification_status") or ("verified" if e.get("verified") else "pending"),
+                        "evidence_id": e.get("evidence_id")
+                        or e.get("id")
+                        or f"ev_{contract.id[:8]}",
+                        "integrity_hash": e.get("integrity_hash")
+                        or e.get("sha256")
+                        or e.get("hash")
+                        or ("0" * 64),
+                        "verification_status": e.get("verification_status")
+                        or ("verified" if e.get("verified") else "pending"),
                         "document_id": e.get("document_id") or contract.case_id,
                         "evidence_type": e.get("evidence_type") or "judicial_judgment",
                         "file_name": e.get("file_name"),
                     }
                     evidence_provenance.append(EvidenceProvenanceItem(**item_dict))
             except Exception as ex:
-                logger.warning(f"Error parsing evidence item for contract {contract.id}: {ex}")
+                logger.warning(
+                    f"Error parsing evidence item for contract {contract.id}: {ex}"
+                )
 
         # Parse stored RAG citations back into RAGProvenanceItem schemas
         rag_provenance = []
-        for r in (contract.rag_citations or []):
+        for r in contract.rag_citations or []:
             try:
                 if isinstance(r, dict):
                     r_dict = {
                         "chunk_id": r.get("chunk_id") or f"chunk_{contract.id[:8]}",
                         "document_id": r.get("document_id") or contract.case_id,
-                        "similarity_score": float(r.get("similarity_score") or r.get("score") or 0.90),
-                        "snippet": r.get("snippet") or r.get("retrieved_paragraph") or r.get("text") or "Statutory precedent snippet.",
+                        "similarity_score": float(
+                            r.get("similarity_score") or r.get("score") or 0.90
+                        ),
+                        "snippet": r.get("snippet")
+                        or r.get("retrieved_paragraph")
+                        or r.get("text")
+                        or "Statutory precedent snippet.",
                         "citation_source": r.get("citation_source"),
                         "reason_for_retrieval": r.get("reason_for_retrieval"),
                     }
                     rag_provenance.append(RAGProvenanceItem(**r_dict))
             except Exception as ex:
-                logger.warning(f"Error parsing RAG item for contract {contract.id}: {ex}")
+                logger.warning(
+                    f"Error parsing RAG item for contract {contract.id}: {ex}"
+                )
 
-        rag_metadata = RAGRetrievalMetadata(
-            **(contract.rag_retrieval_metadata or {})
-        )
+        rag_metadata = RAGRetrievalMetadata(**(contract.rag_retrieval_metadata or {}))
 
         trust_breakdown_data = contract.trust_breakdown or {}
         from app.ai.schemas import TrustScoreBreakdownSchema
+
         trust_breakdown = None
         if trust_breakdown_data and isinstance(trust_breakdown_data, dict):
             try:
                 tb_dict = {
-                    "overall": float(trust_breakdown_data.get("overall", contract.trust_score or 0.90)),
-                    "model_confidence": float(trust_breakdown_data.get("model_confidence", 0.90)),
-                    "evidence_quality": float(trust_breakdown_data.get("evidence_quality", 0.90)),
-                    "source_reliability": float(trust_breakdown_data.get("source_reliability", 0.90)),
+                    "overall": float(
+                        trust_breakdown_data.get(
+                            "overall", contract.trust_score or 0.90
+                        )
+                    ),
+                    "model_confidence": float(
+                        trust_breakdown_data.get("model_confidence", 0.90)
+                    ),
+                    "evidence_quality": float(
+                        trust_breakdown_data.get("evidence_quality", 0.90)
+                    ),
+                    "source_reliability": float(
+                        trust_breakdown_data.get("source_reliability", 0.90)
+                    ),
                     "consistency": float(trust_breakdown_data.get("consistency", 0.90)),
-                    "weights": trust_breakdown_data.get("weights", {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15}),
+                    "weights": trust_breakdown_data.get(
+                        "weights",
+                        {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15},
+                    ),
                 }
                 trust_breakdown = TrustScoreBreakdownSchema(**tb_dict)
             except Exception as ex:
-                logger.warning(f"Error parsing trust breakdown for contract {contract.id}: {ex}")
+                logger.warning(
+                    f"Error parsing trust breakdown for contract {contract.id}: {ex}"
+                )
 
         completeness_data = contract.completeness_checks or {}
-        completeness = CompletenessInvariant(**completeness_data) if completeness_data else CompletenessInvariant()
+        completeness = (
+            CompletenessInvariant(**completeness_data)
+            if completeness_data
+            else CompletenessInvariant()
+        )
 
         human_review = HumanReviewRecord(
             status=contract.human_review_status,
@@ -978,13 +1035,13 @@ class VerificationContractService:
         )
 
         events = [
-            ContractEventSchema.model_validate(e)
-            for e in (contract.events or [])
+            ContractEventSchema.model_validate(e) for e in (contract.events or [])
         ]
 
         shap_values_parsed = []
         from app.ai.schemas import SHAPValueSchema
-        for sv in (contract.shap_values or []):
+
+        for sv in contract.shap_values or []:
             try:
                 shap_values_parsed.append(SHAPValueSchema(**sv))
             except Exception:
@@ -992,7 +1049,8 @@ class VerificationContractService:
 
         contributing_factors_parsed = []
         from app.ai.schemas import ContributingFactorSchema
-        for cf in (contract.contributing_factors or []):
+
+        for cf in contract.contributing_factors or []:
             try:
                 contributing_factors_parsed.append(ContributingFactorSchema(**cf))
             except Exception:
@@ -1000,7 +1058,8 @@ class VerificationContractService:
 
         risk_features_parsed = []
         from app.ai.schemas import RiskFeatureSchema
-        for rf in (contract.risk_features or []):
+
+        for rf in contract.risk_features or []:
             try:
                 risk_features_parsed.append(RiskFeatureSchema(**rf))
             except Exception:
@@ -1009,6 +1068,7 @@ class VerificationContractService:
         merkle_proof_parsed = None
         if contract.merkle_proof:
             from app.ledger.schemas import MerkleProofNodeSchema
+
             merkle_proof_parsed = [
                 MerkleProofNodeSchema(**mp) for mp in contract.merkle_proof
             ]
@@ -1051,11 +1111,13 @@ class VerificationContractService:
             events=events,
         )
 
-    async def calculate_human_override_coverage(self) -> HumanOverrideCoverageResponseSchema:
+    async def calculate_human_override_coverage(
+        self,
+    ) -> HumanOverrideCoverageResponseSchema:
         """
         Calculate aggregate Human Override Coverage metric across all contracts.
         """
         metrics = await self.repo.get_human_override_coverage()
         from app.vadp.schemas import HumanOverrideCoverageResponseSchema
-        return HumanOverrideCoverageResponseSchema(**metrics)
 
+        return HumanOverrideCoverageResponseSchema(**metrics)

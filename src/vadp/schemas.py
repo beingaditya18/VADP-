@@ -64,8 +64,8 @@ class RAGRetrievalMetadata(BaseModel):
     semantic_similarity: float = 0.0
 
     # Field 4: Statutory section intersection × dense similarity (VADP Precedent Relator)
-    statutory_match_score: float = 0.0        # StatutoryMatch(Q, Cj) — Jaccard overlap
-    combined_relator_score: float = 0.0       # Sim(Q, Cj) × StatutoryMatch(Q, Cj)
+    statutory_match_score: float = 0.0  # StatutoryMatch(Q, Cj) — Jaccard overlap
+    combined_relator_score: float = 0.0  # Sim(Q, Cj) × StatutoryMatch(Q, Cj)
 
 
 class AuthorizationProvenance(BaseModel):
@@ -206,7 +206,7 @@ class VerificationContractResponseSchema(BaseModel):
 
     # Field 7: Generative Text Reliability — Normalized Semantic Self-Consistency Score
     # Computed from 3 LLM completions at T=0.7 via pairwise all-MiniLM-L6-v2 cosine similarity
-    generative_reliability_score: float | None = None   # NSSC ∈ [0, 1]
+    generative_reliability_score: float | None = None  # NSSC ∈ [0, 1]
     escalation_required: bool = False  # True when NSSC < 0.82 (mandatory human review)
 
     # Lifecycle Timestamps
@@ -275,4 +275,3 @@ class HumanOverrideCoverageResponseSchema(BaseModel):
     pending_count: int
     human_override_coverage_pct: float
     review_action_breakdown: dict[str, int] = Field(default_factory=dict)
-

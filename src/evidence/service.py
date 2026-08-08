@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Evidence Service
 ==========================
 
@@ -42,7 +42,9 @@ class EvidenceService:
         self.doc_repo = DocumentRepository(db)
         self.case_repo = CaseRepository(db)
 
-    async def create_evidence(self, schema: EvidenceCreateSchema, actor_id: str) -> EvidenceResponseSchema:
+    async def create_evidence(
+        self, schema: EvidenceCreateSchema, actor_id: str
+    ) -> EvidenceResponseSchema:
         """
         Register a document as formal case evidence with initial custody log.
         """
@@ -73,14 +75,21 @@ class EvidenceService:
         await self.db.flush()
         await self.db.refresh(evidence)
 
-        logger.info("Registered evidence record", extra={"evidence_id": evidence.id, "hash": doc.content_hash})
+        logger.info(
+            "Registered evidence record",
+            extra={"evidence_id": evidence.id, "hash": doc.content_hash},
+        )
         return EvidenceResponseSchema.model_validate(evidence)
 
-    async def verify_evidence(self, evidence_id: str, verifier_id: str) -> EvidenceVerificationResultSchema:
+    async def verify_evidence(
+        self, evidence_id: str, verifier_id: str
+    ) -> EvidenceVerificationResultSchema:
         """
         Execute cryptographic hash check of stored file against recorded evidence hash.
         """
-        result_stmt = await self.db.execute(select(EvidenceRecord).where(EvidenceRecord.id == evidence_id))
+        result_stmt = await self.db.execute(
+            select(EvidenceRecord).where(EvidenceRecord.id == evidence_id)
+        )
         evidence = result_stmt.scalar_one_or_none()
         if not evidence:
             raise NotFoundError(message="Evidence record not found.")
@@ -90,7 +99,9 @@ class EvidenceService:
             raise NotFoundError(message="Associated document file not found.")
 
         # Run verification check
-        ver_result = await EvidenceVerifier.verify_file_integrity(doc.storage_path, evidence.integrity_hash)
+        ver_result = await EvidenceVerifier.verify_file_integrity(
+            doc.storage_path, evidence.integrity_hash
+        )
 
         # Update evidence record in DB
         now = datetime.now(timezone.utc)
@@ -100,23 +111,29 @@ class EvidenceService:
 
         # Append to chain of custody
         custody = list(evidence.chain_of_custody)
-        custody.append({
-            "timestamp": now.isoformat(),
-            "actor_id": verifier_id,
-            "action": "integrity_verified",
-            "status": ver_result.status,
-            "computed_hash": ver_result.computed_hash,
-        })
+        custody.append(
+            {
+                "timestamp": now.isoformat(),
+                "actor_id": verifier_id,
+                "action": "integrity_verified",
+                "status": ver_result.status,
+                "computed_hash": ver_result.computed_hash,
+            }
+        )
         evidence.chain_of_custody = custody
         await self.db.flush()
 
         return ver_result
 
-    async def anchor_to_blockchain(self, evidence_id: str) -> BlockchainTransactionReceipt:
+    async def anchor_to_blockchain(
+        self, evidence_id: str
+    ) -> BlockchainTransactionReceipt:
         """
         Anchor an evidence record to the blockchain ledger.
         """
-        result_stmt = await self.db.execute(select(EvidenceRecord).where(EvidenceRecord.id == evidence_id))
+        result_stmt = await self.db.execute(
+            select(EvidenceRecord).where(EvidenceRecord.id == evidence_id)
+        )
         evidence = result_stmt.scalar_one_or_none()
         if not evidence:
             raise NotFoundError(message="Evidence record not found.")
@@ -127,23 +144,30 @@ class EvidenceService:
         )
 
         custody = list(evidence.chain_of_custody)
-        custody.append({
-            "timestamp": receipt.anchored_at_iso,
-            "action": "blockchain_anchored",
-            "tx_hash": receipt.tx_hash,
-            "block_number": receipt.block_number,
-        })
+        custody.append(
+            {
+                "timestamp": receipt.anchored_at_iso,
+                "action": "blockchain_anchored",
+                "tx_hash": receipt.tx_hash,
+                "block_number": receipt.block_number,
+            }
+        )
         evidence.chain_of_custody = custody
         await self.db.flush()
 
-        logger.info("Anchored evidence to blockchain", extra={"evidence_id": evidence.id, "tx_hash": receipt.tx_hash})
+        logger.info(
+            "Anchored evidence to blockchain",
+            extra={"evidence_id": evidence.id, "tx_hash": receipt.tx_hash},
+        )
         return receipt
 
     async def generate_bsa_certificate(self, evidence_id: str) -> BSACertificate63:
         """
         Generate Section 63(4) BSA 2023 Electronic Evidence Certificate.
         """
-        result_stmt = await self.db.execute(select(EvidenceRecord).where(EvidenceRecord.id == evidence_id))
+        result_stmt = await self.db.execute(
+            select(EvidenceRecord).where(EvidenceRecord.id == evidence_id)
+        )
         evidence = result_stmt.scalar_one_or_none()
         if not evidence:
             raise NotFoundError(message="Evidence record not found.")
@@ -166,7 +190,9 @@ class EvidenceService:
     async def list_case_evidence(self, case_id: str) -> list[EvidenceResponseSchema]:
         """List all evidence records for a case."""
         result = await self.db.execute(
-            select(EvidenceRecord).where(EvidenceRecord.case_id == case_id).order_by(EvidenceRecord.created_at.desc())
+            select(EvidenceRecord)
+            .where(EvidenceRecord.case_id == case_id)
+            .order_by(EvidenceRecord.created_at.desc())
         )
         records = result.scalars().all()
         return [EvidenceResponseSchema.model_validate(r) for r in records]

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Router
 =====================
 
@@ -183,6 +183,7 @@ async def get_mega_summary(
     db: AsyncSession = Depends(get_db_session),
 ) -> MegaCaseSummarySchema:
     from app.ai.precedent_radar import MegaCaseSummarizerEngine
+
     service = CaseService(db)
     case_res = await service.get_case_by_id(case_id)
     return MegaCaseSummarizerEngine.generate_mega_summary(
@@ -206,9 +207,12 @@ async def get_precedent_radar(
     db: AsyncSession = Depends(get_db_session),
 ) -> PrecedentRadarResponseSchema:
     from app.ai.precedent_radar import PrecedentRadarEngine
+
     service = CaseService(db)
     case_res = await service.get_case_by_id(case_id)
-    return PrecedentRadarEngine.analyze_precedents(case_id=case_res.id, case_title=case_res.title)
+    return PrecedentRadarEngine.analyze_precedents(
+        case_id=case_res.id, case_title=case_res.title
+    )
 
 
 @router.get(
@@ -223,7 +227,9 @@ async def get_bail_estimator(
     db: AsyncSession = Depends(get_db_session),
 ) -> BailOutcomeEstimatorSchema:
     from app.ai.precedent_radar import BailOutcomeEstimatorEngine
+
     service = CaseService(db)
     case_res = await service.get_case_by_id(case_id)
-    return BailOutcomeEstimatorEngine.estimate_outcome(case_id=case_res.id, priority=case_res.priority.value)
-
+    return BailOutcomeEstimatorEngine.estimate_outcome(
+        case_id=case_res.id, priority=case_res.priority.value
+    )

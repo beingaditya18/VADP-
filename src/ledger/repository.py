@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Repository
 =================================
 
@@ -39,7 +39,9 @@ class LedgerRepository:
         )
         return result.scalars().all()
 
-    async def create_block(self, block: LedgerBlock, entries: list[LedgerEntry]) -> LedgerBlock:
+    async def create_block(
+        self, block: LedgerBlock, entries: list[LedgerEntry]
+    ) -> LedgerBlock:
         """Seal a list of entries into a new immutable LedgerBlock."""
         self.db.add(block)
         await self.db.flush()
@@ -48,7 +50,9 @@ class LedgerRepository:
             entry.block_id = block.id
 
         await self.db.flush()
-        return await self.get_block_by_index(block.block_index)  # Preloaded with entries
+        return await self.get_block_by_index(
+            block.block_index
+        )  # Preloaded with entries
 
     async def get_latest_block(self) -> LedgerBlock | None:
         """Fetch tip block of the hash chain (highest index)."""
@@ -83,8 +87,6 @@ class LedgerRepository:
         result = await self.db.execute(
             select(LedgerEntry)
             .where(LedgerEntry.id == entry_id)
-            .options(
-                selectinload(LedgerEntry.block).selectinload(LedgerBlock.entries)
-            )
+            .options(selectinload(LedgerEntry.block).selectinload(LedgerBlock.entries))
         )
         return result.scalar_one_or_none()

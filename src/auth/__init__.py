@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Authentication Module
 """

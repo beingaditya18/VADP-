@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP User & Session Models
 ===============================
 
@@ -8,10 +8,10 @@ Cross-database compatible (SQLite3 & PostgreSQL).
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Any
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, JSON, String
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base, TimestampMixin, UUIDMixin
@@ -33,7 +33,9 @@ class User(Base, UUIDMixin, TimestampMixin):
     court_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True, nullable=False)
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    metadata_: Mapped[dict[str, Any]] = mapped_column("metadata_", JSON, default=dict, nullable=False)
+    metadata_: Mapped[dict[str, Any]] = mapped_column(
+        "metadata_", JSON, default=dict, nullable=False
+    )
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     # Relationships

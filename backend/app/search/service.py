@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Hybrid Search Service
 ===============================
 
@@ -16,7 +16,6 @@ from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.cases.models import Case
-from app.cases.schemas import CaseResponseSchema
 from app.documents.models import Document
 from app.rag.retriever import ContextRetriever
 
@@ -42,7 +41,9 @@ class SearchService:
         self.db = db
         self.retriever = ContextRetriever(db)
 
-    async def execute_hybrid_search(self, query: str, limit: int = 20) -> HybridSearchResponseSchema:
+    async def execute_hybrid_search(
+        self, query: str, limit: int = 20
+    ) -> HybridSearchResponseSchema:
         """
         Execute combined full-text and semantic vector search.
         """
@@ -78,11 +79,7 @@ class SearchService:
             )
 
         # 2. Full-text search on Documents
-        doc_stmt = (
-            select(Document)
-            .where(Document.file_name.ilike(search_term))
-            .limit(limit)
-        )
+        doc_stmt = select(Document).where(Document.file_name.ilike(search_term)).limit(limit)
         doc_results = await self.db.execute(doc_stmt)
         for d in doc_results.scalars().all():
             results.append(

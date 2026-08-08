@@ -37,7 +37,9 @@ class CompositionalContractAlgebraEngine:
     """
 
     @staticmethod
-    def compose(trial_contract: Dict[str, Any], appellate_delta: Dict[str, Any]) -> ContractCompositionResult:
+    def compose(
+        trial_contract: Dict[str, Any], appellate_delta: Dict[str, Any]
+    ) -> ContractCompositionResult:
         """
         Executes composition: C_appellate = C_trial (x) Delta C_appeal
         """
@@ -50,7 +52,10 @@ class CompositionalContractAlgebraEngine:
         composed_auth = {
             "trial_decision_id": auth_trial.get("decision_id"),
             "appellate_decision_id": auth_delta.get("decision_id"),
-            "result": "allow" if auth_trial.get("result") == "allow" and auth_delta.get("result") == "allow" else "deny",
+            "result": "allow"
+            if auth_trial.get("result") == "allow"
+            and auth_delta.get("result") == "allow"
+            else "deny",
             "evaluated_roles": ["judge_trial", "judge_appellate"],
             "scope_elevation": "HIGH_COURT_APPELLATE_REVIEW",
         }
@@ -66,9 +71,13 @@ class CompositionalContractAlgebraEngine:
         composed_citations = rag_trial + rag_delta
 
         # 4. Merkle Root Chaining: Root_appellate = SHA-256(0x01 || Root_trial || Hash_delta)
-        root_trial = trial_contract.get("merkle_leaf_hash", sha256_canonical(trial_contract))
+        root_trial = trial_contract.get(
+            "merkle_leaf_hash", sha256_canonical(trial_contract)
+        )
         hash_delta = sha256_canonical(appellate_delta)
-        composed_merkle_root = hashlib.sha256(f"0x01:{root_trial}:{hash_delta}".encode("utf-8")).hexdigest()
+        composed_merkle_root = hashlib.sha256(
+            f"0x01:{root_trial}:{hash_delta}".encode("utf-8")
+        ).hexdigest()
 
         # 5. Assemble Composed Fields
         composed_fields = {
@@ -79,14 +88,30 @@ class CompositionalContractAlgebraEngine:
             "authorization": composed_auth,
             "evidence_provenance": composed_evidence,
             "rag_provenance": composed_citations,
-            "trust_score": float(round((trial_contract.get("trust_score", 0.8) + appellate_delta.get("trust_score", 0.95)) / 2.0, 4)),
-            "human_review_status": appellate_delta.get("human_review_status", "APPROVED_BY_HIGH_COURT_BENCH"),
+            "trust_score": float(
+                round(
+                    (
+                        trial_contract.get("trust_score", 0.8)
+                        + appellate_delta.get("trust_score", 0.95)
+                    )
+                    / 2.0,
+                    4,
+                )
+            ),
+            "human_review_status": appellate_delta.get(
+                "human_review_status", "APPROVED_BY_HIGH_COURT_BENCH"
+            ),
         }
 
         composed_contract_hash = sha256_canonical(composed_fields)
 
         # Theorem 3 Verification: Proof that trial root is unalterable from composed root
-        theorem_3_valid = (hashlib.sha256(f"0x01:{root_trial}:{hash_delta}".encode("utf-8")).hexdigest() == composed_merkle_root)
+        theorem_3_valid = (
+            hashlib.sha256(
+                f"0x01:{root_trial}:{hash_delta}".encode("utf-8")
+            ).hexdigest()
+            == composed_merkle_root
+        )
 
         return ContractCompositionResult(
             composed_contract_id=composed_fields["id"],

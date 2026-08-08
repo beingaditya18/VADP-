@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Hybrid RBAC + ABAC Policy Engine (Policy Decision Point)
 ===============================================================
 
@@ -17,7 +17,6 @@ from typing import Any
 from app.auth.models import User
 from app.authorization.models import AccessPolicy
 from app.authorization.schemas import AuthorizationContextSchema
-from app.authorization.continuous_trust import ContinuousTrustEvaluator, ContinuousSessionState
 from app.core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -41,13 +40,20 @@ class PolicyEngine:
             (allowed: bool, reason: str, matching_policy: AccessPolicy | None)
         """
         matching_policies = [
-            p for p in policies
-            if p.is_active and p.resource_type.lower() == resource_type.lower() and p.action.lower() == action.lower()
+            p
+            for p in policies
+            if p.is_active
+            and p.resource_type.lower() == resource_type.lower()
+            and p.action.lower() == action.lower()
         ]
 
         if not matching_policies:
             # Default Deny principle in Zero Trust
-            return False, f"Default Deny: No active policy found for {action} on {resource_type}", None
+            return (
+                False,
+                f"Default Deny: No active policy found for {action} on {resource_type}",
+                None,
+            )
 
         # Sort by priority descending
         matching_policies.sort(key=lambda p: p.priority, reverse=True)
@@ -58,7 +64,9 @@ class PolicyEngine:
                 continue  # Try next policy
 
             # 2. ABAC Check: Evaluate conditions dictionary
-            abac_passed, abac_reason = PolicyEngine._evaluate_abac_conditions(user, context, policy.conditions)
+            abac_passed, abac_reason = PolicyEngine._evaluate_abac_conditions(
+                user, context, policy.conditions
+            )
             if not abac_passed:
                 logger.info(
                     "ABAC evaluation failed for policy",
@@ -69,7 +77,11 @@ class PolicyEngine:
             # Policy matched and passed all checks
             return True, f"Access granted by policy '{policy.policy_name}'", policy
 
-        return False, "Access denied: Failed role or ABAC attribute conditions across all matching policies", None
+        return (
+            False,
+            "Access denied: Failed role or ABAC attribute conditions across all matching policies",
+            None,
+        )
 
     @staticmethod
     def _evaluate_abac_conditions(

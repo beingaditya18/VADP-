@@ -12,7 +12,6 @@ from __future__ import annotations
 import base64
 import logging
 from pathlib import Path
-from typing import Tuple
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ed25519
@@ -92,7 +91,9 @@ class Ed25519LedgerSigner:
         signature = self._private_key.sign(message_bytes)
         return base64.b64encode(signature).decode("utf-8")
 
-    def verify_signature(self, message_bytes: bytes, signature_b64: str, public_key_pem: str | None = None) -> bool:
+    def verify_signature(
+        self, message_bytes: bytes, signature_b64: str, public_key_pem: str | None = None
+    ) -> bool:
         """
         Verifies Ed25519 signature against message bytes using public key.
         """

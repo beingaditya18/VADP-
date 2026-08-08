@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Service
 ======================
 
@@ -12,7 +12,7 @@ import math
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.cases.models import Case, CaseEvent, CaseParty
+from app.cases.models import Case, CaseParty
 from app.cases.repository import CaseRepository
 from app.cases.schemas import (
     CaseCreateSchema,
@@ -62,7 +62,10 @@ class CaseService:
         ]
 
         created_case = await self.repo.create_case(case, parties)
-        logger.info("Case filed successfully", extra={"case_id": created_case.id, "case_number": case_number})
+        logger.info(
+            "Case filed successfully",
+            extra={"case_id": created_case.id, "case_number": case_number},
+        )
         return CaseResponseSchema.model_validate(created_case)
 
     async def get_case_by_id(self, case_id: str) -> CaseResponseSchema:
@@ -206,16 +209,19 @@ class CaseService:
                 )
             )
 
-        logger.info("Hearing scheduled successfully", extra={"case_id": case.id, "hearing_id": hearing.id})
+        logger.info(
+            "Hearing scheduled successfully", extra={"case_id": case.id, "hearing_id": hearing.id}
+        )
         return HearingScheduleResponseSchema.model_validate(hearing)
 
     async def get_case_timeline(self, case_id: str) -> CaseTimelineResponseSchema:
         """
         Build complete chronological milestone timeline for a case.
         """
+        from sqlalchemy import select
+
         from app.cases.schemas import CaseTimelineNodeSchema, CaseTimelineResponseSchema
         from app.evidence.models import EvidenceRecord
-        from sqlalchemy import select
 
         case = await self.repo.get_by_id(case_id)
         if not case:
@@ -265,13 +271,19 @@ class CaseService:
                     title=f"Evidence Submitted: {e.evidence_type.title()}",
                     description=f"Integrity Status: {e.verification_status.upper()} (Hash: {e.integrity_hash[:12]}...)",
                     actor_id=e.verified_by,
-                    badge_color="bg-emerald-500" if e.verification_status == "verified" else "bg-amber-500",
-                    metadata={"verification_status": e.verification_status, "hash": e.integrity_hash},
+                    badge_color="bg-emerald-500"
+                    if e.verification_status == "verified"
+                    else "bg-amber-500",
+                    metadata={
+                        "verification_status": e.verification_status,
+                        "hash": e.integrity_hash,
+                    },
                 )
             )
 
         # 4. Hearings
         from app.cases.models import HearingSchedule
+
         h_stmt = select(HearingSchedule).where(HearingSchedule.case_id == case_id)
         h_res = await self.db.execute(h_stmt)
         hearings = h_res.scalars().all()
@@ -298,4 +310,3 @@ class CaseService:
             total_milestones=len(timeline_nodes),
             timeline=timeline_nodes,
         )
-

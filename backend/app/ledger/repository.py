@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Repository
 =================================
 
@@ -7,9 +7,9 @@ Data access layer for LedgerBlock and LedgerEntry entities using SQLAlchemy 2.x 
 
 from __future__ import annotations
 
-from typing import Sequence
+from collections.abc import Sequence
 
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -83,8 +83,6 @@ class LedgerRepository:
         result = await self.db.execute(
             select(LedgerEntry)
             .where(LedgerEntry.id == entry_id)
-            .options(
-                selectinload(LedgerEntry.block).selectinload(LedgerBlock.entries)
-            )
+            .options(selectinload(LedgerEntry.block).selectinload(LedgerBlock.entries))
         )
         return result.scalar_one_or_none()

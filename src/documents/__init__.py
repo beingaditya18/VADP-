@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Document Management Module
 """

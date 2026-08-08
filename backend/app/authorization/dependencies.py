@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Dependencies
 ===================================
 
@@ -7,7 +7,7 @@ FastAPI dependencies for Policy Enforcement Point (PEP) checks on routes.
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession

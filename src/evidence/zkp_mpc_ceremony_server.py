@@ -40,7 +40,9 @@ class DistributedMPCCeremonyServer:
     def __init__(self, circuit_name: str = "LeafInclusion_Depth10") -> None:
         self.circuit_name = circuit_name
         self.contributions: List[CeremonyContribution] = []
-        self.current_beacon: str = "0x" + hashlib.sha256(b"VADP_GROTH16_BEACON_SEED_2026").hexdigest()
+        self.current_beacon: str = (
+            "0x" + hashlib.sha256(b"VADP_GROTH16_BEACON_SEED_2026").hexdigest()
+        )
         self.is_finalized: bool = False
 
     def register_contribution(
@@ -56,8 +58,12 @@ class DistributedMPCCeremonyServer:
         Processes a contribution from a distinct network endpoint and updates transcript hash chain.
         """
         contrib_idx = len(self.contributions) + 1
-        entropy_hash = hashlib.sha256(f"{entropy_raw}:{participant_id}:{contrib_idx}".encode()).hexdigest()
-        output_zkey_hash = hashlib.sha256(f"{input_zkey_hash}:{entropy_hash}".encode()).hexdigest()
+        entropy_hash = hashlib.sha256(
+            f"{entropy_raw}:{participant_id}:{contrib_idx}".encode()
+        ).hexdigest()
+        output_zkey_hash = hashlib.sha256(
+            f"{input_zkey_hash}:{entropy_hash}".encode()
+        ).hexdigest()
 
         contrib = CeremonyContribution(
             participant_id=participant_id,
@@ -71,15 +77,21 @@ class DistributedMPCCeremonyServer:
             timestamp_iso=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         )
         self.contributions.append(contrib)
-        
+
         # Update rolling beacon
-        self.current_beacon = hashlib.sha256(f"{self.current_beacon}:{output_zkey_hash}".encode()).hexdigest()
-        logger.info(f"Registered MPC contribution #{contrib_idx} from {node_name} ({endpoint})")
+        self.current_beacon = hashlib.sha256(
+            f"{self.current_beacon}:{output_zkey_hash}".encode()
+        ).hexdigest()
+        logger.info(
+            f"Registered MPC contribution #{contrib_idx} from {node_name} ({endpoint})"
+        )
         return contrib
 
     def apply_random_beacon(self, external_beacon_seed: bytes) -> str:
         """Applies dynamic random beacon to finalize ceremony transcript."""
-        final_hash = hashlib.sha256(self.current_beacon.encode() + external_beacon_seed).hexdigest()
+        final_hash = hashlib.sha256(
+            self.current_beacon.encode() + external_beacon_seed
+        ).hexdigest()
         self.current_beacon = f"0x{final_hash}"
         self.is_finalized = True
         return self.current_beacon

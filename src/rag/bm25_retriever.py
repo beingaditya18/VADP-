@@ -1,7 +1,7 @@
 """
 Okapi BM25 Lexical Retrieval Engine for Legal Documents.
 
-Serves as the standard lexical baseline (rank_bm25 / Elasticsearch model) 
+Serves as the standard lexical baseline (rank_bm25 / Elasticsearch model)
 for legal retrieval evaluation.
 """
 
@@ -67,17 +67,29 @@ class BM25Retriever:
                 if t in counts:
                     freq = counts[t]
                     idf_val = self.idf.get(t, 0.0)
-                    denom = freq + self.k1 * (1.0 - self.b + self.b * (dlen / self.avgdl))
+                    denom = freq + self.k1 * (
+                        1.0 - self.b + self.b * (dlen / self.avgdl)
+                    )
                     score += idf_val * (freq * (self.k1 + 1.0)) / denom
-            
-            chunk_id = str(self.chunks[idx].get("id", self.chunks[idx].get("chunk_id", f"chk_{idx}")))
-            snippet = str(self.chunks[idx].get("content", self.chunks[idx].get("snippet", "")))
+
+            chunk_id = str(
+                self.chunks[idx].get(
+                    "id", self.chunks[idx].get("chunk_id", f"chk_{idx}")
+                )
+            )
+            snippet = str(
+                self.chunks[idx].get("content", self.chunks[idx].get("snippet", ""))
+            )
             scores.append((chunk_id, float(round(score, 4)), snippet))
 
         scores.sort(key=lambda x: x[1], reverse=True)
 
         results = []
         for rank_idx, (cid, sval, snip) in enumerate(scores[:top_k]):
-            results.append(BM25ChunkScore(chunk_id=cid, bm25_score=sval, rank=rank_idx + 1, snippet=snip))
+            results.append(
+                BM25ChunkScore(
+                    chunk_id=cid, bm25_score=sval, rank=rank_idx + 1, snippet=snip
+                )
+            )
 
         return results

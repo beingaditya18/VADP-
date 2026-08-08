@@ -1,1 +1,1 @@
-﻿# VADP Backend Application
+# VADP Backend Application

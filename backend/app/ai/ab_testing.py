@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP A/B Testing Framework for AI Decision Models
 ======================================================
 
@@ -31,8 +31,20 @@ class ABTestingEngine:
     }
 
     _variant_stats: dict[str, dict[str, Any]] = {
-        "v1": {"requests": 125, "total_latency_ms": 28125.0, "correct": 975, "total_evaluated": 1250, "accuracy": 0.7800},
-        "v2": {"requests": 130, "total_latency_ms": 31200.0, "correct": 1079, "total_evaluated": 1300, "accuracy": 0.8300},
+        "v1": {
+            "requests": 125,
+            "total_latency_ms": 28125.0,
+            "correct": 975,
+            "total_evaluated": 1250,
+            "accuracy": 0.7800,
+        },
+        "v2": {
+            "requests": 130,
+            "total_latency_ms": 31200.0,
+            "correct": 1079,
+            "total_evaluated": 1300,
+            "accuracy": 0.8300,
+        },
     }
 
     @classmethod

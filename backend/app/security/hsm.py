@@ -17,7 +17,6 @@ import logging
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 
@@ -106,6 +105,7 @@ class AWSKMSProvider(BaseHSMProvider):
     def _init_client(self) -> None:
         try:
             import boto3
+
             self._kms_client = boto3.client("kms", region_name=self.region)
             logger.info("Initialized AWS KMS HSM Provider for Key ID '%s'", self.key_id)
         except Exception as e:
@@ -157,7 +157,9 @@ class PyKCS11SoftHSMProvider(BaseHSMProvider):
     Uses PyKCS11 or ctypes binding against libsofthsm2.so / softhsm2.dll when available.
     """
 
-    def __init__(self, slot_id: int = 0, user_pin: str = "1234", token_label: str = "VADP_HSM_TOKEN") -> None:
+    def __init__(
+        self, slot_id: int = 0, user_pin: str = "1234", token_label: str = "VADP_HSM_TOKEN"
+    ) -> None:
         self.slot_id = slot_id
         self.user_pin = user_pin
         self.token_label = token_label
@@ -167,6 +169,7 @@ class PyKCS11SoftHSMProvider(BaseHSMProvider):
     def _init_token(self) -> None:
         try:
             import PyKCS11  # type: ignore
+
             self.pkcs11 = PyKCS11.PyKCS11Lib()
             # Try standard library paths
             lib_paths = [
@@ -183,9 +186,13 @@ class PyKCS11SoftHSMProvider(BaseHSMProvider):
                     break
             if not loaded:
                 raise RuntimeError("SoftHSM2 PKCS#11 shared library not found in standard paths.")
-            logger.info(f"Initialized PyKCS11 SoftHSM2 Hardware Token Provider (Slot {self.slot_id})")
+            logger.info(
+                f"Initialized PyKCS11 SoftHSM2 Hardware Token Provider (Slot {self.slot_id})"
+            )
         except Exception as e:
-            logger.warning(f"PyKCS11/SoftHSM2 init notice ({e}); utilizing SoftHSM2 PKCS#11 fallback wrapper.")
+            logger.warning(
+                f"PyKCS11/SoftHSM2 init notice ({e}); utilizing SoftHSM2 PKCS#11 fallback wrapper."
+            )
             key_path = Path("signing_keys/softhsm2_hardware_token.pem")
             self._fallback_provider = MockPKCS11Provider(key_path)
 
@@ -241,4 +248,3 @@ class HSMKeyManager:
         key_path = Path(settings.LEDGER_SIGNING_KEY_PATH)
         cls._provider_instance = MockPKCS11Provider(key_path)
         return cls._provider_instance
-

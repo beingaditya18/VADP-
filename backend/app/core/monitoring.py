@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Monitoring & Health Checks
 =====================================
 
@@ -13,7 +13,7 @@ Endpoints:
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy import text
@@ -28,7 +28,7 @@ logger = get_logger(__name__)
 
 router = APIRouter(tags=["monitoring"])
 
-_startup_time = datetime.now(timezone.utc)
+_startup_time = datetime.now(UTC)
 
 
 @router.get("/metrics", include_in_schema=True, summary="Prometheus APM metrics")
@@ -67,6 +67,7 @@ async def detailed_health_check(
     # 2. FAISS vector index check
     try:
         from pathlib import Path
+
         faiss_path = Path(settings.FAISS_INDEX_PATH)
         subsystems["faiss_index"] = "healthy" if faiss_path.exists() else "not_initialized"
     except Exception:
@@ -75,6 +76,7 @@ async def detailed_health_check(
     # 3. Merkle Audit Ledger key check
     try:
         from pathlib import Path
+
         ledger_key = Path(settings.LEDGER_SIGNING_KEY_PATH)
         subsystems["ledger_keys"] = "configured" if ledger_key.parent.exists() else "missing"
     except Exception:
@@ -85,8 +87,8 @@ async def detailed_health_check(
 
     return {
         "status": "healthy" if is_healthy else "unhealthy",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "uptime_seconds": round((datetime.now(timezone.utc) - _startup_time).total_seconds(), 2),
+        "timestamp": datetime.now(UTC).isoformat(),
+        "uptime_seconds": round((datetime.now(UTC) - _startup_time).total_seconds(), 2),
         "environment": settings.ENVIRONMENT.value,
         "subsystems": subsystems,
     }
@@ -102,8 +104,8 @@ async def health_check() -> dict:
     """
     return {
         "status": "healthy",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "uptime_seconds": (datetime.now(timezone.utc) - _startup_time).total_seconds(),
+        "timestamp": datetime.now(UTC).isoformat(),
+        "uptime_seconds": (datetime.now(UTC) - _startup_time).total_seconds(),
     }
 
 
@@ -130,13 +132,13 @@ async def readiness_check(
         checks["database"] = f"unavailable: {e}"
         return {
             "status": "unhealthy",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
             "checks": checks,
         }
 
     return {
         "status": "ready",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "checks": checks,
     }
 

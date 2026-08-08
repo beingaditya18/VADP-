@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Auth Pydantic Schemas
 ===============================
 
@@ -29,11 +29,17 @@ class UserRegisterSchema(BaseModel):
     """Request schema for user registration."""
 
     email: EmailStr
-    password: str = Field(..., min_length=8, max_length=128, description="Password must be at least 8 characters.")
+    password: str = Field(
+        ..., min_length=8, max_length=128, description="Password must be at least 8 characters."
+    )
     full_name: str = Field(..., min_length=2, max_length=255)
     role: UserRoleEnum = Field(default=UserRoleEnum.CITIZEN)
-    bar_number: str | None = Field(default=None, max_length=100, description="Bar registration number for lawyers.")
-    court_id: str | None = Field(default=None, description="Court ID assignment for judges and clerks.")
+    bar_number: str | None = Field(
+        default=None, max_length=100, description="Bar registration number for lawyers."
+    )
+    court_id: str | None = Field(
+        default=None, description="Court ID assignment for judges and clerks."
+    )
 
     @field_validator("bar_number")
     @classmethod

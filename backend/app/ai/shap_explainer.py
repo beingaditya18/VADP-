@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP SHAP Explainer Module
 ===============================
 
@@ -36,7 +36,9 @@ class SHAPExplainer:
 
         # Check if saved trained model exists
         from pathlib import Path
+
         import joblib
+
         model_path = Path(__file__).resolve().parent.parent / "models" / "gradient_boost_v2.pkl"
 
         if model_path.exists():
@@ -76,7 +78,6 @@ class SHAPExplainer:
         assert cls._model is not None
         instance = np.array([features])
         return int(cls._model.predict(instance)[0])
-
 
     @classmethod
     def compute_shap_explanations(
@@ -131,10 +132,15 @@ class SHAPExplainer:
 
         factors = []
         for s in shap_values:
-            impact = "high" if abs(s.shap_value) > 0.10 else "medium" if abs(s.shap_value) > 0.03 else "low"
+            impact = (
+                "high"
+                if abs(s.shap_value) > 0.10
+                else "medium"
+                if abs(s.shap_value) > 0.03
+                else "low"
+            )
             direction = (
-                "decreases_risk" if s.contribution_direction == "positive"
-                else "increases_risk"
+                "decreases_risk" if s.contribution_direction == "positive" else "increases_risk"
             )
             factors.append(
                 ContributingFactorSchema(
@@ -146,4 +152,3 @@ class SHAPExplainer:
             )
 
         return shap_values, importance, factors
-

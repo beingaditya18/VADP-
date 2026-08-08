@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Authorization Service
 ================================
 
@@ -19,7 +19,6 @@ from app.authorization.schemas import (
     PolicyCreateSchema,
     PolicyResponseSchema,
 )
-from app.core.exceptions import NotFoundError
 from app.core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -46,7 +45,9 @@ class AuthorizationService:
         self.db.add(policy)
         await self.db.flush()
         await self.db.refresh(policy)
-        logger.info("Created access policy", extra={"policy_id": policy.id, "name": policy.policy_name})
+        logger.info(
+            "Created access policy", extra={"policy_id": policy.id, "name": policy.policy_name}
+        )
         return PolicyResponseSchema.model_validate(policy)
 
     async def list_policies(self) -> list[PolicyResponseSchema]:

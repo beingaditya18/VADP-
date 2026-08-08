@@ -70,7 +70,7 @@ class ExplanationAwareReranker:
             snippet = str(cand.get("content", cand.get("snippet", "")))
 
             attr_var = self.estimate_attribution_variance(snippet, query_text)
-            
+
             # Joint score computation
             joint_score = float(round(self.alpha * sim_score - self.beta * attr_var, 4))
 

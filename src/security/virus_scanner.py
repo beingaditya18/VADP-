@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Virus Scanner & Malware Defense Engine
 =================================================
 
@@ -19,20 +19,23 @@ from app.core.logging import get_logger
 logger = get_logger(__name__)
 
 # Standard EICAR Test Signature
-EICAR_SIGNATURE = b"X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
+EICAR_SIGNATURE = (
+    b"X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
+)
 
 # Executable Magic Headers
 EXECUTABLE_MAGIC_HEADERS = [
-    b"MZ",           # Windows Portable Executable (EXE/DLL)
-    b"\x7fELF",      # Linux Executable Format (ELF)
-    b"\xca\xfe\xba\xbe", # Java Class / Mach-O universal binary
-    b"\xfe\xed\xfa\xce", # Mach-O 32-bit
-    b"\xfe\xed\xfa\xcf", # Mach-O 64-bit
+    b"MZ",  # Windows Portable Executable (EXE/DLL)
+    b"\x7fELF",  # Linux Executable Format (ELF)
+    b"\xca\xfe\xba\xbe",  # Java Class / Mach-O universal binary
+    b"\xfe\xed\xfa\xce",  # Mach-O 32-bit
+    b"\xfe\xed\xfa\xcf",  # Mach-O 64-bit
 ]
 
 # Optional ClamAV import
 try:
     import clamd
+
     HAS_CLAMD = True
 except ImportError:
     clamd = None  # type: ignore
@@ -79,10 +82,16 @@ class VirusScanner:
                 if result and str(path) in result:
                     status, threat = result[str(path)]
                     if status == "FOUND":
-                        logger.warning("ClamAV threat detected", extra={"path": str(path), "threat": threat})
+                        logger.warning(
+                            "ClamAV threat detected",
+                            extra={"path": str(path), "threat": threat},
+                        )
                         return False, f"ClamAV threat: {threat}"
             except Exception as e:
-                logger.warning("ClamAV scan error; falling back to signature inspection", extra={"error": str(e)})
+                logger.warning(
+                    "ClamAV scan error; falling back to signature inspection",
+                    extra={"error": str(e)},
+                )
 
         # 2. Local Signature & Binary Magic Header Inspection
         try:
@@ -91,7 +100,9 @@ class VirusScanner:
 
             # Check for EICAR signature anywhere in the header buffer or full file
             if EICAR_SIGNATURE in header_bytes:
-                logger.warning("EICAR test malware signature detected", extra={"path": str(path)})
+                logger.warning(
+                    "EICAR test malware signature detected", extra={"path": str(path)}
+                )
                 return False, "EICAR-STANDARD-ANTIVIRUS-TEST-FILE"
 
             # Check full file if size is small (< 100KB)
@@ -99,7 +110,10 @@ class VirusScanner:
                 with open(path, "rb") as f:
                     full_content = f.read()
                     if EICAR_SIGNATURE in full_content:
-                        logger.warning("EICAR test malware signature detected", extra={"path": str(path)})
+                        logger.warning(
+                            "EICAR test malware signature detected",
+                            extra={"path": str(path)},
+                        )
                         return False, "EICAR-STANDARD-ANTIVIRUS-TEST-FILE"
 
             # Check for disguised executable magic headers on non-executable files
@@ -111,9 +125,14 @@ class VirusScanner:
                             "Disguised executable binary payload detected",
                             extra={"path": str(path), "magic": magic.hex()},
                         )
-                        return False, f"Unauthorized executable binary header (magic: 0x{magic.hex()})"
+                        return (
+                            False,
+                            f"Unauthorized executable binary header (magic: 0x{magic.hex()})",
+                        )
 
         except Exception as exc:
-            logger.error("File scanning error", extra={"path": str(path), "error": str(exc)})
+            logger.error(
+                "File scanning error", extra={"path": str(path), "error": str(exc)}
+            )
 
         return True, None

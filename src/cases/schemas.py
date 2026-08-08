@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Management Schemas
 =================================
 
@@ -124,7 +124,9 @@ class CaseListResponseSchema(BaseModel):
 
 class HearingScheduleCreateSchema(BaseModel):
     case_id: str
-    scheduled_date: str = Field(..., description="ISO datetime string e.g. 2026-08-15T10:30:00Z")
+    scheduled_date: str = Field(
+        ..., description="ISO datetime string e.g. 2026-08-15T10:30:00Z"
+    )
     courtroom: str = Field(default="Courtroom 1")
     hearing_type: str = Field(default="Initial Hearing")
     purpose: str | None = None
@@ -208,4 +210,3 @@ class BailOutcomeEstimatorSchema(BaseModel):
     sentencing_risk_level: str  # LOW, MEDIUM, HIGH
     shap_factors: list[BailOutcomeFactorSchema]
     explanation: str
-

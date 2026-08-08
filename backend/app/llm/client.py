@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Provider-Independent LLM Client
 ==========================================
 
@@ -8,7 +8,6 @@ Supports async completion requests with timeout, retries, and structured fallbac
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
 import httpx
@@ -89,8 +88,13 @@ class LLMClient:
                     "usage": usage,
                 }
         except httpx.HTTPStatusError as e:
-            logger.error("LLM Provider HTTP error", extra={"status": e.response.status_code, "text": e.response.text})
-            raise LLMError(message=f"LLM Provider API Error: {e.response.status_code} - {e.response.text[:200]}")
+            logger.error(
+                "LLM Provider HTTP error",
+                extra={"status": e.response.status_code, "text": e.response.text},
+            )
+            raise LLMError(
+                message=f"LLM Provider API Error: {e.response.status_code} - {e.response.text[:200]}"
+            )
         except Exception as e:
             logger.error("LLM Provider Connection error", extra={"error": str(e)})
             raise LLMError(message=f"Failed to communicate with LLM Provider: {str(e)}")

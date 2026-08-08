@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP SHAP Explainer Module
 ===============================
 
@@ -37,7 +37,10 @@ class SHAPExplainer:
         # Check if saved trained model exists
         from pathlib import Path
         import joblib
-        model_path = Path(__file__).resolve().parent.parent / "models" / "gradient_boost_v2.pkl"
+
+        model_path = (
+            Path(__file__).resolve().parent.parent / "models" / "gradient_boost_v2.pkl"
+        )
 
         if model_path.exists():
             try:
@@ -63,7 +66,9 @@ class SHAPExplainer:
         ) > 0.4
         y_train = y_train.astype(int)
 
-        cls._model = GradientBoostingClassifier(n_estimators=30, max_depth=3, random_state=42)
+        cls._model = GradientBoostingClassifier(
+            n_estimators=30, max_depth=3, random_state=42
+        )
         cls._model.fit(X_train, y_train)
 
         # Initialize official SHAP TreeExplainer
@@ -76,7 +81,6 @@ class SHAPExplainer:
         assert cls._model is not None
         instance = np.array([features])
         return int(cls._model.predict(instance)[0])
-
 
     @classmethod
     def compute_shap_explanations(
@@ -94,7 +98,14 @@ class SHAPExplainer:
 
         # Input feature vector
         instance = np.array(
-            [[evidence_quality, precedent_match, float(unverified_evidence), procedural_delay]]
+            [
+                [
+                    evidence_quality,
+                    precedent_match,
+                    float(unverified_evidence),
+                    procedural_delay,
+                ]
+            ]
         )
 
         # Compute raw Shapley values
@@ -115,7 +126,9 @@ class SHAPExplainer:
         ]
 
         shap_values = []
-        for name, val, f_val in zip(cls._feature_names, shap_vec, feature_values_str, strict=False):
+        for name, val, f_val in zip(
+            cls._feature_names, shap_vec, feature_values_str, strict=False
+        ):
             # In risk modeling, negative SHAP score reduces risk (supports security/integrity)
             direction = "positive" if val <= 0 else "negative"
             shap_values.append(
@@ -131,9 +144,16 @@ class SHAPExplainer:
 
         factors = []
         for s in shap_values:
-            impact = "high" if abs(s.shap_value) > 0.10 else "medium" if abs(s.shap_value) > 0.03 else "low"
+            impact = (
+                "high"
+                if abs(s.shap_value) > 0.10
+                else "medium"
+                if abs(s.shap_value) > 0.03
+                else "low"
+            )
             direction = (
-                "decreases_risk" if s.contribution_direction == "positive"
+                "decreases_risk"
+                if s.contribution_direction == "positive"
                 else "increases_risk"
             )
             factors.append(
@@ -146,4 +166,3 @@ class SHAPExplainer:
             )
 
         return shap_values, importance, factors
-

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RAG Router
 ====================
 
@@ -34,7 +34,11 @@ async def index_document(
 ) -> dict[str, Any]:
     service = RAGService(db)
     chunks_indexed = await service.index_document(document_id)
-    return {"message": "Document indexed successfully", "document_id": document_id, "chunks_indexed": chunks_indexed}
+    return {
+        "message": "Document indexed successfully",
+        "document_id": document_id,
+        "chunks_indexed": chunks_indexed,
+    }
 
 
 @router.post(

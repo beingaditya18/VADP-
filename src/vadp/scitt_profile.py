@@ -2,7 +2,7 @@
 IETF SCITT (Supply Chain Integrity, Transparency, and Trust) Statement Profile for VADP.
 
 Media Type: application/vnd.vadp.verification-contract+json
-Defines the standard SCITT payload envelope and registration format for 
+Defines the standard SCITT payload envelope and registration format for
 judicial AI decision provenance artifacts.
 """
 
@@ -17,10 +17,14 @@ SCITT_PROFILE_URI = "https://schema.vadp.org/scitt/v1/verification-contract"
 
 
 class SCITTProtectedHeader(BaseModel):
-    alg: str = Field(default="ES256", description="Signature algorithm (ECDSA NIST P-256)")
+    alg: str = Field(
+        default="ES256", description="Signature algorithm (ECDSA NIST P-256)"
+    )
     cty: str = Field(default=SCITT_MEDIA_TYPE, description="Content media type")
     kid: str = Field(description="Key ID / Public Key identifier of the PDP issuer")
-    profile: str = Field(default=SCITT_PROFILE_URI, description="SCITT statement profile URI")
+    profile: str = Field(
+        default=SCITT_PROFILE_URI, description="SCITT statement profile URI"
+    )
 
 
 class SCITTStatementEnvelope(BaseModel):
@@ -36,9 +40,11 @@ class VADPScittEncoder:
     """
 
     @staticmethod
-    def encode_contract(contract_dict: Dict[str, Any], key_id: str, signature: str) -> SCITTStatementEnvelope:
+    def encode_contract(
+        contract_dict: Dict[str, Any], key_id: str, signature: str
+    ) -> SCITTStatementEnvelope:
         header = SCITTProtectedHeader(kid=key_id)
-        
+
         # Ensure canonical JSON payload ordering
         canonical_payload = json.loads(json.dumps(contract_dict, sort_keys=True))
 

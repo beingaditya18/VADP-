@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP RFC 6962 Binary Merkle Tree Implementation
 =====================================================
 
@@ -43,7 +43,9 @@ class MerkleTree:
         """
         left_bytes = bytes.fromhex(left_hex)
         right_bytes = bytes.fromhex(right_hex)
-        return hashlib.sha256(MerkleTree.NODE_PREFIX + left_bytes + right_bytes).hexdigest()
+        return hashlib.sha256(
+            MerkleTree.NODE_PREFIX + left_bytes + right_bytes
+        ).hexdigest()
 
     @staticmethod
     def hash_data(data: str | bytes) -> str:
@@ -75,7 +77,9 @@ class MerkleTree:
 
             next_level = []
             for i in range(0, len(current_level), 2):
-                parent_hash = MerkleTree.hash_node(current_level[i], current_level[i + 1])
+                parent_hash = MerkleTree.hash_node(
+                    current_level[i], current_level[i + 1]
+                )
                 next_level.append(parent_hash)
 
             current_level = next_level
@@ -99,7 +103,7 @@ class MerkleTree:
             if len(current_level) % 2 != 0:
                 current_level.append(current_level[-1])
 
-            is_right_child = (index % 2 == 1)
+            is_right_child = index % 2 == 1
             sibling_index = index - 1 if is_right_child else index + 1
 
             sibling_hash = current_level[sibling_index]
@@ -109,7 +113,9 @@ class MerkleTree:
             # Build next level
             next_level = []
             for i in range(0, len(current_level), 2):
-                next_level.append(MerkleTree.hash_node(current_level[i], current_level[i + 1]))
+                next_level.append(
+                    MerkleTree.hash_node(current_level[i], current_level[i + 1])
+                )
 
             current_level = next_level
             index = index // 2
@@ -117,7 +123,9 @@ class MerkleTree:
         return proof
 
     @staticmethod
-    def verify_proof(leaf_hash: str, proof: list[dict[str, str]], expected_root: str) -> bool:
+    def verify_proof(
+        leaf_hash: str, proof: list[dict[str, str]], expected_root: str
+    ) -> bool:
         """
         Verify an RFC 6962 Merkle inclusion proof by recalculating the root from the leaf hash and proof path.
         """
@@ -133,4 +141,3 @@ class MerkleTree:
                 current_hash = MerkleTree.hash_node(current_hash, sibling_hash)
 
         return current_hash == expected_root
-

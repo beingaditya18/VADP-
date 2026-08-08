@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Middleware Stack
 ==========================
 
@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import time
 import uuid
-from collections import defaultdict
 from typing import Any
 
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
@@ -44,9 +43,7 @@ class RequestIDMiddleware(BaseHTTPMiddleware):
       - Returned in the X-Request-ID response header for client-side tracing
     """
 
-    async def dispatch(
-        self, request: Request, call_next: RequestResponseEndpoint
-    ) -> Response:
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         # Use client-provided ID if present, otherwise generate one
         request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
 
@@ -77,9 +74,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
     EXCLUDED_PATHS: set[str] = {"/health", "/health/", "/docs", "/openapi.json", "/favicon.ico"}
 
-    async def dispatch(
-        self, request: Request, call_next: RequestResponseEndpoint
-    ) -> Response:
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         # Skip logging and telemetry for excluded paths
         if request.url.path in self.EXCLUDED_PATHS:
             return await call_next(request)
@@ -184,6 +179,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         if token:
             try:
                 from app.core.security import decode_jwt
+
                 payload = decode_jwt(token, expected_type="access")
                 if "sub" in payload:
                     return f"user:{payload['sub']}"
@@ -193,9 +189,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         client_ip = request.client.host if request.client else "unknown"
         return f"ip:{client_ip}"
 
-    async def dispatch(
-        self, request: Request, call_next: RequestResponseEndpoint
-    ) -> Response:
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         # Skip rate limiting for health checks
         if request.url.path in ("/health", "/health/"):
             return await call_next(request)

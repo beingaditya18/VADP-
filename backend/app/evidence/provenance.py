@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Evidence Provenance Engine
 =====================================
 
@@ -17,7 +17,7 @@ It extends it with VADP-specific provenance extraction logic.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -43,7 +43,7 @@ class EvidenceChainVerificationResult:
     pending_count: int
     failed_ids: list[str] = field(default_factory=list)
     verification_time_ms: float = 0.0
-    verified_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    verified_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 class EvidenceProvenanceEngine:
@@ -60,7 +60,8 @@ class EvidenceProvenanceEngine:
         self.db = db
 
     async def get_case_evidence_provenance(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> list[EvidenceProvenanceItem]:
         """
         Extract all evidence records for a case as VADP provenance items.
@@ -96,7 +97,8 @@ class EvidenceProvenanceEngine:
         return provenance_items
 
     async def verify_evidence_chain(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> EvidenceChainVerificationResult:
         """
         Verify the integrity of all evidence records for a case.
@@ -111,10 +113,7 @@ class EvidenceProvenanceEngine:
 
         start_time = time.perf_counter()
 
-        stmt = (
-            select(EvidenceRecord)
-            .where(EvidenceRecord.case_id == case_id)
-        )
+        stmt = select(EvidenceRecord).where(EvidenceRecord.case_id == case_id)
         result = await self.db.execute(stmt)
         records = list(result.scalars().all())
 
@@ -143,7 +142,8 @@ class EvidenceProvenanceEngine:
 
             try:
                 ver_result = await EvidenceVerifier.verify_file_integrity(
-                    doc.storage_path, record.integrity_hash,
+                    doc.storage_path,
+                    record.integrity_hash,
                 )
                 if ver_result.status == "verified":
                     verified_count += 1
@@ -168,7 +168,8 @@ class EvidenceProvenanceEngine:
         )
 
     async def get_evidence_summary(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> dict[str, int]:
         """
         Quick summary of evidence status counts for a case.

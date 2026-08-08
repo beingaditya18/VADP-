@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Off-Chain Evidence Vault
 ====================================
 
@@ -27,13 +27,14 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
-import uuid
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any
 
 # Reuse existing Merkle tree implementation
 import sys
+import uuid
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
+
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
@@ -42,7 +43,7 @@ from app.ledger.merkle_tree import MerkleTree
 
 # ── Constants ──────────────────────────────────────────────────────────────
 
-NSSC_THRESHOLD = 0.82      # NSSC score below which escalation is mandatory
+NSSC_THRESHOLD = 0.82  # NSSC score below which escalation is mandatory
 VAULT_DB_FILENAME = "evidence_vault.db"
 
 
@@ -145,7 +146,7 @@ class EvidenceVault:
         if custody_officer_1 == custody_officer_2:
             raise ValueError("BSA §63(4): dual-custody requires two *different* officers")
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         entry_id = str(uuid.uuid4())
 
         # Step 1: SHA-256 of document
@@ -230,7 +231,7 @@ class EvidenceVault:
         recomputed_sha256 = self.compute_document_sha256(document_bytes)
         recomputed_leaf = MerkleTree.hash_leaf(recomputed_sha256)
 
-        hash_match = (recomputed_leaf == expected_leaf_hash)
+        hash_match = recomputed_leaf == expected_leaf_hash
         if not hash_match:
             return {
                 "verified": False,
@@ -272,9 +273,7 @@ class EvidenceVault:
     def get_entry(self, entry_id: str) -> dict[str, Any] | None:
         """Retrieve a vault entry by ID."""
         conn = self._get_conn()
-        row = conn.execute(
-            "SELECT * FROM evidence_vault WHERE id = ?", (entry_id,)
-        ).fetchone()
+        row = conn.execute("SELECT * FROM evidence_vault WHERE id = ?", (entry_id,)).fetchone()
         if not row:
             return None
         return dict(row)
@@ -288,9 +287,7 @@ class EvidenceVault:
                 (case_id,),
             ).fetchall()
         else:
-            rows = conn.execute(
-                "SELECT * FROM evidence_vault ORDER BY leaf_index ASC"
-            ).fetchall()
+            rows = conn.execute("SELECT * FROM evidence_vault ORDER BY leaf_index ASC").fetchall()
         return [dict(row) for row in rows]
 
     def total_documents(self) -> int:

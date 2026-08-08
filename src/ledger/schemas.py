@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Schemas
 ==============================
 
@@ -14,7 +14,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class LedgerEntryCreateSchema(BaseModel):
-    entry_type: str = Field(..., description="e.g. 'case_access', 'document_upload', 'policy_change'")
+    entry_type: str = Field(
+        ..., description="e.g. 'case_access', 'document_upload', 'policy_change'"
+    )
     action: str = Field(..., description="Detailed description of action performed")
     resource_type: str | None = None
     resource_id: str | None = None

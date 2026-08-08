@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Search Engine Package
 """

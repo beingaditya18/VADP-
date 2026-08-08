@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Evidence Verification Module
 """

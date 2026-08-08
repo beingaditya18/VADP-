@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Repository
 =========================
 
@@ -8,10 +8,10 @@ Data access layer for Case, CaseParty, and CaseEvent entities using SQLAlchemy 2
 from __future__ import annotations
 
 import uuid
-from datetime import date, datetime, timezone
-from typing import Sequence
+from collections.abc import Sequence
+from datetime import UTC, datetime
 
-from sqlalchemy import func, select, update
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -151,7 +151,7 @@ class CaseRepository:
             if value is not None and hasattr(case, field):
                 setattr(case, field, value)
 
-        case.updated_at = datetime.now(timezone.utc)
+        case.updated_at = datetime.now(UTC)
 
         # Log event if status changed
         if "status" in updates and updates["status"] != old_status:
@@ -169,7 +169,9 @@ class CaseRepository:
         await self.db.refresh(case)
         return case
 
-    async def add_case_event(self, case_id: str, event_type: str, description: str | None, performed_by: str, data: dict) -> CaseEvent:
+    async def add_case_event(
+        self, case_id: str, event_type: str, description: str | None, performed_by: str, data: dict
+    ) -> CaseEvent:
         """Add a custom timeline event for a case."""
         event = CaseEvent(
             case_id=case_id,

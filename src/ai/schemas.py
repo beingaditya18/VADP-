@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Schemas
 ===========================
 
@@ -34,7 +34,12 @@ class TrustScoreBreakdownSchema(BaseModel):
     source_reliability: float
     consistency: float
     weights: dict[str, float] = Field(
-        default_factory=lambda: {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15}
+        default_factory=lambda: {
+            "alpha": 0.35,
+            "beta": 0.35,
+            "gamma": 0.15,
+            "delta": 0.15,
+        }
     )
 
 
@@ -137,4 +142,3 @@ class ABTestMetricsSchema(BaseModel):
     status: str
     active_variants: dict[str, ABTestVariantMetricsSchema]
     total_evaluations: int
-

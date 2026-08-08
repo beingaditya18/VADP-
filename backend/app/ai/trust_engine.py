@@ -17,7 +17,7 @@ Constraints:
 from __future__ import annotations
 
 import logging
-from typing import Dict, Optional, Tuple
+
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 
@@ -30,11 +30,11 @@ class TrustScoringEngine:
     """Formal Trust Scoring Engine supporting fixed and logistic-regression fitted weights."""
 
     ALPHA = 0.35  # Model Confidence Weight
-    BETA = 0.35   # Evidence Quality & Hash Integrity Weight
+    BETA = 0.35  # Evidence Quality & Hash Integrity Weight
     GAMMA = 0.15  # Source Reliability Weight
     DELTA = 0.15  # Consistency Weight
 
-    _dynamic_weights: Optional[Dict[str, float]] = None
+    _dynamic_weights: dict[str, float] | None = None
 
     @classmethod
     def set_dynamic_weights(cls, alpha: float, beta: float, gamma: float, delta: float) -> None:
@@ -48,14 +48,16 @@ class TrustScoringEngine:
             "gamma": round(gamma / total, 4),
             "delta": round(delta / total, 4),
         }
-        logger.info(f"Updated Trust Engine dynamic weights via Logistic Regression: {cls._dynamic_weights}")
+        logger.info(
+            f"Updated Trust Engine dynamic weights via Logistic Regression: {cls._dynamic_weights}"
+        )
 
     @classmethod
     def fit_logistic_regression_weights(
         cls,
         X_features: np.ndarray,
         y_labels: np.ndarray,
-    ) -> Dict[str, float]:
+    ) -> dict[str, float]:
         """
         Fits LogisticRegression model on historical decision features:
           X = [s_model, s_evidence, s_source, s_consistency]
@@ -117,4 +119,3 @@ class TrustScoringEngine:
             consistency=round(s_consistency, 3),
             weights=w,
         )
-

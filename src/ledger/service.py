@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Service
 ==============================
 
@@ -50,7 +50,9 @@ class LedgerService:
         self.signer = LedgerSigner()
         self.settings = get_settings()
 
-    async def record_entry(self, schema: LedgerEntryCreateSchema, actor_id: str | None = None) -> LedgerEntryResponseSchema:
+    async def record_entry(
+        self, schema: LedgerEntryCreateSchema, actor_id: str | None = None
+    ) -> LedgerEntryResponseSchema:
         """
         Record a new audit action and check if auto-seal threshold is met.
         """
@@ -72,11 +74,16 @@ class LedgerService:
         )
 
         created_entry = await self.repo.create_entry(entry)
-        logger.info("Recorded audit entry", extra={"entry_id": created_entry.id, "type": created_entry.entry_type})
+        logger.info(
+            "Recorded audit entry",
+            extra={"entry_id": created_entry.id, "type": created_entry.entry_type},
+        )
 
         # Check if auto-seal threshold is reached
         if self.settings.LEDGER_AUTO_FINALIZE:
-            unblocked = await self.repo.get_unblocked_entries(limit=self.settings.LEDGER_BLOCK_SIZE + 1)
+            unblocked = await self.repo.get_unblocked_entries(
+                limit=self.settings.LEDGER_BLOCK_SIZE + 1
+            )
             if len(unblocked) >= self.settings.LEDGER_BLOCK_SIZE:
                 await self.seal_current_block()
 
@@ -87,14 +94,18 @@ class LedgerService:
         Seal unblocked audit entries into a new immutable LedgerBlock.
         Computes Merkle root, SHA-256 block hash, and signs with ECDSA key.
         """
-        entries = await self.repo.get_unblocked_entries(limit=self.settings.LEDGER_BLOCK_SIZE)
+        entries = await self.repo.get_unblocked_entries(
+            limit=self.settings.LEDGER_BLOCK_SIZE
+        )
         if not entries:
             return None
 
         # Fetch tip block
         latest_block = await self.repo.get_latest_block()
         new_index = (latest_block.block_index + 1) if latest_block else 0
-        previous_hash = latest_block.block_hash if latest_block else HashChain.GENESIS_PREVIOUS_HASH
+        previous_hash = (
+            latest_block.block_hash if latest_block else HashChain.GENESIS_PREVIOUS_HASH
+        )
 
         now = datetime.now(timezone.utc).replace(microsecond=0)
         now_str = format_iso_timestamp(now)
@@ -133,7 +144,10 @@ class LedgerService:
         sealed_block = await self.repo.create_block(block, list(entries))
         logger.info(
             "Sealed new ledger block",
-            extra={"index": sealed_block.block_index, "hash": sealed_block.block_hash[:8]},
+            extra={
+                "index": sealed_block.block_index,
+                "hash": sealed_block.block_hash[:8],
+            },
         )
         return LedgerBlockResponseSchema.model_validate(sealed_block)
 
@@ -148,7 +162,9 @@ class LedgerService:
         """
         entry = await self.repo.get_entry_by_id(entry_id)
         if not entry or not entry.block:
-            raise NotFoundError(message="Entry is either not found or not yet sealed into a block.")
+            raise NotFoundError(
+                message="Entry is either not found or not yet sealed into a block."
+            )
 
         block = entry.block
         ordered_entries = sorted(block.entries, key=lambda e: e.timestamp)
@@ -165,9 +181,14 @@ class LedgerService:
             raise NotFoundError(message="Entry index not found in block.")
 
         proof_path = MerkleTree.generate_proof(leaf_hashes, target_idx)
-        is_valid = MerkleTree.verify_proof(entry.data_hash, proof_path, block.merkle_root or "")
+        is_valid = MerkleTree.verify_proof(
+            entry.data_hash, proof_path, block.merkle_root or ""
+        )
 
-        proof_nodes = [MerkleProofNodeSchema(position=p["position"], hash=p["hash"]) for p in proof_path]
+        proof_nodes = [
+            MerkleProofNodeSchema(position=p["position"], hash=p["hash"])
+            for p in proof_path
+        ]
 
         return MerkleProofResponseSchema(
             entry_id=entry.id,
@@ -256,7 +277,9 @@ class LedgerService:
                 )
 
             # 4. ECDSA Signature verification
-            if block.signature and not self.signer.verify_signature(block.block_hash, block.signature):
+            if block.signature and not self.signer.verify_signature(
+                block.block_hash, block.signature
+            ):
                 elapsed = (time.perf_counter() - start_time) * 1000
                 return ChainVerificationResponseSchema(
                     is_valid=False,

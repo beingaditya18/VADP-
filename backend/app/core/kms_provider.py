@@ -11,12 +11,11 @@ Provides abstract key provider interface and concrete implementations for:
 from __future__ import annotations
 
 import abc
-import base64
 import hashlib
 import logging
 import os
-from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -54,8 +53,13 @@ class SoftHSMKeyProvider(BaseKeyProvider):
     PKCS#11 Software-Emulated Key Provider using SoftHSM2.
     """
 
-    def __init__(self, lib_path: Optional[str] = None, token_label: str = "VADP_Token", pin: str = "1234"):
-        self.lib_path = lib_path or os.getenv("SOFTHSM2_LIB", r"C:\Users\adity\Downloads\VADP\softhsm2_portable\SoftHSM2\lib\softhsm2-x64.dll")
+    def __init__(
+        self, lib_path: str | None = None, token_label: str = "VADP_Token", pin: str = "1234"
+    ):
+        self.lib_path = lib_path or os.getenv(
+            "SOFTHSM2_LIB",
+            r"C:\Users\adity\Downloads\VADP\softhsm2_portable\SoftHSM2\lib\softhsm2-x64.dll",
+        )
         self.token_label = token_label
         self.pin = pin
         self.key_id = "softhsm-vadp-key-01"
@@ -86,7 +90,7 @@ class HardwareHSMKeyProvider(BaseKeyProvider):
     On-Prem Hardware-Isolated Token Key Provider (Physical PKCS#11 HSM / YubiKey / Nitrokey / Thales).
     """
 
-    def __init__(self, slot: int = 0, user_pin: Optional[str] = None, key_label: str = "VADP_HW_KEY"):
+    def __init__(self, slot: int = 0, user_pin: str | None = None, key_label: str = "VADP_HW_KEY"):
         self.slot = slot
         self.user_pin = user_pin or os.getenv("HSM_USER_PIN", "123456")
         self.key_label = key_label
@@ -117,8 +121,10 @@ class AWSKMSKeyProvider(BaseKeyProvider):
     Cloud Key Provider using AWS Key Management Service (AWS KMS via boto3).
     """
 
-    def __init__(self, kms_key_id: Optional[str] = None, region_name: str = "ap-south-1"):
-        self.kms_key_id = kms_key_id or os.getenv("AWS_KMS_KEY_ID", "arn:aws:kms:ap-south-1:123456789012:key/vadp-evidence-signer")
+    def __init__(self, kms_key_id: str | None = None, region_name: str = "ap-south-1"):
+        self.kms_key_id = kms_key_id or os.getenv(
+            "AWS_KMS_KEY_ID", "arn:aws:kms:ap-south-1:123456789012:key/vadp-evidence-signer"
+        )
         self.region_name = region_name
 
     def get_metadata(self) -> KeyProviderMetadata:
@@ -134,33 +140,41 @@ class AWSKMSKeyProvider(BaseKeyProvider):
     def sign_hash(self, digest: bytes) -> bytes:
         try:
             import boto3
+
             kms_client = boto3.client("kms", region_name=self.region_name)
             response = kms_client.sign(
                 KeyId=self.kms_key_id,
                 Message=digest,
                 MessageType="DIGEST",
-                SigningAlgorithm="ECDSA_SHA_256"
+                SigningAlgorithm="ECDSA_SHA_256",
             )
             return response["Signature"]
         except Exception:
             # Fallback mock for offline/dry-run test environments
             logger.info("AWS KMS client fallback signature generated.")
-            return hashlib.sha256(b"AWS_KMS_SIGNATURE_" + digest).digest() + hashlib.sha256(digest).digest()
+            return (
+                hashlib.sha256(b"AWS_KMS_SIGNATURE_" + digest).digest()
+                + hashlib.sha256(digest).digest()
+            )
 
     def verify_signature(self, digest: bytes, signature: bytes) -> bool:
         try:
             import boto3
+
             kms_client = boto3.client("kms", region_name=self.region_name)
             res = kms_client.verify(
                 KeyId=self.kms_key_id,
                 Message=digest,
                 MessageType="DIGEST",
                 Signature=signature,
-                SigningAlgorithm="ECDSA_SHA_256"
+                SigningAlgorithm="ECDSA_SHA_256",
             )
             return res.get("SignatureValid", False)
         except Exception:
-            expected = hashlib.sha256(b"AWS_KMS_SIGNATURE_" + digest).digest() + hashlib.sha256(digest).digest()
+            expected = (
+                hashlib.sha256(b"AWS_KMS_SIGNATURE_" + digest).digest()
+                + hashlib.sha256(digest).digest()
+            )
             return expected == signature
 
 
@@ -169,7 +183,7 @@ def get_key_provider(provider_type: str = "AUTO") -> BaseKeyProvider:
     Factory function for instantiating key provider based on environment configuration.
     """
     prov_env = os.getenv("VADP_KEY_PROVIDER", provider_type).upper()
-    
+
     if prov_env == "AWS_KMS":
         return AWSKMSKeyProvider()
     elif prov_env in ("HW_HSM", "PKCS11_HARDWAREHSM"):

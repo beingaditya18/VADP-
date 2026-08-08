@@ -9,12 +9,10 @@ managing entropy collection, participant verification, and hash chain recording.
 from __future__ import annotations
 
 import hashlib
-import json
 import logging
-import os
 import time
-from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
+
 from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
@@ -39,8 +37,10 @@ class DistributedMPCCeremonyServer:
 
     def __init__(self, circuit_name: str = "LeafInclusion_Depth10") -> None:
         self.circuit_name = circuit_name
-        self.contributions: List[CeremonyContribution] = []
-        self.current_beacon: str = "0x" + hashlib.sha256(b"VADP_GROTH16_BEACON_SEED_2026").hexdigest()
+        self.contributions: list[CeremonyContribution] = []
+        self.current_beacon: str = (
+            "0x" + hashlib.sha256(b"VADP_GROTH16_BEACON_SEED_2026").hexdigest()
+        )
         self.is_finalized: bool = False
 
     def register_contribution(
@@ -56,7 +56,9 @@ class DistributedMPCCeremonyServer:
         Processes a contribution from a distinct network endpoint and updates transcript hash chain.
         """
         contrib_idx = len(self.contributions) + 1
-        entropy_hash = hashlib.sha256(f"{entropy_raw}:{participant_id}:{contrib_idx}".encode()).hexdigest()
+        entropy_hash = hashlib.sha256(
+            f"{entropy_raw}:{participant_id}:{contrib_idx}".encode()
+        ).hexdigest()
         output_zkey_hash = hashlib.sha256(f"{input_zkey_hash}:{entropy_hash}".encode()).hexdigest()
 
         contrib = CeremonyContribution(
@@ -71,9 +73,11 @@ class DistributedMPCCeremonyServer:
             timestamp_iso=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         )
         self.contributions.append(contrib)
-        
+
         # Update rolling beacon
-        self.current_beacon = hashlib.sha256(f"{self.current_beacon}:{output_zkey_hash}".encode()).hexdigest()
+        self.current_beacon = hashlib.sha256(
+            f"{self.current_beacon}:{output_zkey_hash}".encode()
+        ).hexdigest()
         logger.info(f"Registered MPC contribution #{contrib_idx} from {node_name} ({endpoint})")
         return contrib
 
@@ -84,7 +88,7 @@ class DistributedMPCCeremonyServer:
         self.is_finalized = True
         return self.current_beacon
 
-    def get_transcript_summary(self) -> Dict[str, Any]:
+    def get_transcript_summary(self) -> dict[str, Any]:
         """Returns verified transcript metadata report."""
         return {
             "circuit_name": self.circuit_name,

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Evidence Router
 =========================
 
@@ -25,7 +25,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.dependencies import get_current_user
 from app.auth.models import User
 from app.db.session import get_db_session
-from app.evidence.blockchain_anchor import BlockchainTransactionReceipt, BSACertificate63
+from app.evidence.blockchain_anchor import (
+    BlockchainTransactionReceipt,
+    BSACertificate63,
+)
 from app.evidence.pdf_verifier import PDFVerifierEngine
 from app.evidence.schemas import (
     EvidenceCreateSchema,
@@ -143,7 +146,9 @@ async def verify_pdf(
             content = await file.read()
             await f.write(content)
 
-        result = await PDFVerifierEngine.analyze_pdf(temp_path, expected_hash=expected_hash)
+        result = await PDFVerifierEngine.analyze_pdf(
+            temp_path, expected_hash=expected_hash
+        )
         return ForensicPDFResultSchema.model_validate(result.model_dump())
     finally:
         p = Path(temp_path)
@@ -171,8 +176,8 @@ async def redact_evidence_endpoint(
     redacted_tree = orig_tree.redact_fields(keys_to_redact=schema.keys_to_redact)
     redacted_root = redacted_tree.compute_merkle_root()
 
-    root_invariant = (orig_root == redacted_root)
-    
+    root_invariant = orig_root == redacted_root
+
     redacted_data = {}
     blinded_commitments = {}
     for leaf in redacted_tree.leaves:
@@ -227,11 +232,15 @@ async def verify_zk_proof_endpoint(
     artifact = ZKProofArtifact.model_validate(schema.proof.model_dump())
 
     start = time.perf_counter()
-    is_valid = ZKEvidenceVerifier.verify_proof(artifact, expected_root=schema.expected_root)
+    is_valid = ZKEvidenceVerifier.verify_proof(
+        artifact, expected_root=schema.expected_root
+    )
     elapsed_ms = float(round((time.perf_counter() - start) * 1000, 3))
 
     return ZKVerifyResponseSchema(
         is_valid=is_valid,
         verification_time_ms=elapsed_ms,
-        message="ZK Evidence Inclusion Proof verified successfully in O(1) time." if is_valid else "ZK Proof Verification Failed.",
+        message="ZK Evidence Inclusion Proof verified successfully in O(1) time."
+        if is_valid
+        else "ZK Proof Verification Failed.",
     )

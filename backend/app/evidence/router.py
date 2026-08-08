@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Evidence Router
 =========================
 
@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import tempfile
 from pathlib import Path
-from typing import Optional
 
 import aiofiles
 from fastapi import APIRouter, Depends, File, Form, UploadFile, status
@@ -40,7 +39,6 @@ from app.evidence.schemas import (
     ZKVerifyResponseSchema,
 )
 from app.evidence.service import EvidenceService
-from app.evidence.zk_groth16_engine import ZKGroth16Engine, RealGroth16ProofArtifact
 
 router = APIRouter(prefix="/evidence", tags=["evidence"])
 
@@ -132,7 +130,7 @@ async def get_bsa_63_certificate(
 )
 async def verify_pdf(
     file: UploadFile = File(...),
-    expected_hash: Optional[str] = Form(None),
+    expected_hash: str | None = Form(None),
     current_user: User = Depends(get_current_user),
 ) -> ForensicPDFResultSchema:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
@@ -171,8 +169,8 @@ async def redact_evidence_endpoint(
     redacted_tree = orig_tree.redact_fields(keys_to_redact=schema.keys_to_redact)
     redacted_root = redacted_tree.compute_merkle_root()
 
-    root_invariant = (orig_root == redacted_root)
-    
+    root_invariant = orig_root == redacted_root
+
     redacted_data = {}
     blinded_commitments = {}
     for leaf in redacted_tree.leaves:
@@ -222,6 +220,7 @@ async def verify_zk_proof_endpoint(
     schema: ZKVerifyRequestSchema,
 ) -> ZKVerifyResponseSchema:
     import time
+
     from app.evidence.zk_merkle_proof import ZKEvidenceVerifier, ZKProofArtifact
 
     artifact = ZKProofArtifact.model_validate(schema.proof.model_dump())
@@ -233,5 +232,7 @@ async def verify_zk_proof_endpoint(
     return ZKVerifyResponseSchema(
         is_valid=is_valid,
         verification_time_ms=elapsed_ms,
-        message="ZK Evidence Inclusion Proof verified successfully in O(1) time." if is_valid else "ZK Proof Verification Failed.",
+        message="ZK Evidence Inclusion Proof verified successfully in O(1) time."
+        if is_valid
+        else "ZK Proof Verification Failed.",
     )

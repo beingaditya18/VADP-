@@ -1,1 +1,1 @@
-﻿# VADP Core Module
+# VADP Core Module

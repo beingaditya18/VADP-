@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Document Service
 ==========================
 
@@ -58,7 +58,7 @@ class DocumentService:
         max_bytes = self.settings.MAX_UPLOAD_SIZE_MB * 1024 * 1024
         if file_size > max_bytes:
             raise ValidationError(
-                message=f"File size ({file_size / (1024*1024):.1f} MB) exceeds maximum allowed limit of {self.settings.MAX_UPLOAD_SIZE_MB} MB."
+                message=f"File size ({file_size / (1024 * 1024):.1f} MB) exceeds maximum allowed limit of {self.settings.MAX_UPLOAD_SIZE_MB} MB."
             )
 
         # Ensure upload directory exists
@@ -81,16 +81,21 @@ class DocumentService:
 
         # Perform malware & virus scanning
         from app.security.virus_scanner import VirusScanner
+
         is_safe, threat_info = VirusScanner.scan_file(target_path)
         if not is_safe:
             if target_path.exists():
                 target_path.unlink()
-            logger.error("Malware file upload blocked and unlinked", extra={"case_id": case_id, "threat": threat_info})
+            logger.error(
+                "Malware file upload blocked and unlinked",
+                extra={"case_id": case_id, "threat": threat_info},
+            )
             raise ValidationError(
                 message=f"File upload rejected: Security threat detected ({threat_info})."
             )
         # Perform file encryption at rest
         from app.security.file_encryption import FileEncryption
+
         encrypted_path = FileEncryption.encrypt_file(target_path)
 
         doc = Document(
@@ -117,7 +122,11 @@ class DocumentService:
 
         logger.info(
             "Document uploaded to encrypted storage",
-            extra={"doc_id": created_doc.id, "path": str(encrypted_path), "sha256": content_hash},
+            extra={
+                "doc_id": created_doc.id,
+                "path": str(encrypted_path),
+                "sha256": content_hash,
+            },
         )
         return DocumentResponseSchema.model_validate(created_doc)
 
@@ -141,7 +150,17 @@ class DocumentService:
 
         # If file is encrypted (.enc suffix or encrypted format), decrypt to temporary file for download response
         if doc.storage_path.endswith(".enc"):
-            temp_path = FileEncryption.decrypt_to_temp_file(doc.storage_path, doc.file_name)
-            return str(temp_path), doc.file_name, doc.file_type or "application/octet-stream"
+            temp_path = FileEncryption.decrypt_to_temp_file(
+                doc.storage_path, doc.file_name
+            )
+            return (
+                str(temp_path),
+                doc.file_name,
+                doc.file_type or "application/octet-stream",
+            )
 
-        return doc.storage_path, doc.file_name, doc.file_type or "application/octet-stream"
+        return (
+            doc.storage_path,
+            doc.file_name,
+            doc.file_type or "application/octet-stream",
+        )

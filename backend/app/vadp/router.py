@@ -220,7 +220,6 @@ async def export_contract(
 async def get_human_override_coverage(
     db: AsyncSession = Depends(get_db_session),
 ) -> HumanOverrideCoverageResponseSchema:
-    from app.vadp.schemas import HumanOverrideCoverageResponseSchema
     service = VerificationContractService(db)
     return await service.calculate_human_override_coverage()
 
@@ -255,6 +254,7 @@ async def judicial_review_ui(
     db: AsyncSession = Depends(get_db_session),
 ) -> Any:
     from fastapi.responses import HTMLResponse
+
     service = VerificationContractService(db)
     try:
         contract = await service.get_contract(contract_id)
@@ -265,15 +265,33 @@ async def judicial_review_ui(
             "id": contract_id,
             "case_id": "CASE-2026-8912",
             "recommendation_id": "REC-9941",
-            "authorization": {"result": "ALLOW", "reason": "ABAC Policy Rule #14: Role=Judge, Domain=Criminal Appeals"},
-            "evidence_provenance": [{"id": "EV-101", "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "type": "pdf"}],
-            "rag_provenance": [{"id": "CIT-01", "citation": "State v. Sharma (2021) 4 SCC 121", "nli_entailment_score": 0.9642}],
-            "shap_values": [{"feature": "Precedent Similarity", "importance": 0.45}, {"feature": "Statutory Alignment", "importance": 0.35}],
+            "authorization": {
+                "result": "ALLOW",
+                "reason": "ABAC Policy Rule #14: Role=Judge, Domain=Criminal Appeals",
+            },
+            "evidence_provenance": [
+                {
+                    "id": "EV-101",
+                    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    "type": "pdf",
+                }
+            ],
+            "rag_provenance": [
+                {
+                    "id": "CIT-01",
+                    "citation": "State v. Sharma (2021) 4 SCC 121",
+                    "nli_entailment_score": 0.9642,
+                }
+            ],
+            "shap_values": [
+                {"feature": "Precedent Similarity", "importance": 0.45},
+                {"feature": "Statutory Alignment", "importance": 0.35},
+            ],
             "trust_score": 0.9412,
             "risk_score": 0.0588,
             "risk_level": "LOW",
             "digital_signature": "MEUCIQC3x...ECDSA-P256",
-            "human_review": {"status": "pending"}
+            "human_review": {"status": "pending"},
         }
 
     if format.lower() == "json":
@@ -282,7 +300,7 @@ async def judicial_review_ui(
     html_content = f"""<!DOCTYPE html>
 <html>
 <head>
-    <title>Judicial Review Dashboard - Contract {contract_dict.get('id', contract_id)}</title>
+    <title>Judicial Review Dashboard - Contract {contract_dict.get("id", contract_id)}</title>
     <style>
         body {{ font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 2rem; }}
         .header {{ display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 1rem; }}
@@ -305,38 +323,38 @@ async def judicial_review_ui(
     <div class="header">
         <div>
             <h2>Judicial Verification Contract Review</h2>
-            <p style="color: #94a3b8; margin: 0;">Contract ID: {contract_dict.get('id', contract_id)} | Case: {contract_dict.get('case_id', 'N/A')}</p>
+            <p style="color: #94a3b8; margin: 0;">Contract ID: {contract_dict.get("id", contract_id)} | Case: {contract_dict.get("case_id", "N/A")}</p>
         </div>
         <div>
-            <span class="badge-allow">ABAC: {contract_dict.get('authorization', {}).get('result', 'ALLOW')}</span>
-            <span class="badge-risk">Risk: {contract_dict.get('risk_level', 'LOW')}</span>
+            <span class="badge-allow">ABAC: {contract_dict.get("authorization", {}).get("result", "ALLOW")}</span>
+            <span class="badge-risk">Risk: {contract_dict.get("risk_level", "LOW")}</span>
         </div>
     </div>
 
     <div class="grid">
         <div class="card">
             <h3>1. Trust & Risk Calibration</h3>
-            <div>Trust Score: <span class="score">{contract_dict.get('trust_score', 0.95):.4f}</span></div>
-            <div style="margin-top: 0.5rem;">Risk Score: <strong>{contract_dict.get('risk_score', 0.05):.4f}</strong></div>
+            <div>Trust Score: <span class="score">{contract_dict.get("trust_score", 0.95):.4f}</span></div>
+            <div style="margin-top: 0.5rem;">Risk Score: <strong>{contract_dict.get("risk_score", 0.05):.4f}</strong></div>
             <p style="font-size: 0.85rem; color: #94a3b8;">Conformal Risk Calibration ($\alpha=0.01$): Quantile threshold satisfied.</p>
         </div>
         <div class="card">
             <h3>2. NLI Citation Entailment Scores</h3>
             <table class="table">
                 <tr><th>Citation ID</th><th>Reference</th><th>NLI Score</th></tr>
-                {"".join(f"<tr><td>{c.get('id','CIT')}</td><td>{c.get('citation','Ref')}</td><td><strong style='color:#4ade80;'>{c.get('nli_entailment_score',0.95):.4f}</strong></td></tr>" for c in contract_dict.get('rag_provenance', []))}
+                {"".join(f"<tr><td>{c.get('id', 'CIT')}</td><td>{c.get('citation', 'Ref')}</td><td><strong style='color:#4ade80;'>{c.get('nli_entailment_score', 0.95):.4f}</strong></td></tr>" for c in contract_dict.get("rag_provenance", []))}
             </table>
         </div>
         <div class="card">
             <h3>3. TreeSHAP Re-Ranker Feature Attribution</h3>
             <table class="table">
                 <tr><th>Feature</th><th>Attribution (SHAP)</th></tr>
-                {"".join(f"<tr><td>{s.get('feature','feat')}</td><td>{s.get('importance',0.0):.4f}</td></tr>" for s in contract_dict.get('shap_values', []))}
+                {"".join(f"<tr><td>{s.get('feature', 'feat')}</td><td>{s.get('importance', 0.0):.4f}</td></tr>" for s in contract_dict.get("shap_values", []))}
             </table>
         </div>
         <div class="card">
             <h3>4. Cryptographic Proof & Ledger</h3>
-            <p><strong>ECDSA Signature:</strong> <code style="font-size:0.8rem; color:#94a3b8;">{str(contract_dict.get('digital_signature',''))[:40]}...</code></p>
+            <p><strong>ECDSA Signature:</strong> <code style="font-size:0.8rem; color:#94a3b8;">{str(contract_dict.get("digital_signature", ""))[:40]}...</code></p>
             <p><strong>Merkle Root (RFC 6962):</strong> Valid inclusion proof verified.</p>
         </div>
     </div>
@@ -349,6 +367,3 @@ async def judicial_review_ui(
 </body>
 </html>"""
     return HTMLResponse(content=html_content)
-
-
-

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Contract Hasher
 ==============================
 
@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 
@@ -103,8 +103,7 @@ class ContractHasher:
         """
         if isinstance(generated_at, datetime):
             if generated_at.tzinfo is None:
-                from datetime import timezone
-                generated_at = generated_at.replace(tzinfo=timezone.utc)
+                generated_at = generated_at.replace(tzinfo=UTC)
             gen_str = generated_at.isoformat()
         else:
             gen_str = str(generated_at)

@@ -16,8 +16,9 @@ from __future__ import annotations
 
 import logging
 import math
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from typing import Any
+
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -38,10 +39,10 @@ class TokenAttribution(BaseModel):
 class HybridExplanationArtifact(BaseModel):
     case_id: str
     recommendation: str
-    treeshap_feature_attributions: Dict[str, float]
-    mechanistic_attributions: Dict[str, Any]
-    dominant_attention_heads: List[AttentionHeadSaliency]
-    top_logit_tokens: List[TokenAttribution]
+    treeshap_feature_attributions: dict[str, float]
+    mechanistic_attributions: dict[str, Any]
+    dominant_attention_heads: list[AttentionHeadSaliency]
+    top_logit_tokens: list[TokenAttribution]
     faithfulness_score: float
 
 
@@ -55,17 +56,23 @@ class MechanisticInterpretabilityEngine:
         cls,
         case_id: str,
         recommendation: str,
-        input_tokens: List[str],
-        treeshap_attributions: Dict[str, float],
+        input_tokens: list[str],
+        treeshap_attributions: dict[str, float],
     ) -> HybridExplanationArtifact:
         """
         Computes layer-wise attention saliency and direct logit attributions for the prompt tokens.
         """
         # 1. Identify dominant attention heads (simulated transformer heads)
         heads = [
-            AttentionHeadSaliency(layer=11, head=4, saliency_score=0.892, interpreted_role="Statutory-Section-Binding"),
-            AttentionHeadSaliency(layer=10, head=8, saliency_score=0.814, interpreted_role="Precedent-Holding-Focus"),
-            AttentionHeadSaliency(layer=9, head=2, saliency_score=0.745, interpreted_role="Temporal-Date-Check"),
+            AttentionHeadSaliency(
+                layer=11, head=4, saliency_score=0.892, interpreted_role="Statutory-Section-Binding"
+            ),
+            AttentionHeadSaliency(
+                layer=10, head=8, saliency_score=0.814, interpreted_role="Precedent-Holding-Focus"
+            ),
+            AttentionHeadSaliency(
+                layer=9, head=2, saliency_score=0.745, interpreted_role="Temporal-Date-Check"
+            ),
         ]
 
         # 2. Token-level Direct Logit Attribution (DLA)
@@ -73,7 +80,9 @@ class MechanisticInterpretabilityEngine:
         for idx, tok in enumerate(input_tokens[:6]):
             dla = round(0.45 / (idx + 1.2), 3)
             entropy = round(math.log2(idx + 2) * 0.42, 3)
-            top_tokens.append(TokenAttribution(token=tok, direct_logit_attribution=dla, attention_entropy=entropy))
+            top_tokens.append(
+                TokenAttribution(token=tok, direct_logit_attribution=dla, attention_entropy=entropy)
+            )
 
         mech_summary = {
             "num_layers_analyzed": 12,

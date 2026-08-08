@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Document Repository
 =============================
 
@@ -36,7 +36,9 @@ class DocumentRepository:
     async def list_by_case(self, case_id: str) -> Sequence[Document]:
         """Fetch all documents attached to a specific case."""
         result = await self.db.execute(
-            select(Document).where(Document.case_id == case_id).order_by(Document.created_at.desc())
+            select(Document)
+            .where(Document.case_id == case_id)
+            .order_by(Document.created_at.desc())
         )
         return result.scalars().all()
 

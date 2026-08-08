@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Completeness Invariant Checker
 ==============================================
 
@@ -81,7 +81,10 @@ class CompletenessChecker:
             missing.append("merkle_inclusion")
 
         has_human_review = human_review_status in (
-            "approved", "rejected", "flagged", "override",
+            "approved",
+            "rejected",
+            "flagged",
+            "override",
         )
         if not has_human_review:
             missing.append("human_review")

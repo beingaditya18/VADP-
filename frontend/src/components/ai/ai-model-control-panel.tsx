@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { apiClient } from "@/lib/api-client";
 import { Cpu, RefreshCw, AlertTriangle, CheckCircle2, TrendingUp, BarChart3, Layers, Zap } from "lucide-react";
 
@@ -48,7 +48,7 @@ export function AiModelControlPanel() {
   const [retrainSuccessMsg, setRetrainSuccessMsg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       setError(null);
       const [metricsRes, driftRes, abRes] = await Promise.all([
@@ -62,11 +62,11 @@ export function AiModelControlPanel() {
     } catch (err: any) {
       setError(err.message || "Failed to load AI model metrics.");
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [fetchDashboardData]);
 
   const handleRetrain = async () => {
     setIsRetraining(true);

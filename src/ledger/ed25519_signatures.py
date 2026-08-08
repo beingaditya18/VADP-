@@ -21,7 +21,9 @@ logger = logging.getLogger(__name__)
 
 # Persistent key path — relative to the backend package root
 _PERSISTENT_KEY_PATH: Path = (
-    Path(__file__).resolve().parent.parent.parent / "signing_keys" / "ed25519_ledger_key.pem"
+    Path(__file__).resolve().parent.parent.parent
+    / "signing_keys"
+    / "ed25519_ledger_key.pem"
 )
 
 
@@ -32,7 +34,9 @@ def _load_or_create_ed25519_key() -> ed25519.Ed25519PrivateKey:
             raw = _PERSISTENT_KEY_PATH.read_bytes()
             key = serialization.load_pem_private_key(raw, password=None)
             if isinstance(key, ed25519.Ed25519PrivateKey):
-                logger.debug("Loaded persistent Ed25519 key from %s", _PERSISTENT_KEY_PATH)
+                logger.debug(
+                    "Loaded persistent Ed25519 key from %s", _PERSISTENT_KEY_PATH
+                )
                 return key
         except Exception as exc:
             logger.warning("Failed to load Ed25519 key (%s); regenerating.", exc)
@@ -92,13 +96,20 @@ class Ed25519LedgerSigner:
         signature = self._private_key.sign(message_bytes)
         return base64.b64encode(signature).decode("utf-8")
 
-    def verify_signature(self, message_bytes: bytes, signature_b64: str, public_key_pem: str | None = None) -> bool:
+    def verify_signature(
+        self,
+        message_bytes: bytes,
+        signature_b64: str,
+        public_key_pem: str | None = None,
+    ) -> bool:
         """
         Verifies Ed25519 signature against message bytes using public key.
         """
         try:
             if public_key_pem:
-                pub_key = serialization.load_pem_public_key(public_key_pem.encode("utf-8"))
+                pub_key = serialization.load_pem_public_key(
+                    public_key_pem.encode("utf-8")
+                )
                 assert isinstance(pub_key, ed25519.Ed25519PublicKey)
             else:
                 pub_key = self._public_key

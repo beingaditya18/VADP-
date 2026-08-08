@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Telemetry & Prometheus APM Engine
 ============================================
 
@@ -16,9 +16,10 @@ from __future__ import annotations
 
 import time
 from collections import defaultdict
+from collections.abc import Generator
 from contextlib import contextmanager
 from threading import Lock
-from typing import Any, Generator
+from typing import Any
 
 from app.core.logging import get_logger
 
@@ -82,18 +83,25 @@ class TelemetryManager:
 
     @classmethod
     @contextmanager
-    def trace_span(cls, name: str, attributes: dict[str, Any] | None = None) -> Generator[None, None, None]:
+    def trace_span(
+        cls, name: str, attributes: dict[str, Any] | None = None
+    ) -> Generator[None, None, None]:
         """
         OpenTelemetry style span context manager.
         Tracks execution duration and logs span lifecycle.
         """
         start = time.perf_counter()
-        logger.debug(f"Span started: {name}", extra={"span_name": name, "attributes": attributes or {}})
+        logger.debug(
+            f"Span started: {name}", extra={"span_name": name, "attributes": attributes or {}}
+        )
         try:
             yield
         finally:
             elapsed = time.perf_counter() - start
-            logger.debug(f"Span finished: {name}", extra={"span_name": name, "duration_ms": round(elapsed * 1000, 2)})
+            logger.debug(
+                f"Span finished: {name}",
+                extra={"span_name": name, "duration_ms": round(elapsed * 1000, 2)},
+            )
 
     @classmethod
     def generate_prometheus_text(cls) -> str:
@@ -110,17 +118,21 @@ class TelemetryManager:
                     f'http_requests_total{{method="{method}",endpoint="{endpoint}",status="{status}"}} {count}'
                 )
 
-            lines.extend([
-                "# HELP http_requests_in_flight Current number of HTTP requests being processed.",
-                "# TYPE http_requests_in_flight gauge",
-                f"http_requests_in_flight {cls._in_flight_requests}",
-            ])
+            lines.extend(
+                [
+                    "# HELP http_requests_in_flight Current number of HTTP requests being processed.",
+                    "# TYPE http_requests_in_flight gauge",
+                    f"http_requests_in_flight {cls._in_flight_requests}",
+                ]
+            )
 
             # 2. HTTP Request Durations (Histograms / Summaries)
-            lines.extend([
-                "# HELP http_request_duration_seconds HTTP request latency in seconds.",
-                "# TYPE http_request_duration_seconds summary",
-            ])
+            lines.extend(
+                [
+                    "# HELP http_request_duration_seconds HTTP request latency in seconds.",
+                    "# TYPE http_request_duration_seconds summary",
+                ]
+            )
             for (method, endpoint), durations in cls._request_durations.items():
                 if durations:
                     total_sum = sum(durations)
@@ -133,10 +145,12 @@ class TelemetryManager:
                     )
 
             # 3. AI Inference Metrics
-            lines.extend([
-                "# HELP ai_inference_duration_seconds AI model inference latency in seconds.",
-                "# TYPE ai_inference_duration_seconds summary",
-            ])
+            lines.extend(
+                [
+                    "# HELP ai_inference_duration_seconds AI model inference latency in seconds.",
+                    "# TYPE ai_inference_duration_seconds summary",
+                ]
+            )
             if cls._ai_durations:
                 lines.append(f"ai_inference_duration_seconds_sum {sum(cls._ai_durations):.6f}")
                 lines.append(f"ai_inference_duration_seconds_count {len(cls._ai_durations)}")
@@ -145,10 +159,12 @@ class TelemetryManager:
                 lines.append("ai_inference_duration_seconds_count 0")
 
             # 4. DB Query Metrics
-            lines.extend([
-                "# HELP db_query_duration_seconds Database query duration in seconds.",
-                "# TYPE db_query_duration_seconds summary",
-            ])
+            lines.extend(
+                [
+                    "# HELP db_query_duration_seconds Database query duration in seconds.",
+                    "# TYPE db_query_duration_seconds summary",
+                ]
+            )
             if cls._db_durations:
                 lines.append(f"db_query_duration_seconds_sum {sum(cls._db_durations):.6f}")
                 lines.append(f"db_query_duration_seconds_count {len(cls._db_durations)}")

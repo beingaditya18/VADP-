@@ -40,12 +40,12 @@ logger = logging.getLogger(__name__)
 
 # ── NSSC Configuration ───────────────────────────────────────────────────────
 
-NSSC_THRESHOLD: float = 0.82     # Escalation mandatory if NSSC < this value
-NSSC_TEMPERATURE: float = 0.7    # Sampling temperature for diversity
-NSSC_N_COMPLETIONS: int = 3      # Number of independent completions
-NSSC_MAX_TOKENS: int = 512       # Max tokens per completion
+NSSC_THRESHOLD: float = 0.82  # Escalation mandatory if NSSC < this value
+NSSC_TEMPERATURE: float = 0.7  # Sampling temperature for diversity
+NSSC_N_COMPLETIONS: int = 3  # Number of independent completions
+NSSC_MAX_TOKENS: int = 512  # Max tokens per completion
 
-_encoder_instance = None          # Lazy-loaded sentence-transformer
+_encoder_instance = None  # Lazy-loaded sentence-transformer
 
 
 # ── Encoder ─────────────────────────────────────────────────────────────────
@@ -57,6 +57,7 @@ def _get_encoder():
     if _encoder_instance is None:
         try:
             from sentence_transformers import SentenceTransformer
+
             _encoder_instance = SentenceTransformer("all-MiniLM-L6-v2")
             logger.info("Loaded all-MiniLM-L6-v2 for NSSC computation.")
         except ImportError:
@@ -68,6 +69,7 @@ def _get_encoder():
 def _fallback_encode(texts: list[str]) -> np.ndarray:
     """Deterministic 384-dim encoding fallback (mirrors EmbeddingGenerator)."""
     import hashlib
+
     vectors = []
     for text in texts:
         key_bytes = hashlib.pbkdf2_hmac("sha256", text.encode(), b"nssc_salt", 1, dklen=1536)
@@ -156,7 +158,7 @@ def evaluate_nssc(nssc_score: float) -> dict[str, Any]:
                 f"⚠️ MANDATORY ESCALATION: NSSC below threshold ({NSSC_THRESHOLD}). "
                 "Human review required before judicial use."
                 if escalation_required
-                else f"Generative output is sufficiently consistent for judicial advisory use."
+                else "Generative output is sufficiently consistent for judicial advisory use."
             )
         ),
     }
@@ -187,6 +189,7 @@ class NSScorer:
         if not self.api_key:
             try:
                 from app.config import get_settings
+
                 s = get_settings()
                 self.api_key = s.LLM_API_KEY
                 self.base_url = s.LLM_BASE_URL
@@ -246,14 +249,18 @@ class NSScorer:
             try:
                 completion = self._generate_completion(prompt)
                 completions.append(completion)
-                logger.info("Generated completion %d/%d (len=%d)", i + 1, n_completions, len(completion))
+                logger.info(
+                    "Generated completion %d/%d (len=%d)", i + 1, n_completions, len(completion)
+                )
             except Exception as e:
                 logger.warning("Completion %d failed: %s", i + 1, str(e))
                 errors.append(str(e))
 
         if len(completions) < 2:
             # Cannot compute NSSC with < 2 completions
-            logger.error("NSSC: insufficient completions (%d). Errors: %s", len(completions), errors)
+            logger.error(
+                "NSSC: insufficient completions (%d). Errors: %s", len(completions), errors
+            )
             return {
                 "completions": completions,
                 "nssc_score": 0.0,

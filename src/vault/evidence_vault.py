@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Off-Chain Evidence Vault
 ====================================
 
@@ -34,6 +34,7 @@ from typing import Any
 
 # Reuse existing Merkle tree implementation
 import sys
+
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
@@ -42,7 +43,7 @@ from app.ledger.merkle_tree import MerkleTree
 
 # ── Constants ──────────────────────────────────────────────────────────────
 
-NSSC_THRESHOLD = 0.82      # NSSC score below which escalation is mandatory
+NSSC_THRESHOLD = 0.82  # NSSC score below which escalation is mandatory
 VAULT_DB_FILENAME = "evidence_vault.db"
 
 
@@ -143,7 +144,9 @@ class EvidenceVault:
         if not custody_officer_1 or not custody_officer_2:
             raise ValueError("BSA §63(4): dual-custody requires two officer IDs")
         if custody_officer_1 == custody_officer_2:
-            raise ValueError("BSA §63(4): dual-custody requires two *different* officers")
+            raise ValueError(
+                "BSA §63(4): dual-custody requires two *different* officers"
+            )
 
         now = datetime.now(timezone.utc)
         entry_id = str(uuid.uuid4())
@@ -209,7 +212,9 @@ class EvidenceVault:
         }
         return vault_entry
 
-    def verify_document(self, document_bytes: bytes, expected_leaf_hash: str) -> dict[str, Any]:
+    def verify_document(
+        self, document_bytes: bytes, expected_leaf_hash: str
+    ) -> dict[str, Any]:
         """
         Verify a document against its stored vault entry.
 
@@ -230,7 +235,7 @@ class EvidenceVault:
         recomputed_sha256 = self.compute_document_sha256(document_bytes)
         recomputed_leaf = MerkleTree.hash_leaf(recomputed_sha256)
 
-        hash_match = (recomputed_leaf == expected_leaf_hash)
+        hash_match = recomputed_leaf == expected_leaf_hash
         if not hash_match:
             return {
                 "verified": False,

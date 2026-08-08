@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Models
 =====================
 
@@ -42,131 +42,189 @@ class VerificationContract(Base, UUIDMixin, TimestampMixin):
 
     # ── Binding References ───────────────────────────────────
     case_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("cases.id", ondelete="CASCADE"),
-        index=True, nullable=False,
+        String(36),
+        ForeignKey("cases.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
     )
     recommendation_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("ai_recommendations.id", ondelete="CASCADE"),
-        unique=True, index=True, nullable=False,
+        String(36),
+        ForeignKey("ai_recommendations.id", ondelete="CASCADE"),
+        unique=True,
+        index=True,
+        nullable=False,
     )
 
     # ── Authorization Provenance ─────────────────────────────
     authorization_decision_id: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("access_decisions.id"), nullable=True,
+        String(36),
+        ForeignKey("access_decisions.id"),
+        nullable=True,
     )
     authorization_policy_id: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("access_policies.id"), nullable=True,
+        String(36),
+        ForeignKey("access_policies.id"),
+        nullable=True,
     )
     authorization_result: Mapped[str] = mapped_column(
-        String(20), default="allow", nullable=False,
+        String(20),
+        default="allow",
+        nullable=False,
     )
     authorization_reason: Mapped[str | None] = mapped_column(
-        Text, nullable=True,
+        Text,
+        nullable=True,
     )
 
     # ── Evidence Provenance ──────────────────────────────────
     evidence_hashes: Mapped[list[dict[str, Any]]] = mapped_column(
-        JSON, default=list, nullable=False,
+        JSON,
+        default=list,
+        nullable=False,
     )
     evidence_count: Mapped[int] = mapped_column(
-        Integer, default=0, nullable=False,
+        Integer,
+        default=0,
+        nullable=False,
     )
     evidence_verified: Mapped[int] = mapped_column(
-        Integer, default=0, nullable=False,
+        Integer,
+        default=0,
+        nullable=False,
     )
 
     # ── RAG Provenance ───────────────────────────────────────
     rag_query_id: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("rag_queries.id"), nullable=True,
+        String(36),
+        ForeignKey("rag_queries.id"),
+        nullable=True,
     )
     rag_citations: Mapped[list[dict[str, Any]]] = mapped_column(
-        JSON, default=list, nullable=False,
+        JSON,
+        default=list,
+        nullable=False,
     )
     rag_retrieval_metadata: Mapped[dict[str, Any]] = mapped_column(
-        JSON, default=dict, nullable=False,
+        JSON,
+        default=dict,
+        nullable=False,
     )
 
     # ── SHAP Explainability ──────────────────────────────────
     shap_values: Mapped[list[dict[str, Any]]] = mapped_column(
-        JSON, default=list, nullable=False,
+        JSON,
+        default=list,
+        nullable=False,
     )
     feature_importance: Mapped[dict[str, Any]] = mapped_column(
-        JSON, default=dict, nullable=False,
+        JSON,
+        default=dict,
+        nullable=False,
     )
     contributing_factors: Mapped[list[dict[str, Any]]] = mapped_column(
-        JSON, default=list, nullable=False,
+        JSON,
+        default=list,
+        nullable=False,
     )
 
     # ── Trust Score ──────────────────────────────────────────
     trust_score: Mapped[float] = mapped_column(Float, nullable=False)
     trust_breakdown: Mapped[dict[str, Any]] = mapped_column(
-        JSON, default=dict, nullable=False,
+        JSON,
+        default=dict,
+        nullable=False,
     )
 
     # ── Risk Assessment ──────────────────────────────────────
     risk_score: Mapped[float] = mapped_column(Float, nullable=False)
     risk_level: Mapped[str] = mapped_column(String(20), nullable=False)
     risk_features: Mapped[list[dict[str, Any]]] = mapped_column(
-        JSON, default=list, nullable=False,
+        JSON,
+        default=list,
+        nullable=False,
     )
 
     # ── Human Review ─────────────────────────────────────────
     human_review_status: Mapped[str] = mapped_column(
-        String(50), default="pending_review", nullable=False,
+        String(50),
+        default="pending_review",
+        nullable=False,
     )
     reviewed_by: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("users.id"), nullable=True,
+        String(36),
+        ForeignKey("users.id"),
+        nullable=True,
     )
     reviewed_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True,
+        DateTime(timezone=True),
+        nullable=True,
     )
     review_action: Mapped[str | None] = mapped_column(
-        String(50), nullable=True,
+        String(50),
+        nullable=True,
     )
     review_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # ── Cryptographic Integrity ──────────────────────────────
     contract_hash: Mapped[str] = mapped_column(
-        String(128), index=True, nullable=False,
+        String(128),
+        index=True,
+        nullable=False,
     )
     digital_signature: Mapped[str | None] = mapped_column(
-        String(512), nullable=True,
+        String(512),
+        nullable=True,
     )
     signing_algorithm: Mapped[str | None] = mapped_column(
-        String(50), default="ECDSA-P256-SHA256", nullable=True,
+        String(50),
+        default="ECDSA-P256-SHA256",
+        nullable=True,
     )
 
     # ── Merkle Inclusion ─────────────────────────────────────
     merkle_leaf_hash: Mapped[str | None] = mapped_column(
-        String(128), nullable=True,
+        String(128),
+        nullable=True,
     )
     ledger_block_id: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("ledger_blocks.id"), nullable=True,
+        String(36),
+        ForeignKey("ledger_blocks.id"),
+        nullable=True,
     )
     merkle_proof: Mapped[list[dict[str, str]] | None] = mapped_column(
-        JSON, nullable=True,
+        JSON,
+        nullable=True,
     )
 
     # ── Completeness Invariant ───────────────────────────────
     completeness_status: Mapped[str] = mapped_column(
-        String(50), default="incomplete", index=True, nullable=False,
+        String(50),
+        default="incomplete",
+        index=True,
+        nullable=False,
     )
     completeness_checks: Mapped[dict[str, Any]] = mapped_column(
-        JSON, default=dict, nullable=False,
+        JSON,
+        default=dict,
+        nullable=False,
     )
 
     # ── Audit Timestamps ─────────────────────────────────────
     generated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), nullable=False,
+        DateTime(timezone=True),
+        nullable=False,
     )
     finalized_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True,
+        DateTime(timezone=True),
+        nullable=True,
     )
     invalidated_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True,
+        DateTime(timezone=True),
+        nullable=True,
     )
     invalidation_reason: Mapped[str | None] = mapped_column(
-        Text, nullable=True,
+        Text,
+        nullable=True,
     )
 
     # ── Relationships ────────────────────────────────────────
@@ -206,36 +264,49 @@ class ContractEvent(Base, UUIDMixin, TimestampMixin):
     contract_id: Mapped[str] = mapped_column(
         String(36),
         ForeignKey("verification_contracts.id", ondelete="CASCADE"),
-        index=True, nullable=False,
+        index=True,
+        nullable=False,
     )
     event_type: Mapped[str] = mapped_column(
-        String(100), index=True, nullable=False,
+        String(100),
+        index=True,
+        nullable=False,
     )
     event_order: Mapped[int] = mapped_column(
-        Integer, nullable=False,
+        Integer,
+        nullable=False,
     )
     actor_id: Mapped[str | None] = mapped_column(
-        String(36), ForeignKey("users.id"), nullable=True,
+        String(36),
+        ForeignKey("users.id"),
+        nullable=True,
     )
     event_data: Mapped[dict[str, Any]] = mapped_column(
-        JSON, default=dict, nullable=False,
+        JSON,
+        default=dict,
+        nullable=False,
     )
     event_hash: Mapped[str] = mapped_column(
-        String(128), nullable=False,
+        String(128),
+        nullable=False,
     )
     parent_hash: Mapped[str | None] = mapped_column(
-        String(128), nullable=True,
+        String(128),
+        nullable=True,
     )
     timestamp: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), nullable=False,
+        DateTime(timezone=True),
+        nullable=False,
     )
     duration_ms: Mapped[int | None] = mapped_column(
-        Integer, nullable=True,
+        Integer,
+        nullable=True,
     )
 
     # ── Relationship ─────────────────────────────────────────
     contract: Mapped[VerificationContract] = relationship(
-        "VerificationContract", back_populates="events",
+        "VerificationContract",
+        back_populates="events",
     )
 
     def __repr__(self) -> str:

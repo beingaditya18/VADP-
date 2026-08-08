@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Case Management Schemas
 =================================
 
@@ -208,4 +208,3 @@ class BailOutcomeEstimatorSchema(BaseModel):
     sentencing_risk_level: str  # LOW, MEDIUM, HIGH
     shap_factors: list[BailOutcomeFactorSchema]
     explanation: str
-

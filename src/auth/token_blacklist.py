@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP JWT Token Blacklist Service
 ======================================
 

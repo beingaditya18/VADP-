@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP File Encryption at Rest
 ==================================
 
@@ -13,6 +13,7 @@ import base64
 import hashlib
 import tempfile
 from pathlib import Path
+
 from cryptography.fernet import Fernet
 
 from app.config import get_settings
@@ -75,7 +76,9 @@ class FileEncryption:
         if path != enc_path and path.exists():
             path.unlink()
 
-        logger.info("File encrypted at rest", extra={"plaintext": str(path), "ciphertext": str(enc_path)})
+        logger.info(
+            "File encrypted at rest", extra={"plaintext": str(path), "ciphertext": str(enc_path)}
+        )
         return enc_path
 
     @classmethod

@@ -131,7 +131,6 @@ async def init_pgvector_extension() -> None:
             logger.warning("Could not initialize pgvector extension: %s", err)
 
 
-
 async def dispose_engine() -> None:
     """
     Dispose the engine and close all connections.

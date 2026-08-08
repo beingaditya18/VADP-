@@ -28,18 +28,32 @@ class CrossJurisdictionFeatureExtractor:
 
     # US SCOTUS Statutory & Procedural Patterns
     US_CODE_PATTERN = re.compile(r"\b\d+\s+u\.?s\.?c\.?\s+§?\s*\d+\b", re.IGNORECASE)
-    US_FRE_PATTERN = re.compile(r"\bfre\s+\d+|fed\.?\s+r\.?\037evid\.?\s+\d+|rule\s+\d+\b", re.IGNORECASE)
-    US_CONST_PATTERN = re.compile(r"\b(first|fourth|fifth|sixth|fourteenth)\s+amendment|due\037process|equal\037protection\b", re.IGNORECASE)
+    US_FRE_PATTERN = re.compile(
+        r"\bfre\s+\d+|fed\.?\s+r\.?\037evid\.?\s+\d+|rule\s+\d+\b", re.IGNORECASE
+    )
+    US_CONST_PATTERN = re.compile(
+        r"\b(first|fourth|fifth|sixth|fourteenth)\s+amendment|due\037process|equal\037protection\b",
+        re.IGNORECASE,
+    )
 
     # EU ECtHR Statutory & Convention Patterns
-    EU_ECHR_ARTICLE_PATTERN = re.compile(r"\barticle\s+(6|8|10|13|14|41|34)\b|\bechr\b", re.IGNORECASE)
-    EU_STRASBOURG_PATTERN = re.compile(r"\bstrasbourg|margin\s+of\s+appreciation|fair\s+trial|proportionality\b", re.IGNORECASE)
+    EU_ECHR_ARTICLE_PATTERN = re.compile(
+        r"\barticle\s+(6|8|10|13|14|41|34)\b|\bechr\b", re.IGNORECASE
+    )
+    EU_STRASBOURG_PATTERN = re.compile(
+        r"\bstrasbourg|margin\s+of\s+appreciation|fair\s+trial|proportionality\b",
+        re.IGNORECASE,
+    )
 
     # Indian Statutory Patterns
-    IN_BSA_PATTERN = re.compile(r"\bsection\s+65b|bsa\s+63|electronic\s+record|certificate\b", re.IGNORECASE)
+    IN_BSA_PATTERN = re.compile(
+        r"\bsection\s+65b|bsa\s+63|electronic\s+record|certificate\b", re.IGNORECASE
+    )
 
     @classmethod
-    def extract_us_scotus_features(cls, query_text: str, chunk_content: str) -> JurisdictionFeatures:
+    def extract_us_scotus_features(
+        cls, query_text: str, chunk_content: str
+    ) -> JurisdictionFeatures:
         """Extract statutory features for US Supreme Court corpus."""
         q_lower = query_text.lower()
         c_lower = chunk_content.lower()
@@ -65,7 +79,9 @@ class CrossJurisdictionFeatureExtractor:
         )
 
     @classmethod
-    def extract_eu_ecthr_features(cls, query_text: str, chunk_content: str) -> JurisdictionFeatures:
+    def extract_eu_ecthr_features(
+        cls, query_text: str, chunk_content: str
+    ) -> JurisdictionFeatures:
         """Extract statutory features for ECtHR European legal corpus."""
         q_lower = query_text.lower()
         c_lower = chunk_content.lower()

@@ -68,7 +68,7 @@ export const HumanReviewPanel: React.FC<HumanReviewPanelProps> = ({
           </div>
           {contract.human_review.notes && (
             <div className="text-slate-300 italic border-l-2 border-indigo-500 pl-2.5 mt-1">
-              "{contract.human_review.notes}"
+              &quot;{contract.human_review.notes}&quot;
             </div>
           )}
         </div>

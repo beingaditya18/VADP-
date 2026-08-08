@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Repository
 =========================
 
@@ -30,7 +30,8 @@ class VerificationContractRepository:
     # ── Contract CRUD ────────────────────────────────────────
 
     async def create_contract(
-        self, contract: VerificationContract,
+        self,
+        contract: VerificationContract,
     ) -> VerificationContract:
         """Persist a new Verification Contract to the database."""
         self.db.add(contract)
@@ -43,7 +44,8 @@ class VerificationContractRepository:
         return contract
 
     async def get_contract_by_id(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> VerificationContract | None:
         """Fetch a contract by its primary key, including events."""
         stmt = (
@@ -55,7 +57,8 @@ class VerificationContractRepository:
         return result.scalar_one_or_none()
 
     async def get_contract_by_recommendation(
-        self, recommendation_id: str,
+        self,
+        recommendation_id: str,
     ) -> VerificationContract | None:
         """Fetch the contract bound to a specific AI recommendation."""
         stmt = (
@@ -67,10 +70,12 @@ class VerificationContractRepository:
         return result.scalar_one_or_none()
 
     async def get_contracts_for_case(
-        self, case_id: str,
+        self,
+        case_id: str,
     ) -> list[VerificationContract]:
         """Fetch all contracts associated with a case, newest first. Accepts Case ID or Case Number."""
         from app.cases.models import Case
+
         # 1. Direct match on VerificationContract.case_id
         stmt = (
             select(VerificationContract)
@@ -84,13 +89,18 @@ class VerificationContractRepository:
             return contracts
 
         # 2. Match by querying Case by case_number or id
-        case_stmt = select(Case).where((Case.case_number == case_id) | (Case.id == case_id))
+        case_stmt = select(Case).where(
+            (Case.case_number == case_id) | (Case.id == case_id)
+        )
         case_res = await self.db.execute(case_stmt)
         c_obj = case_res.scalar_one_or_none()
         if c_obj:
             stmt = (
                 select(VerificationContract)
-                .where((VerificationContract.case_id == c_obj.id) | (VerificationContract.case_id == c_obj.case_number))
+                .where(
+                    (VerificationContract.case_id == c_obj.id)
+                    | (VerificationContract.case_id == c_obj.case_number)
+                )
                 .options(selectinload(VerificationContract.events))
                 .order_by(VerificationContract.generated_at.desc())
             )
@@ -100,7 +110,8 @@ class VerificationContractRepository:
         return contracts
 
     async def update_contract(
-        self, contract: VerificationContract,
+        self,
+        contract: VerificationContract,
     ) -> VerificationContract:
         """Persist updates to an existing contract."""
         await self.db.flush()
@@ -138,8 +149,7 @@ class VerificationContractRepository:
         # Paginate
         offset = (page - 1) * page_size
         data_stmt = (
-            base_query
-            .options(selectinload(VerificationContract.events))
+            base_query.options(selectinload(VerificationContract.events))
             .order_by(VerificationContract.generated_at.desc())
             .offset(offset)
             .limit(page_size)
@@ -158,7 +168,8 @@ class VerificationContractRepository:
         return event
 
     async def get_events_for_contract(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> list[ContractEvent]:
         """Fetch all events for a contract, ordered by event_order."""
         stmt = (
@@ -170,7 +181,8 @@ class VerificationContractRepository:
         return list(result.scalars().all())
 
     async def get_latest_event(
-        self, contract_id: str,
+        self,
+        contract_id: str,
     ) -> ContractEvent | None:
         """Fetch the most recent event for a contract."""
         stmt = (
@@ -232,4 +244,3 @@ class VerificationContractRepository:
                 "pending": pending,
             },
         }
-

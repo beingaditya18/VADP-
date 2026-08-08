@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Distributed Rate Limiter Module
 ===========================================
 
@@ -40,16 +40,22 @@ class RedisRateLimiter:
         """Attempt connection to Redis instance."""
         try:
             import redis
+
             self._redis_client = redis.Redis.from_url(
                 self.settings.REDIS_URL,
                 decode_responses=True,
                 socket_timeout=1.0,
             )
             self._redis_client.ping()
-            logger.info("Connected to Redis for rate limiting at %s", self.settings.REDIS_URL)
+            logger.info(
+                "Connected to Redis for rate limiting at %s", self.settings.REDIS_URL
+            )
         except Exception as e:
             self._redis_client = None
-            logger.info("Redis unavailable for rate limiting (%s); falling back to in-memory store.", e)
+            logger.info(
+                "Redis unavailable for rate limiting (%s); falling back to in-memory store.",
+                e,
+            )
 
     def is_rate_limited(self, identifier: str) -> tuple[bool, int, int]:
         """
@@ -75,7 +81,9 @@ class RedisRateLimiter:
 
                 return current_count > self.max_requests, remaining, reset_in
             except Exception as e:
-                logger.warning("Redis rate limit check error: %s; using in-memory fallback.", e)
+                logger.warning(
+                    "Redis rate limit check error: %s; using in-memory fallback.", e
+                )
                 self._redis_client = None
 
         # Fallback to in-memory sliding window

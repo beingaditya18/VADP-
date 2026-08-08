@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Database Session Management
 ======================================
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Cryptographic Blockchain Evidence Anchoring & BSA 2023 §63(4) Engine
 ================================================================================
 
@@ -15,17 +15,12 @@ Key Features:
 from __future__ import annotations
 
 import hashlib
-import json
 import logging
-import os
-import time
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any
+from datetime import UTC, datetime
 
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 logger = get_logger = logging.getLogger(__name__)
 
@@ -87,18 +82,22 @@ class BlockchainAnchorEngine:
         Generate legal Section 63(4) BSA 2023 Electronic Evidence Certificate.
         Signs payload with NIST P-256 ECDSA key.
         """
-        now_iso = datetime.now(timezone.utc).isoformat()
+        now_iso = datetime.now(UTC).isoformat()
         cert_id = f"BSA63-CERT-{hashlib.sha256(f'{case_id}:{evidence_id}:{now_iso}'.encode()).hexdigest()[:12].upper()}"
 
-        payload_to_sign = f"{cert_id}:{case_id}:{evidence_id}:{integrity_hash}:{now_iso}".encode("utf-8")
+        payload_to_sign = f"{cert_id}:{case_id}:{evidence_id}:{integrity_hash}:{now_iso}".encode()
 
         key = cls._get_signing_key()
         signature = key.sign(payload_to_sign, ec.ECDSA(hashes.SHA256()))
 
-        pub_pem = key.public_key().public_bytes(
-            encoding=serialization.Encoding.PEM,
-            format=serialization.PublicFormat.SubjectPublicKeyInfo,
-        ).decode("utf-8")
+        pub_pem = (
+            key.public_key()
+            .public_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PublicFormat.SubjectPublicKeyInfo,
+            )
+            .decode("utf-8")
+        )
 
         return BSACertificate63(
             certificate_id=cert_id,
@@ -122,13 +121,13 @@ class BlockchainAnchorEngine:
         """
         Anchor evidence hash to blockchain transaction receipt.
         """
-        now_iso = datetime.now(timezone.utc).isoformat()
+        now_iso = datetime.now(UTC).isoformat()
         cls._block_counter += 1
         block_num = cls._block_counter
 
         root = merkle_root or integrity_hash
 
-        tx_payload = f"ANCHOR:{evidence_id}:{integrity_hash}:{root}:{block_num}:{now_iso}".encode("utf-8")
+        tx_payload = f"ANCHOR:{evidence_id}:{integrity_hash}:{root}:{block_num}:{now_iso}".encode()
         tx_hash = "0x" + hashlib.sha256(tx_payload).hexdigest()
         block_hash = "0x" + hashlib.sha256(f"BLOCK:{block_num}:{tx_hash}".encode()).hexdigest()
 
@@ -150,7 +149,7 @@ class BlockchainAnchorEngine:
             if not isinstance(pub_key, ec.EllipticCurvePublicKey):
                 return False
 
-            payload_to_sign = f"{cert.certificate_id}:{cert.case_id}:{cert.evidence_id}:{cert.content_hash_sha256}:{cert.created_at_iso}".encode("utf-8")
+            payload_to_sign = f"{cert.certificate_id}:{cert.case_id}:{cert.evidence_id}:{cert.content_hash_sha256}:{cert.created_at_iso}".encode()
             sig_bytes = bytes.fromhex(cert.ecdsa_p256_signature_hex)
 
             pub_key.verify(sig_bytes, payload_to_sign, ec.ECDSA(hashes.SHA256()))

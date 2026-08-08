@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP JWT Token Blacklist Service
 ======================================
 
@@ -8,14 +8,11 @@ In production environments, this can be backed by Redis TTL sets.
 
 from __future__ import annotations
 
-import time
-from typing import Set
-
 
 class TokenBlacklistService:
     """Singleton/shared service managing revoked JWT signatures/tokens."""
 
-    _blacklisted_tokens: Set[str] = set()
+    _blacklisted_tokens: set[str] = set()
 
     @classmethod
     def blacklist_token(cls, token: str) -> None:

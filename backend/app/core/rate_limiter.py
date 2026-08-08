@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Distributed Rate Limiter
 ===================================
 
@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import time
 from collections import defaultdict
-from typing import Any, Tuple
+from typing import Any
 
 from app.config import get_settings
 from app.core.logging import get_logger
@@ -23,6 +23,7 @@ logger = get_logger(__name__)
 # Optional Redis import
 try:
     import redis.asyncio as aioredis
+
     HAS_REDIS = True
 except ImportError:
     aioredis = None  # type: ignore
@@ -69,7 +70,7 @@ class DistributedRateLimiter:
         identifier: str,
         limit: int | None = None,
         window_seconds: int | None = None,
-    ) -> Tuple[bool, int, int, int]:
+    ) -> tuple[bool, int, int, int]:
         """
         Check rate limit quota for a given identifier (user_id or client_ip).
 

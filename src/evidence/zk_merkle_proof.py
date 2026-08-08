@@ -2,7 +2,7 @@
 Minimal Zero-Knowledge Proof-of-Concept for Evidence Field Inclusion.
 
 Simulates a Groth16 / Circom SHA-256 Merkle Membership Circuit:
-Proves evidence-hash inclusion in custody chain root R_public WITHOUT disclosing 
+Proves evidence-hash inclusion in custody chain root R_public WITHOUT disclosing
 the raw evidence payload or private case details.
 """
 
@@ -51,7 +51,7 @@ class ZKEvidenceVerifier:
             else:
                 curr_hash = sha256_str(f"0x01:{curr_hash}:{sibling}")
 
-        is_valid_membership = (curr_hash == merkle_root)
+        is_valid_membership = curr_hash == merkle_root
 
         # Mock Groth16 elliptic curve proof elements (G1, G2, G1 points)
         pi_a = [
@@ -59,8 +59,14 @@ class ZKEvidenceVerifier:
             f"0x{sha256_str(merkle_root + 'a')[:32]}",
         ]
         pi_b = [
-            [f"0x{sha256_str(private_evidence_hash + 'b1')[:32]}", f"0x{sha256_str(merkle_root + 'b1')[:32]}"],
-            [f"0x{sha256_str(private_evidence_hash + 'b2')[:32]}", f"0x{sha256_str(merkle_root + 'b2')[:32]}"],
+            [
+                f"0x{sha256_str(private_evidence_hash + 'b1')[:32]}",
+                f"0x{sha256_str(merkle_root + 'b1')[:32]}",
+            ],
+            [
+                f"0x{sha256_str(private_evidence_hash + 'b2')[:32]}",
+                f"0x{sha256_str(merkle_root + 'b2')[:32]}",
+            ],
         ]
         pi_c = [
             f"0x{sha256_str(private_evidence_hash + 'c')[:32]}",

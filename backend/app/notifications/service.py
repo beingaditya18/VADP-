@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Notifications Service
 ================================
 
@@ -24,7 +24,9 @@ class NotificationService:
     def __init__(self, db: AsyncSession) -> None:
         self.db = db
 
-    async def create_notification(self, schema: NotificationCreateSchema) -> NotificationResponseSchema:
+    async def create_notification(
+        self, schema: NotificationCreateSchema
+    ) -> NotificationResponseSchema:
         """Create a new user notification."""
         notif = Notification(
             user_id=schema.user_id,
@@ -37,10 +39,15 @@ class NotificationService:
         self.db.add(notif)
         await self.db.flush()
         await self.db.refresh(notif)
-        logger.info("Created notification", extra={"user_id": schema.user_id, "type": schema.notification_type})
+        logger.info(
+            "Created notification",
+            extra={"user_id": schema.user_id, "type": schema.notification_type},
+        )
         return NotificationResponseSchema.model_validate(notif)
 
-    async def get_user_notifications(self, user_id: str, unread_only: bool = False) -> list[NotificationResponseSchema]:
+    async def get_user_notifications(
+        self, user_id: str, unread_only: bool = False
+    ) -> list[NotificationResponseSchema]:
         """Fetch notifications for a user."""
         query = select(Notification).where(Notification.user_id == user_id)
         if unread_only:

@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Context Retriever Module
 ==================================
 
@@ -10,7 +10,6 @@ from __future__ import annotations
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
 
 from app.config import get_settings
 from app.documents.models import Document
@@ -40,23 +39,26 @@ class ContextRetriever:
         query_vec = self.encoder.encode([query_text])
 
         # Vector search
-        search_results = self.vector_store.search(query_vec, top_k=top_k * 2)  # Over-fetch for case_id filtering
+        search_results = self.vector_store.search(
+            query_vec, top_k=top_k * 2
+        )  # Over-fetch for case_id filtering
 
         if not search_results:
             return "", []
 
         # Filter by threshold & case_id
-        chunk_ids = [chunk_id for chunk_id, score in search_results if score >= self.settings.RAG_SIMILARITY_THRESHOLD]
+        chunk_ids = [
+            chunk_id
+            for chunk_id, score in search_results
+            if score >= self.settings.RAG_SIMILARITY_THRESHOLD
+        ]
         score_map = {chunk_id: score for chunk_id, score in search_results}
 
         if not chunk_ids:
             return "", []
 
         # Fetch Chunk records from DB
-        stmt = (
-            select(DocumentChunk)
-            .where(DocumentChunk.id.in_(chunk_ids))
-        )
+        stmt = select(DocumentChunk).where(DocumentChunk.id.in_(chunk_ids))
         db_results = await self.db.execute(stmt)
         chunks = db_results.scalars().all()
 

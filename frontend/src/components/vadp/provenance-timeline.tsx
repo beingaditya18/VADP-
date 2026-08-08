@@ -15,18 +15,18 @@ export const ProvenanceTimeline: React.FC<ProvenanceTimelineProps> = ({
   events: initialEvents,
   contractId,
 }) => {
-  const { getTimeline, loading } = useVADP();
-  const [events, setEvents] = useState<ContractEvent[]>(initialEvents || []);
+  const { getTimeline } = useVADP();
+  const [fetchedEvents, setFetchedEvents] = useState<ContractEvent[]>([]);
 
   useEffect(() => {
-    if (initialEvents && initialEvents.length > 0) {
-      setEvents(initialEvents);
-    } else if (contractId) {
+    if ((!initialEvents || initialEvents.length === 0) && contractId) {
       getTimeline(contractId).then((res) => {
-        if (res && res.length > 0) setEvents(res);
+        if (res && res.length > 0) setFetchedEvents(res);
       });
     }
   }, [initialEvents, contractId, getTimeline]);
+
+  const events = (initialEvents && initialEvents.length > 0) ? initialEvents : fetchedEvents;
   if (!events || events.length === 0) {
     return (
       <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 text-center text-slate-400 text-xs">

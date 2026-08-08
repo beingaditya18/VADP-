@@ -31,16 +31,18 @@ logger = logging.getLogger("train_trust_logistic_regression")
 def generate_synthetic_calibration_data(n_samples: int = 1000, seed: int = 42):
     np.random.seed(seed)
     # Generate realistic sub-score distributions
-    s_model = np.random.beta(5, 2, size=n_samples)       # Mean ~0.71
-    s_evidence = np.random.beta(7, 2, size=n_samples)    # Mean ~0.77
-    s_source = np.random.beta(8, 2, size=n_samples)      # Mean ~0.80
-    s_consistency = np.random.beta(6, 2, size=n_samples) # Mean ~0.75
+    s_model = np.random.beta(5, 2, size=n_samples)  # Mean ~0.71
+    s_evidence = np.random.beta(7, 2, size=n_samples)  # Mean ~0.77
+    s_source = np.random.beta(8, 2, size=n_samples)  # Mean ~0.80
+    s_consistency = np.random.beta(6, 2, size=n_samples)  # Mean ~0.75
 
     X = np.column_stack([s_model, s_evidence, s_source, s_consistency])
 
     # Ground truth logistic probability function with domain feature importance:
     # Evidence quality (2.8) and Model confidence (2.2) matter most, followed by Consistency (1.5) and Source (1.0)
-    logits = 2.2 * s_model + 2.8 * s_evidence + 1.0 * s_source + 1.5 * s_consistency - 4.5
+    logits = (
+        2.2 * s_model + 2.8 * s_evidence + 1.0 * s_source + 1.5 * s_consistency - 4.5
+    )
     probs = 1 / (1 + np.exp(-logits))
     y = (probs >= np.random.uniform(0, 1, size=n_samples)).astype(int)
 
@@ -51,7 +53,9 @@ def optimize_trust_weights():
     logger.info("Generating 1,000 judicial calibration samples...")
     X, y = generate_synthetic_calibration_data(n_samples=1000)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.3, random_state=42
+    )
 
     # 1. Evaluate default fixed weights
     fixed_weights = np.array([0.35, 0.35, 0.15, 0.15])
@@ -78,7 +82,9 @@ def optimize_trust_weights():
     # Set weights in engine
     TrustScoringEngine.set_dynamic_weights(**fitted_weights)
 
-    opt_weights_vec = np.array([norm_coefs[0], norm_coefs[1], norm_coefs[2], norm_coefs[3]])
+    opt_weights_vec = np.array(
+        [norm_coefs[0], norm_coefs[1], norm_coefs[2], norm_coefs[3]]
+    )
     preds_opt = np.dot(X_test, opt_weights_vec)
 
     brier_opt = brier_score_loss(y_test, preds_opt)
@@ -88,7 +94,12 @@ def optimize_trust_weights():
         "dataset_samples": len(X),
         "train_size": len(X_train),
         "test_size": len(X_test),
-        "default_fixed_weights": {"alpha": 0.35, "beta": 0.35, "gamma": 0.15, "delta": 0.15},
+        "default_fixed_weights": {
+            "alpha": 0.35,
+            "beta": 0.35,
+            "gamma": 0.15,
+            "delta": 0.15,
+        },
         "optimized_logistic_weights": fitted_weights,
         "raw_logistic_coefficients": {
             "model_confidence": round(float(coefs[0]), 4),
@@ -99,7 +110,9 @@ def optimize_trust_weights():
         "performance_comparison": {
             "fixed_weights_brier_score": round(float(brier_fixed), 5),
             "optimized_logistic_brier_score": round(float(brier_opt), 5),
-            "brier_score_improvement_pct": round(float((brier_fixed - brier_opt) / brier_fixed * 100), 2),
+            "brier_score_improvement_pct": round(
+                float((brier_fixed - brier_opt) / brier_fixed * 100), 2
+            ),
             "fixed_weights_auc": round(float(auc_fixed), 4),
             "optimized_logistic_auc": round(float(auc_opt), 4),
         },
@@ -107,7 +120,9 @@ def optimize_trust_weights():
 
     out_file = backend_dir / "evaluation" / "LOGISTIC_TRUST_OPTIMIZATION_REPORT.json"
     out_file.write_text(json.dumps(report, indent=2))
-    logger.info(f"Trust Score Logistic Regression Optimization Complete. Report saved to {out_file}")
+    logger.info(
+        f"Trust Score Logistic Regression Optimization Complete. Report saved to {out_file}"
+    )
     print(json.dumps(report, indent=2))
     return report
 

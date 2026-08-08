@@ -25,21 +25,22 @@ export const VerificationContractViewer: React.FC<VerificationContractViewerProp
   defaultExpanded = true,
 }) => {
   const { getContractsForCase, loading: vadpLoading } = useVADP();
-  const [contract, setContract] = useState<VerificationContract | undefined>(initialContract);
+  const [stateContract, setStateContract] = useState<VerificationContract | undefined>(initialContract);
+  const [fetchedContract, setFetchedContract] = useState<VerificationContract | undefined>(undefined);
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [activeTab, setActiveTab] = useState<"overview" | "timeline" | "evidence" | "citations" | "raw">("overview");
 
   useEffect(() => {
-    if (initialContract) {
-      setContract(initialContract);
-    } else if (contractId) {
+    if (!initialContract && contractId) {
       getContractsForCase(contractId).then((res) => {
         if (res && res.length > 0) {
-          setContract(res[0]);
+          setFetchedContract(res[0]);
         }
       });
     }
   }, [initialContract, contractId, getContractsForCase]);
+
+  const contract = stateContract || initialContract || fetchedContract;
 
   if (!contract) {
     return (
@@ -158,7 +159,7 @@ export const VerificationContractViewer: React.FC<VerificationContractViewerProp
             <div className="space-y-6">
               <ContractIntegrityPanel contract={contract} />
               <CompletenessChecklist completeness={contract.completeness} />
-              <HumanReviewPanel contract={contract} onReviewSubmitted={setContract} />
+              <HumanReviewPanel contract={contract} onReviewSubmitted={setStateContract} />
             </div>
           )}
 

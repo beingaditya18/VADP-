@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP PDF Forensic Verifier
 ===============================
 
@@ -15,9 +15,8 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
 
 import aiofiles
 from pydantic import BaseModel, Field
@@ -61,7 +60,7 @@ class PDFVerifierEngine:
         file_path: str,
         expected_hash: str | None = None,
     ) -> ForensicPDFResult:
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         path = Path(file_path)
 
         if not path.exists():
@@ -94,7 +93,7 @@ class PDFVerifierEngine:
 
         hash_matched = True
         if expected_hash:
-            hash_matched = (computed_hash.lower() == expected_hash.lower())
+            hash_matched = computed_hash.lower() == expected_hash.lower()
 
         anomalies: list[PDFTamperAnomaly] = []
         score = 100.0
@@ -188,7 +187,11 @@ class PDFVerifierEngine:
             metadata.page_count = max(1, len(page_matches))
 
         # Check Timestamp discrepancies
-        if metadata.creation_date and metadata.mod_date and metadata.creation_date != metadata.mod_date:
+        if (
+            metadata.creation_date
+            and metadata.mod_date
+            and metadata.creation_date != metadata.mod_date
+        ):
             anomalies.append(
                 PDFTamperAnomaly(
                     code="MODIFIED_AFTER_CREATION",

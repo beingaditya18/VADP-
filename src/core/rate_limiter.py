@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Distributed Rate Limiter
 ===================================
 
@@ -23,6 +23,7 @@ logger = get_logger(__name__)
 # Optional Redis import
 try:
     import redis.asyncio as aioredis
+
     HAS_REDIS = True
 except ImportError:
     aioredis = None  # type: ignore

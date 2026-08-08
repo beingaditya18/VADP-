@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP A/B Testing Framework for AI Decision Models
 ======================================================
 
@@ -31,8 +31,20 @@ class ABTestingEngine:
     }
 
     _variant_stats: dict[str, dict[str, Any]] = {
-        "v1": {"requests": 125, "total_latency_ms": 28125.0, "correct": 975, "total_evaluated": 1250, "accuracy": 0.7800},
-        "v2": {"requests": 130, "total_latency_ms": 31200.0, "correct": 1079, "total_evaluated": 1300, "accuracy": 0.8300},
+        "v1": {
+            "requests": 125,
+            "total_latency_ms": 28125.0,
+            "correct": 975,
+            "total_evaluated": 1250,
+            "accuracy": 0.7800,
+        },
+        "v2": {
+            "requests": 130,
+            "total_latency_ms": 31200.0,
+            "correct": 1079,
+            "total_evaluated": 1300,
+            "accuracy": 0.8300,
+        },
     }
 
     @classmethod
@@ -47,7 +59,9 @@ class ABTestingEngine:
         return "v1" if val < v1_cutoff else "v2"
 
     @classmethod
-    def log_request(cls, version: str, latency_ms: float, correct: bool | None = None) -> None:
+    def log_request(
+        cls, version: str, latency_ms: float, correct: bool | None = None
+    ) -> None:
         """Record request telemetry and accuracy metrics for model variant."""
         if version not in cls._variant_stats:
             cls._variant_stats[version] = {
@@ -66,7 +80,9 @@ class ABTestingEngine:
             stats["total_evaluated"] += 1
             if correct:
                 stats["correct"] += 1
-            stats["accuracy"] = round(stats["correct"] / float(stats["total_evaluated"]), 4)
+            stats["accuracy"] = round(
+                stats["correct"] / float(stats["total_evaluated"]), 4
+            )
 
     @classmethod
     def get_metrics(cls) -> ABTestMetricsSchema:
@@ -76,7 +92,9 @@ class ABTestingEngine:
 
         for var, stats in cls._variant_stats.items():
             reqs = stats["requests"]
-            avg_lat = round(stats["total_latency_ms"] / float(reqs), 2) if reqs > 0 else 0.0
+            avg_lat = (
+                round(stats["total_latency_ms"] / float(reqs), 2) if reqs > 0 else 0.0
+            )
             split_pct = round(cls.traffic_split.get(var, 0.50) * 100, 1)
 
             active_variants[var] = ABTestVariantMetricsSchema(

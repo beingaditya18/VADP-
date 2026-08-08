@@ -8,8 +8,8 @@ This ensures retrieved context produces stable, non-volatile SHAP attributions,
 improving overall explainability fidelity in Field 4 of the Verification Contract.
 """
 
-from typing import List, Dict, Any
-import numpy as np
+from typing import Any
+
 from pydantic import BaseModel
 
 
@@ -56,13 +56,13 @@ class ExplanationAwareReranker:
         return instability_variance
 
     def rerank(
-        self, candidates: List[Dict[str, Any]], query_text: str, top_k: int = 5
-    ) -> List[RerankedChunk]:
+        self, candidates: list[dict[str, Any]], query_text: str, top_k: int = 5
+    ) -> list[RerankedChunk]:
         """
         Re-ranks candidates according to joint score:
         Score = alpha * Sim - beta * Variance
         """
-        scored_chunks: List[RerankedChunk] = []
+        scored_chunks: list[RerankedChunk] = []
 
         for orig_idx, cand in enumerate(candidates):
             chunk_id = str(cand.get("id", cand.get("chunk_id", f"chunk_{orig_idx}")))
@@ -70,7 +70,7 @@ class ExplanationAwareReranker:
             snippet = str(cand.get("content", cand.get("snippet", "")))
 
             attr_var = self.estimate_attribution_variance(snippet, query_text)
-            
+
             # Joint score computation
             joint_score = float(round(self.alpha * sim_score - self.beta * attr_var, 4))
 

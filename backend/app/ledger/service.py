@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Service
 ==============================
 
@@ -10,12 +10,12 @@ from __future__ import annotations
 
 import json
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import get_settings
-from app.core.exceptions import LedgerIntegrityError, NotFoundError
+from app.core.exceptions import NotFoundError
 from app.core.logging import get_logger
 from app.ledger.hash_chain import HashChain
 from app.ledger.merkle_tree import MerkleTree
@@ -37,8 +37,8 @@ logger = get_logger(__name__)
 def format_iso_timestamp(dt: datetime) -> str:
     """Format datetime consistently to ISO 8601 UTC string."""
     if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc).replace(microsecond=0).isoformat()
+        dt = dt.replace(tzinfo=UTC)
+    return dt.astimezone(UTC).replace(microsecond=0).isoformat()
 
 
 class LedgerService:
@@ -50,11 +50,13 @@ class LedgerService:
         self.signer = LedgerSigner()
         self.settings = get_settings()
 
-    async def record_entry(self, schema: LedgerEntryCreateSchema, actor_id: str | None = None) -> LedgerEntryResponseSchema:
+    async def record_entry(
+        self, schema: LedgerEntryCreateSchema, actor_id: str | None = None
+    ) -> LedgerEntryResponseSchema:
         """
         Record a new audit action and check if auto-seal threshold is met.
         """
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         entry_data_json = json.dumps(schema.entry_data, sort_keys=True)
         data_hash = HashChain.calculate_entry_data_hash(
             schema.entry_type, actor_id, schema.action, entry_data_json
@@ -72,11 +74,16 @@ class LedgerService:
         )
 
         created_entry = await self.repo.create_entry(entry)
-        logger.info("Recorded audit entry", extra={"entry_id": created_entry.id, "type": created_entry.entry_type})
+        logger.info(
+            "Recorded audit entry",
+            extra={"entry_id": created_entry.id, "type": created_entry.entry_type},
+        )
 
         # Check if auto-seal threshold is reached
         if self.settings.LEDGER_AUTO_FINALIZE:
-            unblocked = await self.repo.get_unblocked_entries(limit=self.settings.LEDGER_BLOCK_SIZE + 1)
+            unblocked = await self.repo.get_unblocked_entries(
+                limit=self.settings.LEDGER_BLOCK_SIZE + 1
+            )
             if len(unblocked) >= self.settings.LEDGER_BLOCK_SIZE:
                 await self.seal_current_block()
 
@@ -96,7 +103,7 @@ class LedgerService:
         new_index = (latest_block.block_index + 1) if latest_block else 0
         previous_hash = latest_block.block_hash if latest_block else HashChain.GENESIS_PREVIOUS_HASH
 
-        now = datetime.now(timezone.utc).replace(microsecond=0)
+        now = datetime.now(UTC).replace(microsecond=0)
         now_str = format_iso_timestamp(now)
 
         # Compute Merkle Root of entries
@@ -167,7 +174,9 @@ class LedgerService:
         proof_path = MerkleTree.generate_proof(leaf_hashes, target_idx)
         is_valid = MerkleTree.verify_proof(entry.data_hash, proof_path, block.merkle_root or "")
 
-        proof_nodes = [MerkleProofNodeSchema(position=p["position"], hash=p["hash"]) for p in proof_path]
+        proof_nodes = [
+            MerkleProofNodeSchema(position=p["position"], hash=p["hash"]) for p in proof_path
+        ]
 
         return MerkleProofResponseSchema(
             entry_id=entry.id,
@@ -256,7 +265,9 @@ class LedgerService:
                 )
 
             # 4. ECDSA Signature verification
-            if block.signature and not self.signer.verify_signature(block.block_hash, block.signature):
+            if block.signature and not self.signer.verify_signature(
+                block.block_hash, block.signature
+            ):
                 elapsed = (time.perf_counter() - start_time) * 1000
                 return ChainVerificationResponseSchema(
                     is_valid=False,

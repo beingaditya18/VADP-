@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Audit Ledger Models
 =============================
 
@@ -24,7 +24,9 @@ class LedgerBlock(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "ledger_blocks"
 
-    block_index: Mapped[int] = mapped_column(BigInteger, unique=True, index=True, nullable=False)
+    block_index: Mapped[int] = mapped_column(
+        BigInteger, unique=True, index=True, nullable=False
+    )
     timestamp: Mapped[datetime] = mapped_column(nullable=False)
     timestamp_iso: Mapped[str | None] = mapped_column(String(64), nullable=True)
     previous_hash: Mapped[str] = mapped_column(String(128), nullable=False)
@@ -36,7 +38,9 @@ class LedgerBlock(Base, UUIDMixin, TimestampMixin):
     entries_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
 
     # Relationships
-    entries: Mapped[list[LedgerEntry]] = relationship("LedgerEntry", back_populates="block")
+    entries: Mapped[list[LedgerEntry]] = relationship(
+        "LedgerEntry", back_populates="block"
+    )
 
     def __repr__(self) -> str:
         return f"<LedgerBlock(index={self.block_index}, hash={self.block_hash[:8]}...)>"
@@ -49,9 +53,15 @@ class LedgerEntry(Base, UUIDMixin, TimestampMixin):
 
     __tablename__ = "ledger_entries"
 
-    block_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("ledger_blocks.id"), index=True, nullable=True)
-    entry_type: Mapped[str] = mapped_column(String(100), index=True, nullable=False)  # case_access, document_upload, ai_approval, policy_change
-    actor_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("users.id"), index=True, nullable=True)
+    block_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("ledger_blocks.id"), index=True, nullable=True
+    )
+    entry_type: Mapped[str] = mapped_column(
+        String(100), index=True, nullable=False
+    )  # case_access, document_upload, ai_approval, policy_change
+    actor_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("users.id"), index=True, nullable=True
+    )
     action: Mapped[str] = mapped_column(String(255), nullable=False)
     resource_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
     resource_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
@@ -60,7 +70,9 @@ class LedgerEntry(Base, UUIDMixin, TimestampMixin):
     timestamp: Mapped[datetime] = mapped_column(nullable=False)
 
     # Relationship
-    block: Mapped[LedgerBlock | None] = relationship("LedgerBlock", back_populates="entries")
+    block: Mapped[LedgerBlock | None] = relationship(
+        "LedgerBlock", back_populates="entries"
+    )
 
     def __repr__(self) -> str:
         return f"<LedgerEntry(id={self.id}, action={self.action}, hash={self.data_hash[:8]}...)>"

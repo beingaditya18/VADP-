@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP VADP Completeness Invariant Checker
 ==============================================
 
@@ -48,7 +48,9 @@ class CompletenessChecker:
         """
         missing: list[str] = []
 
-        has_authorization = authorization_result is not None and authorization_result != ""
+        has_authorization = (
+            authorization_result is not None and authorization_result != ""
+        )
         if not has_authorization:
             missing.append("authorization")
 
@@ -72,7 +74,9 @@ class CompletenessChecker:
         if not has_risk_assessment:
             missing.append("risk_assessment")
 
-        has_digital_signature = digital_signature is not None and digital_signature != ""
+        has_digital_signature = (
+            digital_signature is not None and digital_signature != ""
+        )
         if not has_digital_signature:
             missing.append("digital_signature")
 
@@ -81,7 +85,10 @@ class CompletenessChecker:
             missing.append("merkle_inclusion")
 
         has_human_review = human_review_status in (
-            "approved", "rejected", "flagged", "override",
+            "approved",
+            "rejected",
+            "flagged",
+            "override",
         )
         if not has_human_review:
             missing.append("human_review")

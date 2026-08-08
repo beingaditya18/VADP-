@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Monitoring & Health Checks
 =====================================
 
@@ -67,16 +67,22 @@ async def detailed_health_check(
     # 2. FAISS vector index check
     try:
         from pathlib import Path
+
         faiss_path = Path(settings.FAISS_INDEX_PATH)
-        subsystems["faiss_index"] = "healthy" if faiss_path.exists() else "not_initialized"
+        subsystems["faiss_index"] = (
+            "healthy" if faiss_path.exists() else "not_initialized"
+        )
     except Exception:
         subsystems["faiss_index"] = "unhealthy"
 
     # 3. Merkle Audit Ledger key check
     try:
         from pathlib import Path
+
         ledger_key = Path(settings.LEDGER_SIGNING_KEY_PATH)
-        subsystems["ledger_keys"] = "configured" if ledger_key.parent.exists() else "missing"
+        subsystems["ledger_keys"] = (
+            "configured" if ledger_key.parent.exists() else "missing"
+        )
     except Exception:
         subsystems["ledger_keys"] = "unhealthy"
 
@@ -86,7 +92,9 @@ async def detailed_health_check(
     return {
         "status": "healthy" if is_healthy else "unhealthy",
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "uptime_seconds": round((datetime.now(timezone.utc) - _startup_time).total_seconds(), 2),
+        "uptime_seconds": round(
+            (datetime.now(timezone.utc) - _startup_time).total_seconds(), 2
+        ),
         "environment": settings.ENVIRONMENT.value,
         "subsystems": subsystems,
     }

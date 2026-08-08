@@ -5,7 +5,8 @@ Implements Cross-Encoder architecture (ms-marco-MiniLM-L-6-v2 / InLegalBERT cros
 to serve as a strong deep learning re-ranking baseline.
 """
 
-from typing import List, Dict, Any, Tuple
+from typing import Any
+
 import numpy as np
 from pydantic import BaseModel
 
@@ -25,7 +26,9 @@ class CrossEncoderReranker:
     def __init__(self, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
         self.model_name = model_name
 
-    def rerank(self, candidates: List[Dict[str, Any]], query_text: str, top_k: int = 5) -> List[CrossEncoderScore]:
+    def rerank(
+        self, candidates: list[dict[str, Any]], query_text: str, top_k: int = 5
+    ) -> list[CrossEncoderScore]:
         """
         Computes joint Cross-Encoder similarity scores for query-chunk pairs.
         """
@@ -40,11 +43,13 @@ class CrossEncoderReranker:
             # Cross-encoder joint interaction simulation
             overlap = len(q_words.intersection(c_words))
             density = overlap / (len(q_words) + 1e-5)
-            
+
             sim_score = float(cand.get("score", cand.get("similarity", 0.5)))
-            
+
             # Cross-attention joint score (logit sigmoid)
-            ce_score = float(round(1.0 / (1.0 + np.exp(-(3.0 * sim_score + 2.0 * density - 2.0))), 4))
+            ce_score = float(
+                round(1.0 / (1.0 + np.exp(-(3.0 * sim_score + 2.0 * density - 2.0))), 4)
+            )
 
             scored.append((cid, ce_score, snippet))
 
@@ -52,6 +57,10 @@ class CrossEncoderReranker:
 
         results = []
         for rank_idx, (cid, sval, snip) in enumerate(scored[:top_k]):
-            results.append(CrossEncoderScore(chunk_id=cid, cross_encoder_score=sval, rank=rank_idx + 1, snippet=snip))
+            results.append(
+                CrossEncoderScore(
+                    chunk_id=cid, cross_encoder_score=sval, rank=rank_idx + 1, snippet=snip
+                )
+            )
 
         return results

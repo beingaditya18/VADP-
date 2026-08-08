@@ -1,3 +1,3 @@
-﻿"""
+"""
 VADP Notifications Package
 """

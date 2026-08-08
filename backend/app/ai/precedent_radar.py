@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP Precedent Radar & Mega-Case Summarizer Engine
 ======================================================
 
@@ -10,8 +10,7 @@ AI services for:
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from typing import Any
+from datetime import UTC, datetime
 
 from app.cases.schemas import (
     BailOutcomeEstimatorSchema,
@@ -33,8 +32,11 @@ class MegaCaseSummarizerEngine:
         description: str | None = None,
         case_type: str = "Civil Litigation",
     ) -> MegaCaseSummarySchema:
-        desc = description or "Complex judicial dispute involving contractual performance, statutory compliance, and evidentiary petitions."
-        
+        desc = (
+            description
+            or "Complex judicial dispute involving contractual performance, statutory compliance, and evidentiary petitions."
+        )
+
         return MegaCaseSummarySchema(
             case_id=case_id,
             case_number=case_number,
@@ -112,7 +114,7 @@ class PrecedentRadarEngine:
         ]
         return PrecedentRadarResponseSchema(
             case_id=case_id,
-            analyzed_at=datetime.now(timezone.utc),
+            analyzed_at=datetime.now(UTC),
             total_precedents_analyzed=14,
             contradiction_count=1,
             items=items,

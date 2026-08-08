@@ -1,7 +1,7 @@
 """
 Selective Prediction & Learning-to-Defer Module for VADP Verification Contracts.
 
-Reframes Human Override Coverage (HOC) under Chow's Rule (1970) and 
+Reframes Human Override Coverage (HOC) under Chow's Rule (1970) and
 Mozannar & Sontag (2020) reject-option / learning-to-defer literature.
 
 Instead of an arbitrary threshold ratio, VADP instantiates selective prediction:
@@ -11,7 +11,8 @@ Instead of an arbitrary threshold ratio, VADP instantiates selective prediction:
 - Risk R(tau) = E[Loss(g(x), y) | TrustScore(x) >= tau]
 """
 
-from typing import List, Dict, Any, Tuple
+from typing import Any
+
 import numpy as np
 from pydantic import BaseModel
 
@@ -33,7 +34,7 @@ class SelectivePredictionMetrics(BaseModel):
     achieved_risk: float
     achieved_accuracy: float
     auc_risk_coverage: float
-    curve: List[RiskCoveragePoint]
+    curve: list[RiskCoveragePoint]
 
 
 class SelectivePredictionEvaluator:
@@ -42,22 +43,22 @@ class SelectivePredictionEvaluator:
     and computes optimal deferral policy parameters.
     """
 
-    def __init__(self, trust_scores: List[float], correctness_labels: List[int]):
+    def __init__(self, trust_scores: list[float], correctness_labels: list[int]):
         """
         :param trust_scores: List of normalized trust scores [0.0, 1.0] for model outputs
         :param correctness_labels: List of binary correctness indicators (1 = correct, 0 = error/hallucination)
         """
         if len(trust_scores) != len(correctness_labels):
             raise ValueError("trust_scores and correctness_labels must have equal length")
-        
+
         self.scores = np.array(trust_scores, dtype=float)
         self.labels = np.array(correctness_labels, dtype=int)
         self.n = len(trust_scores)
 
-    def compute_curve(self, num_thresholds: int = 50) -> List[RiskCoveragePoint]:
+    def compute_curve(self, num_thresholds: int = 50) -> list[RiskCoveragePoint]:
         """Compute Risk-Coverage points across a grid of trust thresholds tau in [0, 1]."""
         thresholds = np.linspace(0.0, 1.0, num_thresholds)
-        curve: List[RiskCoveragePoint] = []
+        curve: list[RiskCoveragePoint] = []
 
         for tau in thresholds:
             accepted_mask = self.scores >= tau
@@ -86,7 +87,9 @@ class SelectivePredictionEvaluator:
 
         return curve
 
-    def evaluate(self, target_risk: float = 0.05, num_thresholds: int = 100) -> SelectivePredictionMetrics:
+    def evaluate(
+        self, target_risk: float = 0.05, num_thresholds: int = 100
+    ) -> SelectivePredictionMetrics:
         """
         Finds the minimal threshold tau* that satisfies Risk(tau*) <= target_risk,
         and computes the Area Under the Risk-Coverage Curve (AURCC).
@@ -102,12 +105,14 @@ class SelectivePredictionEvaluator:
         else:
             # Fallback to point with minimal risk if target risk is unrealistically tight
             non_empty_points = [p for p in curve if p.evaluated_count > 0]
-            optimal_point = min(non_empty_points, key=lambda p: p.risk) if non_empty_points else curve[0]
+            optimal_point = (
+                min(non_empty_points, key=lambda p: p.risk) if non_empty_points else curve[0]
+            )
 
         # Compute AURCC via trapezoidal integration of risk over coverage
         coverages = [p.coverage for p in curve if p.evaluated_count > 0]
         risks = [p.risk for p in curve if p.evaluated_count > 0]
-        
+
         # Sort by coverage ascending for integration
         if coverages:
             sorted_indices = np.argsort(coverages)
@@ -130,7 +135,7 @@ class SelectivePredictionEvaluator:
         )
 
 
-def evaluate_deferral_decision(trust_score: float, threshold: float = 0.75) -> Dict[str, Any]:
+def evaluate_deferral_decision(trust_score: float, threshold: float = 0.75) -> dict[str, Any]:
     """
     Helper function for VADP pipeline: decides whether recommendation is accepted
     or deferred to Human Review under selective prediction framework.

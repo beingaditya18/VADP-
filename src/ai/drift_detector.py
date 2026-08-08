@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Model Drift Detector
 ==================================
 
@@ -25,14 +25,18 @@ class ModelDriftDetector:
     _max_window_size: int = 1000
 
     @classmethod
-    def log_prediction(cls, confidence: float, correct: bool | None = None, model_version: str = "v1") -> None:
+    def log_prediction(
+        cls, confidence: float, correct: bool | None = None, model_version: str = "v1"
+    ) -> None:
         """Log prediction outcome for real-time drift tracking."""
-        cls._recent_predictions.append({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "confidence": confidence,
-            "correct": correct,
-            "model_version": model_version,
-        })
+        cls._recent_predictions.append(
+            {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "confidence": confidence,
+                "correct": correct,
+                "model_version": model_version,
+            }
+        )
 
         if len(cls._recent_predictions) > cls._max_window_size:
             cls._recent_predictions.pop(0)
@@ -59,7 +63,9 @@ class ModelDriftDetector:
             # Fall back to confidence window mean if ground truth reviews are sparse
             confidences = [p["confidence"] for p in cls._recent_predictions]
             mean_conf = float(sum(confidences) / len(confidences))
-            recent_acc = round(mean_conf * 0.90, 4)  # Estimated confidence accuracy proxy
+            recent_acc = round(
+                mean_conf * 0.90, 4
+            )  # Estimated confidence accuracy proxy
         else:
             correct_count = sum(1 for p in evaluated if p["correct"] is True)
             recent_acc = round(correct_count / float(len(evaluated)), 4)

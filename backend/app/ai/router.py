@@ -1,4 +1,4 @@
-﻿"""
+"""
 VADP AI Engine Router
 ==========================
 
@@ -10,8 +10,7 @@ REST API endpoints for Explainable AI (XAI) Judicial Decision Support:
 
 from __future__ import annotations
 
-from typing import Any
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, BackgroundTasks, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.ai.ab_testing import ABTestingEngine
@@ -29,7 +28,6 @@ from app.ai.training import ModelTrainer
 from app.auth.dependencies import get_current_user, require_role
 from app.auth.models import User
 from app.db.session import get_db_session
-from fastapi import APIRouter, BackgroundTasks, Depends, status
 
 router = APIRouter(prefix="/ai", tags=["ai"])
 
@@ -131,4 +129,3 @@ async def check_model_drift() -> DriftCheckSchema:
 )
 async def get_ab_test_metrics() -> ABTestMetricsSchema:
     return ABTestingEngine.get_metrics()
-
