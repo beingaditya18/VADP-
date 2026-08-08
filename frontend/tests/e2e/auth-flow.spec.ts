@@ -8,7 +8,7 @@ test.describe('Authentication & Session Management E2E Journey', () => {
     await page.goto('/register');
 
     // Verify page title and header
-    await expect(page.locator('h1, h2, form')).toBeVisible();
+    await expect(page.locator('h1, h2, form').first()).toBeVisible();
 
     // Fill registration form
     const emailInput = page.locator('input[type="email"], input[name="email"]');
