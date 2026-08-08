@@ -1,0 +1,71 @@
+{
+  "dataset_queries": 3500,
+  "indexed_vectors": 60000,
+  "ablation_results": [
+    {
+      "retriever_model": "BM25_Lexical",
+      "type": "Lexical",
+      "MRR": 0.624,
+      "P@1": 0.552,
+      "P@5": 0.741,
+      "Recall@10": 0.815,
+      "Recall@50": 0.892,
+      "mean_latency_ms": 7.8
+    },
+    {
+      "retriever_model": "SentenceBERT_all_MiniLM_L6_v2",
+      "type": "Dense Vector",
+      "MRR": 0.751,
+      "P@1": 0.692,
+      "P@5": 0.825,
+      "Recall@10": 0.895,
+      "Recall@50": 0.954,
+      "mean_latency_ms": 10.4
+    },
+    {
+      "retriever_model": "BGE_small_en_v1.5",
+      "type": "Dense Vector",
+      "MRR": 0.798,
+      "P@1": 0.742,
+      "P@5": 0.864,
+      "Recall@10": 0.921,
+      "Recall@50": 0.971,
+      "mean_latency_ms": 11.2
+    },
+    {
+      "retriever_model": "Hybrid_BM25_plus_BGE_Dense",
+      "type": "Hybrid RAG",
+      "MRR": 0.842,
+      "P@1": 0.795,
+      "P@5": 0.898,
+      "Recall@10": 0.945,
+      "Recall@50": 0.982,
+      "mean_latency_ms": 14.6
+    },
+    {
+      "retriever_model": "CrossEncoder_ms_marco_MiniLM_L6",
+      "type": "Cross-Encoder Reranker",
+      "MRR": 0.915,
+      "P@1": 0.886,
+      "P@5": 0.942,
+      "Recall@10": 0.968,
+      "Recall@50": 0.989,
+      "mean_latency_ms": 44.5
+    },
+    {
+      "retriever_model": "VADP_Gradient_Boosted_Tree_Reranker",
+      "type": "VADP GBT Hybrid",
+      "MRR": 0.951,
+      "P@1": 0.931,
+      "P@5": 0.974,
+      "Recall@10": 0.987,
+      "Recall@50": 0.995,
+      "mean_latency_ms": 16.3
+    }
+  ],
+  "key_findings": {
+    "vadp_gbt_mrr_gain_over_dense": 0.153,
+    "vadp_gbt_latency_vs_crossencoder_ms": 28.2,
+    "speedup_factor_vs_crossencoder": 2.73
+  }
+}

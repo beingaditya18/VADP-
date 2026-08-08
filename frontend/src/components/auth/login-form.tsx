@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -23,7 +23,7 @@ export function LoginForm() {
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 shadow-lg">
           <Scale className="h-6 w-6 text-white" />
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-white">Sign in to Nyaya-ZTA</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-white">Sign in to VADP</h2>
         <p className="text-sm text-gray-400">
           Zero Trust Explainable AI Judicial Framework
         </p>

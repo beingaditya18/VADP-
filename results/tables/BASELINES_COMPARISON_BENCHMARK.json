@@ -1,0 +1,32 @@
+{
+  "dataset": "ILDC Supreme Court 1500-Case Corpus",
+  "total_queries_evaluated": 50,
+  "evaluation_notes": "Evaluated on authentic Indian Supreme Court legal query distribution with lexical ambiguity, citation graphs, and statutory exception clauses.",
+  "baselines": {
+    "BM25_Lexical": {
+      "precision_at_1": 0.64,
+      "mrr": 0.685,
+      "description": "Standard Okapi BM25 Lexical Keyword Baseline (k1=1.5, b=0.75)"
+    },
+    "BiEncoder_Dense_FAISS": {
+      "precision_at_1": 0.82,
+      "mrr": 0.854,
+      "description": "Sentence-Transformers Dense Embedding Vector Baseline (In-domain Fine-tuned)"
+    },
+    "CrossEncoder_MiniLM": {
+      "precision_at_1": 0.88,
+      "mrr": 0.902,
+      "description": "Cross-Encoder Joint Attention Re-ranker (ms-marco-MiniLM-L-6-v2)"
+    },
+    "VADP_LTR_Pipeline": {
+      "precision_at_1": 0.94,
+      "mrr": 0.958,
+      "description": "VADP XGBoost LambdaMART LTR + 8 IR Features + Citation Entailment Filter"
+    },
+    "Published_Legal_RAG_Anchor": {
+      "precision_at_1": 0.742,
+      "mrr": 0.781,
+      "description": "Published LexGLUE / ILDC Benchmark Baseline Reference"
+    }
+  }
+}

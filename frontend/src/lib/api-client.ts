@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — API Client
+﻿/**
+ * VADP — API Client
  *
  * Type-safe API client wrapping fetch with:
  *   - Automatic JWT attachment from Supabase session
@@ -50,6 +50,13 @@ async function getAccessToken(): Promise<string | null> {
   if (typeof window === "undefined") return null;
 
   try {
+    const authStorage = localStorage.getItem("nyaya-auth-storage");
+    if (authStorage) {
+      const parsed = JSON.parse(authStorage);
+      if (parsed?.state?.accessToken) {
+        return parsed.state.accessToken;
+      }
+    }
     const { createBrowserClient } = await import("@/lib/supabase");
     const supabase = createBrowserClient();
     const {
@@ -94,6 +101,7 @@ async function request<T>(
   try {
     const response = await fetch(url, {
       ...options,
+      credentials: "include",
       headers,
     });
 

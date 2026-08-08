@@ -85,7 +85,7 @@ export default function LawyerPortalPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {cases.map((c) => (
-                  <CaseCard key={c.id} caseObj={c} />
+                  <CaseCard key={c.id} caseObj={c} hrefPrefix="/citizen/cases" />
                 ))}
               </div>
             )}

@@ -1,0 +1,27 @@
+{
+  "study_metadata": {
+    "file_analyzed": "C:\\Users\\adity\\Downloads\\VADP\\backend\\evaluation\\human_annotation_sample.csv",
+    "sample_size_eval_N": 291,
+    "target_calibration_samples": 291
+  },
+  "trust_score_calibration_irr": {
+    "cohens_kappa": 0.8968,
+    "observed_agreement_percent": 94.85,
+    "interpretation": "Almost Perfect / Strong Agreement (kappa >= 0.81)"
+  },
+  "theorem_2_appellate_outcomes_YV_irr": {
+    "cohens_kappa": 0.8959,
+    "observed_agreement_percent": 94.85,
+    "interpretation": "Almost Perfect / Strong Agreement (kappa >= 0.81)"
+  },
+  "relevance_inter_annotator_agreement": {
+    "cohens_kappa": 0.9931,
+    "observed_agreement_percent": 99.66,
+    "interpretation": "Almost Perfect / Strong Agreement (kappa >= 0.81)"
+  },
+  "annotator_vs_automated_headnote_agreement": {
+    "cohens_kappa": 0.8343,
+    "observed_agreement_percent": 91.75,
+    "interpretation": "Almost Perfect / Strong Agreement (kappa >= 0.81)"
+  }
+}

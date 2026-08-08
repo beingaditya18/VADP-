@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nyaya-ZTA | Zero Trust Explainable AI for Judicial Decision Support",
+  title: "VADP | Zero Trust Explainable AI for Judicial Decision Support",
   description:
     "A research framework combining Zero Trust Architecture, Explainable AI, Retrieval-Augmented Generation, and tamper-evident audit ledger for secure judicial decision support.",
   keywords: [

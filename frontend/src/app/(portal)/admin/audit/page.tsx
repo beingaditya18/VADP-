@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AuthGuard } from "@/components/auth/auth-guard";
 import { BlockCard } from "@/components/ledger/block-card";
 import { ChainStatusBanner } from "@/components/ledger/chain-status-banner";
+import { MerkleTreeVisualizer } from "@/components/ledger/merkle-tree-visualizer";
 import { useLedger } from "@/hooks/use-ledger";
 import { useAuth } from "@/hooks/use-auth";
 import { Shield, Layers, Plus, ArrowLeft, Loader2, LogOut } from "lucide-react";
@@ -25,7 +26,7 @@ export default function AdminAuditPage() {
         <header className="border-b border-white/5 bg-[#0f0f18]/80 backdrop-blur sticky top-0 z-50">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+              <Link href="/admin" className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                 <Shield className="h-5 w-5" />
               </Link>
               <span className="font-bold tracking-tight text-lg text-white">Admin Audit Ledger Explorer</span>
@@ -47,6 +48,10 @@ export default function AdminAuditPage() {
 
         {/* Content */}
         <main className="mx-auto max-w-7xl px-6 py-10 space-y-8">
+          <Link href="/admin" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
+            <ArrowLeft className="h-4 w-4" /> Back to Admin Control Center
+          </Link>
+
           {/* Header row */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -71,6 +76,9 @@ export default function AdminAuditPage() {
             onVerify={() => verifyChain()}
             isVerifying={isLoading}
           />
+
+          {/* Merkle Tree Inclusion Proof Inspector */}
+          <MerkleTreeVisualizer block={blocks[0]} />
 
           {/* Block List */}
           <div className="space-y-4">

@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { RegisterForm } from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
-  title: "Register Account | Nyaya-ZTA Judicial Platform",
-  description: "Create an account on the Nyaya-ZTA Zero Trust Judicial Platform",
+  title: "Register Account | VADP Judicial Platform",
+  description: "Create an account on the VADP Zero Trust Judicial Platform",
 };
 
 export default function RegisterPage() {

@@ -1,12 +1,16 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "author": "Aditya Mandloi <adityamandloi10@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:ci": "playwright test --project=chromium"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",
@@ -22,6 +26,7 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

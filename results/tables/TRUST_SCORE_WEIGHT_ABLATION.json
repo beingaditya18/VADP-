@@ -1,0 +1,162 @@
+{
+  "benchmark_name": "VADP Joint Ablation on Trust Score Weights",
+  "train_samples": 1200,
+  "held_out_test_samples": 291,
+  "safety_guardrail_tau_p": 0.88,
+  "default_weights": {
+    "tuple": [
+      0.35,
+      0.35,
+      0.15,
+      0.15
+    ],
+    "ece": 0.130458,
+    "pearson_r": 0.9834706867369541,
+    "passes_safety_guardrail": true
+  },
+  "grid_optimal_weights": {
+    "weights": {
+      "alpha": 0.0,
+      "beta": 0.0,
+      "gamma": 1.0,
+      "delta": 0.0
+    },
+    "passes_safety_guardrail": true,
+    "ece": 0.09815,
+    "pearson_r": 0.972,
+    "combined_score": 0.7757
+  },
+  "learned_logistic_weights": {
+    "tuple": [
+      0.0,
+      0.2089,
+      0.7911,
+      0.0
+    ],
+    "ece": 0.101385,
+    "pearson_r": 0.979441519160622,
+    "passes_safety_guardrail": true
+  },
+  "top_10_configurations_by_ece": [
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.0,
+        "gamma": 1.0,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.09815,
+      "pearson_r": 0.972,
+      "combined_score": 0.7757
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.05,
+        "gamma": 0.95,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.098924,
+      "pearson_r": 0.9742,
+      "combined_score": 0.7763
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.1,
+        "gamma": 0.9,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.099699,
+      "pearson_r": 0.9761,
+      "combined_score": 0.7767
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.15,
+        "gamma": 0.85,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.100473,
+      "pearson_r": 0.9778,
+      "combined_score": 0.7768
+    },
+    {
+      "weights": {
+        "alpha": 0.05,
+        "beta": 0.0,
+        "gamma": 0.95,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.100657,
+      "pearson_r": 0.9743,
+      "combined_score": 0.773
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.2,
+        "gamma": 0.8,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.101248,
+      "pearson_r": 0.9792,
+      "combined_score": 0.7767
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.0,
+        "gamma": 0.95,
+        "delta": 0.05
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.101263,
+      "pearson_r": 0.9734,
+      "combined_score": 0.7709
+    },
+    {
+      "weights": {
+        "alpha": 0.05,
+        "beta": 0.05,
+        "gamma": 0.9,
+        "delta": -0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.101431,
+      "pearson_r": 0.9764,
+      "combined_score": 0.7736
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.25,
+        "gamma": 0.75,
+        "delta": 0.0
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.102022,
+      "pearson_r": 0.9804,
+      "combined_score": 0.7763
+    },
+    {
+      "weights": {
+        "alpha": 0.0,
+        "beta": 0.05,
+        "gamma": 0.9,
+        "delta": 0.05
+      },
+      "passes_safety_guardrail": true,
+      "ece": 0.102038,
+      "pearson_r": 0.9756,
+      "combined_score": 0.7715
+    }
+  ]
+}

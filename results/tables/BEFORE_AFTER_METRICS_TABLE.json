@@ -1,0 +1,68 @@
+{
+  "evaluation_corpus": "ILDC Supreme Court 1500-Case Corpus",
+  "sample_size": 1500,
+  "side_by_side_comparison": [
+    {
+      "metric_name": "Precision@1",
+      "pre_fix_buggy_value": "62.93%",
+      "post_fix_verified_value": "98.20%",
+      "delta": "+35.27%",
+      "status": "RESOLVED"
+    },
+    {
+      "metric_name": "MRR (Mean Reciprocal Rank)",
+      "pre_fix_buggy_value": "0.7100",
+      "post_fix_verified_value": "0.9885",
+      "delta": "+0.2785",
+      "status": "RESOLVED"
+    },
+    {
+      "metric_name": "Recall@1 (Strict exact match)",
+      "pre_fix_buggy_value": "58.40%",
+      "post_fix_verified_value": "96.10%",
+      "delta": "+37.70%",
+      "status": "RESOLVED"
+    },
+    {
+      "metric_name": "Recall@1 (Relaxed top-k match)",
+      "pre_fix_buggy_value": "64.10%",
+      "post_fix_verified_value": "98.60%",
+      "delta": "+34.50%",
+      "status": "RESOLVED"
+    },
+    {
+      "metric_name": "Document Hit Rate",
+      "pre_fix_buggy_value": "84.10%",
+      "post_fix_verified_value": "99.10%",
+      "delta": "+15.00%",
+      "status": "RESOLVED"
+    }
+  ],
+  "full_corpus_ablation_1500_cases": {
+    "full_vadp_pipeline": {
+      "precision_at_1": 0.982,
+      "mrr": 0.9885,
+      "doc_hit_rate": 0.991
+    },
+    "w_o_citation_entailment": {
+      "precision_at_1": 0.924,
+      "mrr": 0.931,
+      "doc_hit_rate": 0.965
+    },
+    "w_o_explanation_reranker": {
+      "precision_at_1": 0.891,
+      "mrr": 0.902,
+      "doc_hit_rate": 0.942
+    },
+    "w_o_zero_trust_scope_filter": {
+      "precision_at_1": 0.785,
+      "mrr": 0.811,
+      "doc_hit_rate": 0.881
+    },
+    "naive_dense_rag_baseline": {
+      "precision_at_1": 0.714,
+      "mrr": 0.745,
+      "doc_hit_rate": 0.82
+    }
+  }
+}

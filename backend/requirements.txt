@@ -1,5 +1,5 @@
-# ==============================================
-# Nyaya-ZTA Backend — Pinned Dependencies
+﻿# ==============================================
+# VADP Backend — Pinned Dependencies
 # Generated from pyproject.toml for Docker builds
 # ==============================================
 
@@ -25,6 +25,10 @@ passlib[bcrypt]>=1.7.4,<2.0.0
 bcrypt>=4.1.0,<5.0.0
 cryptography>=42.0.0
 
+# --- Secrets Management ---
+boto3>=1.34.0
+hvac>=2.2.0
+
 # --- HTTP Client ---
 httpx>=0.27.0,<1.0.0
 
@@ -35,6 +39,10 @@ shap>=0.45.0
 sentence-transformers>=3.0.0
 faiss-cpu>=1.8.0
 numpy>=1.26.0,<2.0.0
+xgboost>=2.0.0          # LambdaMART rank:pairwise objective
+rank_bm25>=0.2.2        # BM25 Lexical baseline (Table IV)
+scipy>=1.13.0           # Spearman correlation, conformal quantile
+matplotlib>=3.9.0       # Benchmark plots (zk-SNARK latency, calibration)
 
 # --- File Processing ---
 aiofiles>=24.1.0

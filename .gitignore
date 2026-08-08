@@ -1,90 +1,78 @@
-# ============================================
-# Nyaya-ZTA .gitignore
-# ============================================
-
-# ---------- Python ----------
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-*.egg-info/
-*.egg
-dist/
-build/
-.eggs/
-*.whl
 
-# Virtual environments
+# Caches and Temporary Build Files
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.xml
+*.log
+
+# Environments & Virtual Environments
 .venv/
 venv/
 ENV/
 env/
+build/
+dist/
+*.egg-info/
 
-# pytest
-.pytest_cache/
-htmlcov/
-.coverage
-coverage.xml
-
-# mypy / pyright
-.mypy_cache/
-.pyright/
-
-# ruff
-.ruff_cache/
-
-# ---------- Node.js ----------
+# Node.js & Frontend Artifacts
 node_modules/
-.next/
-out/
-.vercel/
-.turbo/
-
-# ---------- Environment ----------
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.*.local
-
-# ---------- FAISS ----------
-*.faiss
-faiss_indices/
+frontend/node_modules/
+frontend/.next/
+# Large Datasets, Binaries & Evaluation Artifacts
+data/evaluation/
+experiments/
+external/
+*.csv
+*.bin
+*.ptau
+*.zkey
 *.index
+*.npy
+*.dll
+*.exe
 
-# ---------- ML Models ----------
-models/*.pkl
-models/*.joblib
-models/*.pt
-models/*.pth
-models/*.onnx
-
-# ---------- IDE ----------
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.DS_Store
-Thumbs.db
-
-# ---------- Docker ----------
-docker-compose.override.yml
-
-# ---------- Logs ----------
-*.log
-logs/
-
-# ---------- OS ----------
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# ---------- Secrets / Keys ----------
+# Keys & Secrets
 *.pem
 *.key
-*.crt
-*.p12
-signing_keys/
+backend/keys/
+backend/signing_keys/
+keys/
+
+# Database & Upload Caches
+backend/database/
+backend/tests/*.db
+*.db
+uploads/
+backend/uploads/
+
+
+# Large Archives & Temp Dumps
+*.zip
+*.tar.gz
+*.7z
+v6_text.txt
+esm_text.txt
+repo_inventory.json
+manuscript_analysis.json
+
+# Environment Secrets
+.env
+.env.local
+.env.*.local
+*.pem.secret
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+

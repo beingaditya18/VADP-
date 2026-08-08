@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Search, Scale, FileText, Layers, ArrowRight, Loader2, ShieldCheck } from "lucide-react";
+import { Search, Scale, FileText, Layers, ArrowRight, Loader2, ShieldCheck, Sparkles } from "lucide-react";
 import { apiClient } from "@/lib/api-client";
 
 interface SearchResult {
@@ -44,8 +44,13 @@ export default function SearchPage() {
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
               <Scale className="h-5 w-5" />
             </div>
-            <span className="font-bold tracking-tight text-lg text-white">Nyaya Hybrid Search</span>
+            <span className="font-bold tracking-tight text-lg text-white">VADP Precedent & Legal Search</span>
           </Link>
+
+          <div className="hidden sm:flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full text-xs text-indigo-300 font-medium">
+            <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
+            1,500 ILDC Judgments (13,129 Vector Chunks)
+          </div>
         </div>
       </header>
 
@@ -56,7 +61,7 @@ export default function SearchPage() {
             Universal Legal & Precedent Search
           </h1>
           <p className="text-sm text-gray-400 max-w-lg mx-auto">
-            Combines full-text SQL matching with FAISS 384-dimensional vector semantic similarity.
+            Combines full-text SQL matching with FAISS 384-dimensional vector semantic similarity across 1,500 Supreme Court of India legal decision cases.
           </p>
         </div>
 
@@ -98,13 +103,12 @@ export default function SearchPage() {
                   <span className="text-[10px] font-mono uppercase font-bold px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-indigo-400">
                     {item.category.replace("_", " ")}
                   </span>
-                  <span className="text-xs font-mono text-emerald-400 font-semibold">
-                    Relevance: {Math.round(item.relevance_score * 100)}%
+                  <span className="text-xs text-emerald-400 font-mono">
+                    Relevance: {(item.relevance_score * 100).toFixed(1)}%
                   </span>
                 </div>
-
-                <h3 className="font-bold text-white text-base">{item.title}</h3>
-                <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">{item.description}</p>
+                <h3 className="text-base font-bold text-white">{item.title}</h3>
+                <p className="text-xs text-gray-300 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>

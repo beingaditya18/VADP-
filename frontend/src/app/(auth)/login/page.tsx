@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { LoginForm } from "@/components/auth/login-form";
 
 export const metadata: Metadata = {
-  title: "Login | Nyaya-ZTA Judicial Platform",
-  description: "Sign in to the Nyaya-ZTA Zero Trust Explainable AI Judicial Platform",
+  title: "Login | VADP Judicial Platform",
+  description: "Sign in to the VADP Zero Trust Explainable AI Judicial Platform",
 };
 
 export default function LoginPage() {

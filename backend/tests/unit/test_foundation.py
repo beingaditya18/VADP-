@@ -1,4 +1,4 @@
-"""
+﻿"""
 Unit tests for the core foundation modules.
 
 Tests:
@@ -136,6 +136,6 @@ class TestHealthCheck:
         response = await async_client.get("/health/version")
         assert response.status_code == 200
         data = response.json()
-        assert data["app_name"] == "Nyaya-ZTA"
+        assert data["app_name"] == "VADP"
         assert "version" in data
         assert data["environment"] == "testing"

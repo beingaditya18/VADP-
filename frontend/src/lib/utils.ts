@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Utility Functions
+﻿/**
+ * VADP — Utility Functions
  *
  * Shared utility functions used across the frontend.
  */

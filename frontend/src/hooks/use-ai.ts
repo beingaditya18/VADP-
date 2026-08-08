@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — AI Custom Hook
+﻿/**
+ * VADP — AI Custom Hook
  *
  * Operations to trigger case AI analysis, list recommendations, and submit Judge reviews.
  */

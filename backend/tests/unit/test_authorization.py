@@ -29,9 +29,10 @@ class TestPolicyEngine:
         assert allowed is False
         assert "Default Deny" in reason
 
-    def test_admin_super_user_bypass(self) -> None:
+    def test_admin_evaluated_against_policies_no_bypass(self) -> None:
         admin_user = User(id="admin-1", email="admin@nyaya.in", role="admin")
         ctx = AuthorizationContextSchema()
+        # Admin without explicit policy should be subject to Default Deny (No bypass)
         allowed, reason, _ = PolicyEngine.evaluate(
             user=admin_user,
             action="delete",
@@ -39,8 +40,28 @@ class TestPolicyEngine:
             policies=[],
             context=ctx,
         )
+        assert allowed is False
+        assert "Default Deny" in reason
+
+        # Admin with policy permitting admin role should be granted
+        admin_policy = AccessPolicy(
+            id="policy-admin",
+            policy_name="Admin Delete Case",
+            resource_type="case",
+            action="delete",
+            allowed_roles=["admin"],
+            is_active=True,
+            priority=10,
+        )
+        allowed, reason, matched = PolicyEngine.evaluate(
+            user=admin_user,
+            action="delete",
+            resource_type="case",
+            policies=[admin_policy],
+            context=ctx,
+        )
         assert allowed is True
-        assert "Admin" in reason
+        assert matched is not None
 
     def test_rbac_and_abac_owner_rule(self) -> None:
         citizen_user = User(id="citizen-100", email="citizen@nyaya.in", role="citizen")
@@ -102,7 +123,7 @@ class TestAuthorizationAPI:
             "policy_name": "Judge Review Access",
             "resource_type": "case",
             "action": "review",
-            "allowed_roles": ["judge"],
+            "allowed_roles": ["admin", "judge"],
             "conditions": {"require_device_trust": True},
             "priority": 5,
         }

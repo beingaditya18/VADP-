@@ -1,0 +1,30 @@
+{
+  "dataset_samples": 1000,
+  "train_size": 700,
+  "test_size": 300,
+  "default_fixed_weights": {
+    "alpha": 0.35,
+    "beta": 0.35,
+    "gamma": 0.15,
+    "delta": 0.15
+  },
+  "optimized_logistic_weights": {
+    "alpha": 0.3787,
+    "beta": 0.3626,
+    "gamma": 0.0613,
+    "delta": 0.1974
+  },
+  "raw_logistic_coefficients": {
+    "model_confidence": 2.0924,
+    "evidence_quality": 2.0032,
+    "source_reliability": 0.3384,
+    "consistency": 1.0907
+  },
+  "performance_comparison": {
+    "fixed_weights_brier_score": 0.19813,
+    "optimized_logistic_brier_score": 0.19861,
+    "brier_score_improvement_pct": -0.24,
+    "fixed_weights_auc": 0.6061,
+    "optimized_logistic_auc": 0.5982
+  }
+}

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this research artifact or software, please cite it as below."
+title: "VADP — Verifiable AI Decision Provenance for AI-Assisted Judicial Decision Support"
+authors:
+  - Aditya Mandloi
+  
+date-released: 2026-08-08
+url: "https://github.com/vadp-research/vadp"
+repository-code: "https://github.com/vadp-research/vadp"
+license: MIT
+keywords:
+  - Verifiable AI
+  - Decision Provenance
+  - Judicial Decision Support
+  - Zero-Trust ABAC
+  - Merkle Ledger
+  - Groth16 ZKP
+  - Legal RAG
+  - Explainable AI

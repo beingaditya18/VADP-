@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Ledger Custom Hook
+﻿/**
+ * VADP — Ledger Custom Hook
  *
  * Provides operations to fetch audit blocks, seal new blocks, and verify chain integrity.
  */

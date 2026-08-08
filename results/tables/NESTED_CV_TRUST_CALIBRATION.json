@@ -1,0 +1,80 @@
+{
+  "n_evaluations": 200,
+  "n_outer_folds": 5,
+  "mean_brier_score": 0.1862,
+  "std_brier_score": 0.0267,
+  "overall_brier_score": 0.1862,
+  "overall_ece": 0.0631,
+  "reliability_diagram_bins": [
+    {
+      "bin_lower": 0.0,
+      "bin_upper": 0.1,
+      "sample_proportion": 0.0,
+      "avg_confidence": 0.05,
+      "avg_accuracy": 0.0
+    },
+    {
+      "bin_lower": 0.1,
+      "bin_upper": 0.2,
+      "sample_proportion": 0.0,
+      "avg_confidence": 0.15,
+      "avg_accuracy": 0.0
+    },
+    {
+      "bin_lower": 0.2,
+      "bin_upper": 0.3,
+      "sample_proportion": 0.0,
+      "avg_confidence": 0.25,
+      "avg_accuracy": 0.0
+    },
+    {
+      "bin_lower": 0.3,
+      "bin_upper": 0.4,
+      "sample_proportion": 0.045,
+      "avg_confidence": 0.3509,
+      "avg_accuracy": 0.3333
+    },
+    {
+      "bin_lower": 0.4,
+      "bin_upper": 0.5,
+      "sample_proportion": 0.03,
+      "avg_confidence": 0.4967,
+      "avg_accuracy": 0.6667
+    },
+    {
+      "bin_lower": 0.5,
+      "bin_upper": 0.6,
+      "sample_proportion": 0.15,
+      "avg_confidence": 0.5572,
+      "avg_accuracy": 0.7
+    },
+    {
+      "bin_lower": 0.6,
+      "bin_upper": 0.7,
+      "sample_proportion": 0.2,
+      "avg_confidence": 0.6539,
+      "avg_accuracy": 0.6
+    },
+    {
+      "bin_lower": 0.7,
+      "bin_upper": 0.8,
+      "sample_proportion": 0.265,
+      "avg_confidence": 0.7497,
+      "avg_accuracy": 0.7925
+    },
+    {
+      "bin_lower": 0.8,
+      "bin_upper": 0.9,
+      "sample_proportion": 0.215,
+      "avg_confidence": 0.8517,
+      "avg_accuracy": 0.7907
+    },
+    {
+      "bin_lower": 0.9,
+      "bin_upper": 1.0,
+      "sample_proportion": 0.095,
+      "avg_confidence": 0.9417,
+      "avg_accuracy": 0.9474
+    }
+  ]
+}

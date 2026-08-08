@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Ledger Types
+﻿/**
+ * VADP — Ledger Types
  *
  * Type definitions for the tamper-evident audit ledger.
  */

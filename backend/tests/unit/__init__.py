@@ -1,4 +1,4 @@
-"""
+﻿"""
 Unit tests for the core foundation modules.
 
 Tests:
@@ -35,7 +35,7 @@ class TestSettings:
     def test_settings_load_from_env(self, test_settings: Settings) -> None:
         """Settings should load from environment variables."""
         assert test_settings.ENVIRONMENT == Environment.TESTING
-        assert test_settings.SUPABASE_URL == "https://test.supabase.co"
+        assert test_settings.APP_NAME == "VADP"
 
     def test_settings_is_testing(self, test_settings: Settings) -> None:
         """is_testing property should return True in test environment."""
@@ -135,6 +135,6 @@ class TestHealthCheck:
         response = await async_client.get("/health/version")
         assert response.status_code == 200
         data = response.json()
-        assert data["app_name"] == "Nyaya-ZTA"
+        assert data["app_name"] == "VADP"
         assert "version" in data
         assert data["environment"] == "testing"

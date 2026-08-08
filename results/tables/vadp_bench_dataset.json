@@ -1,0 +1,5875 @@
+[
+  {
+    "sample_id": "VADP_BENCH_0001",
+    "case_id": "ILDC_SC_2000_000",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2000_000?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_000_CHUNK_1",
+      "ILDC_SC_2000_000_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0002",
+    "case_id": "ILDC_SC_2001_001",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2001_001?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_001_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0003",
+    "case_id": "ILDC_SC_2002_002",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2002_002?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_002_CHUNK_1",
+      "ILDC_SC_2002_002_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0004",
+    "case_id": "ILDC_SC_2003_003",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2003_003?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_003_CHUNK_1",
+      "ILDC_SC_2003_003_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0005",
+    "case_id": "ILDC_SC_2004_004",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2004_004?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_004_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0006",
+    "case_id": "ILDC_SC_2005_005",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2005_005?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_005_CHUNK_1",
+      "ILDC_SC_2005_005_CHUNK_2",
+      "ILDC_SC_2005_005_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0007",
+    "case_id": "ILDC_SC_2006_006",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2006_006?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_006_CHUNK_1",
+      "ILDC_SC_2006_006_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0008",
+    "case_id": "ILDC_SC_2007_007",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2007_007?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_007_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0009",
+    "case_id": "ILDC_SC_2008_008",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2008_008?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_008_CHUNK_1",
+      "ILDC_SC_2008_008_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0010",
+    "case_id": "ILDC_SC_2009_009",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2009_009?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_009_CHUNK_1",
+      "ILDC_SC_2009_009_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0011",
+    "case_id": "ILDC_SC_2010_010",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2010_010?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_010_CHUNK_1",
+      "ILDC_SC_2010_010_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0012",
+    "case_id": "ILDC_SC_2011_011",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2011_011?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_011_CHUNK_1",
+      "ILDC_SC_2011_011_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0013",
+    "case_id": "ILDC_SC_2012_012",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2012_012?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_012_CHUNK_1",
+      "ILDC_SC_2012_012_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0014",
+    "case_id": "ILDC_SC_2013_013",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2013_013?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_013_CHUNK_1",
+      "ILDC_SC_2013_013_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0015",
+    "case_id": "ILDC_SC_2014_014",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2014_014?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_014_CHUNK_1",
+      "ILDC_SC_2014_014_CHUNK_2",
+      "ILDC_SC_2014_014_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0016",
+    "case_id": "ILDC_SC_2015_015",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2015_015?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_015_CHUNK_1",
+      "ILDC_SC_2015_015_CHUNK_2",
+      "ILDC_SC_2015_015_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0017",
+    "case_id": "ILDC_SC_2016_016",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2016_016?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_016_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0018",
+    "case_id": "ILDC_SC_2017_017",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2017_017?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_017_CHUNK_1",
+      "ILDC_SC_2017_017_CHUNK_2",
+      "ILDC_SC_2017_017_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0019",
+    "case_id": "ILDC_SC_2018_018",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2018_018?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_018_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0020",
+    "case_id": "ILDC_SC_2019_019",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2019_019?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_019_CHUNK_1",
+      "ILDC_SC_2019_019_CHUNK_2",
+      "ILDC_SC_2019_019_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0021",
+    "case_id": "ILDC_SC_2020_020",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2020_020?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_020_CHUNK_1",
+      "ILDC_SC_2020_020_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0022",
+    "case_id": "ILDC_SC_2021_021",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2021_021?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_021_CHUNK_1",
+      "ILDC_SC_2021_021_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0023",
+    "case_id": "ILDC_SC_2022_022",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2022_022?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_022_CHUNK_1",
+      "ILDC_SC_2022_022_CHUNK_2",
+      "ILDC_SC_2022_022_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0024",
+    "case_id": "ILDC_SC_2023_023",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2023_023?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_023_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0025",
+    "case_id": "ILDC_SC_2000_024",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2000_024?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_024_CHUNK_1",
+      "ILDC_SC_2000_024_CHUNK_2",
+      "ILDC_SC_2000_024_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0026",
+    "case_id": "ILDC_SC_2001_025",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2001_025?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_025_CHUNK_1",
+      "ILDC_SC_2001_025_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0027",
+    "case_id": "ILDC_SC_2002_026",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2002_026?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_026_CHUNK_1",
+      "ILDC_SC_2002_026_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0028",
+    "case_id": "ILDC_SC_2003_027",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2003_027?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_027_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0029",
+    "case_id": "ILDC_SC_2004_028",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2004_028?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_028_CHUNK_1",
+      "ILDC_SC_2004_028_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0030",
+    "case_id": "ILDC_SC_2005_029",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2005_029?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_029_CHUNK_1",
+      "ILDC_SC_2005_029_CHUNK_2",
+      "ILDC_SC_2005_029_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0031",
+    "case_id": "ILDC_SC_2006_030",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2006_030?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_030_CHUNK_1",
+      "ILDC_SC_2006_030_CHUNK_2",
+      "ILDC_SC_2006_030_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0032",
+    "case_id": "ILDC_SC_2007_031",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2007_031?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_031_CHUNK_1",
+      "ILDC_SC_2007_031_CHUNK_2",
+      "ILDC_SC_2007_031_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0033",
+    "case_id": "ILDC_SC_2008_032",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2008_032?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_032_CHUNK_1",
+      "ILDC_SC_2008_032_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0034",
+    "case_id": "ILDC_SC_2009_033",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2009_033?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_033_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0035",
+    "case_id": "ILDC_SC_2010_034",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2010_034?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_034_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0036",
+    "case_id": "ILDC_SC_2011_035",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2011_035?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_035_CHUNK_1",
+      "ILDC_SC_2011_035_CHUNK_2",
+      "ILDC_SC_2011_035_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0037",
+    "case_id": "ILDC_SC_2012_036",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2012_036?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_036_CHUNK_1",
+      "ILDC_SC_2012_036_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0038",
+    "case_id": "ILDC_SC_2013_037",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2013_037?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_037_CHUNK_1",
+      "ILDC_SC_2013_037_CHUNK_2",
+      "ILDC_SC_2013_037_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0039",
+    "case_id": "ILDC_SC_2014_038",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2014_038?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_038_CHUNK_1",
+      "ILDC_SC_2014_038_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0040",
+    "case_id": "ILDC_SC_2015_039",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2015_039?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_039_CHUNK_1",
+      "ILDC_SC_2015_039_CHUNK_2",
+      "ILDC_SC_2015_039_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0041",
+    "case_id": "ILDC_SC_2016_040",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2016_040?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_040_CHUNK_1",
+      "ILDC_SC_2016_040_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0042",
+    "case_id": "ILDC_SC_2017_041",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2017_041?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_041_CHUNK_1",
+      "ILDC_SC_2017_041_CHUNK_2",
+      "ILDC_SC_2017_041_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0043",
+    "case_id": "ILDC_SC_2018_042",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2018_042?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_042_CHUNK_1",
+      "ILDC_SC_2018_042_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0044",
+    "case_id": "ILDC_SC_2019_043",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2019_043?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_043_CHUNK_1",
+      "ILDC_SC_2019_043_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0045",
+    "case_id": "ILDC_SC_2020_044",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2020_044?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_044_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0046",
+    "case_id": "ILDC_SC_2021_045",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2021_045?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_045_CHUNK_1",
+      "ILDC_SC_2021_045_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0047",
+    "case_id": "ILDC_SC_2022_046",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2022_046?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_046_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0048",
+    "case_id": "ILDC_SC_2023_047",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2023_047?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_047_CHUNK_1",
+      "ILDC_SC_2023_047_CHUNK_2",
+      "ILDC_SC_2023_047_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0049",
+    "case_id": "ILDC_SC_2000_048",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2000_048?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_048_CHUNK_1",
+      "ILDC_SC_2000_048_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0050",
+    "case_id": "ILDC_SC_2001_049",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2001_049?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_049_CHUNK_1",
+      "ILDC_SC_2001_049_CHUNK_2",
+      "ILDC_SC_2001_049_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0051",
+    "case_id": "ILDC_SC_2002_050",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2002_050?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_050_CHUNK_1",
+      "ILDC_SC_2002_050_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0052",
+    "case_id": "ILDC_SC_2003_051",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2003_051?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_051_CHUNK_1",
+      "ILDC_SC_2003_051_CHUNK_2",
+      "ILDC_SC_2003_051_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0053",
+    "case_id": "ILDC_SC_2004_052",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2004_052?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_052_CHUNK_1",
+      "ILDC_SC_2004_052_CHUNK_2",
+      "ILDC_SC_2004_052_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0054",
+    "case_id": "ILDC_SC_2005_053",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2005_053?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_053_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0055",
+    "case_id": "ILDC_SC_2006_054",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2006_054?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_054_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0056",
+    "case_id": "ILDC_SC_2007_055",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2007_055?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_055_CHUNK_1",
+      "ILDC_SC_2007_055_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0057",
+    "case_id": "ILDC_SC_2008_056",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2008_056?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_056_CHUNK_1",
+      "ILDC_SC_2008_056_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0058",
+    "case_id": "ILDC_SC_2009_057",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2009_057?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_057_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0059",
+    "case_id": "ILDC_SC_2010_058",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2010_058?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_058_CHUNK_1",
+      "ILDC_SC_2010_058_CHUNK_2",
+      "ILDC_SC_2010_058_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0060",
+    "case_id": "ILDC_SC_2011_059",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2011_059?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_059_CHUNK_1",
+      "ILDC_SC_2011_059_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0061",
+    "case_id": "ILDC_SC_2012_060",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2012_060?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_060_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0062",
+    "case_id": "ILDC_SC_2013_061",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2013_061?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_061_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0063",
+    "case_id": "ILDC_SC_2014_062",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2014_062?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_062_CHUNK_1",
+      "ILDC_SC_2014_062_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0064",
+    "case_id": "ILDC_SC_2015_063",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2015_063?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_063_CHUNK_1",
+      "ILDC_SC_2015_063_CHUNK_2",
+      "ILDC_SC_2015_063_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0065",
+    "case_id": "ILDC_SC_2016_064",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2016_064?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_064_CHUNK_1",
+      "ILDC_SC_2016_064_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0066",
+    "case_id": "ILDC_SC_2017_065",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2017_065?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_065_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0067",
+    "case_id": "ILDC_SC_2018_066",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2018_066?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_066_CHUNK_1",
+      "ILDC_SC_2018_066_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0068",
+    "case_id": "ILDC_SC_2019_067",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2019_067?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_067_CHUNK_1",
+      "ILDC_SC_2019_067_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0069",
+    "case_id": "ILDC_SC_2020_068",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2020_068?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_068_CHUNK_1",
+      "ILDC_SC_2020_068_CHUNK_2",
+      "ILDC_SC_2020_068_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0070",
+    "case_id": "ILDC_SC_2021_069",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2021_069?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_069_CHUNK_1",
+      "ILDC_SC_2021_069_CHUNK_2",
+      "ILDC_SC_2021_069_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0071",
+    "case_id": "ILDC_SC_2022_070",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2022_070?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_070_CHUNK_1",
+      "ILDC_SC_2022_070_CHUNK_2",
+      "ILDC_SC_2022_070_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0072",
+    "case_id": "ILDC_SC_2023_071",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2023_071?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_071_CHUNK_1",
+      "ILDC_SC_2023_071_CHUNK_2",
+      "ILDC_SC_2023_071_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0073",
+    "case_id": "ILDC_SC_2000_072",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2000_072?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_072_CHUNK_1",
+      "ILDC_SC_2000_072_CHUNK_2",
+      "ILDC_SC_2000_072_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0074",
+    "case_id": "ILDC_SC_2001_073",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2001_073?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_073_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0075",
+    "case_id": "ILDC_SC_2002_074",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2002_074?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_074_CHUNK_1",
+      "ILDC_SC_2002_074_CHUNK_2",
+      "ILDC_SC_2002_074_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0076",
+    "case_id": "ILDC_SC_2003_075",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2003_075?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_075_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0077",
+    "case_id": "ILDC_SC_2004_076",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2004_076?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_076_CHUNK_1",
+      "ILDC_SC_2004_076_CHUNK_2",
+      "ILDC_SC_2004_076_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0078",
+    "case_id": "ILDC_SC_2005_077",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2005_077?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_077_CHUNK_1",
+      "ILDC_SC_2005_077_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0079",
+    "case_id": "ILDC_SC_2006_078",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2006_078?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_078_CHUNK_1",
+      "ILDC_SC_2006_078_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0080",
+    "case_id": "ILDC_SC_2007_079",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2007_079?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_079_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0081",
+    "case_id": "ILDC_SC_2008_080",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2008_080?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_080_CHUNK_1",
+      "ILDC_SC_2008_080_CHUNK_2",
+      "ILDC_SC_2008_080_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0082",
+    "case_id": "ILDC_SC_2009_081",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2009_081?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_081_CHUNK_1",
+      "ILDC_SC_2009_081_CHUNK_2",
+      "ILDC_SC_2009_081_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0083",
+    "case_id": "ILDC_SC_2010_082",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2010_082?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_082_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0084",
+    "case_id": "ILDC_SC_2011_083",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2011_083?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_083_CHUNK_1",
+      "ILDC_SC_2011_083_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0085",
+    "case_id": "ILDC_SC_2012_084",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2012_084?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_084_CHUNK_1",
+      "ILDC_SC_2012_084_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0086",
+    "case_id": "ILDC_SC_2013_085",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2013_085?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_085_CHUNK_1",
+      "ILDC_SC_2013_085_CHUNK_2",
+      "ILDC_SC_2013_085_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0087",
+    "case_id": "ILDC_SC_2014_086",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2014_086?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_086_CHUNK_1",
+      "ILDC_SC_2014_086_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0088",
+    "case_id": "ILDC_SC_2015_087",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2015_087?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_087_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0089",
+    "case_id": "ILDC_SC_2016_088",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2016_088?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_088_CHUNK_1",
+      "ILDC_SC_2016_088_CHUNK_2",
+      "ILDC_SC_2016_088_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0090",
+    "case_id": "ILDC_SC_2017_089",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2017_089?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_089_CHUNK_1",
+      "ILDC_SC_2017_089_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0091",
+    "case_id": "ILDC_SC_2018_090",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2018_090?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_090_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0092",
+    "case_id": "ILDC_SC_2019_091",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2019_091?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_091_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0093",
+    "case_id": "ILDC_SC_2020_092",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2020_092?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_092_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0094",
+    "case_id": "ILDC_SC_2021_093",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2021_093?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_093_CHUNK_1",
+      "ILDC_SC_2021_093_CHUNK_2",
+      "ILDC_SC_2021_093_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0095",
+    "case_id": "ILDC_SC_2022_094",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2022_094?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_094_CHUNK_1",
+      "ILDC_SC_2022_094_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0096",
+    "case_id": "ILDC_SC_2023_095",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2023_095?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_095_CHUNK_1",
+      "ILDC_SC_2023_095_CHUNK_2",
+      "ILDC_SC_2023_095_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0097",
+    "case_id": "ILDC_SC_2000_096",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2000_096?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_096_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0098",
+    "case_id": "ILDC_SC_2001_097",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2001_097?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_097_CHUNK_1",
+      "ILDC_SC_2001_097_CHUNK_2",
+      "ILDC_SC_2001_097_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0099",
+    "case_id": "ILDC_SC_2002_098",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2002_098?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_098_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0100",
+    "case_id": "ILDC_SC_2003_099",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2003_099?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_099_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0101",
+    "case_id": "ILDC_SC_2004_100",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2004_100?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_100_CHUNK_1",
+      "ILDC_SC_2004_100_CHUNK_2",
+      "ILDC_SC_2004_100_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0102",
+    "case_id": "ILDC_SC_2005_101",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2005_101?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_101_CHUNK_1",
+      "ILDC_SC_2005_101_CHUNK_2",
+      "ILDC_SC_2005_101_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0103",
+    "case_id": "ILDC_SC_2006_102",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2006_102?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_102_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0104",
+    "case_id": "ILDC_SC_2007_103",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2007_103?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_103_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0105",
+    "case_id": "ILDC_SC_2008_104",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2008_104?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_104_CHUNK_1",
+      "ILDC_SC_2008_104_CHUNK_2",
+      "ILDC_SC_2008_104_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0106",
+    "case_id": "ILDC_SC_2009_105",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2009_105?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_105_CHUNK_1",
+      "ILDC_SC_2009_105_CHUNK_2",
+      "ILDC_SC_2009_105_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0107",
+    "case_id": "ILDC_SC_2010_106",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2010_106?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_106_CHUNK_1",
+      "ILDC_SC_2010_106_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0108",
+    "case_id": "ILDC_SC_2011_107",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2011_107?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_107_CHUNK_1",
+      "ILDC_SC_2011_107_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0109",
+    "case_id": "ILDC_SC_2012_108",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2012_108?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_108_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0110",
+    "case_id": "ILDC_SC_2013_109",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2013_109?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_109_CHUNK_1",
+      "ILDC_SC_2013_109_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0111",
+    "case_id": "ILDC_SC_2014_110",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2014_110?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_110_CHUNK_1",
+      "ILDC_SC_2014_110_CHUNK_2",
+      "ILDC_SC_2014_110_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0112",
+    "case_id": "ILDC_SC_2015_111",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2015_111?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_111_CHUNK_1",
+      "ILDC_SC_2015_111_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0113",
+    "case_id": "ILDC_SC_2016_112",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2016_112?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_112_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0114",
+    "case_id": "ILDC_SC_2017_113",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2017_113?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_113_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0115",
+    "case_id": "ILDC_SC_2018_114",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2018_114?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_114_CHUNK_1",
+      "ILDC_SC_2018_114_CHUNK_2",
+      "ILDC_SC_2018_114_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0116",
+    "case_id": "ILDC_SC_2019_115",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2019_115?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_115_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0117",
+    "case_id": "ILDC_SC_2020_116",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2020_116?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_116_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0118",
+    "case_id": "ILDC_SC_2021_117",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2021_117?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_117_CHUNK_1",
+      "ILDC_SC_2021_117_CHUNK_2",
+      "ILDC_SC_2021_117_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0119",
+    "case_id": "ILDC_SC_2022_118",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2022_118?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_118_CHUNK_1",
+      "ILDC_SC_2022_118_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0120",
+    "case_id": "ILDC_SC_2023_119",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2023_119?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_119_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0121",
+    "case_id": "ILDC_SC_2000_120",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2000_120?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_120_CHUNK_1",
+      "ILDC_SC_2000_120_CHUNK_2",
+      "ILDC_SC_2000_120_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0122",
+    "case_id": "ILDC_SC_2001_121",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2001_121?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_121_CHUNK_1",
+      "ILDC_SC_2001_121_CHUNK_2",
+      "ILDC_SC_2001_121_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0123",
+    "case_id": "ILDC_SC_2002_122",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2002_122?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_122_CHUNK_1",
+      "ILDC_SC_2002_122_CHUNK_2",
+      "ILDC_SC_2002_122_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0124",
+    "case_id": "ILDC_SC_2003_123",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2003_123?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_123_CHUNK_1",
+      "ILDC_SC_2003_123_CHUNK_2",
+      "ILDC_SC_2003_123_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0125",
+    "case_id": "ILDC_SC_2004_124",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2004_124?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_124_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0126",
+    "case_id": "ILDC_SC_2005_125",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2005_125?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_125_CHUNK_1",
+      "ILDC_SC_2005_125_CHUNK_2",
+      "ILDC_SC_2005_125_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0127",
+    "case_id": "ILDC_SC_2006_126",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2006_126?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_126_CHUNK_1",
+      "ILDC_SC_2006_126_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0128",
+    "case_id": "ILDC_SC_2007_127",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2007_127?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_127_CHUNK_1",
+      "ILDC_SC_2007_127_CHUNK_2",
+      "ILDC_SC_2007_127_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0129",
+    "case_id": "ILDC_SC_2008_128",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2008_128?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_128_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0130",
+    "case_id": "ILDC_SC_2009_129",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2009_129?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_129_CHUNK_1",
+      "ILDC_SC_2009_129_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0131",
+    "case_id": "ILDC_SC_2010_130",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2010_130?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_130_CHUNK_1",
+      "ILDC_SC_2010_130_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0132",
+    "case_id": "ILDC_SC_2011_131",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2011_131?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_131_CHUNK_1",
+      "ILDC_SC_2011_131_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0133",
+    "case_id": "ILDC_SC_2012_132",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2012_132?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_132_CHUNK_1",
+      "ILDC_SC_2012_132_CHUNK_2",
+      "ILDC_SC_2012_132_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0134",
+    "case_id": "ILDC_SC_2013_133",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2013_133?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_133_CHUNK_1",
+      "ILDC_SC_2013_133_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0135",
+    "case_id": "ILDC_SC_2014_134",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2014_134?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_134_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0136",
+    "case_id": "ILDC_SC_2015_135",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2015_135?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_135_CHUNK_1",
+      "ILDC_SC_2015_135_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0137",
+    "case_id": "ILDC_SC_2016_136",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2016_136?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_136_CHUNK_1",
+      "ILDC_SC_2016_136_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0138",
+    "case_id": "ILDC_SC_2017_137",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2017_137?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_137_CHUNK_1",
+      "ILDC_SC_2017_137_CHUNK_2",
+      "ILDC_SC_2017_137_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0139",
+    "case_id": "ILDC_SC_2018_138",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2018_138?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_138_CHUNK_1",
+      "ILDC_SC_2018_138_CHUNK_2",
+      "ILDC_SC_2018_138_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0140",
+    "case_id": "ILDC_SC_2019_139",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2019_139?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_139_CHUNK_1",
+      "ILDC_SC_2019_139_CHUNK_2",
+      "ILDC_SC_2019_139_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0141",
+    "case_id": "ILDC_SC_2020_140",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2020_140?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_140_CHUNK_1",
+      "ILDC_SC_2020_140_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0142",
+    "case_id": "ILDC_SC_2021_141",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2021_141?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_141_CHUNK_1",
+      "ILDC_SC_2021_141_CHUNK_2",
+      "ILDC_SC_2021_141_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0143",
+    "case_id": "ILDC_SC_2022_142",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2022_142?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_142_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0144",
+    "case_id": "ILDC_SC_2023_143",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2023_143?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_143_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0145",
+    "case_id": "ILDC_SC_2000_144",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2000_144?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_144_CHUNK_1",
+      "ILDC_SC_2000_144_CHUNK_2",
+      "ILDC_SC_2000_144_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0146",
+    "case_id": "ILDC_SC_2001_145",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2001_145?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_145_CHUNK_1",
+      "ILDC_SC_2001_145_CHUNK_2",
+      "ILDC_SC_2001_145_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0147",
+    "case_id": "ILDC_SC_2002_146",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2002_146?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_146_CHUNK_1",
+      "ILDC_SC_2002_146_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0148",
+    "case_id": "ILDC_SC_2003_147",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2003_147?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_147_CHUNK_1",
+      "ILDC_SC_2003_147_CHUNK_2",
+      "ILDC_SC_2003_147_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0149",
+    "case_id": "ILDC_SC_2004_148",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2004_148?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_148_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0150",
+    "case_id": "ILDC_SC_2005_149",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2005_149?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_149_CHUNK_1",
+      "ILDC_SC_2005_149_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0151",
+    "case_id": "ILDC_SC_2006_150",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2006_150?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_150_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0152",
+    "case_id": "ILDC_SC_2007_151",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2007_151?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_151_CHUNK_1",
+      "ILDC_SC_2007_151_CHUNK_2",
+      "ILDC_SC_2007_151_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0153",
+    "case_id": "ILDC_SC_2008_152",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2008_152?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_152_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0154",
+    "case_id": "ILDC_SC_2009_153",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2009_153?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_153_CHUNK_1",
+      "ILDC_SC_2009_153_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0155",
+    "case_id": "ILDC_SC_2010_154",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2010_154?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_154_CHUNK_1",
+      "ILDC_SC_2010_154_CHUNK_2",
+      "ILDC_SC_2010_154_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0156",
+    "case_id": "ILDC_SC_2011_155",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2011_155?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_155_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0157",
+    "case_id": "ILDC_SC_2012_156",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2012_156?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_156_CHUNK_1",
+      "ILDC_SC_2012_156_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0158",
+    "case_id": "ILDC_SC_2013_157",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2013_157?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_157_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0159",
+    "case_id": "ILDC_SC_2014_158",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2014_158?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_158_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0160",
+    "case_id": "ILDC_SC_2015_159",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2015_159?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_159_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0161",
+    "case_id": "ILDC_SC_2016_160",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2016_160?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_160_CHUNK_1",
+      "ILDC_SC_2016_160_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0162",
+    "case_id": "ILDC_SC_2017_161",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2017_161?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_161_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0163",
+    "case_id": "ILDC_SC_2018_162",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2018_162?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_162_CHUNK_1",
+      "ILDC_SC_2018_162_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0164",
+    "case_id": "ILDC_SC_2019_163",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2019_163?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_163_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0165",
+    "case_id": "ILDC_SC_2020_164",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2020_164?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_164_CHUNK_1",
+      "ILDC_SC_2020_164_CHUNK_2",
+      "ILDC_SC_2020_164_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0166",
+    "case_id": "ILDC_SC_2021_165",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2021_165?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_165_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0167",
+    "case_id": "ILDC_SC_2022_166",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2022_166?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_166_CHUNK_1",
+      "ILDC_SC_2022_166_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0168",
+    "case_id": "ILDC_SC_2023_167",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2023_167?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_167_CHUNK_1",
+      "ILDC_SC_2023_167_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0169",
+    "case_id": "ILDC_SC_2000_168",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2000_168?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_168_CHUNK_1",
+      "ILDC_SC_2000_168_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0170",
+    "case_id": "ILDC_SC_2001_169",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2001_169?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_169_CHUNK_1",
+      "ILDC_SC_2001_169_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0171",
+    "case_id": "ILDC_SC_2002_170",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2002_170?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_170_CHUNK_1",
+      "ILDC_SC_2002_170_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0172",
+    "case_id": "ILDC_SC_2003_171",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2003_171?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_171_CHUNK_1",
+      "ILDC_SC_2003_171_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0173",
+    "case_id": "ILDC_SC_2004_172",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2004_172?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_172_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0174",
+    "case_id": "ILDC_SC_2005_173",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2005_173?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_173_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0175",
+    "case_id": "ILDC_SC_2006_174",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2006_174?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_174_CHUNK_1",
+      "ILDC_SC_2006_174_CHUNK_2",
+      "ILDC_SC_2006_174_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0176",
+    "case_id": "ILDC_SC_2007_175",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2007_175?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_175_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0177",
+    "case_id": "ILDC_SC_2008_176",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2008_176?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_176_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0178",
+    "case_id": "ILDC_SC_2009_177",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2009_177?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_177_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0179",
+    "case_id": "ILDC_SC_2010_178",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2010_178?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_178_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0180",
+    "case_id": "ILDC_SC_2011_179",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2011_179?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_179_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0181",
+    "case_id": "ILDC_SC_2012_180",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2012_180?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_180_CHUNK_1",
+      "ILDC_SC_2012_180_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0182",
+    "case_id": "ILDC_SC_2013_181",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2013_181?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_181_CHUNK_1",
+      "ILDC_SC_2013_181_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0183",
+    "case_id": "ILDC_SC_2014_182",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2014_182?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_182_CHUNK_1",
+      "ILDC_SC_2014_182_CHUNK_2",
+      "ILDC_SC_2014_182_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0184",
+    "case_id": "ILDC_SC_2015_183",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2015_183?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_183_CHUNK_1",
+      "ILDC_SC_2015_183_CHUNK_2",
+      "ILDC_SC_2015_183_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0185",
+    "case_id": "ILDC_SC_2016_184",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2016_184?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_184_CHUNK_1",
+      "ILDC_SC_2016_184_CHUNK_2",
+      "ILDC_SC_2016_184_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0186",
+    "case_id": "ILDC_SC_2017_185",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2017_185?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_185_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0187",
+    "case_id": "ILDC_SC_2018_186",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2018_186?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_186_CHUNK_1",
+      "ILDC_SC_2018_186_CHUNK_2",
+      "ILDC_SC_2018_186_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0188",
+    "case_id": "ILDC_SC_2019_187",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2019_187?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_187_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0189",
+    "case_id": "ILDC_SC_2020_188",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2020_188?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_188_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0190",
+    "case_id": "ILDC_SC_2021_189",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2021_189?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_189_CHUNK_1",
+      "ILDC_SC_2021_189_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0191",
+    "case_id": "ILDC_SC_2022_190",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2022_190?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_190_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0192",
+    "case_id": "ILDC_SC_2023_191",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2023_191?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_191_CHUNK_1",
+      "ILDC_SC_2023_191_CHUNK_2",
+      "ILDC_SC_2023_191_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0193",
+    "case_id": "ILDC_SC_2000_192",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2000_192?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_192_CHUNK_1",
+      "ILDC_SC_2000_192_CHUNK_2",
+      "ILDC_SC_2000_192_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0194",
+    "case_id": "ILDC_SC_2001_193",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2001_193?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_193_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0195",
+    "case_id": "ILDC_SC_2002_194",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2002_194?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_194_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0196",
+    "case_id": "ILDC_SC_2003_195",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2003_195?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_195_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0197",
+    "case_id": "ILDC_SC_2004_196",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2004_196?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_196_CHUNK_1",
+      "ILDC_SC_2004_196_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0198",
+    "case_id": "ILDC_SC_2005_197",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2005_197?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_197_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0199",
+    "case_id": "ILDC_SC_2006_198",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2006_198?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_198_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0200",
+    "case_id": "ILDC_SC_2007_199",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2007_199?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_199_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0201",
+    "case_id": "ILDC_SC_2008_200",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2008_200?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_200_CHUNK_1",
+      "ILDC_SC_2008_200_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0202",
+    "case_id": "ILDC_SC_2009_201",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2009_201?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_201_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0203",
+    "case_id": "ILDC_SC_2010_202",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2010_202?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_202_CHUNK_1",
+      "ILDC_SC_2010_202_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0204",
+    "case_id": "ILDC_SC_2011_203",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2011_203?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_203_CHUNK_1",
+      "ILDC_SC_2011_203_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0205",
+    "case_id": "ILDC_SC_2012_204",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2012_204?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_204_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0206",
+    "case_id": "ILDC_SC_2013_205",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2013_205?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_205_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0207",
+    "case_id": "ILDC_SC_2014_206",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2014_206?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_206_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0208",
+    "case_id": "ILDC_SC_2015_207",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2015_207?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_207_CHUNK_1",
+      "ILDC_SC_2015_207_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0209",
+    "case_id": "ILDC_SC_2016_208",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2016_208?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_208_CHUNK_1",
+      "ILDC_SC_2016_208_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0210",
+    "case_id": "ILDC_SC_2017_209",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2017_209?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_209_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0211",
+    "case_id": "ILDC_SC_2018_210",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2018_210?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_210_CHUNK_1",
+      "ILDC_SC_2018_210_CHUNK_2",
+      "ILDC_SC_2018_210_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0212",
+    "case_id": "ILDC_SC_2019_211",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2019_211?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_211_CHUNK_1",
+      "ILDC_SC_2019_211_CHUNK_2",
+      "ILDC_SC_2019_211_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0213",
+    "case_id": "ILDC_SC_2020_212",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2020_212?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_212_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0214",
+    "case_id": "ILDC_SC_2021_213",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2021_213?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_213_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0215",
+    "case_id": "ILDC_SC_2022_214",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2022_214?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_214_CHUNK_1",
+      "ILDC_SC_2022_214_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0216",
+    "case_id": "ILDC_SC_2023_215",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2023_215?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_215_CHUNK_1",
+      "ILDC_SC_2023_215_CHUNK_2",
+      "ILDC_SC_2023_215_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0217",
+    "case_id": "ILDC_SC_2000_216",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2000_216?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_216_CHUNK_1",
+      "ILDC_SC_2000_216_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0218",
+    "case_id": "ILDC_SC_2001_217",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2001_217?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_217_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0219",
+    "case_id": "ILDC_SC_2002_218",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2002_218?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_218_CHUNK_1",
+      "ILDC_SC_2002_218_CHUNK_2",
+      "ILDC_SC_2002_218_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0220",
+    "case_id": "ILDC_SC_2003_219",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2003_219?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_219_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0221",
+    "case_id": "ILDC_SC_2004_220",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2004_220?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_220_CHUNK_1",
+      "ILDC_SC_2004_220_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0222",
+    "case_id": "ILDC_SC_2005_221",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2005_221?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_221_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0223",
+    "case_id": "ILDC_SC_2006_222",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2006_222?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_222_CHUNK_1",
+      "ILDC_SC_2006_222_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0224",
+    "case_id": "ILDC_SC_2007_223",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2007_223?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_223_CHUNK_1",
+      "ILDC_SC_2007_223_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0225",
+    "case_id": "ILDC_SC_2008_224",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2008_224?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_224_CHUNK_1",
+      "ILDC_SC_2008_224_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0226",
+    "case_id": "ILDC_SC_2009_225",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2009_225?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_225_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0227",
+    "case_id": "ILDC_SC_2010_226",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2010_226?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_226_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0228",
+    "case_id": "ILDC_SC_2011_227",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2011_227?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_227_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0229",
+    "case_id": "ILDC_SC_2012_228",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2012_228?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_228_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0230",
+    "case_id": "ILDC_SC_2013_229",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2013_229?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_229_CHUNK_1",
+      "ILDC_SC_2013_229_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0231",
+    "case_id": "ILDC_SC_2014_230",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2014_230?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_230_CHUNK_1",
+      "ILDC_SC_2014_230_CHUNK_2",
+      "ILDC_SC_2014_230_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0232",
+    "case_id": "ILDC_SC_2015_231",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2015_231?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_231_CHUNK_1",
+      "ILDC_SC_2015_231_CHUNK_2",
+      "ILDC_SC_2015_231_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0233",
+    "case_id": "ILDC_SC_2016_232",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2016_232?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_232_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0234",
+    "case_id": "ILDC_SC_2017_233",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2017_233?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_233_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0235",
+    "case_id": "ILDC_SC_2018_234",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2018_234?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_234_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0236",
+    "case_id": "ILDC_SC_2019_235",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2019_235?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_235_CHUNK_1",
+      "ILDC_SC_2019_235_CHUNK_2",
+      "ILDC_SC_2019_235_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0237",
+    "case_id": "ILDC_SC_2020_236",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2020_236?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_236_CHUNK_1",
+      "ILDC_SC_2020_236_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0238",
+    "case_id": "ILDC_SC_2021_237",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2021_237?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_237_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0239",
+    "case_id": "ILDC_SC_2022_238",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2022_238?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_238_CHUNK_1",
+      "ILDC_SC_2022_238_CHUNK_2",
+      "ILDC_SC_2022_238_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0240",
+    "case_id": "ILDC_SC_2023_239",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2023_239?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_239_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0241",
+    "case_id": "ILDC_SC_2000_240",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2000_240?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_240_CHUNK_1",
+      "ILDC_SC_2000_240_CHUNK_2",
+      "ILDC_SC_2000_240_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0242",
+    "case_id": "ILDC_SC_2001_241",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2001_241?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_241_CHUNK_1",
+      "ILDC_SC_2001_241_CHUNK_2",
+      "ILDC_SC_2001_241_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0243",
+    "case_id": "ILDC_SC_2002_242",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2002_242?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_242_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0244",
+    "case_id": "ILDC_SC_2003_243",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2003_243?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_243_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0245",
+    "case_id": "ILDC_SC_2004_244",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2004_244?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_244_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0246",
+    "case_id": "ILDC_SC_2005_245",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2005_245?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_245_CHUNK_1",
+      "ILDC_SC_2005_245_CHUNK_2",
+      "ILDC_SC_2005_245_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0247",
+    "case_id": "ILDC_SC_2006_246",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2006_246?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_246_CHUNK_1",
+      "ILDC_SC_2006_246_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0248",
+    "case_id": "ILDC_SC_2007_247",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2007_247?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_247_CHUNK_1",
+      "ILDC_SC_2007_247_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0249",
+    "case_id": "ILDC_SC_2008_248",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2008_248?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_248_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0250",
+    "case_id": "ILDC_SC_2009_249",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2009_249?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_249_CHUNK_1",
+      "ILDC_SC_2009_249_CHUNK_2",
+      "ILDC_SC_2009_249_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0251",
+    "case_id": "ILDC_SC_2010_250",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2010_250?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_250_CHUNK_1",
+      "ILDC_SC_2010_250_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0252",
+    "case_id": "ILDC_SC_2011_251",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2011_251?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_251_CHUNK_1",
+      "ILDC_SC_2011_251_CHUNK_2",
+      "ILDC_SC_2011_251_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0253",
+    "case_id": "ILDC_SC_2012_252",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2012_252?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_252_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0254",
+    "case_id": "ILDC_SC_2013_253",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2013_253?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_253_CHUNK_1",
+      "ILDC_SC_2013_253_CHUNK_2",
+      "ILDC_SC_2013_253_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0255",
+    "case_id": "ILDC_SC_2014_254",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2014_254?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_254_CHUNK_1",
+      "ILDC_SC_2014_254_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0256",
+    "case_id": "ILDC_SC_2015_255",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2015_255?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_255_CHUNK_1",
+      "ILDC_SC_2015_255_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0257",
+    "case_id": "ILDC_SC_2016_256",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2016_256?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_256_CHUNK_1",
+      "ILDC_SC_2016_256_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0258",
+    "case_id": "ILDC_SC_2017_257",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2017_257?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_257_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0259",
+    "case_id": "ILDC_SC_2018_258",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2018_258?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_258_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0260",
+    "case_id": "ILDC_SC_2019_259",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2019_259?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_259_CHUNK_1",
+      "ILDC_SC_2019_259_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0261",
+    "case_id": "ILDC_SC_2020_260",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2020_260?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_260_CHUNK_1",
+      "ILDC_SC_2020_260_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0262",
+    "case_id": "ILDC_SC_2021_261",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2021_261?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_261_CHUNK_1",
+      "ILDC_SC_2021_261_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0263",
+    "case_id": "ILDC_SC_2022_262",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2022_262?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_262_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0264",
+    "case_id": "ILDC_SC_2023_263",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2023_263?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_263_CHUNK_1",
+      "ILDC_SC_2023_263_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0265",
+    "case_id": "ILDC_SC_2000_264",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2000_264?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_264_CHUNK_1",
+      "ILDC_SC_2000_264_CHUNK_2",
+      "ILDC_SC_2000_264_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0266",
+    "case_id": "ILDC_SC_2001_265",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2001_265?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_265_CHUNK_1",
+      "ILDC_SC_2001_265_CHUNK_2",
+      "ILDC_SC_2001_265_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0267",
+    "case_id": "ILDC_SC_2002_266",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2002_266?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_266_CHUNK_1",
+      "ILDC_SC_2002_266_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0268",
+    "case_id": "ILDC_SC_2003_267",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2003_267?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_267_CHUNK_1",
+      "ILDC_SC_2003_267_CHUNK_2",
+      "ILDC_SC_2003_267_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0269",
+    "case_id": "ILDC_SC_2004_268",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2004_268?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_268_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0270",
+    "case_id": "ILDC_SC_2005_269",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2005_269?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_269_CHUNK_1",
+      "ILDC_SC_2005_269_CHUNK_2",
+      "ILDC_SC_2005_269_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0271",
+    "case_id": "ILDC_SC_2006_270",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2006_270?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_270_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0272",
+    "case_id": "ILDC_SC_2007_271",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2007_271?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_271_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0273",
+    "case_id": "ILDC_SC_2008_272",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2008_272?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_272_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0274",
+    "case_id": "ILDC_SC_2009_273",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2009_273?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_273_CHUNK_1",
+      "ILDC_SC_2009_273_CHUNK_2",
+      "ILDC_SC_2009_273_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0275",
+    "case_id": "ILDC_SC_2010_274",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2010_274?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_274_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0276",
+    "case_id": "ILDC_SC_2011_275",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2011_275?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_275_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0277",
+    "case_id": "ILDC_SC_2012_276",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2012_276?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_276_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0278",
+    "case_id": "ILDC_SC_2013_277",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2013_277?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_277_CHUNK_1",
+      "ILDC_SC_2013_277_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0279",
+    "case_id": "ILDC_SC_2014_278",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2014_278?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_278_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0280",
+    "case_id": "ILDC_SC_2015_279",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2015_279?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_279_CHUNK_1",
+      "ILDC_SC_2015_279_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0281",
+    "case_id": "ILDC_SC_2016_280",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2016_280?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_280_CHUNK_1",
+      "ILDC_SC_2016_280_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0282",
+    "case_id": "ILDC_SC_2017_281",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2017_281?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_281_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0283",
+    "case_id": "ILDC_SC_2018_282",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2018_282?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_282_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0284",
+    "case_id": "ILDC_SC_2019_283",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2019_283?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_283_CHUNK_1",
+      "ILDC_SC_2019_283_CHUNK_2",
+      "ILDC_SC_2019_283_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0285",
+    "case_id": "ILDC_SC_2020_284",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2020_284?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_284_CHUNK_1",
+      "ILDC_SC_2020_284_CHUNK_2",
+      "ILDC_SC_2020_284_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0286",
+    "case_id": "ILDC_SC_2021_285",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2021_285?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_285_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0287",
+    "case_id": "ILDC_SC_2022_286",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2022_286?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_286_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0288",
+    "case_id": "ILDC_SC_2023_287",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2023_287?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_287_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0289",
+    "case_id": "ILDC_SC_2000_288",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2000_288?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_288_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0290",
+    "case_id": "ILDC_SC_2001_289",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2001_289?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_289_CHUNK_1",
+      "ILDC_SC_2001_289_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0291",
+    "case_id": "ILDC_SC_2002_290",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2002_290?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_290_CHUNK_1",
+      "ILDC_SC_2002_290_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0292",
+    "case_id": "ILDC_SC_2003_291",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2003_291?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_291_CHUNK_1",
+      "ILDC_SC_2003_291_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0293",
+    "case_id": "ILDC_SC_2004_292",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2004_292?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_292_CHUNK_1",
+      "ILDC_SC_2004_292_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0294",
+    "case_id": "ILDC_SC_2005_293",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2005_293?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_293_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0295",
+    "case_id": "ILDC_SC_2006_294",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2006_294?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_294_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0296",
+    "case_id": "ILDC_SC_2007_295",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2007_295?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_295_CHUNK_1",
+      "ILDC_SC_2007_295_CHUNK_2",
+      "ILDC_SC_2007_295_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0297",
+    "case_id": "ILDC_SC_2008_296",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2008_296?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_296_CHUNK_1",
+      "ILDC_SC_2008_296_CHUNK_2",
+      "ILDC_SC_2008_296_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0298",
+    "case_id": "ILDC_SC_2009_297",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2009_297?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_297_CHUNK_1",
+      "ILDC_SC_2009_297_CHUNK_2",
+      "ILDC_SC_2009_297_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0299",
+    "case_id": "ILDC_SC_2010_298",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2010_298?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_298_CHUNK_1",
+      "ILDC_SC_2010_298_CHUNK_2",
+      "ILDC_SC_2010_298_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0300",
+    "case_id": "ILDC_SC_2011_299",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2011_299?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_299_CHUNK_1",
+      "ILDC_SC_2011_299_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0301",
+    "case_id": "ILDC_SC_2012_300",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2012_300?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_300_CHUNK_1",
+      "ILDC_SC_2012_300_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0302",
+    "case_id": "ILDC_SC_2013_301",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2013_301?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_301_CHUNK_1",
+      "ILDC_SC_2013_301_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0303",
+    "case_id": "ILDC_SC_2014_302",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2014_302?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_302_CHUNK_1",
+      "ILDC_SC_2014_302_CHUNK_2",
+      "ILDC_SC_2014_302_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0304",
+    "case_id": "ILDC_SC_2015_303",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2015_303?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_303_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0305",
+    "case_id": "ILDC_SC_2016_304",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2016_304?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_304_CHUNK_1",
+      "ILDC_SC_2016_304_CHUNK_2",
+      "ILDC_SC_2016_304_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0306",
+    "case_id": "ILDC_SC_2017_305",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2017_305?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_305_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0307",
+    "case_id": "ILDC_SC_2018_306",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2018_306?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_306_CHUNK_1",
+      "ILDC_SC_2018_306_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0308",
+    "case_id": "ILDC_SC_2019_307",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2019_307?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_307_CHUNK_1",
+      "ILDC_SC_2019_307_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0309",
+    "case_id": "ILDC_SC_2020_308",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2020_308?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_308_CHUNK_1",
+      "ILDC_SC_2020_308_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0310",
+    "case_id": "ILDC_SC_2021_309",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2021_309?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_309_CHUNK_1",
+      "ILDC_SC_2021_309_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0311",
+    "case_id": "ILDC_SC_2022_310",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2022_310?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_310_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0312",
+    "case_id": "ILDC_SC_2023_311",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2023_311?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_311_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0313",
+    "case_id": "ILDC_SC_2000_312",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2000_312?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_312_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0314",
+    "case_id": "ILDC_SC_2001_313",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2001_313?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_313_CHUNK_1",
+      "ILDC_SC_2001_313_CHUNK_2",
+      "ILDC_SC_2001_313_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0315",
+    "case_id": "ILDC_SC_2002_314",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2002_314?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_314_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0316",
+    "case_id": "ILDC_SC_2003_315",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2003_315?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_315_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0317",
+    "case_id": "ILDC_SC_2004_316",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2004_316?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_316_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0318",
+    "case_id": "ILDC_SC_2005_317",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2005_317?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_317_CHUNK_1",
+      "ILDC_SC_2005_317_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0319",
+    "case_id": "ILDC_SC_2006_318",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2006_318?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_318_CHUNK_1",
+      "ILDC_SC_2006_318_CHUNK_2",
+      "ILDC_SC_2006_318_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0320",
+    "case_id": "ILDC_SC_2007_319",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2007_319?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_319_CHUNK_1",
+      "ILDC_SC_2007_319_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0321",
+    "case_id": "ILDC_SC_2008_320",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2008_320?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_320_CHUNK_1",
+      "ILDC_SC_2008_320_CHUNK_2",
+      "ILDC_SC_2008_320_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0322",
+    "case_id": "ILDC_SC_2009_321",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2009_321?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_321_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0323",
+    "case_id": "ILDC_SC_2010_322",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2010_322?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_322_CHUNK_1",
+      "ILDC_SC_2010_322_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0324",
+    "case_id": "ILDC_SC_2011_323",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2011_323?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_323_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0325",
+    "case_id": "ILDC_SC_2012_324",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2012_324?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_324_CHUNK_1",
+      "ILDC_SC_2012_324_CHUNK_2",
+      "ILDC_SC_2012_324_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0326",
+    "case_id": "ILDC_SC_2013_325",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2013_325?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_325_CHUNK_1",
+      "ILDC_SC_2013_325_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0327",
+    "case_id": "ILDC_SC_2014_326",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2014_326?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2014_326_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0328",
+    "case_id": "ILDC_SC_2015_327",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2015_327?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2015_327_CHUNK_1",
+      "ILDC_SC_2015_327_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0329",
+    "case_id": "ILDC_SC_2016_328",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2016_328?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2016_328_CHUNK_1",
+      "ILDC_SC_2016_328_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0330",
+    "case_id": "ILDC_SC_2017_329",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2017_329?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2017_329_CHUNK_1",
+      "ILDC_SC_2017_329_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0331",
+    "case_id": "ILDC_SC_2018_330",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2018_330?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2018_330_CHUNK_1",
+      "ILDC_SC_2018_330_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0332",
+    "case_id": "ILDC_SC_2019_331",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2019_331?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2019_331_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0333",
+    "case_id": "ILDC_SC_2020_332",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2020_332?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2020_332_CHUNK_1",
+      "ILDC_SC_2020_332_CHUNK_2",
+      "ILDC_SC_2020_332_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0334",
+    "case_id": "ILDC_SC_2021_333",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2021_333?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2021_333_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0335",
+    "case_id": "ILDC_SC_2022_334",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2022_334?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2022_334_CHUNK_1",
+      "ILDC_SC_2022_334_CHUNK_2",
+      "ILDC_SC_2022_334_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0336",
+    "case_id": "ILDC_SC_2023_335",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2023_335?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2023_335_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0337",
+    "case_id": "ILDC_SC_2000_336",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2000_336?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2000_336_CHUNK_1",
+      "ILDC_SC_2000_336_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0338",
+    "case_id": "ILDC_SC_2001_337",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2001_337?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2001_337_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0339",
+    "case_id": "ILDC_SC_2002_338",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2002_338?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2002_338_CHUNK_1",
+      "ILDC_SC_2002_338_CHUNK_2",
+      "ILDC_SC_2002_338_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0340",
+    "case_id": "ILDC_SC_2003_339",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2003_339?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2003_339_CHUNK_1",
+      "ILDC_SC_2003_339_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0341",
+    "case_id": "ILDC_SC_2004_340",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2004_340?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2004_340_CHUNK_1"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0342",
+    "case_id": "ILDC_SC_2005_341",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2005_341?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2005_341_CHUNK_1",
+      "ILDC_SC_2005_341_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0343",
+    "case_id": "ILDC_SC_2006_342",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2006_342?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2006_342_CHUNK_1",
+      "ILDC_SC_2006_342_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0344",
+    "case_id": "ILDC_SC_2007_343",
+    "category": "Constitutional",
+    "query_text": "What are the statutory precedents and evidentiary requirements for constitutional appeal in ILDC_SC_2007_343?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2007_343_CHUNK_1",
+      "ILDC_SC_2007_343_CHUNK_2"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0345",
+    "case_id": "ILDC_SC_2008_344",
+    "category": "Criminal",
+    "query_text": "What are the statutory precedents and evidentiary requirements for criminal appeal in ILDC_SC_2008_344?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2008_344_CHUNK_1",
+      "ILDC_SC_2008_344_CHUNK_2",
+      "ILDC_SC_2008_344_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0346",
+    "case_id": "ILDC_SC_2009_345",
+    "category": "Taxation",
+    "query_text": "What are the statutory precedents and evidentiary requirements for taxation appeal in ILDC_SC_2009_345?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2009_345_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0347",
+    "case_id": "ILDC_SC_2010_346",
+    "category": "Administrative",
+    "query_text": "What are the statutory precedents and evidentiary requirements for administrative appeal in ILDC_SC_2010_346?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2010_346_CHUNK_1",
+      "ILDC_SC_2010_346_CHUNK_2",
+      "ILDC_SC_2010_346_CHUNK_3"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0348",
+    "case_id": "ILDC_SC_2011_347",
+    "category": "Civil",
+    "query_text": "What are the statutory precedents and evidentiary requirements for civil appeal in ILDC_SC_2011_347?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2011_347_CHUNK_1",
+      "ILDC_SC_2011_347_CHUNK_2",
+      "ILDC_SC_2011_347_CHUNK_3"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0349",
+    "case_id": "ILDC_SC_2012_348",
+    "category": "Labour",
+    "query_text": "What are the statutory precedents and evidentiary requirements for labour appeal in ILDC_SC_2012_348?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2012_348_CHUNK_1",
+      "ILDC_SC_2012_348_CHUNK_2"
+    ],
+    "ground_truth_verdict": "ALLOWED",
+    "ablation_label": "PARTIAL_REDACTED",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  },
+  {
+    "sample_id": "VADP_BENCH_0350",
+    "case_id": "ILDC_SC_2013_349",
+    "category": "Consumer",
+    "query_text": "What are the statutory precedents and evidentiary requirements for consumer appeal in ILDC_SC_2013_349?",
+    "relevant_chunk_ids": [
+      "ILDC_SC_2013_349_CHUNK_1"
+    ],
+    "ground_truth_verdict": "DISMISSED",
+    "ablation_label": "FULL_VERIFICATION",
+    "permitted_roles": [
+      "judge",
+      "admin",
+      "lawyer"
+    ]
+  }
+]

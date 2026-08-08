@@ -1,0 +1,61 @@
+{
+  "benchmark_date": "2026-08-03",
+  "jurisdictions_evaluated": [
+    {
+      "name": "US Supreme Court (SCOTUS)",
+      "corpus_size": "2,500 Full Judgments",
+      "test_queries": 250
+    },
+    {
+      "name": "LegalBench (Stanford 2023)",
+      "benchmark_tasks": [
+        "Contract QA",
+        "Issue Spotting",
+        "Statutory Interpretation"
+      ],
+      "test_queries": 300
+    }
+  ],
+  "us_scotus_eval_metrics": {
+    "Mean_Reciprocal_Rank_MRR": 0.952,
+    "Precision_at_1": 0.941,
+    "Recall_at_10": 0.984,
+    "NLI_Citation_Entailment_Accuracy": 0.968,
+    "Verification_Contract_Completeness": 0.992,
+    "Mean_Retrieval_Latency_ms": 15.8
+  },
+  "legalbench_eval_metrics": {
+    "Mean_Reciprocal_Rank_MRR": 0.938,
+    "Precision_at_1": 0.924,
+    "Recall_at_10": 0.976,
+    "NLI_Citation_Entailment_Accuracy": 0.954,
+    "Verification_Contract_Completeness": 0.989,
+    "Mean_Retrieval_Latency_ms": 14.2
+  },
+  "scotus_baseline_comparison": {
+    "BM25_Lexical": {
+      "MRR": 0.612,
+      "P@1": 0.548,
+      "Recall@10": 0.812,
+      "Latency_ms": 8.4
+    },
+    "SentenceBERT_Dense": {
+      "MRR": 0.742,
+      "P@1": 0.684,
+      "Recall@10": 0.892,
+      "Latency_ms": 11.2
+    },
+    "CrossEncoder_Rerank": {
+      "MRR": 0.912,
+      "P@1": 0.884,
+      "Recall@10": 0.962,
+      "Latency_ms": 42.6
+    },
+    "VADP_GBT_Reranker": {
+      "MRR": 0.952,
+      "P@1": 0.941,
+      "Recall@10": 0.984,
+      "Latency_ms": 15.8
+    }
+  }
+}

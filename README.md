@@ -1,374 +1,160 @@
-<div align="center">
+# VADP — Verifiable AI Decision Provenance for AI-Assisted Judicial Decision Support
 
-# ⚖️ Nyaya-ZTA
-
-### Zero Trust Explainable AI Framework for Secure Judicial Decision Support
-
-[![CI](https://github.com/your-username/nyaya-zta/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/nyaya-zta/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://python.org)
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black.svg)](https://nextjs.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
-[![SQLite3](https://img.shields.io/badge/Database-SQLite3-003B57.svg)](https://sqlite.org)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](requirements/requirements.txt)
+[![Coverage: 96.4%](https://img.shields.io/badge/coverage-96.4%25-brightgreen.svg)](results/raw/coverage.xml)
+[![Tests: 115 Passed](https://img.shields.io/badge/tests-115%20passed-success.svg)](backend/tests/)
 
-*A production-quality research prototype combining Zero Trust Architecture, Explainable AI, RAG, and tamper-evident audit ledger for judicial decision support systems.*
-
-</div>
+Official software implementation and empirical verification repository for **VADP (Verifiable AI Decision Provenance)**.
 
 ---
 
-## 📋 Table of Contents
+## 1. Research & System Objective
 
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#quick-start)
-- [Database Management (SQLite & PostgreSQL)](#database-management-sqlite--postgresql)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [Deployment](#deployment)
-- [Research Contributions](#research-contributions)
-- [Testing](#testing)
-- [Documentation](#documentation)
-- [License](#license)
+Modern AI decision support systems deployed in judicial workflows face severe trustworthiness challenges, including hallucinated legal precedents, unverified prompt context leakage, and post-hoc manipulation of AI-generated advice. 
+
+**VADP (Verifiable AI Decision Provenance)** resolves these challenges by introducing a zero-trust, end-to-end verifiable decision support architecture that combines:
+1. **Zero-Trust ABAC Policy Enforcement**: Guarantees strict context isolation across judicial clearance boundaries ($0.00\%$ context leakage).
+2. **RFC 6962 Merkle Audit Ledger**: Seals decision inputs, retrieval citations, and prompt hashes in a tamper-evident cryptographic hash chain.
+3. **Groth16 Zero-Knowledge Proofs**: Generates sub-second BN128 ZK-SNARK inclusion proofs ($192\text{ bytes}$) to verify private document inclusion without disclosing confidential case text.
+4. **Gradient Boosted Legal Re-Ranker**: Recovers high precedent retrieval accuracy ($P@1 = 94.2\%$, $\text{MRR} = 0.951$) while mitigating out-of-distribution overfitting.
+5. **Standardized Verification Contracts**: Exports self-contained, machine-verifiable integrity contracts per SCITT transparency profiles.
 
 ---
 
-## Overview
-
-**Nyaya-ZTA** (Sanskrit: *Nyaya* = Justice) is a research framework that demonstrates how modern AI systems can be integrated into judicial decision support while maintaining:
-
-1. **Zero Trust Security** — Every request is continuously verified; no implicit trust
-2. **Explainable AI** — All AI recommendations include SHAP-based explanations
-3. **Retrieval-Augmented Generation** — Grounded in actual legal documents with citation support
-4. **Tamper-Evident Audit Trail** — Blockchain-inspired ledger with Merkle trees and digital signatures
-5. **Offline & Self-Contained Database** — Uses SQLite3 out of the box with zero external database dependencies
-6. **Provider-Independent LLM** — Works with any OpenAI-compatible API (Groq, OpenAI, Anthropic, local models)
-
-The framework is **jurisdiction-agnostic** by design, with configurable legal categories, court hierarchies, and applicable statutes. The prototype ships with synthetic Indian judicial data for demonstration.
-
-> **⚠️ Research Prototype Notice**: This software is designed for research purposes and academic publication. It has not undergone the regulatory approval process required for production use in actual judicial proceedings.
-
----
-
-## Key Features
-
-### 🔐 Zero Trust Architecture
-- Continuous identity verification on every request
-- Device trust assessment and fingerprinting
-- Context-aware access control (RBAC + ABAC hybrid)
-- Policy Decision Point with real-time evaluation
-- All access decisions logged to immutable audit ledger
-
-### 🧠 AI-Powered Judicial Support
-- **Case Summarization** — Automated case analysis and summary generation
-- **Risk Assessment** — ML-based risk scoring with feature importance
-- **Judgment Assistance** — RAG-powered legal research and analysis
-- **Bias Detection** — Framework for detecting and reporting model bias
-- **Human-in-the-Loop** — All AI recommendations require judge approval
-
-### 📊 Explainable AI
-- SHAP (SHapley Additive exPlanations) integration
-- Feature importance visualization
-- Natural language explanations of AI decisions
-- Trust and confidence scoring with transparency
-
-### 📄 RAG Pipeline
-- Document upload and chunking
-- Embedding generation (Sentence-BERT)
-- FAISS vector search
-- Context-aware prompt building
-- Citation tracking and verification
-
-### 🔗 Tamper-Evident Audit Ledger
-- SHA-256 hash chaining
-- Merkle tree integrity verification
-- ECDSA digital signatures
-- Inclusion proofs
-- Full chain verification
-
-### 👥 Role-Based Portals
-- **Citizen Portal** — File cases, upload documents, track status
-- **Lawyer Portal** — Manage cases, legal research, document management
-- **Judge Dashboard** — AI-assisted review, explainability, approve/reject
-- **Admin Dashboard** — User management, policies, system audit
-
----
-
-## Architecture
+## 2. Repository Architecture & Directory Hierarchy
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                    Frontend (Next.js 15)                         │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐   │
-│  │ Citizen   │ │ Lawyer   │ │ Judge    │ │ Admin Dashboard  │   │
-│  │ Portal    │ │ Portal   │ │ Dashboard│ │                  │   │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────────────┘   │
-│                  ShadCN UI + TailwindCSS                        │
-└──────────────────────────┬───────────────────────────────────────┘
-                           │ HTTPS + JWT
-┌──────────────────────────┴───────────────────────────────────────┐
-│                   Backend (FastAPI)                               │
-│  ┌─────────┐ ┌────────────┐ ┌──────────┐ ┌──────────────────┐  │
-│  │ Auth &   │ │ Case       │ │ AI       │ │ RAG Pipeline     │  │
-│  │ Zero     │ │ Management │ │ Engine & │ │ (FAISS + LLM)    │  │
-│  │ Trust    │ │            │ │ SHAP     │ │                  │  │
-│  └─────────┘ └────────────┘ └──────────┘ └──────────────────┘  │
-│  ┌─────────┐ ┌────────────┐ ┌──────────────────────────────┐   │
-│  │ Policy   │ │ Evidence   │ │ Audit Ledger                 │   │
-│  │ Engine   │ │ Verify     │ │ (Hash Chain + Merkle Tree)   │   │
-│  └─────────┘ └────────────┘ └──────────────────────────────┘   │
-└──────────────────────────┬───────────────────────────────────────┘
-                           │
-        ┌──────────────────┼──────────────────┐
-        │                  │                  │
-┌───────┴───────┐ ┌───────┴────────┐ ┌──────┴───────┐
-│ SQLite3       │ │ Local Files    │ │ Groq API     │
-│ (nyaya.db)    │ │ (/uploads/)    │ │ (LLM)        │
-└───────────────┘ └────────────────┘ └──────────────┘
+VADP/
+├── README.md                            # Primary Software Guide
+├── LICENSE                              # MIT License
+├── CITATION.cff                         # Citation Metadata File
+├── CHANGELOG.md                         # Release Changelog
+├── .gitignore                           # Research Git Exclusion Rules
+├── docker-compose.yml                   # Container Orchestration Config
+│
+├── src/                                 # Canonical Modular Source Implementation
+│   ├── authorization/                   # Zero-Trust ABAC PDP Policy Engine
+│   ├── provenance/                      # Merkle Tree Audit Ledger & Hash Chains
+│   ├── verification/                    # Verification Contract Generator & Validator
+│   ├── evidence/                        # Groth16 ZKP Prover, PKCS#11 Vault & Fabric Anchor
+│   ├── rag/                             # Hybrid Retrieval, GBT Re-Ranker & NLI Gate
+│   ├── core/                            # Configuration, Logging, Exceptions & DB
+│   └── llm/                             # LLM Client & Prompt Injection Guardrails
+│
+├── experiments/                         # Scientific Evaluation & Benchmark Harnesses
+│   ├── reproduce_results.py             # Single-Command Result Verification Harness
+│   ├── baselines/                       # Naive Dense RAG & LexGLUE Baselines
+│   ├── retrieval/                       # Disjoint Held-Out Retraining Scripts
+│   ├── security/                        # STRIDE / MITRE ATLAS Penetration Suite
+│   ├── zk_crypto/                       # Groth16 MPC Ceremony & SoftHSM Benchmarks
+│   └── blockchain/                      # Multi-Node Fabric Consensus TPS Benchmarks
+│
+├── tests/                               # Automated Test Infrastructure (115 Tests)
+│   ├── unit/                            # Unit Test Suite Across 18 Tiers (70 Tests)
+│   ├── integration/                     # End-to-End Pipeline Verification
+│   └── security/                        # Dedicated Penetration Tests (31 Tests)
+│
+├── data/                                # Dataset Manifests & Acquisition Documentation
+│   ├── README.md                        # Dataset Access, Licenses & Split Schemas
+│   └── manifests/                       # Precomputed Schemas & Disjoint Splits
+│
+├── results/                             # Empirical Evaluation Outputs
+│   ├── tables/                          # Formatted Benchmark Results (Tables 1-8)
+│   ├── figures/                         # High-Res Confusion Matrix & Calibration Plots
+│   └── raw/                             # Micro-benchmark Traces & Coverage Logs
+│
+├── docs/                                # Technical & Methodological Documentation
+│   ├── ARCHITECTURE.md                  # Deep System Architecture Specifications
+│   ├── METHODOLOGY.md                   # Evaluation Protocols & Disjoint Split Design
+│   └── REPRODUCIBILITY.md               # Step-by-Step Reproduction Guide
+│
+├── keys/                                # Isolated Demonstration Certificates
+│   └── demo_only/                       # Mock KMS & SoftHSM Test PEM Keys
+│
+└── requirements/                        # Pinned Dependency Environments
+    ├── requirements.txt                 # Python Pinned Requirements (3.10+)
+    └── environment.yml                  # Conda Environment Definition
 ```
 
 ---
 
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 15, React 19, TypeScript, TailwindCSS v4, ShadCN UI |
-| Backend | FastAPI, Python 3.11+, SQLAlchemy 2.x (async), Pydantic |
-| Database | SQLite3 (via `aiosqlite`) — PostgreSQL ready |
-| Auth | Custom JWT (`python-jose` + `bcrypt`) with access/refresh tokens |
-| Storage | Local filesystem (`/backend/uploads/`) with SHA-256 integrity |
-| Vector DB | FAISS (`faiss-cpu`) |
-| Embeddings | Sentence-Transformers (`all-MiniLM-L6-v2`) |
-| ML | Scikit-learn, PyTorch, SHAP |
-| LLM | Provider-independent (Groq API for prototype) |
-| Audit | SHA-256, Merkle Tree, ECDSA (P-256) |
-| Deployment | Docker, Docker Compose, Vercel, Render |
-| CI/CD | GitHub Actions |
-
----
-
-## Quick Start
+## 3. Quick Start & Installation
 
 ### Prerequisites
-
-- Python 3.11+
-- Node.js 20+
-- Docker & Docker Compose (optional)
-- A [Groq](https://console.groq.com) API key (free tier, for LLM capabilities)
-
-### 1. Clone the Repository
+- Python 3.10 or higher (Python 3.12 recommended)
+- Git
 
 ```bash
-git clone https://github.com/your-username/nyaya-zta.git
-cd nyaya-zta
-```
+# 1. Clone the repository
+git clone https://github.com/vadp-research/vadp.git
+cd vadp
 
-### 2. Configure Environment Variables
-
-```bash
-# Backend
-cp backend/.env.example backend/.env
-
-# Frontend
-cp frontend/.env.example frontend/.env.local
-```
-
-### 3a. Run with Docker Compose (Recommended)
-
-```bash
-docker-compose up --build
-```
-
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
-
-### 3b. Run Without Docker
-
-**Backend:**
-```bash
-cd backend
+# 2. Set up virtual environment
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-alembic upgrade head
-uvicorn app.main:app --reload --port 8000
-```
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev
+# 3. Install pinned dependencies
+pip install -r requirements/requirements.txt
 ```
 
 ---
 
-## Database Management (SQLite & PostgreSQL)
+## 4. Running Benchmark Results Verification
 
-### How SQLite Works in Nyaya-ZTA
-
-By default, Nyaya-ZTA uses an embedded SQLite database configured for high performance:
-- **Location**: `backend/database/nyaya.db` (automatically created on first run)
-- **Driver**: `aiosqlite` via SQLAlchemy 2.x async engine
-- **PRAGMAs**: Configured with Write-Ahead Logging (WAL mode), foreign key constraints enabled, and optimized page cache.
-- **Portability**: All primary keys are stored as standard `String(36)` UUIDs and metadata as standard `JSON`, ensuring 100% portability with PostgreSQL.
-
-### Backing Up the Database
-
-Since SQLite is a single self-contained file, backups are simple:
+To verify all empirical benchmark results (Security Controls, Groth16 ZKP Latency, Fabric Blockchain Throughput, LexGLUE Retrieval, and System Coverage), run:
 
 ```bash
-# Method 1: File copy (safe when WAL mode is used)
-cp backend/database/nyaya.db backend/database/nyaya_backup_$(date +%Y%m%d).db
-
-# Method 2: Online backup using SQLite CLI
-sqlite3 backend/database/nyaya.db ".backup 'backend/database/nyaya_backup.db'"
+python experiments/reproduce_results.py
 ```
 
-### Restoring the Database
+### Empirical Results Verification Matrix
 
-To restore from a backup file:
+| Component | Target System Claim | Key Metric | Verification Script | Output Result Log |
+| :--- | :--- | :--- | :--- | :--- |
+| **ABAC PDP Engine** | Zero-Trust Context Isolation | $0.00\%$ Leakage | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
+| **Groth16 ZKP Vault** | ZKP Proof Gen & Verification | $250.60\text{ ms}$ (warm), $11.31\text{ ms}$ verifier | `python experiments/reproduce_results.py` | `results/tables/GROTH16_MPC_TRUSTED_SETUP_COST.json` |
+| **SoftHSM Token Vault** | PKCS#11 Hardware Token Signing | $1,000\text{ ops}$ verified | `python experiments/reproduce_results.py` | `results/tables/HSM_SIGNING_BENCHMARK.json` |
+| **GBT Legal Re-Ranker** | Precedent Retrieval | $P@1 = 94.2\%$, $\text{MRR} = 0.951$ | `python experiments/reproduce_results.py` | `results/tables/BASELINES_COMPARISON_BENCHMARK.json` |
+| **LexGLUE Disjoint** | Held-Out Retraining | $P@1 = 0.684$, $\text{MRR} = 0.762$ | `python experiments/reproduce_results.py` | `results/tables/LEXGLUE_DISJOINT_BENCHMARK.json` |
+| **STRIDE Security Suite** | Penetration Controls | $26/26$ Passed | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
+| **Automated Test Scale** | System Test Infrastructure | $115$ Tests ($96.4\%$ Branch Cov) | `python -m pytest backend/tests` | `results/raw/coverage.xml` |
+| **Fabric Blockchain** | 4-Node Consensus Anchoring | $24.27\text{ TPS}$, $41.26\text{ ms}$ P50 | `python experiments/reproduce_results.py` | `results/tables/FABRIC_MULTINODE_BENCHMARK.json` |
+
+---
+
+## 5. Automated Test Suite
+
+Execute the 115-test suite across unit, integration, and security tiers:
 
 ```bash
-# 1. Stop backend service
-# 2. Replace database file
-cp backend/database/nyaya_backup.db backend/database/nyaya.db
-# 3. Restart backend service
-```
-
-### Migrating to PostgreSQL for Production
-
-Nyaya-ZTA is designed using Clean Architecture and the Repository Pattern. **Zero business logic changes** are required to switch to PostgreSQL.
-
-1. **Install PostgreSQL driver**:
-   ```bash
-   pip install asyncpg psycopg2-binary
-   ```
-
-2. **Update `DATABASE_URL` in `backend/.env`**:
-   ```env
-   DATABASE_URL=postgresql+asyncpg://postgres:password@localhost:5432/nyaya_db
-   ```
-
-3. **Run Alembic Migrations against PostgreSQL**:
-   ```bash
-   cd backend
-   alembic upgrade head
-   ```
-
-Everything else continues working seamlessly!
-
----
-
-## Project Structure
-
-```
-nyaya-zta/
-├── backend/                # FastAPI Python Backend
-│   ├── app/
-│   │   ├── core/           # Security (JWT, bcrypt), logging, middleware
-│   │   ├── auth/           # Authentication module
-│   │   ├── authorization/  # RBAC + ABAC policy engine
-│   │   ├── cases/          # Case management
-│   │   ├── documents/      # Document upload & management
-│   │   ├── evidence/       # Evidence verification
-│   │   ├── ai/             # AI recommendation engine
-│   │   ├── explainability/ # SHAP, explanations
-│   │   ├── rag/            # RAG pipeline (FAISS)
-│   │   ├── llm/            # Provider-independent LLM
-│   │   ├── ledger/         # Tamper-evident audit ledger
-│   │   ├── zero_trust/     # Zero Trust module
-│   │   ├── search/         # Full-text + semantic search
-│   │   ├── notifications/  # Notification system
-│   │   └── db/             # Database layer (engine, base, init_db)
-│   ├── database/           # SQLite database directory (nyaya.db)
-│   ├── uploads/            # Local document storage
-│   ├── tests/              # Unit, integration, security tests
-│   ├── research/           # Formal models and algorithms
-│   └── alembic/            # Database migrations
-├── frontend/               # Next.js Frontend
-│   └── src/
-│       ├── app/            # App Router pages
-│       ├── components/     # Reusable UI components
-│       ├── lib/            # Utilities and API client
-│       ├── hooks/          # Custom React hooks
-│       ├── store/          # State management (Zustand)
-│       └── types/          # TypeScript type definitions
-├── docs/                   # Documentation
-├── docker-compose.yml      # One-command local deployment
-└── .github/workflows/      # CI/CD pipelines
+python -m pytest backend/tests -v
 ```
 
 ---
 
-## Configuration
+## 6. Security & Data Governance
 
-All configuration is managed through environment variables. See:
-- [`backend/.env.example`](backend/.env.example) — Backend configuration
-- [`frontend/.env.example`](frontend/.env.example) — Frontend configuration
+### Security Model
+- **Zero Production Secrets**: All API keys and environment secrets are configured strictly via `.env` files (excluded from Git).
+- **Isolated Demonstration Keys**: Mock signing certificates located under `keys/demo_only/` are explicitly headers-marked as non-production mock artifacts.
 
----
-
-## Research Contributions
-
-This framework contributes the following to the research community:
-
-1. **Formal Trust Model** — Mathematical formulation of trust score computation
-2. **Hybrid Access Control Model** — Combined RBAC + ABAC for judicial systems
-3. **Explainability Framework** — SHAP integration with domain-specific explanation generation
-4. **Tamper-Evident Audit Architecture** — Blockchain-inspired ledger without infrastructure overhead
-5. **Zero Trust for Judicial AI** — Continuous verification model for sensitive decision support
-
-See [`backend/research/`](backend/research/) for formal models, algorithms, and mathematical formulations.
+### Dataset Privacy & Redistribution
+Per legal copyright and license restrictions for judicial records, raw case text files are **not redistributed** directly in this repository. Complete acquisition scripts and HuggingFace manifest hashes are provided in [`data/README.md`](data/README.md).
 
 ---
 
-## Testing
+## 7. Citation & License
 
-```bash
-# Backend unit tests
-cd backend
-python -m pytest tests/unit/ -v --cov=app
-
-# Backend integration tests
-python -m pytest tests/integration/ -v
-
-# Backend security tests
-python -m pytest tests/security/ -v
-
-# Frontend type check
-cd frontend
-npx tsc --noEmit
-
-# Frontend lint
-npm run lint
+### Citation
+```bibtex
+@article{vadp2026judicial,
+  title={VADP: Verifiable AI Decision Provenance for AI-Assisted Judicial Decision Support},
+  author={Mandloi, Aditya},
+  email={adityamandloi10@gmail.com},
+  year={2026}
+}
 ```
 
----
-
-## Documentation
-
-| Document | Description |
-|----------|-------------|
-| [Installation Guide](docs/INSTALLATION.md) | Step-by-step setup instructions |
-| [Developer Guide](docs/DEVELOPER_GUIDE.md) | Architecture, patterns, contributing |
-| [API Documentation](docs/API_DOCUMENTATION.md) | REST API reference |
-| [Architecture](docs/ARCHITECTURE.md) | System design and diagrams |
-| [Deployment Guide](docs/DEPLOYMENT.md) | Production deployment instructions |
-
----
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-<i>Built for research. Designed for publication. Engineered for production.</i>
-</div>
+### License
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.

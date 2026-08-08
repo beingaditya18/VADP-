@@ -1,0 +1,12 @@
+{
+  "status": "IN_PROGRESS",
+  "processed_queries": 420,
+  "total_queries": 1500,
+  "progress_percent": 28.0,
+  "metrics": {
+    "Precision@1": 0.6405,
+    "MRR": 0.8202,
+    "NDCG@5": 0.8501,
+    "Mean_Latency_ms": 2715.58
+  }
+}

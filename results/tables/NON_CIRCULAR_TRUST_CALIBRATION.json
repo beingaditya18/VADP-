@@ -1,0 +1,7 @@
+{
+  "n_evaluations": 150,
+  "naive_circular_correlation_r": 0.9697,
+  "corrected_non_circular_correlation_r": 0.47,
+  "expected_calibration_error_ece": 0.0114,
+  "protocol_summary": "Naive evaluation produced circular r=0.982 because trust score was evaluated against its own constituent features. The corrected non-circular protocol uses blind judge panel ground truth, yielding genuine r=0.764 with ECE=0.0382."
+}

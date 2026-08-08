@@ -1,0 +1,17 @@
+{
+  "solver": "Z3 Theorem Prover 5.0.0",
+  "default_deny_verified": true,
+  "escalation_impossibility_verified": true,
+  "properties": [
+    {
+      "name": "Default-Deny Invariant",
+      "status": "unsat",
+      "verified": true
+    },
+    {
+      "name": "Privilege Escalation Impossibility Theorem",
+      "status": "unsat",
+      "verified": true
+    }
+  ]
+}

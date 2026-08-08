@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Auth Custom Hook
+﻿/**
+ * VADP — Auth Custom Hook
  *
  * Provides authentication actions (login, register, logout) and state.
  */

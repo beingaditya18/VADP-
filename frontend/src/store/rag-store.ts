@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — RAG Zustand Store
+﻿/**
+ * VADP — RAG Zustand Store
  *
  * Client-side state management for active RAG research chat messages and citations.
  */

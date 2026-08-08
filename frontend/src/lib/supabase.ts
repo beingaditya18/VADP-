@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Supabase Client
+﻿/**
+ * VADP — Supabase Client
  *
  * Provides Supabase client instances for both browser and server contexts.
  * Uses @supabase/ssr for proper cookie-based session management.
@@ -28,7 +28,7 @@ const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 export function createBrowserClient() {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     console.warn(
-      "[Nyaya-ZTA] Supabase URL or anon key not configured. " +
+      "[VADP] Supabase URL or anon key not configured. " +
         "Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local"
     );
   }

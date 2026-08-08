@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — AI & Explainability Types
+﻿/**
+ * VADP — AI & Explainability Types
  *
  * Type definitions for AI recommendations, SHAP explanations,
  * trust scores, and risk assessments.
@@ -108,4 +108,9 @@ export interface CaseAnalysisResponse {
   recommendation: AIRecommendation;
   trust_breakdown: TrustScoreBreakdown;
   risk_assessment: RiskAssessment;
+  verification_contract?: import("./vadp").VerificationContract | null;
 }
+
+// VADP type aliases for cross-module compatibility
+export type SHAPValue = SHAPExplanation;
+export type TrustBreakdown = TrustScoreBreakdown;

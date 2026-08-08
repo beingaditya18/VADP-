@@ -1,0 +1,96 @@
+﻿# ============================================================
+# VADP — Playwright End-to-End (E2E) Test Suite Workflow
+# ============================================================
+# Automatically boots backend and frontend servers, executes Playwright E2E tests,
+# and uploads HTML test reports & video/screenshot artifacts on failure.
+# ============================================================
+
+name: Playwright E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run nightly at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.11"
+  NODE_VERSION: "20"
+  ENVIRONMENT: testing
+  DATABASE_URL: sqlite+aiosqlite:///e2e_test.db
+  SUPABASE_URL: https://test.supabase.co
+  SUPABASE_ANON_KEY: test-anon-key
+  SUPABASE_SERVICE_ROLE_KEY: test-service-key
+  SUPABASE_JWT_SECRET: test-jwt-secret-at-least-32-characters-long-for-testing
+  LLM_API_KEY: test-llm-key
+  SECRETS_PROVIDER: env
+  NEXT_PUBLIC_SUPABASE_URL: https://test.supabase.co
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: test-anon-key
+  NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+  PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+
+jobs:
+  e2e-tests:
+    name: Run Playwright E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install uvicorn pytest aiosqlite
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Install Playwright Browsers with Dependencies
+        run: |
+          cd frontend
+          npx playwright install --with-deps chromium firefox
+
+      - name: Build Frontend for E2E
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Run E2E Tests
+        run: |
+          cd frontend
+          npm run test:e2e
+
+      - name: Upload Playwright Test Report Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: frontend/playwright-report/
+          retention-days: 14

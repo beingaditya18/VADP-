@@ -1,8 +1,8 @@
-"""
+﻿"""
 Alembic Migration Environment
 ==============================
 
-Configures Alembic to use async SQLAlchemy with the Nyaya-ZTA database.
+Configures Alembic to use async SQLAlchemy with the VADP database.
 The database URL is loaded from application settings (environment variables),
 NOT from alembic.ini — this ensures a single source of truth.
 

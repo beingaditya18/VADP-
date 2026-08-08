@@ -251,6 +251,7 @@ def upgrade() -> None:
         sa.Column("id", sa.String(36), primary_key=True),
         sa.Column("block_index", sa.BigInteger(), nullable=False, unique=True),
         sa.Column("timestamp", sa.DateTime(timezone=True), nullable=False),
+        sa.Column("timestamp_iso", sa.String(64), nullable=True),
         sa.Column("previous_hash", sa.String(128), nullable=False),
         sa.Column("data_hash", sa.String(128), nullable=False),
         sa.Column("merkle_root", sa.String(128), nullable=True),

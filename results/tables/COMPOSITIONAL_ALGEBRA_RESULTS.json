@@ -1,0 +1,52 @@
+{
+  "composed_contract_id": "COMPOSITE_VC_TRIAL_DISTRICT_COURT_2025_001_VC_DELTA_HIGH_COURT_2026_092",
+  "trial_contract_id": "VC_TRIAL_DISTRICT_COURT_2025_001",
+  "appellate_delta_id": "VC_DELTA_HIGH_COURT_2026_092",
+  "composition_operator": "(C_trial (x) Delta C_appeal)",
+  "composed_contract_hash": "7dbe73cd9a6f195344cbb6e1935b610401748ed0ad5f76f74c33fc7d5b5e91d1",
+  "composed_merkle_root": "676f82baea7ef99d7d34d7f44244f2b455538070cc97aae073bc4d02522501d3",
+  "theorem_3_invariant_preserved": true,
+  "composed_fields": {
+    "id": "COMPOSITE_VC_TRIAL_DISTRICT_COURT_2025_001_VC_DELTA_HIGH_COURT_2026_092",
+    "contract_version": "1.0.0-COMPOSITE",
+    "case_id": "CAS-2025-CIV-8819",
+    "stage": "HIGH_COURT_APPEAL",
+    "authorization": {
+      "trial_decision_id": "DEC_TR_01",
+      "appellate_decision_id": "DEC_APP_02",
+      "result": "allow",
+      "evaluated_roles": [
+        "judge_trial",
+        "judge_appellate"
+      ],
+      "scope_elevation": "HIGH_COURT_APPELLATE_REVIEW"
+    },
+    "evidence_provenance": [
+      {
+        "evidence_id": "EV_TR_01",
+        "integrity_hash": "a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0"
+      },
+      {
+        "evidence_id": "EV_APP_02",
+        "integrity_hash": "f9e8d7c6b5a43210987654321fedcba0987654321fedcba0987654321fedcba0"
+      }
+    ],
+    "rag_provenance": [
+      {
+        "chunk_id": "CHK_01",
+        "snippet": "Section 9 Civil Procedure Code Jurisdiction"
+      },
+      {
+        "chunk_id": "CHK_09",
+        "snippet": "Supreme Court Precedent on Appellate Laches 2024"
+      }
+    ],
+    "trust_score": 0.885,
+    "human_review_status": "APPROVED_BY_HIGH_COURT_BENCH"
+  },
+  "composition_provenance_chain": [
+    "TRIAL_STAGE:VC_TRIAL_DISTRICT_COURT_2025_001:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "APPELLATE_DELTA:VC_DELTA_HIGH_COURT_2026_092:acf4a715c510de8406a6b73467faf58e4c27fcbcd9660d96cae065526e22a694",
+    "COMPOSED_ROOT:676f82baea7ef99d7d34d7f44244f2b455538070cc97aae073bc4d02522501d3"
+  ]
+}

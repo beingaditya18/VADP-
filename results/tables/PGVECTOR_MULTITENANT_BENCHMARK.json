@@ -1,0 +1,53 @@
+{
+  "benchmark_name": "PostgreSQL / pgvector Multi-Tenant Multi-Node Scale Benchmark",
+  "evaluated_at_iso": "2026-08-07T10:04:03Z",
+  "database_engine": "PostgreSQL 16.2 + pgvector 0.6.0",
+  "total_tenants_evaluated": 50,
+  "scope_boundary_note": "Single-instance scaling and isolation were empirically validated (10 to 250 concurrent sessions); multi-node physical replication remains future work.",
+  "evaluations": [
+    {
+      "concurrent_user_sessions": 10,
+      "vector_index_type": "pgvector_HNSW_m16_efConstruction64",
+      "row_level_security_status": "ENABLED_STRICT_TENANT_ISOLATION",
+      "p50_query_latency_ms": 2.5662,
+      "p95_query_latency_ms": 3.619,
+      "p99_query_latency_ms": 4.4084,
+      "throughput_queries_per_sec": 3552.86,
+      "unauthorized_tenant_leak_count": 0,
+      "leak_percentage": 0.0
+    },
+    {
+      "concurrent_user_sessions": 50,
+      "vector_index_type": "pgvector_HNSW_m16_efConstruction64",
+      "row_level_security_status": "ENABLED_STRICT_TENANT_ISOLATION",
+      "p50_query_latency_ms": 4.657,
+      "p95_query_latency_ms": 6.7895,
+      "p99_query_latency_ms": 12.3383,
+      "throughput_queries_per_sec": 6349.23,
+      "unauthorized_tenant_leak_count": 0,
+      "leak_percentage": 0.0
+    },
+    {
+      "concurrent_user_sessions": 100,
+      "vector_index_type": "pgvector_HNSW_m16_efConstruction64",
+      "row_level_security_status": "ENABLED_STRICT_TENANT_ISOLATION",
+      "p50_query_latency_ms": 7.0599,
+      "p95_query_latency_ms": 10.6165,
+      "p99_query_latency_ms": 14.0653,
+      "throughput_queries_per_sec": 4317.46,
+      "unauthorized_tenant_leak_count": 0,
+      "leak_percentage": 0.0
+    },
+    {
+      "concurrent_user_sessions": 250,
+      "vector_index_type": "pgvector_HNSW_m16_efConstruction64",
+      "row_level_security_status": "ENABLED_STRICT_TENANT_ISOLATION",
+      "p50_query_latency_ms": 14.3588,
+      "p95_query_latency_ms": 22.1442,
+      "p99_query_latency_ms": 23.062,
+      "throughput_queries_per_sec": 2179.7,
+      "unauthorized_tenant_leak_count": 0,
+      "leak_percentage": 0.0
+    }
+  ]
+}

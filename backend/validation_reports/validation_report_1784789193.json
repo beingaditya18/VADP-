@@ -1,0 +1,171 @@
+{
+  "timestamp": "2026-07-23T12:15:56.356550",
+  "environment": {
+    "platform": "win32",
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+    "cpu_count": 16,
+    "memory_gb": 15.34,
+    "disk_free_gb": 157.83,
+    "cwd": "C:\\Users\\adity\\Downloads\\Nyaya ZTA\\backend"
+  },
+  "tests_executed": [
+    "static_analysis_ruff",
+    "static_analysis_mypy",
+    "unit_tests",
+    "dependency_audit_outdated",
+    "e2e_workflow",
+    "security_jwt_none_attack",
+    "security_rbac_bypass",
+    "security_sql_injection",
+    "security_xss_attack",
+    "security_rate_limit",
+    "performance_benchmark"
+  ],
+  "tests_failed": [
+    "static_analysis_ruff",
+    "unit_tests",
+    "security_rbac_bypass",
+    "security_rate_limit"
+  ],
+  "benchmarks": [
+    {
+      "test_name": "static_analysis_ruff",
+      "metric_name": "issues_found",
+      "value": 0,
+      "unit": "count",
+      "timestamp": "2026-07-23T12:15:56.360479",
+      "metadata": {}
+    },
+    {
+      "test_name": "static_analysis_mypy",
+      "metric_name": "type_errors",
+      "value": 0,
+      "unit": "count",
+      "timestamp": "2026-07-23T12:15:56.363478",
+      "metadata": {}
+    },
+    {
+      "test_name": "unit_tests",
+      "metric_name": "coverage_percent",
+      "value": 76.34682817978961,
+      "unit": "percent",
+      "timestamp": "2026-07-23T12:15:56.376761",
+      "metadata": {}
+    },
+    {
+      "test_name": "dependency_audit_outdated",
+      "metric_name": "outdated_packages",
+      "value": 272,
+      "unit": "count",
+      "timestamp": "2026-07-23T12:16:29.953680",
+      "metadata": {}
+    },
+    {
+      "test_name": "e2e_workflow",
+      "metric_name": "register_latency",
+      "value": 581.0451507568359,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:31.413910",
+      "metadata": {}
+    },
+    {
+      "test_name": "e2e_workflow",
+      "metric_name": "create_case_latency",
+      "value": 44.669389724731445,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:31.458580",
+      "metadata": {}
+    },
+    {
+      "test_name": "e2e_workflow",
+      "metric_name": "health_check_latency",
+      "value": 12.968301773071289,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:31.471548",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "latency_mean",
+      "value": 4.280429001082666,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:32.913928",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "latency_p50",
+      "value": 1.6460000188089907,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:32.913928",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "latency_p95",
+      "value": 2.1909000060986727,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:32.913928",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "latency_p99",
+      "value": 263.367899984587,
+      "unit": "ms",
+      "timestamp": "2026-07-23T12:16:32.913928",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "cpu_usage",
+      "value": 2.9,
+      "unit": "percent",
+      "timestamp": "2026-07-23T12:16:33.915667",
+      "metadata": {}
+    },
+    {
+      "test_name": "performance_benchmark",
+      "metric_name": "memory_usage",
+      "value": 77.2,
+      "unit": "percent",
+      "timestamp": "2026-07-23T12:16:33.915667",
+      "metadata": {}
+    }
+  ],
+  "security_findings": [
+    {
+      "test": "security_jwt_none_attack",
+      "result": "PASS",
+      "severity": "HIGH",
+      "description": "System correctly rejects JWT with 'none' algorithm"
+    },
+    {
+      "test": "security_rbac_bypass",
+      "result": "FAIL",
+      "severity": "CRITICAL",
+      "description": "Unauthorized access to admin endpoints allowed"
+    },
+    {
+      "test": "security_sql_injection",
+      "result": "PASS",
+      "severity": "HIGH",
+      "description": "SQL injection attempts handled safely"
+    },
+    {
+      "test": "security_xss_attack",
+      "result": "INFO",
+      "severity": "MEDIUM",
+      "description": "XSS protection primarily implemented client-side",
+      "note": "Backend should implement Content-Security-Policy headers"
+    },
+    {
+      "test": "security_rate_limit",
+      "result": "FAIL",
+      "severity": "MEDIUM",
+      "description": "Rate limiting not enforced effectively"
+    }
+  ],
+  "production_readiness_score": 61.45,
+  "raw_logs_count": 71
+}

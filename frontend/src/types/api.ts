@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — API Types
+﻿/**
+ * VADP — API Types
  *
  * Shared type definitions for API communication patterns.
  */

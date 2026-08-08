@@ -1,0 +1,8 @@
+{
+  "queries_count": 50,
+  "naive_precision_at_1": 1.0,
+  "reranked_precision_at_1": 1.0,
+  "naive_attribution_variance": 0.648998,
+  "reranked_attribution_variance": 0.645544,
+  "variance_reduction_percent": 0.5322050299076356
+}

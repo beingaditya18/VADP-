@@ -1,0 +1,80 @@
+{
+  "evaluated_at": "2026-07-29 13:48:12 UTC",
+  "total_cases": 378,
+  "escalated_count": 258,
+  "approved_count": 120,
+  "hoc_percentage": 68.25396825396825,
+  "ci_95": [
+    63.4,
+    72.74
+  ],
+  "tau_p": 0.88,
+  "tau_sigma": 0.12,
+  "categories": {
+    "civil": {
+      "total": 6,
+      "escalated": 6,
+      "approved": 0
+    },
+    "Consumer": {
+      "total": 18,
+      "escalated": 15,
+      "approved": 3
+    },
+    "Constitutional": {
+      "total": 100,
+      "escalated": 69,
+      "approved": 31
+    },
+    "Criminal": {
+      "total": 128,
+      "escalated": 86,
+      "approved": 42
+    },
+    "Administrative": {
+      "total": 21,
+      "escalated": 12,
+      "approved": 9
+    },
+    "Property": {
+      "total": 18,
+      "escalated": 13,
+      "approved": 5
+    },
+    "Taxation": {
+      "total": 29,
+      "escalated": 20,
+      "approved": 9
+    },
+    "Labour": {
+      "total": 21,
+      "escalated": 14,
+      "approved": 7
+    },
+    "Environmental": {
+      "total": 9,
+      "escalated": 6,
+      "approved": 3
+    },
+    "Intellectual Property": {
+      "total": 6,
+      "escalated": 5,
+      "approved": 1
+    },
+    "Family Law": {
+      "total": 4,
+      "escalated": 2,
+      "approved": 2
+    },
+    "Commercial": {
+      "total": 14,
+      "escalated": 6,
+      "approved": 8
+    },
+    "Civil": {
+      "total": 4,
+      "escalated": 4,
+      "approved": 0
+    }
+  }
+}

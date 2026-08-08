@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Auth Zustand Store
+﻿/**
+ * VADP — Auth Zustand Store
  *
  * Client-side state management for user profile, tokens, and authentication state.
  * Syncs with localStorage for persistence across reloads.

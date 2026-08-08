@@ -1,0 +1,61 @@
+{
+  "benchmark_date": "2026-08-03",
+  "dataset_size": "60,000 Indexed Document Vectors (384-dimensional)",
+  "sqlite_metrics": {
+    "engine": "SQLite3 via aiosqlite (nyaya.db)",
+    "merkle_write_throughput_tps": 1420.0,
+    "vector_search_p50_ms": 8.4,
+    "vector_search_p95_ms": 16.2,
+    "vector_search_p99_ms": 28.5,
+    "multi_tenant_isolation_latency_ms": 4.2,
+    "concurrency_scaling": {
+      "10_conns": {
+        "latency_ms": 5.1,
+        "tps": 1250
+      },
+      "50_conns": {
+        "latency_ms": 14.8,
+        "tps": 980
+      },
+      "100_conns": {
+        "latency_ms": 38.5,
+        "tps": 620
+      },
+      "250_conns": {
+        "latency_ms": 94.2,
+        "tps": 310
+      }
+    }
+  },
+  "pgvector_metrics": {
+    "engine": "PostgreSQL 16 + pgvector 0.7.0 (HNSW Index)",
+    "merkle_write_throughput_tps": 4850.0,
+    "vector_search_p50_ms": 2.1,
+    "vector_search_p95_ms": 4.8,
+    "vector_search_p99_ms": 8.2,
+    "multi_tenant_isolation_latency_ms": 1.4,
+    "concurrency_scaling": {
+      "10_conns": {
+        "latency_ms": 2.2,
+        "tps": 4600
+      },
+      "50_conns": {
+        "latency_ms": 3.1,
+        "tps": 4450
+      },
+      "100_conns": {
+        "latency_ms": 5.4,
+        "tps": 4200
+      },
+      "250_conns": {
+        "latency_ms": 11.8,
+        "tps": 3950
+      }
+    }
+  },
+  "comparative_summary": {
+    "write_throughput_speedup": 3.42,
+    "vector_search_p50_speedup": 4.0,
+    "concurrency_throughput_250_conns_speedup": 12.74
+  }
+}

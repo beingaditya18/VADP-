@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -36,7 +36,7 @@ export function RegisterForm() {
           <Scale className="h-6 w-6 text-white" />
         </div>
         <h2 className="text-2xl font-bold tracking-tight text-white">Create Account</h2>
-        <p className="text-sm text-gray-400">Join the Nyaya-ZTA Judicial Framework</p>
+        <p className="text-sm text-gray-400">Join the VADP Judicial Framework</p>
       </div>
 
       {/* Error Alert */}

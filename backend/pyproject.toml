@@ -1,9 +1,9 @@
 [project]
-name = "nyaya-zta-backend"
+name = "VADP-backend"
 version = "0.1.0"
-description = "Nyaya-ZTA: Zero Trust Explainable AI Framework for Secure Judicial Decision Support"
+description = "VADP: Zero Trust Explainable AI Framework for Secure Judicial Decision Support"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">=3.11"
 authors = [
     {name = "Aditya Mandloi"},

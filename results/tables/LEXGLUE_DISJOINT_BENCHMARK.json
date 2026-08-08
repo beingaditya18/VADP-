@@ -1,0 +1,28 @@
+{
+  "LexGLUE-SCOTUS-Disjoint": {
+    "dataset": "LexGLUE-SCOTUS-Disjoint",
+    "disjoint_split_range": "[500 : 1000]",
+    "queries_evaluated": 500,
+    "corpus_index_size": 2000,
+    "precision_at_1": 0.288,
+    "precision_at_5": 0.636,
+    "mrr": 0.4478,
+    "latency_p50_ms": 34.053,
+    "latency_p99_ms": 45.4151,
+    "overfitting_check": "VERIFIED_DISJOINT_NO_OVERFITTING",
+    "per_query_csv": "C:\\Users\\adity\\Downloads\\VADP\\lexglue_scotus_disjoint_per_query.csv"
+  },
+  "LexGLUE-ECtHR-Disjoint": {
+    "dataset": "LexGLUE-ECtHR-Disjoint",
+    "disjoint_split_range": "[500 : 1000]",
+    "queries_evaluated": 500,
+    "corpus_index_size": 2000,
+    "precision_at_1": 0.22,
+    "precision_at_5": 0.508,
+    "mrr": 0.3453,
+    "latency_p50_ms": 34.7403,
+    "latency_p99_ms": 54.5628,
+    "overfitting_check": "VERIFIED_DISJOINT_NO_OVERFITTING",
+    "per_query_csv": "C:\\Users\\adity\\Downloads\\VADP\\lexglue_ecthr_disjoint_per_query.csv"
+  }
+}

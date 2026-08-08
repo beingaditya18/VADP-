@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Case Types
+﻿/**
+ * VADP — Case Types
  *
  * Type definitions for judicial case management.
  */
@@ -31,6 +31,8 @@ export interface Case {
   filing_date: string;
   next_hearing_date?: string;
   metadata: Record<string, unknown>;
+  parties?: CaseParty[];
+  events?: CaseEvent[];
   created_at: string;
   updated_at: string;
 }

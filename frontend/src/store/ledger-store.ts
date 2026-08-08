@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Audit Ledger Zustand Store
+﻿/**
+ * VADP — Audit Ledger Zustand Store
  *
  * Client-side state management for block chain records and chain verification status.
  */

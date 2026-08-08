@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Cases Custom Hook
+﻿/**
+ * VADP — Cases Custom Hook
  *
  * Provides operations to list cases, file a new case, and fetch case details.
  */
@@ -13,14 +13,28 @@ export function useCases() {
   const { cases, selectedCase, totalCases, setCases, setSelectedCase, addCase } = useCaseStore();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [totalPages, setTotalPages] = useState(1);
 
   const fetchCases = useCallback(
-    async (params?: { status?: string; case_type?: string; page?: number }) => {
+    async (params?: {
+      status?: string;
+      case_type?: string;
+      search?: string;
+      court?: string;
+      year?: number;
+      sort_by?: string;
+      sort_order?: string;
+      page?: number;
+      page_size?: number;
+    }) => {
       setIsLoading(true);
       setError(null);
       try {
         const data = await apiClient.get<CaseListResponse>("/cases", params);
         setCases(data.items, data.total);
+        if (data.total_pages) {
+          setTotalPages(data.total_pages);
+        }
       } catch (err: any) {
         setError(err.message || "Failed to fetch cases.");
       } finally {
@@ -67,6 +81,7 @@ export function useCases() {
     cases,
     selectedCase,
     totalCases,
+    totalPages,
     isLoading,
     error,
     fetchCases,

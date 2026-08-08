@@ -1,0 +1,64 @@
+{
+  "circuit_name": "LeafInclusion_Depth10",
+  "num_participants": 5,
+  "is_finalized": true,
+  "final_beacon": "0xe5a7b2854931581c3714f468455fd139ea4eaec5b91581b15fcb38f26789824e",
+  "contributions": [
+    {
+      "participant_id": "node1_supreme_court",
+      "node_name": "Supreme Court Node",
+      "endpoint": "127.0.0.1:8001",
+      "contribution_index": 1,
+      "input_zkey_hash": "3f4cfd2c6679fc029d82a0dbb67d6f1fb734b9ff0dee1c03b1d82c92254805f1",
+      "output_zkey_hash": "5556199de1d6f370b5dc5bfb5a61d0edc322f532ddddc6c2a754bd4bb2796cd7",
+      "entropy_hash": "4d53545a9339457cf5aa3ee2c5660840950fd2b11553c1fd24e94264c513643f",
+      "duration_sec": 0.0925,
+      "timestamp_iso": "2026-08-05T06:31:14Z"
+    },
+    {
+      "participant_id": "node2_forensic_lab",
+      "node_name": "Forensic Lab Node",
+      "endpoint": "127.0.0.1:8002",
+      "contribution_index": 2,
+      "input_zkey_hash": "5556199de1d6f370b5dc5bfb5a61d0edc322f532ddddc6c2a754bd4bb2796cd7",
+      "output_zkey_hash": "745ad8f96944c1c85f485ea4e317d3ae870978a810e356e546008e2ee226cb26",
+      "entropy_hash": "037c7e68310ca5c7f8a04d876d99d172d37e5a925dd3a0fa7915422b0eb81a13",
+      "duration_sec": 0.102,
+      "timestamp_iso": "2026-08-05T06:31:14Z"
+    },
+    {
+      "participant_id": "node3_high_court",
+      "node_name": "High Court Node",
+      "endpoint": "127.0.0.1:8003",
+      "contribution_index": 3,
+      "input_zkey_hash": "745ad8f96944c1c85f485ea4e317d3ae870978a810e356e546008e2ee226cb26",
+      "output_zkey_hash": "0074f3ab5079fc21f19b517fbff9abc9ae3e99520b74228bbafa1e94f5aedda4",
+      "entropy_hash": "fa0ff6040b614263abee635b9762d5996cfcf5cac4ea0201abb67357aba3b87c",
+      "duration_sec": 0.1139,
+      "timestamp_iso": "2026-08-05T06:31:15Z"
+    },
+    {
+      "participant_id": "node4_auditor_node",
+      "node_name": "Auditor Node",
+      "endpoint": "127.0.0.1:8004",
+      "contribution_index": 4,
+      "input_zkey_hash": "0074f3ab5079fc21f19b517fbff9abc9ae3e99520b74228bbafa1e94f5aedda4",
+      "output_zkey_hash": "6a912ba8214f573efba76bf0c67bf0b60b3aa54eb9e09f8b2e44089bd74e4dca",
+      "entropy_hash": "b2247108d95823eb2c1c8c92064f9de466f22367575316e1d4c70534fca29cdb",
+      "duration_sec": 0.1204,
+      "timestamp_iso": "2026-08-05T06:31:15Z"
+    },
+    {
+      "participant_id": "node5_judicial_registrar",
+      "node_name": "Judicial Registrar Node",
+      "endpoint": "127.0.0.1:8005",
+      "contribution_index": 5,
+      "input_zkey_hash": "6a912ba8214f573efba76bf0c67bf0b60b3aa54eb9e09f8b2e44089bd74e4dca",
+      "output_zkey_hash": "5bf2a778fcfe64ad54ff9efeff5a7b1e7c84004a9872675b655b0d257b3d6261",
+      "entropy_hash": "2a9810bc54cf2a154c9feb282f031d08a0ca12f993f099eece247e6697dc115f",
+      "duration_sec": 0.1303,
+      "timestamp_iso": "2026-08-05T06:31:15Z"
+    }
+  ],
+  "total_ceremony_wall_clock_sec": 0.5652
+}

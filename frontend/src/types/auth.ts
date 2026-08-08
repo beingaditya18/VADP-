@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Authentication Types
+﻿/**
+ * VADP — Authentication Types
  *
  * Type definitions for authentication and user profile data.
  */

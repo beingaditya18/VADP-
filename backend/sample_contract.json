@@ -1,0 +1,66 @@
+{
+  "id": "VC-2026-TEST-001",
+  "contract_version": "1.0.0",
+  "case_id": "CASE-2026-SC-1089",
+  "recommendation_id": "REC-001",
+  "authorization": {
+    "result": "allow",
+    "reason": "Permitted by Judicial_Officer_Policy"
+  },
+  "evidence_provenance": [
+    {
+      "id": "EVI-1",
+      "file_name": "FIR_102.pdf",
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification_status": "verified"
+    }
+  ],
+  "rag_provenance": [
+    {
+      "chunk_id": "CHK-1",
+      "document_title": "State v. Kumar",
+      "similarity_score": 0.94
+    }
+  ],
+  "rag_metadata": {
+    "query_text": "Electronic evidence under BSA 63(4)"
+  },
+  "shap_values": [
+    {
+      "feature": "evidence_integrity",
+      "value": 0.85
+    }
+  ],
+  "feature_importance": {
+    "evidence_integrity": 0.85
+  },
+  "contributing_factors": [
+    "Verified SHA-256 custody seal"
+  ],
+  "trust_score": 0.95,
+  "trust_breakdown": {
+    "model": 0.95,
+    "evidence": 1.0,
+    "source": 0.9,
+    "consistency": 0.95
+  },
+  "risk_score": 0.05,
+  "risk_level": "low",
+  "risk_features": [],
+  "generated_at": "2026-08-03T06:25:11.637943+00:00",
+  "contract_hash": "534676165deeb5a787bbc456898eaf8877de5075304ad865a7b8fb89092d72f5",
+  "digital_signature": "MEYCIQCXIRdnb5TTmN/7YYKtVWPDkyGLHqCfgasBXnRa20QQlQIhAI0+K50deh6g+coo/ov0T1nC++7eEWDYbMY79qXIJGtr",
+  "human_review": {
+    "status": "approved",
+    "reviewer_id": "JUDGE-01"
+  },
+  "merkle_leaf_hash": "534676165deeb5a787bbc456898eaf8877de5075304ad865a7b8fb89092d72f5",
+  "merkle_root": "54395f86c7f6dba650b8609cc3c8cb9f340fcbaae2445ec14f7197fc4d78a785",
+  "merkle_proof": [
+    {
+      "hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "position": "right"
+    }
+  ],
+  "signing_algorithm": "ECDSA-P256-SHA256"
+}

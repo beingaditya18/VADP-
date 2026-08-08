@@ -1,12 +1,12 @@
-/**
- * Nyaya-ZTA — Application Constants
+﻿/**
+ * VADP — Application Constants
  *
  * Centralized constants used throughout the frontend.
  * Jurisdiction-specific data is loaded from the backend,
  * but UI-level constants are defined here.
  */
 
-export const APP_NAME = "Nyaya-ZTA";
+export const APP_NAME = "VADP";
 export const APP_DESCRIPTION =
   "Zero Trust Explainable AI Framework for Secure Judicial Decision Support";
 

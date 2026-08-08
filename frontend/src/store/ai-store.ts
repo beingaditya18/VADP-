@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — AI Zustand Store
+﻿/**
+ * VADP — AI Zustand Store
  *
  * Client-side state management for active AI analysis, SHAP values, trust scores, and recommendations.
  */

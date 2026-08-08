@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — RAG Custom Hook
+﻿/**
+ * VADP — RAG Custom Hook
  *
  * Operations to send grounded RAG legal queries and index documents into FAISS vector store.
  */

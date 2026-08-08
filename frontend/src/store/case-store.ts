@@ -1,5 +1,5 @@
-/**
- * Nyaya-ZTA — Case Zustand Store
+﻿/**
+ * VADP — Case Zustand Store
  *
  * Client-side state management for active case list and selected case details.
  */

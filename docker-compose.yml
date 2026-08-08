@@ -1,12 +1,14 @@
+﻿# ============================================================
+# VADP — Docker Compose (Production & Scalable Offline)
 # ============================================================
-# Nyaya-ZTA — Docker Compose (Development & Offline)
-# ============================================================
-# One-command local deployment:
+# Local multi-container deployment:
 #   docker-compose up --build
 #
-# Runs backend & frontend locally with zero cloud dependencies.
-# Database: SQLite stored in volume (or backend/database/nyaya.db)
-# Storage: Local filesystem in volume (or backend/uploads/)
+# Services:
+#   - backend: FastAPI REST API with Zero-Trust PDP & Merkle Engine
+#   - frontend: Next.js 16 Web Dashboard & Verification Explorer
+#   - postgres: PostgreSQL 16 + pgvector extension for scalable vector search
+#   - redis: Redis 7 for sliding-window rate limiting & distributed session cache
 # ============================================================
 
 services:
@@ -15,7 +17,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: nyaya-zta-backend
+    container_name: VADP-backend
     ports:
       - "8000:8000"
     env_file:
@@ -24,19 +26,22 @@ services:
       - ENVIRONMENT=development
       - DEBUG=true
       - LOG_LEVEL=DEBUG
+      - REDIS_URL=redis://redis:6379/0
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
     volumes:
-      # Mount source code for hot-reload in development
       - ./backend/app:/app/app
       - ./backend/alembic:/app/alembic
-      # Persist SQLite database
       - backend-db:/app/database
-      # Persist file uploads
       - backend-uploads:/app/uploads
-      # Persist FAISS indices
       - backend-faiss:/app/faiss_indices
-      # Persist signing keys
       - backend-keys:/app/signing_keys
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
@@ -50,7 +55,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: nyaya-zta-frontend
+    container_name: VADP-frontend
     ports:
       - "3000:3000"
     env_file:
@@ -59,13 +64,46 @@ services:
       - NODE_ENV=development
       - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
     volumes:
-      # Mount source code for hot-reload
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
     command: npm run dev
     depends_on:
       backend:
         condition: service_healthy
+    restart: unless-stopped
+
+  # ── PostgreSQL + pgvector ──────────────────────────────────
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: VADP-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=nyaya
+      - POSTGRES_PASSWORD=nyayazta_password
+      - POSTGRES_DB=nyaya_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nyaya -d nyaya_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis (Rate Limiting & Session Cache) ──────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: VADP-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: unless-stopped
 
 volumes:
@@ -76,4 +114,8 @@ volumes:
   backend-faiss:
     driver: local
   backend-keys:
+    driver: local
+  postgres-data:
+    driver: local
+  redis-data:
     driver: local
