@@ -23,7 +23,7 @@ concurrency:
 
 env:
   PYTHON_VERSION: "3.11"
-  NODE_VERSION: "20"
+  NODE_VERSION: "22"
   ENVIRONMENT: testing
   DATABASE_URL: sqlite+aiosqlite:///e2e_test.db
   SUPABASE_URL: https://test.supabase.co

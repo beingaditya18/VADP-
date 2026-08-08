@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 # VADP — Continuous Integration Pipeline
 # ============================================================
 # Triggers on push/PR to main and develop branches.
@@ -19,7 +19,7 @@ concurrency:
 
 env:
   PYTHON_VERSION: "3.11"
-  NODE_VERSION: "20"
+  NODE_VERSION: "22"
 
 jobs:
   # ── Backend CI ─────────────────────────────────────────────
