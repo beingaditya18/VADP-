@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](requirements/requirements.txt)
 [![Coverage: 96.4%](https://img.shields.io/badge/coverage-96.4%25-brightgreen.svg)](results/raw/coverage.xml)
-[![Tests: 115 Passed](https://img.shields.io/badge/tests-115%20passed-success.svg)](backend/tests/)
+[![Tests: 105 Passed](https://img.shields.io/badge/tests-105%20passed-success.svg)](backend/tests/)
 
 Official software implementation and empirical verification repository for **VADP (Verifiable AI Decision Provenance)**.
 
@@ -17,7 +17,7 @@ Modern AI decision support systems deployed in judicial workflows face severe tr
 1. **Zero-Trust ABAC Policy Enforcement**: Guarantees strict context isolation across judicial clearance boundaries ($0.00\%$ context leakage).
 2. **RFC 6962 Merkle Audit Ledger**: Seals decision inputs, retrieval citations, and prompt hashes in a tamper-evident cryptographic hash chain.
 3. **Groth16 Zero-Knowledge Proofs**: Generates sub-second BN128 ZK-SNARK inclusion proofs ($192\text{ bytes}$) to verify private document inclusion without disclosing confidential case text.
-4. **Gradient Boosted Legal Re-Ranker**: Recovers high precedent retrieval accuracy ($P@1 = 94.2\%$, $\text{MRR} = 0.951$) while mitigating out-of-distribution overfitting.
+4. **Gradient Boosted Legal Re-Ranker**: Recovers high precedent retrieval accuracy ($P@1 = 93.1\%$, $\text{MRR} = 0.951$) while mitigating out-of-distribution overfitting.
 5. **Standardized Verification Contracts**: Exports self-contained, machine-verifiable integrity contracts per SCITT transparency profiles.
 
 ---
@@ -50,7 +50,7 @@ VADP/
 │   ├── zk_crypto/                       # Groth16 MPC Ceremony & SoftHSM Benchmarks
 │   └── blockchain/                      # Multi-Node Fabric Consensus TPS Benchmarks
 │
-├── tests/                               # Automated Test Infrastructure (115 Tests)
+├── tests/                               # Automated Test Infrastructure (105 Tests)
 │   ├── unit/                            # Unit Test Suite Across 18 Tiers (70 Tests)
 │   ├── integration/                     # End-to-End Pipeline Verification
 │   └── security/                        # Dedicated Penetration Tests (31 Tests)
@@ -87,8 +87,8 @@ VADP/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/vadp-research/vadp.git
-cd vadp
+git clone https://github.com/beingaditya18/VADP-.git
+cd VADP-
 
 # 2. Set up virtual environment
 python -m venv .venv
@@ -114,18 +114,18 @@ python experiments/reproduce_results.py
 | :--- | :--- | :--- | :--- | :--- |
 | **ABAC PDP Engine** | Zero-Trust Context Isolation | $0.00\%$ Leakage | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
 | **Groth16 ZKP Vault** | ZKP Proof Gen & Verification | $250.60\text{ ms}$ (warm), $11.31\text{ ms}$ verifier | `python experiments/reproduce_results.py` | `results/tables/GROTH16_MPC_TRUSTED_SETUP_COST.json` |
-| **SoftHSM Token Vault** | PKCS#11 Hardware Token Signing | $1,000\text{ ops}$ verified | `python experiments/reproduce_results.py` | `results/tables/HSM_SIGNING_BENCHMARK.json` |
-| **GBT Legal Re-Ranker** | Precedent Retrieval | $P@1 = 94.2\%$, $\text{MRR} = 0.951$ | `python experiments/reproduce_results.py` | `results/tables/BASELINES_COMPARISON_BENCHMARK.json` |
-| **LexGLUE Disjoint** | Held-Out Retraining | $P@1 = 0.684$, $\text{MRR} = 0.762$ | `python experiments/reproduce_results.py` | `results/tables/LEXGLUE_DISJOINT_BENCHMARK.json` |
+| **SoftHSM Token Vault** | PKCS#11 Hardware Token Signing | $1,400.3\text{ ops/sec}$ | `python experiments/reproduce_results.py` | `results/tables/HSM_SIGNING_BENCHMARK.json` |
+| **GBT Legal Re-Ranker** | Precedent Retrieval | $P@1 = 93.1\%$, $\text{MRR} = 0.951$ | `python experiments/reproduce_results.py` | `results/tables/BASELINES_COMPARISON_BENCHMARK.json` |
+| **LexGLUE Disjoint** | Held-Out Retraining | $P@1 = 0.684$, $\text{MRR} = 0.758$ | `python experiments/reproduce_results.py` | `results/tables/LEXGLUE_DISJOINT_BENCHMARK.json` |
 | **STRIDE Security Suite** | Penetration Controls | $26/26$ Passed | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
-| **Automated Test Scale** | System Test Infrastructure | $115$ Tests ($96.4\%$ Branch Cov) | `python -m pytest backend/tests` | `results/raw/coverage.xml` |
-| **Fabric Blockchain** | 4-Node Consensus Anchoring | $24.27\text{ TPS}$, $41.26\text{ ms}$ P50 | `python experiments/reproduce_results.py` | `results/tables/FABRIC_MULTINODE_BENCHMARK.json` |
+| **Automated Test Scale** | System Test Infrastructure | $105$ Tests ($96.4\%$ Branch Cov) | `python -m pytest backend/tests` | `results/raw/coverage.xml` |
+| **Fabric Blockchain** | 4-Node Consensus Anchoring | $8,229.18\text{ TPS}$, $0.055\text{ ms}$ P50 | `python experiments/reproduce_results.py` | `results/tables/FABRIC_MULTINODE_BENCHMARK.json` |
 
 ---
 
 ## 5. Automated Test Suite
 
-Execute the 115-test suite across unit, integration, and security tiers:
+Execute the 105-test suite across unit, integration, and security tiers:
 
 ```bash
 python -m pytest backend/tests -v
