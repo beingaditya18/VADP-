@@ -37,7 +37,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: process.env.CI ? 'node .next/standalone/server.js' : 'npm run dev',
+    command: process.env.CI
+      ? 'node -e "const fs=require(\'fs\'); if(fs.existsSync(\'public\')) fs.cpSync(\'public\', \'.next/standalone/public\', {recursive:true}); if(fs.existsSync(\'.next/static\')) fs.cpSync(\'.next/static\', \'.next/standalone/.next/static\', {recursive:true});" && node .next/standalone/server.js'
+      : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
