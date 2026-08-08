@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "legal tech",
     "audit ledger",
   ],
-  authors: [{ name: "Aditya Mandloi" }],
+  authors: [{ name: "VADP Authors" }],
 };
 
 export default function RootLayout({

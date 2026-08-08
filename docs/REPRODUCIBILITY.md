@@ -17,8 +17,8 @@ This guide provides step-by-step instructions to install, configure, verify, and
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/vadp-research/vadp.git
-cd vadp
+git clone https://github.com/beingaditya18/VADP-.git
+cd VADP-
 
 # 2. Create Python virtual environment
 python -m venv .venv
@@ -67,7 +67,7 @@ This harness verifies and displays:
 To verify zero production secrets or hardcoded credentials across the codebase:
 
 ```bash
-python -m pytest backend/tests/security/test_secrets.py -v
+python -m pytest backend/tests/unit/test_secrets.py -v
 ```
 
 **Expected Result**: `PASSED: ZERO HARDCODED SECRETS DETECTED`

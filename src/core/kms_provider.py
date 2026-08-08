@@ -62,7 +62,7 @@ class SoftHSMKeyProvider(BaseKeyProvider):
     ):
         self.lib_path = lib_path or os.getenv(
             "SOFTHSM2_LIB",
-            r"C:\Users\adity\Downloads\VADP\softhsm2_portable\SoftHSM2\lib\softhsm2-x64.dll",
+            "./softhsm2_portable/SoftHSM2/lib/softhsm2-x64.dll",
         )
         self.token_label = token_label
         self.pin = pin

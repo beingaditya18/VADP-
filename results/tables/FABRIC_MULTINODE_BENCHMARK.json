@@ -9,7 +9,7 @@
   "latency_p95_ms": 0.141,
   "latency_p99_ms": 0.2369,
   "jitter_stddev_ms": 0.1085,
-  "csv_output_path": "C:\\Users\\adity\\Downloads\\VADP\\fabric_transactions_raw.csv",
+  "csv_output_path": "./fabric_transactions_raw.csv",
   "network_topology": "4-Node Distributed Fabric (Orderer:7050, Org1-SupremeCourt:7051, Org2-ForensicLab:9051, Org3-HighCourt:8051)",
   "multi_org_endorsement_policy": "AND('Org1MSP.peer', 'Org2MSP.peer', 'Org3MSP.peer')",
   "blockchain_integrity_valid": true,

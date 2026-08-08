@@ -1,6 +1,6 @@
 {
   "study_metadata": {
-    "file_analyzed": "C:\\Users\\adity\\Downloads\\VADP\\backend\\evaluation\\human_annotation_sample.csv",
+    "file_analyzed": "./backend/evaluation/human_annotation_sample.csv",
     "sample_size_eval_N": 291,
     "target_calibration_samples": 291
   },

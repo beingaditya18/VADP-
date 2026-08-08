@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "author": "Aditya Mandloi <adityamandloi10@gmail.com>",
+  "author": "VADP Authors",
   "private": true,
   "scripts": {
     "dev": "next dev",

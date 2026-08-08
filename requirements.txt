@@ -1,39 +1,43 @@
 # ============================================================
 # VADP — Verifiable AI Decision Provenance Pinned Dependencies
+# Publication-Grade Reproducibility Environment (Python 3.10+)
 # ============================================================
 
-# Core Web Framework
+# --- Core Web Framework & ASGI ---
 fastapi==0.115.6
 uvicorn==0.34.0
 python-multipart==0.0.20
 
-# Database & Storage
+# --- Database & Persistence ---
 SQLAlchemy==2.0.36
 aiosqlite==0.20.0
 alembic==1.14.0
 greenlet==3.1.1
 redis==5.2.1
 
-# Configuration & Validation
+# --- Configuration & Validation ---
 pydantic==2.10.4
 pydantic-settings==2.7.0
 email-validator==2.2.0
 
-# Cryptography & Security
+# --- Cryptography & Security ---
 cryptography==44.0.0
 python-jose==3.3.0
 passlib==1.7.4
 bcrypt==4.2.1
 pycryptodome==3.21.0
 
-# Cloud & Secrets Management
+# --- Cloud & Secrets Management ---
 boto3==1.35.88
 hvac==2.3.0
 
-# Async HTTP Client
+# --- HTTP & Async Utilities ---
 httpx==0.28.1
+aiofiles==24.1.0
+python-dateutil==2.9.0
+orjson==3.10.14
 
-# Vector Search, ML & Retrieval Engine
+# --- Information Retrieval, ML & Explainability Engine ---
 numpy==1.26.4
 scipy==1.14.1
 scikit-learn==1.6.0
@@ -46,12 +50,9 @@ rank-bm25==0.2.2
 shap==0.46.0
 matplotlib==3.10.0
 
-# Testing, Load & Coverage Tooling
+# --- Testing, Benchmarking & Coverage ---
 pytest==8.3.4
 pytest-asyncio==0.25.0
 pytest-cov==6.0.0
 locust==2.32.4
 psutil==6.1.1
-aiofiles==24.1.0
-python-dateutil==2.9.0
-orjson==3.10.14

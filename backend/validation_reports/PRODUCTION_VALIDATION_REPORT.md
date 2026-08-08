@@ -1,4 +1,4 @@
-﻿# VADP Production Validation Report
+# VADP Production Validation Report
 
 **Report Date:** July 23, 2026  
 **Validation Framework Version:** 1.0  
@@ -34,7 +34,7 @@ CPU Cores:         16
 Memory (Total):    15.34 GB
 Memory (Used):     11.85 GB (77.2%)
 Disk Free:         157.83 GB
-Working Directory: C:\Users\adity\Downloads\Nyaya ZTA\backend
+Working Directory: ./backend
 ```
 
 ### Test Execution Timestamp

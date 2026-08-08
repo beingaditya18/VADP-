@@ -10,7 +10,7 @@
     "latency_p50_ms": 34.053,
     "latency_p99_ms": 45.4151,
     "overfitting_check": "VERIFIED_DISJOINT_NO_OVERFITTING",
-    "per_query_csv": "C:\\Users\\adity\\Downloads\\VADP\\lexglue_scotus_disjoint_per_query.csv"
+    "per_query_csv": "./lexglue_scotus_disjoint_per_query.csv"
   },
   "LexGLUE-ECtHR-Disjoint": {
     "dataset": "LexGLUE-ECtHR-Disjoint",
@@ -23,6 +23,6 @@
     "latency_p50_ms": 34.7403,
     "latency_p99_ms": 54.5628,
     "overfitting_check": "VERIFIED_DISJOINT_NO_OVERFITTING",
-    "per_query_csv": "C:\\Users\\adity\\Downloads\\VADP\\lexglue_ecthr_disjoint_per_query.csv"
+    "per_query_csv": "./lexglue_ecthr_disjoint_per_query.csv"
   }
 }

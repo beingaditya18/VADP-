@@ -33,7 +33,13 @@ VADP/
 ├── .gitignore                           # Research Git Exclusion Rules
 ├── docker-compose.yml                   # Container Orchestration Config
 │
-├── src/                                 # Canonical Modular Source Implementation
+├── backend/                             # Active Production FastAPI Application & Test Suite
+│   ├── app/                             # Core Backend Server (PDP, RAG, VADP, Ledger, AI)
+│   ├── tests/                           # Unit, Integration & Security Test Infrastructure
+│   ├── validation_reports/              # Automated Production Audit & Validation Logs
+│   └── requirements.txt                 # Backend Execution Dependencies
+│
+├── src/                                 # Initial Reference Prototype Implementation
 │   ├── authorization/                   # Zero-Trust ABAC PDP Policy Engine
 │   ├── provenance/                      # Merkle Tree Audit Ledger & Hash Chains
 │   ├── verification/                    # Verification Contract Generator & Validator
@@ -150,8 +156,8 @@ Per legal copyright and license restrictions for judicial records, raw case text
 ```bibtex
 @article{vadp2026judicial,
   title={VADP: Verifiable AI Decision Provenance for AI-Assisted Judicial Decision Support},
-  author={Mandloi, Aditya},
-  email={adityamandloi10@gmail.com},
+  author={Anonymous VADP Authors},
+  note={Author details withheld for double-blind review},
   year={2026}
 }
 ```
