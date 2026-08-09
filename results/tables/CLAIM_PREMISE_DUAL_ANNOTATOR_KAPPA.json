@@ -1,0 +1,27 @@
+{
+  "study_metadata": {
+    "audit_description": "Blind Dual-Annotator Agreement Audit over sampled Claim-Premise pairs",
+    "sample_size_n": 50,
+    "contingency_table_2x2": {
+      "agree_both_positive": 38,
+      "disagree_annotator1_pos_annotator2_neg": 1,
+      "disagree_annotator1_neg_annotator2_pos": 1,
+      "agree_both_negative": 10
+    }
+  },
+  "agreement_metrics": {
+    "observed_agreement_po": 0.96,
+    "observed_agreement_percent": "96.0%",
+    "expected_chance_agreement_pe": 0.6568,
+    "cohens_kappa": 0.8834,
+    "interpretation": "Almost Perfect / Strong Agreement (kappa >= 0.81)"
+  },
+  "bootstrap_confidence_interval": {
+    "resample_count": 10000,
+    "confidence_level": "95%",
+    "percentile_2.5th": 0.6907,
+    "percentile_97.5th": 1.0000,
+    "ci_interval": "[0.6907, 1.0000]",
+    "ci_formatted": "[0.69, 1.00]"
+  }
+}

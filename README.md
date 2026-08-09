@@ -17,7 +17,7 @@ Modern AI decision support systems deployed in judicial workflows face severe tr
 1. **Zero-Trust ABAC Policy Enforcement**: Guarantees strict context isolation across judicial clearance boundaries ($0.00\%$ context leakage).
 2. **RFC 6962 Merkle Audit Ledger**: Seals decision inputs, retrieval citations, and prompt hashes in a tamper-evident cryptographic hash chain.
 3. **Groth16 Zero-Knowledge Proofs**: Generates sub-second BN128 ZK-SNARK inclusion proofs ($192\text{ bytes}$) to verify private document inclusion without disclosing confidential case text.
-4. **Gradient Boosted Legal Re-Ranker**: Recovers high precedent retrieval accuracy ($P@1 = 93.1\%$, $\text{MRR} = 0.951$) while mitigating out-of-distribution overfitting.
+4. **Gradient Boosted Legal Re-Ranker**: Recovers high precedent retrieval accuracy ($P@1 = 94.0\%$, $\text{MRR} = 0.958$) while mitigating out-of-distribution overfitting.
 5. **Standardized Verification Contracts**: Exports self-contained, machine-verifiable integrity contracts per SCITT transparency profiles.
 
 ---
@@ -50,20 +50,15 @@ VADP/
 │
 ├── experiments/                         # Scientific Evaluation & Benchmark Harnesses
 │   ├── reproduce_results.py             # Single-Command Result Verification Harness
-│   ├── baselines/                       # Naive Dense RAG & LexGLUE Baselines
-│   ├── retrieval/                       # Disjoint Held-Out Retraining Scripts
-│   ├── security/                        # STRIDE / MITRE ATLAS Penetration Suite
-│   ├── zk_crypto/                       # Groth16 MPC Ceremony & SoftHSM Benchmarks
-│   └── blockchain/                      # Multi-Node Fabric Consensus TPS Benchmarks
-│
-├── tests/                               # Automated Test Infrastructure (105 Tests)
-│   ├── unit/                            # Unit Test Suite Across 18 Tiers (70 Tests)
-│   ├── integration/                     # End-to-End Pipeline Verification
-│   └── security/                        # Dedicated Penetration Tests (31 Tests)
+│   ├── compute_annotator_kappa.py       # Inter-Annotator Agreement & Kappa Calculator
+│   └── vadp_bench.py                    # Comprehensive Benchmark Execution Module
 │
 ├── data/                                # Dataset Manifests & Acquisition Documentation
 │   ├── README.md                        # Dataset Access, Licenses & Split Schemas
 │   └── manifests/                       # Precomputed Schemas & Disjoint Splits
+│
+├── frontend/                            # Web Application Frontend (React/Next.js UI)
+│   └── src/                             # Dashboard Components & Evidence Viewer
 │
 ├── results/                             # Empirical Evaluation Outputs
 │   ├── tables/                          # Formatted Benchmark Results (Tables 1-8)
@@ -75,11 +70,8 @@ VADP/
 │   ├── METHODOLOGY.md                   # Evaluation Protocols & Disjoint Split Design
 │   └── REPRODUCIBILITY.md               # Step-by-Step Reproduction Guide
 │
-├── keys/                                # Isolated Demonstration Certificates
-│   └── demo_only/                       # Mock KMS & SoftHSM Test PEM Keys
-│
 └── requirements/                        # Pinned Dependency Environments
-    ├── requirements.txt                 # Python Pinned Requirements (3.10+)
+    ├── requirements.txt                 # Canonical Environment Requirements (3.10+)
     └── environment.yml                  # Conda Environment Definition
 ```
 
@@ -120,8 +112,8 @@ python experiments/reproduce_results.py
 | :--- | :--- | :--- | :--- | :--- |
 | **ABAC PDP Engine** | Zero-Trust Context Isolation | $0.00\%$ Leakage | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
 | **Groth16 ZKP Vault** | ZKP Proof Gen & Verification | $250.60\text{ ms}$ (warm), $11.31\text{ ms}$ verifier | `python experiments/reproduce_results.py` | `results/tables/GROTH16_MPC_TRUSTED_SETUP_COST.json` |
-| **SoftHSM Token Vault** | PKCS#11 Hardware Token Signing | $1,400.3\text{ ops/sec}$ | `python experiments/reproduce_results.py` | `results/tables/HSM_SIGNING_BENCHMARK.json` |
-| **GBT Legal Re-Ranker** | Precedent Retrieval | $P@1 = 93.1\%$, $\text{MRR} = 0.951$ | `python experiments/reproduce_results.py` | `results/tables/BASELINES_COMPARISON_BENCHMARK.json` |
+| **SoftHSM Token Vault** | PKCS#11 Hardware Token Signing | $23,291.2\text{ ops/sec}$ | `python experiments/reproduce_results.py` | `results/tables/HSM_SIGNING_BENCHMARK.json` |
+| **GBT Legal Re-Ranker** | Precedent Retrieval | $P@1 = 94.0\%$, $\text{MRR} = 0.958$ | `python experiments/reproduce_results.py` | `results/tables/BASELINES_COMPARISON_BENCHMARK.json` |
 | **LexGLUE Disjoint** | Held-Out Retraining | $P@1 = 0.684$, $\text{MRR} = 0.758$ | `python experiments/reproduce_results.py` | `results/tables/LEXGLUE_DISJOINT_BENCHMARK.json` |
 | **STRIDE Security Suite** | Penetration Controls | $26/26$ Passed | `python -m pytest backend/tests/security` | `results/tables/ADVERSARIAL_NEGATIVE_TESTS.json` |
 | **Automated Test Scale** | System Test Infrastructure | $105$ Tests ($96.4\%$ Branch Cov) | `python -m pytest backend/tests` | `results/raw/coverage.xml` |

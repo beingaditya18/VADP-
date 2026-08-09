@@ -5,7 +5,7 @@
   "f1_score": 0.9268,
   "training_samples": 280,
   "test_samples": 70,
-  "last_trained": "2026-08-08 12:48:54 UTC",
+  "last_trained": "2026-08-09 02:45:09 UTC",
   "dataset_source": "350 ILDC Supreme Court Judgments Corpus",
   "confusion_matrix": [
     [
