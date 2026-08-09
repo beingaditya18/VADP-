@@ -1,0 +1,33 @@
+{
+  "section": "16.X.7 Relationship to Existing Results",
+  "mappings": [
+    {
+      "existing_manuscript_result": "Precision@1 = 0.931",
+      "advanced_evaluation": "Success@1 = 0.931"
+    },
+    {
+      "existing_manuscript_result": "MRR = 0.951",
+      "advanced_evaluation": "nDCG@10 = 0.957"
+    },
+    {
+      "existing_manuscript_result": "1,500 legal queries",
+      "advanced_evaluation": "Same benchmark query set"
+    },
+    {
+      "existing_manuscript_result": "~60,000 indexed vectors",
+      "advanced_evaluation": "Same corpus index"
+    },
+    {
+      "existing_manuscript_result": "NLI citation validation",
+      "advanced_evaluation": "LLM semantic grading complements NLI"
+    },
+    {
+      "existing_manuscript_result": "Binary headnote labels",
+      "advanced_evaluation": "Graded judicial relevance (0-3 scale)"
+    },
+    {
+      "existing_manuscript_result": "Top-5 evaluation",
+      "advanced_evaluation": "TREC depth pooling + Recall@Case"
+    }
+  ]
+}

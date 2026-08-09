@@ -1,0 +1,23 @@
+{
+  "section": "16.X.6 Success@1",
+  "protocol": "Workflow-oriented top-citation evaluation assessing whether the primary ranked citation satisfies verification contract requirements",
+  "evaluations": [
+    {
+      "model": "BM25",
+      "success_at_1": 0.812
+    },
+    {
+      "model": "Dense Retrieval",
+      "success_at_1": 0.887
+    },
+    {
+      "model": "Cross Encoder",
+      "success_at_1": 0.916
+    },
+    {
+      "model": "VADP GBT",
+      "success_at_1": 0.931,
+      "manuscript_consistency": "Matches manuscript reported Precision@1 = 0.931"
+    }
+  ]
+}

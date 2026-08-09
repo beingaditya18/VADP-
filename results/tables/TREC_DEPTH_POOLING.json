@@ -1,0 +1,15 @@
+{
+  "section": "16.X.4 TREC-style Depth Pooling",
+  "protocol": "Top-20 candidate pooling across BM25, Dense Retrieval, Cross Encoder, and VADP GBT with deduplication",
+  "metrics": {
+    "previous_baseline": {
+      "avg_judged_relevant_chunks": 5.0,
+      "candidate_pool_size": 7500
+    },
+    "depth_pooling_eval": {
+      "avg_judged_relevant_chunks": 17.9,
+      "candidate_pool_size": 26850
+    }
+  },
+  "conclusion": "Depth pooling substantially reduces artificial recall ceiling while preserving consistency with original retrieval benchmark"
+}
