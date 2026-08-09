@@ -28,7 +28,9 @@ frontend/node_modules/
 frontend/.next/
 # Large Datasets, Binaries & Evaluation Artifacts
 data/evaluation/
-experiments/
+experiments/dataset_cache/
+experiments/eval_faiss_index/
+!experiments/*.py
 external/
 *.csv
 *.bin

@@ -1,0 +1,59 @@
+{
+  "study_metadata": {
+    "n_participants": 15,
+    "participant_profile": "Legal proxies (n=15 legal professionals & judicial clerks)",
+    "protocol_registered": true,
+    "inter_rater_agreement_cohens_kappa": 0.842,
+    "kappa_interpretation": "Strong Inter-Rater Agreement (kappa >= 0.81)"
+  },
+  "control_vs_treatment_experiment": {
+    "control_condition_no_tool": {
+      "mean_detection_accuracy": 0.6072,
+      "std_dev": 0.0645,
+      "description": "Proxies evaluating contract completeness manually without VADP UI"
+    },
+    "treatment_condition_with_vadp": {
+      "mean_detection_accuracy": 0.9867,
+      "std_dev": 0.0116,
+      "description": "Proxies evaluating contracts using VADP Verification Explorer UI"
+    },
+    "relative_improvement": "+62.49% detection accuracy boost"
+  },
+  "per_field_detection_variance": {
+    "f1_authorization": {
+      "mean_accuracy": 0.987,
+      "std_dev": 0.0126,
+      "variance": 0.00016
+    },
+    "f2_evidence": {
+      "mean_accuracy": 0.9857,
+      "std_dev": 0.0094,
+      "variance": 9e-05
+    },
+    "f3_rag_citations": {
+      "mean_accuracy": 0.9827,
+      "std_dev": 0.0079,
+      "variance": 6e-05
+    },
+    "f4_shap_explanation": {
+      "mean_accuracy": 0.9863,
+      "std_dev": 0.0098,
+      "variance": 0.0001
+    },
+    "f5_signature": {
+      "mean_accuracy": 0.9836,
+      "std_dev": 0.011,
+      "variance": 0.00012
+    },
+    "f6_merkle_proof": {
+      "mean_accuracy": 0.9853,
+      "std_dev": 0.0102,
+      "variance": 0.0001
+    },
+    "f7_human_review": {
+      "mean_accuracy": 0.9881,
+      "std_dev": 0.0095,
+      "variance": 9e-05
+    }
+  }
+}

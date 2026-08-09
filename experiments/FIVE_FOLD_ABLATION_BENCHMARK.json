@@ -1,0 +1,134 @@
+{
+  "protocol": "Strict 5-Fold Cross-Validation (Out-of-Fold Evaluation)",
+  "n_queries_total": 100,
+  "n_folds": 5,
+  "queries_per_fold": 20,
+  "per_fold_results": [
+    {
+      "fold": 1,
+      "n_val_queries": 20,
+      "Condition_1_Control": {
+        "P@1": 75.0,
+        "MRR": 80.72
+      },
+      "Condition_2_Permission_Filtered": {
+        "P@1": 80.0,
+        "MRR": 83.92
+      },
+      "Condition_3_Full_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      },
+      "Condition_4_Ablated_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      }
+    },
+    {
+      "fold": 2,
+      "n_val_queries": 20,
+      "Condition_1_Control": {
+        "P@1": 45.0,
+        "MRR": 60.44
+      },
+      "Condition_2_Permission_Filtered": {
+        "P@1": 55.0,
+        "MRR": 71.75
+      },
+      "Condition_3_Full_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      },
+      "Condition_4_Ablated_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      }
+    },
+    {
+      "fold": 3,
+      "n_val_queries": 20,
+      "Condition_1_Control": {
+        "P@1": 65.0,
+        "MRR": 77.5
+      },
+      "Condition_2_Permission_Filtered": {
+        "P@1": 80.0,
+        "MRR": 86.67
+      },
+      "Condition_3_Full_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      },
+      "Condition_4_Ablated_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      }
+    },
+    {
+      "fold": 4,
+      "n_val_queries": 20,
+      "Condition_1_Control": {
+        "P@1": 55.0,
+        "MRR": 61.48
+      },
+      "Condition_2_Permission_Filtered": {
+        "P@1": 60.0,
+        "MRR": 72.92
+      },
+      "Condition_3_Full_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      },
+      "Condition_4_Ablated_LambdaMART": {
+        "P@1": 95.0,
+        "MRR": 95.0
+      }
+    },
+    {
+      "fold": 5,
+      "n_val_queries": 20,
+      "Condition_1_Control": {
+        "P@1": 45.0,
+        "MRR": 56.77
+      },
+      "Condition_2_Permission_Filtered": {
+        "P@1": 65.0,
+        "MRR": 75.17
+      },
+      "Condition_3_Full_LambdaMART": {
+        "P@1": 90.0,
+        "MRR": 90.0
+      },
+      "Condition_4_Ablated_LambdaMART": {
+        "P@1": 90.0,
+        "MRR": 90.0
+      }
+    }
+  ],
+  "summary_table_5fold_mean_std": {
+    "Condition_1_Control": {
+      "mean_P@1": 57.0,
+      "std_P@1": 11.66,
+      "mean_MRR": 67.38,
+      "std_MRR": 9.76
+    },
+    "Condition_2_Permission_Filtered": {
+      "mean_P@1": 68.0,
+      "std_P@1": 10.3,
+      "mean_MRR": 78.09,
+      "std_MRR": 6.05
+    },
+    "Condition_3_Full_LambdaMART": {
+      "mean_P@1": 94.0,
+      "std_P@1": 2.0,
+      "mean_MRR": 94.0,
+      "std_MRR": 2.0
+    },
+    "Condition_4_Ablated_LambdaMART": {
+      "mean_P@1": 94.0,
+      "std_P@1": 2.0,
+      "mean_MRR": 94.0,
+      "std_MRR": 2.0
+    }
+  }
+}

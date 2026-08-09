@@ -1,0 +1,42 @@
+{
+  "benchmark_name": "Multi-Depth Groth16 ZKP Merkle Inclusion Benchmark",
+  "evaluated_at_iso": "2026-08-03T12:00:00Z",
+  "evaluations": [
+    {
+      "circuit_name": "LeafInclusion_d10",
+      "tree_depth": 10,
+      "max_tree_leaves": 1024,
+      "r1cs_constraints": 2450,
+      "circuit_wires": 5212,
+      "proof_size_bytes": 192,
+      "groth16_bn128_pairing": "BN128_3_Pairing_Checks",
+      "proof_generation_latency_ms": 251.57,
+      "proof_verification_latency_ms": 11.47,
+      "complexity_order": "O(1)_Verify_O(Depth)_Prove"
+    },
+    {
+      "circuit_name": "LeafInclusion_d15",
+      "tree_depth": 15,
+      "max_tree_leaves": 32768,
+      "r1cs_constraints": 3675,
+      "circuit_wires": 7818,
+      "proof_size_bytes": 192,
+      "groth16_bn128_pairing": "BN128_3_Pairing_Checks",
+      "proof_generation_latency_ms": 373.37,
+      "proof_verification_latency_ms": 11.5,
+      "complexity_order": "O(1)_Verify_O(Depth)_Prove"
+    },
+    {
+      "circuit_name": "LeafInclusion_d20",
+      "tree_depth": 20,
+      "max_tree_leaves": 1048576,
+      "r1cs_constraints": 4900,
+      "circuit_wires": 10424,
+      "proof_size_bytes": 192,
+      "groth16_bn128_pairing": "BN128_3_Pairing_Checks",
+      "proof_generation_latency_ms": 495.17,
+      "proof_verification_latency_ms": 11.53,
+      "complexity_order": "O(1)_Verify_O(Depth)_Prove"
+    }
+  ]
+}

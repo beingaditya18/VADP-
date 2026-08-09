@@ -1,0 +1,9 @@
+{
+  "merkle_root_invariance": true,
+  "original_root": "bc53d376c6b21cf7354abcd10da74a9d1e99cfe16163f066d3dee9581a1e96f4",
+  "redacted_root": "bc53d376c6b21cf7354abcd10da74a9d1e99cfe16163f066d3dee9581a1e96f4",
+  "zk_proof_system": "Groth16_bn128_Circom_Simulator",
+  "zk_proving_time_ms": 0.028,
+  "zk_verification_time_ms": 0.004999979864805937,
+  "zk_verification_status": true
+}

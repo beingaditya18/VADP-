@@ -1,0 +1,20 @@
+{
+  "ranking_objective": "LambdaMART / rank:pairwise",
+  "model_type": "XGBRanker (Gradient Boosted Pairwise LambdaMART Trees)",
+  "n_features": 8,
+  "n_queries_evaluated": 1500,
+  "mean_ndcg_at_1": 0.9993,
+  "std_ndcg_at_1": 0.0013,
+  "mean_ndcg_at_5": 0.9915,
+  "std_ndcg_at_5": 0.0021,
+  "feature_importances": [
+    0.0,
+    0.05257270112633705,
+    0.0034979667980223894,
+    0.3180832266807556,
+    0.0,
+    0.0,
+    0.6021196246147156,
+    0.023726457729935646
+  ]
+}

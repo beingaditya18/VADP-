@@ -1,0 +1,46 @@
+{
+  "n_contracts": 10000,
+  "seed": 42,
+  "detected": 10000,
+  "missed": 0,
+  "tamper_detection_rate_pct": 100.0,
+  "mean_localization_latency_ms": 0.0861,
+  "p95_localization_latency_ms": 0.1514,
+  "perturbation_types": [
+    "hash_flip",
+    "abac_role_swap",
+    "citation_id_swap",
+    "timestamp_tamper"
+  ],
+  "per_type": {
+    "hash_flip": {
+      "n": 2500,
+      "detected": 2500,
+      "tdr_pct": 100.0,
+      "mean_latency_ms": 0.084
+    },
+    "abac_role_swap": {
+      "n": 2500,
+      "detected": 2500,
+      "tdr_pct": 100.0,
+      "mean_latency_ms": 0.0841
+    },
+    "citation_id_swap": {
+      "n": 2500,
+      "detected": 2500,
+      "tdr_pct": 100.0,
+      "mean_latency_ms": 0.0894
+    },
+    "timestamp_tamper": {
+      "n": 2500,
+      "detected": 2500,
+      "tdr_pct": 100.0,
+      "mean_latency_ms": 0.087
+    }
+  },
+  "missed_examples": [],
+  "target_tdr_pct": 100.0,
+  "target_mean_latency_ms": 1.42,
+  "tdr_achieved": true,
+  "total_suite_runtime_ms": 3585.47
+}

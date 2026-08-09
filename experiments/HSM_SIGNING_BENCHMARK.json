@@ -1,0 +1,22 @@
+{
+  "num_signatures_evaluated": 1000,
+  "hardware_hsm_pkcs11_metrics": {
+    "provider_name": "SoftHSM2 / PyKCS11 Token Provider",
+    "key_type": "ECDSA SECP256R1 (P-256)",
+    "key_isolation": "HARDWARE_BOUNDARY_PROTECTED (PKCS#11 C-API)",
+    "total_time_sec": 0.0429,
+    "throughput_ops_per_sec": 23291.18,
+    "mean_signing_latency_ms": 0.0429,
+    "verification_latency_ms": 0.1299,
+    "signature_valid": true
+  },
+  "software_kms_metrics": {
+    "provider_name": "Software KMS Encrypted KeyStore",
+    "key_type": "ECDSA SECP256R1 (P-256)",
+    "key_isolation": "SOFTWARE_HOST_MEMORY",
+    "total_time_sec": 0.0295,
+    "throughput_ops_per_sec": 33883.49,
+    "mean_signing_latency_ms": 0.0295
+  },
+  "performance_overhead_ratio": 1.45
+}

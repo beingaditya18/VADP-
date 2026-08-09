@@ -1,0 +1,60 @@
+{
+  "benchmark_name": "VADP vs. Sachan & Liu (2024) Empirical Baseline Comparison",
+  "evaluated_queries": 1500,
+  "sachan_liu_batch_commit_sweep": {
+    "B_10": {
+      "batch_size": 10,
+      "total_batches": 150,
+      "per_decision_commit_latency_ms": 0.0012,
+      "per_decision_audit_time_ms": 0.001,
+      "storage_bytes_per_record": 287.2,
+      "tamper_detection_granularity": "Delayed Batch Detection (Window = 10 decisions)"
+    },
+    "B_50": {
+      "batch_size": 50,
+      "total_batches": 30,
+      "per_decision_commit_latency_ms": 0.001,
+      "per_decision_audit_time_ms": 0.001,
+      "storage_bytes_per_record": 284.64,
+      "tamper_detection_granularity": "Delayed Batch Detection (Window = 50 decisions)"
+    },
+    "B_100": {
+      "batch_size": 100,
+      "total_batches": 15,
+      "per_decision_commit_latency_ms": 0.001,
+      "per_decision_audit_time_ms": 0.001,
+      "storage_bytes_per_record": 284.32,
+      "tamper_detection_granularity": "Delayed Batch Detection (Window = 100 decisions)"
+    },
+    "B_500": {
+      "batch_size": 500,
+      "total_batches": 3,
+      "per_decision_commit_latency_ms": 0.001,
+      "per_decision_audit_time_ms": 0.001,
+      "storage_bytes_per_record": 284.06,
+      "tamper_detection_granularity": "Delayed Batch Detection (Window = 500 decisions)"
+    }
+  },
+  "vadp_verification_contract": {
+    "per_decision_commit_latency_ms": 1.5499,
+    "per_decision_audit_time_ms": 0.0116,
+    "storage_bytes_per_record": 866,
+    "tamper_detection_granularity": "Immediate Per-Decision (O(1) emission)"
+  },
+  "tamper_localization_benchmark": {
+    "tampered_record_index": 742,
+    "total_corpus_size": 1500,
+    "sachan_liu_batch_500": {
+      "localization_complexity": "O(B) full batch re-scan",
+      "localization_time_ms": 0.0271,
+      "tamper_detected": true,
+      "records_scanned": 500
+    },
+    "vadp_verification_contract": {
+      "localization_complexity": "O(log K) RFC 6962 proof verification",
+      "localization_time_ms": 0.016,
+      "tamper_detected": true,
+      "records_scanned": 1
+    }
+  }
+}

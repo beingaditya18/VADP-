@@ -1,0 +1,59 @@
+{
+  "LexGLUE-SCOTUS": {
+    "dataset": "LexGLUE-SCOTUS",
+    "disjoint_split_range": "[Queries 501 : 1000]",
+    "queries_evaluated": 500,
+    "three_column_narrative": {
+      "1_zero_shot_india_tuned_baseline": {
+        "precision_at_1": 0.482,
+        "precision_at_5": 0.695,
+        "mrr": 0.584,
+        "status": "Zero-shot transfer without fine-tuning"
+      },
+      "2_same_split_retrained_overfitted_ref": {
+        "precision_at_1": 1.0,
+        "precision_at_5": 1.0,
+        "mrr": 1.0,
+        "status": "OVERFITTED_REFERENCE_POINT (In-sample feature leakage artifact)"
+      },
+      "3_disjoint_split_retrained_true_ood": {
+        "precision_at_1": 0.684,
+        "precision_at_5": 0.862,
+        "mrr": 0.758,
+        "status": "CLEAN_OOD_TRANSFER_BASELINE"
+      }
+    },
+    "latency_p50_ms": 2.93,
+    "latency_p99_ms": 3.75,
+    "statutory_features_used": "Domain-Specific Cross-Jurisdictional GBT Features"
+  },
+  "LexGLUE-ECtHR": {
+    "dataset": "LexGLUE-ECtHR",
+    "disjoint_split_range": "[Queries 501 : 1000]",
+    "queries_evaluated": 500,
+    "three_column_narrative": {
+      "1_zero_shot_india_tuned_baseline": {
+        "precision_at_1": 0.441,
+        "precision_at_5": 0.662,
+        "mrr": 0.531,
+        "status": "Zero-shot transfer without fine-tuning"
+      },
+      "2_same_split_retrained_overfitted_ref": {
+        "precision_at_1": 1.0,
+        "precision_at_5": 1.0,
+        "mrr": 1.0,
+        "status": "OVERFITTED_REFERENCE_POINT (In-sample feature leakage artifact)"
+      },
+      "3_disjoint_split_retrained_true_ood": {
+        "precision_at_1": 0.612,
+        "precision_at_5": 0.814,
+        "mrr": 0.694,
+        "status": "CLEAN_OOD_TRANSFER_BASELINE"
+      }
+    },
+    "latency_p50_ms": 2.56,
+    "latency_p99_ms": 3.62,
+    "statutory_features_used": "Domain-Specific Cross-Jurisdictional GBT Features"
+  },
+  "status": "DISJOINT_SPLIT_RETRAINED_CLEAN_BASELINE"
+}

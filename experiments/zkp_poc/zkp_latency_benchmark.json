@@ -1,0 +1,32 @@
+[
+  {
+    "k_leaves": 10,
+    "n_trials": 3,
+    "prove_ms_mean": 2365.21,
+    "prove_ms_std": 16.97,
+    "verify_ms_mean": 2012.62,
+    "verify_ms_std": 17.01,
+    "proof_size_bytes": 192,
+    "simulation_mode": false
+  },
+  {
+    "k_leaves": 50,
+    "n_trials": 3,
+    "prove_ms_mean": 2355.51,
+    "prove_ms_std": 20.78,
+    "verify_ms_mean": 2048.6,
+    "verify_ms_std": 39.35,
+    "proof_size_bytes": 192,
+    "simulation_mode": false
+  },
+  {
+    "k_leaves": 100,
+    "n_trials": 3,
+    "prove_ms_mean": 2347.95,
+    "prove_ms_std": 14.01,
+    "verify_ms_mean": 2074.42,
+    "verify_ms_std": 65.18,
+    "proof_size_bytes": 192,
+    "simulation_mode": false
+  }
+]

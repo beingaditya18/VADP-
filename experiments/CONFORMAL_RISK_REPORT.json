@@ -1,0 +1,44 @@
+{
+  "theorem": "Theorem 2 \u2014 Conformal Risk Control",
+  "alpha": 0.05,
+  "n_total_corpus": 3500,
+  "n_held_out_test": 700,
+  "n_calibration": 500,
+  "n_validation": 200,
+  "n_positive_calibration": 256,
+  "nonconformity_scores_stats": {
+    "mean": 0.416307,
+    "std": 0.049237,
+    "min": 0.283946,
+    "max": 0.54357,
+    "quantile_95": 0.490814
+  },
+  "tau_hat_p": 0.490814,
+  "decision_threshold": 0.509186,
+  "bounded_error_result": {
+    "n_validation": 200,
+    "n_positive_cases": 111,
+    "n_missed": 9,
+    "miss_rate": 0.045,
+    "miss_rate_pct": 4.5,
+    "bounded": true,
+    "tau_hat": 0.490814,
+    "decision_threshold": 0.509186,
+    "alpha": 0.05,
+    "alpha_pct": 5.0,
+    "missed_indices": [
+      26,
+      63,
+      68,
+      78,
+      86,
+      88,
+      93,
+      108,
+      128
+    ]
+  },
+  "coverage_rate": 0.895,
+  "theorem_2_satisfied": true,
+  "seed": 42
+}

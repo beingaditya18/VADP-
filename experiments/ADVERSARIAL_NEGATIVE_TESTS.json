@@ -1,0 +1,26 @@
+{
+  "num_attacks_evaluated": 100,
+  "undefended_rag_control": {
+    "successfully_blocked": 11,
+    "successful_attack_bypasses": 89,
+    "defense_rate_percent": 11.0,
+    "attack_success_rate_percent": 89.0,
+    "attacks_bypassed_by_category": {
+      "system_prompt_override": 23,
+      "citation_fabrication": 22,
+      "abac_role_spoofing": 23,
+      "context_poisoning": 21
+    }
+  },
+  "vadp_defended_pipeline": {
+    "successfully_blocked": 100,
+    "successful_attack_bypasses": 0,
+    "defense_rate_percent": 100.0,
+    "nli_entailment_gate_blocks": 48,
+    "abac_pdp_role_blocks": 52
+  },
+  "empirical_security_gain": {
+    "absolute_defense_rate_improvement": "+89.00%",
+    "vulnerability_reduction": "100% Attack Neutralization"
+  }
+}

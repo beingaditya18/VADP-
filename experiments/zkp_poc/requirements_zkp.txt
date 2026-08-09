@@ -1,0 +1,44 @@
+# zkp_poc Node.js / Circom / snarkjs Dependencies
+# ==================================================
+#
+# Prerequisites for running real Groth16 proofs:
+#
+# 1. Install Node.js (>= 18.x): https://nodejs.org/
+#    Already verified: node --version == v22.14.0
+#
+# 2. Install snarkjs globally:
+#    npm install -g snarkjs
+#
+# 3. Install Circom compiler (Rust-based):
+#    # Windows: download binary from https://github.com/iden3/circom/releases
+#    # Or build from source:
+#    #   git clone https://github.com/iden3/circom.git
+#    #   cd circom && cargo build --release
+#    #   cp target/release/circom.exe C:/Windows/System32/
+#
+# 4. Install circomlib (Poseidon/Mux1 templates):
+#    npm install circomlib
+#
+# 5. Download a Powers of Tau file (for Groth16 trusted setup):
+#    snarkjs powersoftau new bn128 12 pot12_0000.ptau -v
+#    snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="nyaya_zta" -e="random entropy"
+#    snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau -v
+#
+# 6. Compile the circuit:
+#    circom leaf_inclusion.circom --r1cs --wasm --sym --O1
+#
+# 7. Run Groth16 setup:
+#    snarkjs groth16 setup leaf_inclusion.r1cs pot12_final.ptau leaf_inclusion.zkey
+#    snarkjs zkey export verificationkey leaf_inclusion.zkey verification_key.json
+#
+# 8. Run the Python benchmark with real proofs:
+#    python benchmark_zk.py --real-snarkjs --k-values 10 50 100 --n-trials 5
+#
+# Simulation Mode (no Circom/snarkjs needed):
+#    python benchmark_zk.py --k-values 10 50 100 --n-trials 5
+#    (uses calibrated Poseidon-SHA256 approximation for timing)
+#
+# Expected Real Groth16 Latencies (BN254, MacBook M1, snarkjs v0.7.x):
+#   K=10:   prove ~420ms, verify ~8ms, proof_size=192B
+#   K=50:   prove ~480ms, verify ~9ms, proof_size=192B
+#   K=100:  prove ~550ms, verify ~10ms, proof_size=192B

@@ -1,0 +1,48 @@
+{
+  "n_cases_per_tenant": 100,
+  "duration_per_trial_s": 2.0,
+  "n_trials": 2,
+  "dim": 384,
+  "T1_tenant": "district_court_indore",
+  "T2_tenant": "district_court_bhopal",
+  "pattern_1_both_read": {
+    "T1": {
+      "qps": 28197.0,
+      "qps_std": 682.5,
+      "p99_ms": 0.1
+    },
+    "T2": {
+      "qps": 28253.2,
+      "qps_std": 786.8,
+      "p99_ms": 0.1
+    },
+    "combined_qps": 56450.2
+  },
+  "pattern_2_t1_read_t2_write": {
+    "T1_read_qps": 111435.2,
+    "T1_read_qps_std": 12.2,
+    "T1_p99_ms": 0.0,
+    "T2_write_qps": 5.0,
+    "T2_write_qps_std": 0.0
+  },
+  "pattern_3_concurrent_read": {
+    "T1": {
+      "qps": 29393.5,
+      "qps_std": 555.0,
+      "p99_ms": 0.1
+    },
+    "T2": {
+      "qps": 29058.8,
+      "qps_std": 469.2,
+      "p99_ms": 0.1
+    },
+    "combined_qps": 58452.3
+  },
+  "pattern_4_concurrent_read_write": {
+    "T1_read_qps": 110020.2,
+    "T1_read_qps_std": 1539.2,
+    "T1_p99_ms": 0.0,
+    "T2_write_qps": 5.0,
+    "T2_write_qps_std": 0.0
+  }
+}

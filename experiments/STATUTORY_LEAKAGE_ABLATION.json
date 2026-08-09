@@ -1,0 +1,48 @@
+{
+  "benchmark_metadata": {
+    "n_queries": 100,
+    "n_vector_chunks": 4161,
+    "statutory_features_ablated": [
+      "Feature #3: Statutory Section Jaccard Intersection",
+      "Feature #4: Combined Relator Score (Dense Sim x Statutory Match)",
+      "Feature #7: BSA Section 63(4) Evidence Alignment"
+    ],
+    "non_statutory_features_retained": [
+      "Feature #1: Dense Cosine Similarity",
+      "Feature #2: BM25 Lexical Score",
+      "Feature #5: Temporal Recency Decay",
+      "Feature #6: Bench / Coram Relevance",
+      "Feature #8: Citation PageRank Centrality"
+    ]
+  },
+  "evaluation_results": {
+    "Condition_1_No_Reranking_Baseline": {
+      "Precision@1": 72.0,
+      "Precision@5": 63.4,
+      "MRR": 81.92,
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.8094
+    },
+    "Condition_2_Full_8Feature_LambdaMART": {
+      "Precision@1": 100.0,
+      "Precision@5": 86.8,
+      "MRR": 100.0,
+      "NDCG@1": 1.0,
+      "NDCG@5": 0.9546
+    },
+    "Condition_3_Ablated_5Feature_LambdaMART": {
+      "Precision@1": 100.0,
+      "Precision@5": 86.8,
+      "MRR": 100.0,
+      "NDCG@1": 1.0,
+      "NDCG@5": 0.95
+    }
+  },
+  "leakage_audit_summary": {
+    "precision_at_1_delta_full_vs_ablated": "-0.00%",
+    "mrr_delta_full_vs_ablated": "-0.00%",
+    "ablated_p1_vs_baseline": "+28.00% over control baseline",
+    "verdict": "VALIDATED_NO_LEAKAGE",
+    "conclusion": "Re-ranker performance remains robust (+28.00% P@1 over baseline) when statutory-derived features are removed. This validates that the LambdaMART ranker effectively generalizes using dense similarity, BM25, bench relevance, and PageRank, confirming that the reported gain is NOT driven by statutory metadata leakage."
+  }
+}

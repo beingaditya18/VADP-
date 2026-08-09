@@ -1,0 +1,36 @@
+{
+  "theoretical_basis": "Slack et al. (2020) Fooling LIME and SHAP Adversarial Scaffolding Attack Model",
+  "n_samples": 100,
+  "perturbation_sweep": [
+    {
+      "epsilon_perturbation": 0.01,
+      "mean_spearman_rank_correlation_rho": 0.9964,
+      "mean_l2_attribution_distance": 0.014,
+      "robustness_status": "ROBUST"
+    },
+    {
+      "epsilon_perturbation": 0.05,
+      "mean_spearman_rank_correlation_rho": 0.9811,
+      "mean_l2_attribution_distance": 0.0691,
+      "robustness_status": "ROBUST"
+    },
+    {
+      "epsilon_perturbation": 0.1,
+      "mean_spearman_rank_correlation_rho": 0.9597,
+      "mean_l2_attribution_distance": 0.137,
+      "robustness_status": "ROBUST"
+    },
+    {
+      "epsilon_perturbation": 0.15,
+      "mean_spearman_rank_correlation_rho": 0.94,
+      "mean_l2_attribution_distance": 0.2087,
+      "robustness_status": "ROBUST"
+    },
+    {
+      "epsilon_perturbation": 0.2,
+      "mean_spearman_rank_correlation_rho": 0.9229,
+      "mean_l2_attribution_distance": 0.2762,
+      "robustness_status": "ROBUST"
+    }
+  ]
+}
